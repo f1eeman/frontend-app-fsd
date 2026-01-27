@@ -5,6 +5,11 @@
   "repository": "git@github.com:f1eeman/frontend-app-fsd.git",
   "author": "f1eeman <mr.f1eeman@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "24.11.0",
+    "npm": "please-use-yarn",
+    "yarn": ">= 1.22.22"
+  },
   "devDependencies": {
     "@types/node": "~25.0.10",
     "@types/webpack": "~5.28.5",

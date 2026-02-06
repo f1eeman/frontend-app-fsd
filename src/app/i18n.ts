@@ -29,7 +29,7 @@ const initI18n = () =>
       supportedLngs: [langMap.ru, langMap.en],
       defaultNS: "common",
       ns: ["common"],
-      debug: false,
+      debug: __IS_DEV__,
       interpolation: {
         escapeValue: false,
       },

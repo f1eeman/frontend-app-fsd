@@ -1,0 +1,55 @@
+.sidebar {
+  height: calc(100vh - var(--navbar-height));
+  background: var(--inverted-bg-color);
+  width: var(--sidebar-width);
+  transition: width 0.3s;
+  position: relative;
+}
+
+.collapseBtn {
+  position: absolute;
+  right: -32px;
+  bottom: 32px;
+}
+
+.switchers {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+
+.collapsed {
+  width: var(--sidebar-width-collapsed);
+
+  .switchers {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navLinkText {
+    display: none;
+  }
+}
+
+.navLinks {
+  padding-top: 30px;
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  gap:20px
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.toggleBtn {
+  display: block;
+  margin: 0 auto;
+}
+

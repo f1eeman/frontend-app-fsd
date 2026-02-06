@@ -2,15 +2,18 @@ import { BrowserRouter, useRoutes } from "react-router";
 import { AboutPageAsync } from "@/pages/AboutPage/AboutPage.async";
 import { MainPageAsync } from "@/pages/MainPage/MainPage.async";
 import type { RouteObject } from "react-router";
+import { routesPaths } from "@/shared/config/routes";
 
 const routesConfig: RouteObject[] = [
   {
     element: <MainPageAsync />,
-    path: "/",
+    path: routesPaths.root.path,
+    id: routesPaths.root.id,
     children: [
       {
         element: <AboutPageAsync />,
-        path: "about",
+        path: routesPaths.about.path,
+        id: routesPaths.about.id,
       },
     ],
   },

@@ -1,12 +1,17 @@
+import { Navbar } from "@/widgets/Navbar";
 import { Outlet } from "react-router";
-import { ThemeSwitcher } from "@/widgets/ThemeSwitcher/ui/ThemeSwitcher";
+import { Sidebar } from "@/widgets/Sidebar";
 
 const MainPage = () => {
   return (
     <div>
-      <ThemeSwitcher />
-      MainPage
-      <Outlet />
+      <Navbar />
+      <div className="content-page">
+        <Sidebar />
+        <div className={"page-wrapper"}>
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 };

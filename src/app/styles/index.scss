@@ -1,8 +1,7 @@
-@use "modern-normalize";
-
-@use "vars/global";
-@use "themes/light";
-@use "themes/dark";
+@use 'modern-normalize';
+@use 'vars/global';
+@use 'themes/light';
+@use 'themes/dark';
 
 .app {
   font: var(--font-m);

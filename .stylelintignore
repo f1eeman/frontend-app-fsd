@@ -1,0 +1,7 @@
+*.tsx
+*.jsx
+*.ts
+*.js
+*.svg
+node_modules
+.stylelintcache

@@ -21,7 +21,7 @@
     "lint:es:quiet": "yarn run lint:es --quiet",
     "lint:es:fix:quiet": "yarn run lint:es:quiet --fix",
     "lint:scss": "yarn stylelint \"**/*.scss\"",
-    "lint:scss:fix": "yarn run lint:scss -- --fix",
+    "lint:scss:fix": "yarn run lint:scss --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,scss,json}\""
   },
   "devDependencies": {

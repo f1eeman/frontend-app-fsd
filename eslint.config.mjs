@@ -6,6 +6,7 @@ import eslintReactHooks from 'eslint-plugin-react-hooks'
 import eslintReactRefresh from 'eslint-plugin-react-refresh'
 import eslintConfigPrettier from 'eslint-config-prettier'
 import importPlugin from 'eslint-plugin-import'
+import i18next from 'eslint-plugin-i18next'
 
 const codeFiles = ['**/*.{js,jsx,ts,tsx}']
 
@@ -22,6 +23,7 @@ export default [
   { ...importPlugin.flatConfigs.typescript, files: codeFiles },
   {
     files: codeFiles,
+    ...i18next.configs['flat/recommended'],
     languageOptions: {
       parser: eslintTS.parser,
       ecmaVersion: 'latest',
@@ -30,9 +32,33 @@ export default [
     },
     plugins: {
       'react-refresh': eslintReactRefresh,
+      i18next: i18next,
     },
 
     rules: {
+      ...i18next.configs['flat/recommended'].rules,
+      'i18next/no-literal-string': [
+        'error',
+        {
+          mode: 'jsx-only',
+          'jsx-attributes': {
+            exclude: [
+              'data-testid',
+              'theme',
+              'size',
+              'className',
+              'to',
+              'target',
+              'variant',
+              'direction',
+            ],
+          },
+
+          words: {
+            exclude: ['[<>|\\/()&+-]'],
+          },
+        },
+      ],
       'react/prop-types': 'off',
       'import/order': [
         'error',
@@ -95,7 +121,6 @@ export default [
       ],
       'react/jsx-curly-brace-presence': 'off',
       'react/self-closing-comp': ['error', { component: true, html: true }],
-      ...eslintConfigPrettier.rules,
     },
   },
   {
@@ -107,4 +132,5 @@ export default [
       },
     },
   },
+  eslintConfigPrettier,
 ]

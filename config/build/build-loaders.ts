@@ -1,5 +1,5 @@
-import webpack from "webpack";
 import { buildCssLoader } from "./loaders/css-loader";
+import type webpack from "webpack";
 import type { BuildOptions } from "./types";
 
 export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {

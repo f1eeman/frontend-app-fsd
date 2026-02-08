@@ -1,42 +1,43 @@
-import { useTranslation } from "react-i18next";
-import { type FC, useCallback, useState } from "react";
-import { ThemeSwitcher } from "@/widgets/ThemeSwitcher";
-import { LangSwitcher } from "@/widgets/LangSwticher";
-import { Button } from "@/shared/ui/Button/Button";
-import { AppLink, AppLinkTheme } from "@/shared/ui/Link/Link";
-import { classNames } from "@/shared/lib/classNames/classNames";
-import { routesPaths } from "@/shared/config/routes";
-import MainIcon from "shared/assets/icons/home.svg";
-import AboutIcon from "shared/assets/icons/list.svg";
-import * as cls from "./Sidebar.module.scss";
+import { type FC, useCallback, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import * as cls from './Sidebar.module.scss'
+import MainIcon from '@/shared/assets/icons/home.svg'
+import AboutIcon from '@/shared/assets/icons/list.svg'
+import { routesPaths } from '@/shared/config/routes'
+import { classNames } from '@/shared/lib/classNames/classNames'
+import { Button } from '@/shared/ui/Button/Button'
+import { AppLinkTheme } from '@/shared/ui/Link/consts'
+import { AppLink } from '@/shared/ui/Link/Link'
+import { LangSwitcher } from '@/widgets/LangSwticher'
+import { ThemeSwitcher } from '@/widgets/ThemeSwitcher'
 
 interface SidebarProps {
-  className?: string;
+  className?: string
 }
 
-export const Sidebar: FC = ({ className = "" }: SidebarProps) => {
-  const { t } = useTranslation("common");
-  const [collapsed, setCollapsed] = useState(false);
+export const Sidebar: FC = ({ className = '' }: SidebarProps) => {
+  const { t } = useTranslation('common')
+  const [collapsed, setCollapsed] = useState(false)
   const toggleCollapsed = useCallback(() => {
-    setCollapsed((collapsed) => !collapsed);
-  }, []);
+    setCollapsed((collapsed) => !collapsed)
+  }, [])
 
   return (
     <div
-      data-testid="sidebar"
+      data-testid='sidebar'
       className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [
         className,
       ])}
     >
       <Button
         square
-        theme={"background-inverted"}
+        theme={'background-inverted'}
         onClick={toggleCollapsed}
-        data-testid="sidebar-toggle"
+        data-testid='sidebar-toggle'
         className={cls.collapseBtn}
-        size={"size-l"}
+        size={'size-l'}
       >
-        {`${collapsed ? ">" : "<"}`}
+        {`${collapsed ? '>' : '<'}`}
       </Button>
       <div className={cls.navLinks}>
         <AppLink
@@ -45,7 +46,7 @@ export const Sidebar: FC = ({ className = "" }: SidebarProps) => {
           to={routesPaths.root.path}
         >
           <MainIcon />
-          <span className={cls.navLinkText}> {t("Главная страница")}</span>
+          <span className={cls.navLinkText}> {t('Главная страница')}</span>
         </AppLink>
         <AppLink
           theme={AppLinkTheme.SECONDARY}
@@ -53,7 +54,7 @@ export const Sidebar: FC = ({ className = "" }: SidebarProps) => {
           to={routesPaths.about.path}
         >
           <AboutIcon />
-          <span className={cls.navLinkText}>{t("О сайте")}</span>
+          <span className={cls.navLinkText}>{t('О сайте')}</span>
         </AppLink>
       </div>
       <div className={cls.switchers}>
@@ -61,5 +62,5 @@ export const Sidebar: FC = ({ className = "" }: SidebarProps) => {
         <LangSwitcher short />
       </div>
     </div>
-  );
-};
+  )
+}

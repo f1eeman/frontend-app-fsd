@@ -1,45 +1,33 @@
-import * as cls from "./Button.module.scss";
-import type { ButtonHTMLAttributes, FC } from "react";
-
-export const buttonTheme = {
-  clear: "clear",
-  invertedClear: "clear-inverted",
-  background: "background",
-  invertedBackground: "background-inverted",
-} as const;
-
-export const buttonSize = {
-  m: "size-m",
-  l: "size-l",
-  xl: "size-xl",
-} as const;
+import * as cls from './Button.module.scss'
+import type { ButtonHTMLAttributes, FC } from 'react'
+import type { ButtonSize, ButtonTheme } from './consts'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  className?: string;
-  theme?: (typeof buttonTheme)[keyof typeof buttonTheme];
-  size?: (typeof buttonSize)[keyof typeof buttonSize];
-  square?: boolean;
+  className?: string
+  theme?: ButtonTheme
+  size?: ButtonSize
+  square?: boolean
 }
 
 export const Button: FC<ButtonProps> = (props) => {
   const {
     disabled = false,
-    className = "",
+    className = '',
     children,
-    theme = "clear",
+    theme = 'clear',
     square = false,
-    size = "size-m",
+    size = 'size-m',
     ...otherProps
-  } = props;
+  } = props
 
   return (
     <button
-      type={"button"}
+      type={'button'}
       disabled={disabled}
-      className={`${cls.button} ${cls[theme]} ${cls[size]} ${square ? cls.square : ""} ${className}`}
+      className={`${cls.button} ${cls[theme]} ${cls[size]} ${square ? cls.square : ''} ${className}`}
       {...otherProps}
     >
       {children}
     </button>
-  );
-};
+  )
+}

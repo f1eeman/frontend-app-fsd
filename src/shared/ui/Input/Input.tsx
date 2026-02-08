@@ -1,57 +1,56 @@
-import { memo, useEffect, useRef, useState } from "react";
-import { classNames } from "@/shared/lib/classNames/classNames";
-import * as cls from "./Input.module.scss";
-import type { ChangeEventHandler, InputHTMLAttributes } from "react";
+import { memo, useEffect, useRef, useState } from 'react'
+import * as cls from './Input.module.scss'
+import { classNames } from '@/shared/lib/classNames/classNames'
+import type { ChangeEventHandler, InputHTMLAttributes } from 'react'
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  "value" | "onChange"
->;
+  'value' | 'onChange'
+>
 
 interface InputProps extends HTMLInputProps {
-  className?: string;
-  value?: string;
-  onChange?: (value: string) => void;
-  autofocus?: boolean;
+  className?: string
+  value?: string
+  onChange?: (value: string) => void
+  autofocus?: boolean
 }
 
 export const Input = memo<InputProps>((props) => {
   const {
-    className = "",
+    className = '',
     value,
     onChange,
-    type = "text",
+    type = 'text',
     placeholder,
     autofocus,
     ...otherProps
-  } = props;
-  const ref = useRef<HTMLInputElement>(null);
-  const [isFocused, setIsFocused] = useState(false);
-  const [caretPosition, setCaretPosition] = useState(0);
+  } = props
+  const ref = useRef<HTMLInputElement>(null)
+  const [isFocused, setIsFocused] = useState(autofocus)
+  const [caretPosition, setCaretPosition] = useState(0)
 
   const onChangeHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
-    onChange?.(e.target.value);
-    setCaretPosition(e.target.value.length);
-  };
+    onChange?.(e.target.value)
+    setCaretPosition(e.target.value.length)
+  }
 
   const onBlur: VoidFunction = () => {
-    setIsFocused(false);
-  };
+    setIsFocused(false)
+  }
 
   const onFocus: VoidFunction = () => {
-    setIsFocused(true);
-  };
+    setIsFocused(true)
+  }
 
   const onSelect: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setCaretPosition(e.target.selectionStart ?? 0);
-  };
+    setCaretPosition(e.target.selectionStart ?? 0)
+  }
 
   useEffect(() => {
     if (autofocus) {
-      setIsFocused(true);
-      ref.current?.focus();
+      ref.current?.focus()
     }
-  }, [autofocus]);
+  }, [autofocus])
 
   return (
     <div className={classNames(cls.InputWrapper, {}, [className])}>
@@ -78,5 +77,7 @@ export const Input = memo<InputProps>((props) => {
         )}
       </div>
     </div>
-  );
-});
+  )
+})
+
+Input.displayName = 'Input'

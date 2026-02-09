@@ -23,11 +23,16 @@
     "lint:scss": "yarn stylelint \"**/*.scss\"",
     "lint:scss:fix": "yarn run lint:scss --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,scss,json}\"",
-    "test": "jest"
+    "test:unit": "jest --config ./config/jest/jest.config.ts"
   },
   "devDependencies": {
+    "@babel/core": "~7.29.0",
+    "@babel/preset-env": "~7.29.0",
+    "@babel/preset-react": "~7.28.5",
+    "@babel/preset-typescript": "~7.28.5",
     "@eslint/js": "~9.38.0",
     "@svgr/webpack": "~8.1.0",
+    "@types/jest": "~30.0.0",
     "@types/node": "~25.0.10",
     "@types/react": "~19.2.10",
     "@types/react-dom": "~19.2.3",
@@ -35,6 +40,7 @@
     "@types/webpack-bundle-analyzer": "~4.7.0",
     "@typescript-eslint/eslint-plugin": "~8.46.2",
     "@typescript-eslint/parser": "~8.46.2",
+    "babel-jest": "~30.2.0",
     "css-loader": "~7.1.3",
     "eslint": "~9.38.0",
     "eslint-config-prettier": "~10.1.8",
@@ -46,6 +52,7 @@
     "eslint-plugin-react-refresh": "~0.4.24",
     "html-webpack-plugin": "~5.6.6",
     "jest": "~30.2.0",
+    "jest-environment-jsdom": "~30.2.0",
     "mini-css-extract-plugin": "~2.10.0",
     "prettier": "~3.6.2",
     "sass": "~1.97.3",

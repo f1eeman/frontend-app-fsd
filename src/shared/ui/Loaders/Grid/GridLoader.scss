@@ -15,7 +15,7 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: currentcolor;
+  background: var(--inverted-bg-color);
   animation: lds-grid 1.2s linear infinite;
 }
 

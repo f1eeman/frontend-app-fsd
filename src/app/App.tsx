@@ -3,11 +3,11 @@ import { AppRouter } from './routing/App.Router'
 import { ThemeProvider } from './theme/Provider'
 import './styles/index.scss'
 import './i18n'
-import { GridLoader } from '@/shared/ui/Loaders/Grid/GridLoader'
+import { AppLoader } from '@/widgets/AppLoader/ui/AppLoader'
 
 export const App = () => {
   return (
-    <Suspense fallback={<GridLoader />}>
+    <Suspense fallback={<AppLoader />}>
       <ThemeProvider>
         <AppRouter />
       </ThemeProvider>

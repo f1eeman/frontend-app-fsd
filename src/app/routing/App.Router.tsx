@@ -1,8 +1,10 @@
+import { Suspense } from 'react'
 import { BrowserRouter, useRoutes } from 'react-router'
 import { AboutPageAsync } from '@/pages/AboutPage/AboutPage.async'
 import { MainPageAsync } from '@/pages/MainPage/MainPage.async'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 import { routesPaths } from '@/shared/config/routes'
+import { PageLoader } from '@/widgets/PageLoader'
 import type { RouteObject } from 'react-router'
 
 const routesConfig: RouteObject[] = [
@@ -27,6 +29,7 @@ const routesConfig: RouteObject[] = [
 
 const AppRoutes = () => {
   const element = useRoutes(routesConfig)
+  // return <Suspense fallback={<PageLoader />}>{element}</Suspense>
   return element
 }
 

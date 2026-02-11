@@ -1,4 +1,5 @@
 import { Suspense } from 'react'
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 import { AppRouter } from './routing/App.Router'
 import { ThemeProvider } from './theme/Provider'
 import './styles/index.scss'
@@ -7,10 +8,12 @@ import { AppLoader } from '@/widgets/AppLoader/ui/AppLoader'
 
 export const App = () => {
   return (
-    <Suspense fallback={<AppLoader />}>
-      <ThemeProvider>
-        <AppRouter />
-      </ThemeProvider>
-    </Suspense>
+    <ErrorBoundary>
+      <Suspense fallback={<AppLoader />}>
+        <ThemeProvider>
+          <AppRouter />
+        </ThemeProvider>
+      </Suspense>
+    </ErrorBoundary>
   )
 }

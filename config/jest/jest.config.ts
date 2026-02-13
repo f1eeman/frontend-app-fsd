@@ -3,7 +3,12 @@
  * https://jestjs.io/docs/configuration
  */
 
+import path from 'path'
+import { fileURLToPath } from 'url'
 import type { Config } from 'jest'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const config: Config = {
   setupFilesAfterEnv: ['<rootDir>config/jest/jest.setup.ts'],
@@ -44,6 +49,7 @@ const config: Config = {
 
   // Маппинг из регулярных выражений в имена модулей или массив имён модулей, чтобы подменять ресурсы одним модулем
   moduleNameMapper: {
+    '\\.svg': path.resolve(__dirname, 'jest.EmptyComponent.tsx'),
     '\\.s?css$': 'identity-obj-proxy',
     '^@/(.*)$': '<rootDir>src/$1',
   },

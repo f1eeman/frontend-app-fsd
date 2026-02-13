@@ -25,6 +25,7 @@ const initI18n = () =>
     .use(LanguageDetector)
     .use(HttpBackend)
     .init({
+      showSupportNotice: false,
       fallbackLng: langMap.ru,
       supportedLngs: [langMap.ru, langMap.en],
       defaultNS: 'common',

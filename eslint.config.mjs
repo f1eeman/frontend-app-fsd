@@ -124,6 +124,12 @@ export default [
     },
   },
   {
+    files: ['**/*.test.tsx'],
+    rules: {
+      'i18next/no-literal-string': 'off',
+    },
+  },
+  {
     settings: {
       react: { version: 'detect' },
       'import/resolver': {

@@ -1,6 +1,6 @@
 import { Link, type LinkProps } from 'react-router'
 import { AppLinkTheme } from './consts'
-import * as cls from './Link.module.scss'
+import cls from './Link.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import type { FC } from 'react'
 

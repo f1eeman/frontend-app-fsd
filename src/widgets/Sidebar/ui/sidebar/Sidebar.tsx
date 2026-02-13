@@ -1,6 +1,6 @@
 import { type FC, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import * as cls from './Sidebar.module.scss'
+import cls from './Sidebar.module.scss'
 import MainIcon from '@/shared/assets/icons/home.svg'
 import AboutIcon from '@/shared/assets/icons/list.svg'
 import { routesPaths } from '@/shared/config/routes'

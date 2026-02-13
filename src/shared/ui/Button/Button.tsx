@@ -1,4 +1,4 @@
-import * as cls from './Button.module.scss'
+import cls from './Button.module.scss'
 import type { ButtonHTMLAttributes, FC } from 'react'
 import type { ButtonSize, ButtonTheme } from './consts'
 

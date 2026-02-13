@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { TextTheme } from './consts'
-import * as cls from './Text.module.scss'
+import cls from './Text.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
 
 interface TextProps {

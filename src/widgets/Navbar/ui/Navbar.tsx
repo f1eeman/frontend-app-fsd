@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 // import { useAppDispatch, useAppSelector } from 'app/providers/store/hooks'
 // import { LoginModal } from 'features/AuthByUsername'
 // import { getUserAuthData, userActions } from 'entities/user'
-import * as classes from './Navbar.module.scss'
+import cls from './Navbar.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button } from '@/shared/ui/Button/Button'
 
@@ -39,8 +39,8 @@ export const Navbar: FC = ({ className = '' }: NavbarProps) => {
   // }
 
   return (
-    <div className={classNames(classes.navbar, {}, [className])}>
-      <div className={classes.links}>
+    <div className={classNames(cls.navbar, {}, [className])}>
+      <div className={cls.links}>
         <Button theme={'clear-inverted'} onClick={toggleAuthModal}>
           {t('Войти')}
         </Button>

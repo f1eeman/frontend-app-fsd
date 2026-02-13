@@ -1,5 +1,5 @@
 import { memo, useEffect, useRef, useState } from 'react'
-import * as cls from './Input.module.scss'
+import cls from './Input.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import type { ChangeEventHandler, InputHTMLAttributes } from 'react'
 

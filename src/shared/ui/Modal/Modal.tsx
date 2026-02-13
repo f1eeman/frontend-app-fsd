@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
-import * as classes from './Modal.module.scss'
+import cls from './Modal.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Portal, type PortalProps } from '@/shared/ui/Portal/Portal'
 import type { FC, ReactNode, MouseEvent } from 'react'
@@ -83,16 +83,16 @@ export const Modal: FC<ModalProps> = (props) => {
       <div
         onClick={handleClose}
         className={classNames(
-          classes.Modal,
+          cls.modal,
           {
-            [classes.opened]: isOpen,
-            [classes.closed]: isClosing,
+            [cls.opened]: isOpen,
+            [cls.closed]: isClosing,
           },
           [className],
         )}
       >
-        <div className={classes.overlay}>
-          <div className={classes.content} onClick={onContentClick}>
+        <div className={cls.overlay}>
+          <div className={cls.content} onClick={onContentClick}>
             {children}
           </div>
         </div>

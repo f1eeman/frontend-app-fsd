@@ -1,4 +1,4 @@
-import * as cls from './PageLoader.module.scss'
+import cls from './PageLoader.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { GridLoader } from '@/shared/ui/Loaders/Grid/GridLoader'
 import type { FC } from 'react'

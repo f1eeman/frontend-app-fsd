@@ -6,6 +6,7 @@
 import type { Config } from 'jest'
 
 const config: Config = {
+  setupFilesAfterEnv: ['<rootDir>config/jest/jest.setup.ts'],
   // Все импортируемые модули в тестах будут мокаться автоматически
   // automock: false,
 
@@ -43,6 +44,7 @@ const config: Config = {
 
   // Маппинг из регулярных выражений в имена модулей или массив имён модулей, чтобы подменять ресурсы одним модулем
   moduleNameMapper: {
+    '\\.s?css$': 'identity-obj-proxy',
     '^@/(.*)$': '<rootDir>src/$1',
   },
 

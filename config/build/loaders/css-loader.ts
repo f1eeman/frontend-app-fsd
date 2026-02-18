@@ -8,8 +8,12 @@ export function buildCssLoader(isDev: boolean) {
       {
         loader: "css-loader",
         options: {
+          esModule: false ,
           modules: {
-            auto: (resPath: string) => Boolean(resPath.includes(".module.")),
+            auto: (resPath: string) => {
+              const isModule = resPath.includes(".module.");
+              return isModule;
+            },
             localIdentName: isDev
               ? "[path][name]__[local]--[hash:base64:4]"
               : "[hash:base64:8]",

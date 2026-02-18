@@ -1,3 +1,4 @@
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 import js from '@eslint/js'
 import globals from 'globals'
 import eslintReact from 'eslint-plugin-react'
@@ -7,6 +8,7 @@ import eslintReactRefresh from 'eslint-plugin-react-refresh'
 import eslintConfigPrettier from 'eslint-config-prettier'
 import importPlugin from 'eslint-plugin-import'
 import i18next from 'eslint-plugin-i18next'
+import storybook from 'eslint-plugin-storybook'
 
 const codeFiles = ['**/*.{js,jsx,ts,tsx}']
 
@@ -138,5 +140,6 @@ export default [
       },
     },
   },
+  ...storybook.configs['flat/recommended'],
   eslintConfigPrettier,
 ]

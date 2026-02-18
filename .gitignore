@@ -31,3 +31,6 @@ dist-ssr
 *.local
 #gitlab
 .gitlab-ci.yml
+
+*storybook.log
+storybook-static

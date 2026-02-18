@@ -35,3 +35,6 @@ dist-ssr
 *storybook.log
 storybook-static
 screen-tests/diffs
+screen-tests/current
+screen-tests/report.html
+screen-tests/report.json

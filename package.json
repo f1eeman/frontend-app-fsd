@@ -23,11 +23,14 @@
     "lint:scss": "yarn stylelint \"**/*.scss\"",
     "lint:scss:fix": "yarn run lint:scss --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,scss,json}\"",
-    "test:unit": "jest --config ./config/jest/jest.config.ts",
     "sb": "storybook dev --no-open -p 6006 -c config/storybook ",
     "build:sb": "storybook build -c config/storybook -o ./sb-static",
+    "test:unit": "jest --config ./config/jest/jest.config.ts",
     "test:ui": "test-storybook --url http://127.0.0.1:6006 --config-dir config/storybook --testTimeout=60000",
-    "test:ui:approve": "test-storybook --url http://127.0.0.1:6006 --config-dir config/storybook --testTimeout=60000 --updateSnapshot"
+    "test:ui:approve": "test-storybook --url http://127.0.0.1:6006 --config-dir config/storybook --testTimeout=60000 --updateSnapshot",
+    "test:ui:report:json": "node scripts/generate-visual-json-report.mjs",
+    "test:ui:report:html": "reg-cli --from screen-tests/report.json --report screen-tests/report.html",
+    "test:ui:report": "yarn test:ui:report:json && yarn test:ui:report:html"
   },
   "devDependencies": {
     "@babel/core": "~7.29.0",
@@ -73,6 +76,7 @@
     "mini-css-extract-plugin": "~2.10.0",
     "playwright": "~1.58.2",
     "prettier": "~3.6.2",
+    "reg-cli": "~0.18.14",
     "sass": "~1.97.3",
     "sass-loader": "~16.0.6",
     "storybook": "^10.2.8",

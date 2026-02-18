@@ -135,9 +135,16 @@ export default [
     settings: {
       react: { version: 'detect' },
       'import/resolver': {
-        typescript: true,
-        node: true,
+        typescript: {
+          alwaysTryTypes: true,
+        },
       },
+    },
+  },
+  {
+    files: ['scripts/**/*.mjs'],
+    languageOptions: {
+      globals: globals.node,
     },
   },
   ...storybook.configs['flat/recommended'],

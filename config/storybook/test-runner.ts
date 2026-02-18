@@ -49,6 +49,8 @@ const config: TestRunnerConfig = {
       customSnapshotIdentifier: context.id,
       customSnapshotsDir: snapshotsDirPath,
       customDiffDir: diffsDirPath,
+      storeReceivedOnFailure: true,
+      customReceivedDir: path.resolve(screenTestsDirPath, 'current'),
       failureThreshold: 0,
       failureThresholdType: 'percent',
     })

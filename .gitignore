@@ -34,3 +34,4 @@ dist-ssr
 
 *storybook.log
 storybook-static
+screen-tests/diffs

@@ -1,6 +1,10 @@
 import { Theme } from '@/app/theme'
 import { RouterDecorator } from '@/shared/lib/sb/decorators/Router'
 import { StyleDecorator } from '@/shared/lib/sb/decorators/Style'
+import {
+  ThemeProviderDecorator,
+  ThemeRootClassDecorator,
+} from '@/shared/lib/sb/decorators/ThemeGlobals'
 import type { Preview } from '@storybook/react-webpack5'
 
 const preview: Preview = {
@@ -20,16 +24,8 @@ const preview: Preview = {
   },
   decorators: [
     StyleDecorator,
-    (Story, context) => {
-      const theme = context.globals.theme as Theme
-      const storybookRoot = document.querySelector('#storybook-root')
-
-      if (storybookRoot) {
-        storybookRoot.className = `app-sb ${theme}`
-      }
-
-      return Story()
-    },
+    ThemeProviderDecorator,
+    ThemeRootClassDecorator,
     RouterDecorator,
   ],
   parameters: {

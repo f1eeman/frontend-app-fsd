@@ -21,5 +21,9 @@ export const ThemeProvider: FC<ThemeProviderProps> = (props) => {
     [theme],
   )
 
-  return <ThemeContext value={defaultProps}>{children}</ThemeContext>
+  return (
+    <ThemeContext.Provider value={defaultProps}>
+      {children}
+    </ThemeContext.Provider>
+  )
 }

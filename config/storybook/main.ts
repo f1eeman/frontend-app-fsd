@@ -29,6 +29,25 @@ const config: StorybookConfig = {
       }
     }
 
+    if (config.module?.rules) {
+      // Приведение к 'any' здесь необходимо из-за конфликта внутренних типов Webpack в SB8
+      const imageRule = config.module.rules.find((rule) => {
+        if (typeof rule === 'object' && rule !== null && 'test' in rule) {
+          return rule.test instanceof RegExp && rule.test.test('.svg')
+        }
+        return false
+      })
+
+      if (imageRule && typeof imageRule === 'object') {
+        imageRule['exclude'] = /\.svg$/
+      }
+
+      // Добавляем SVGR лоадер
+      config.module.rules.push({
+        test: /\.svg$/i,
+        use: ['@svgr/webpack'],
+      })
+    }
     return config
   },
 }

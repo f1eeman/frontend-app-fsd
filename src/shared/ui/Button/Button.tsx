@@ -1,4 +1,5 @@
 import cls from './Button.module.scss'
+import { classNames } from '@/shared/lib/classNames/classNames'
 import type { ButtonHTMLAttributes, FC } from 'react'
 import type { ButtonSize, ButtonTheme } from './consts'
 
@@ -24,7 +25,15 @@ export const Button: FC<ButtonProps> = (props) => {
     <button
       type={'button'}
       disabled={disabled}
-      className={`${cls.button} ${cls[theme]} ${cls[size]} ${square ? cls.square : ''} ${className}`}
+      className={classNames(
+        cls.button,
+        {
+          [cls[theme]]: true,
+          [cls[size]]: true,
+          [cls.square]: square,
+        },
+        [className],
+      )}
       {...otherProps}
     >
       {children}

@@ -1,6 +1,7 @@
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import type { RuleSetRule } from "webpack";
 
-export function buildCssLoader(isDev: boolean) {
+export const buildCssLoader = (isDev: boolean): RuleSetRule => {
   return {
     test: /\.s[ac]ss$/i,
     use: [
@@ -8,12 +9,13 @@ export function buildCssLoader(isDev: boolean) {
       {
         loader: "css-loader",
         options: {
-          esModule: false ,
+          esModule: false,
           modules: {
-            auto: (resPath: string) => {
-              const isModule = resPath.includes(".module.");
-              return isModule;
+            // Типизируем аргумент resPath как string
+            auto: (resPath: string): boolean => {
+              return resPath.includes(".module.");
             },
+            exportLocalsConvention: 'asIs',
             localIdentName: isDev
               ? "[path][name]__[local]--[hash:base64:4]"
               : "[hash:base64:8]",
@@ -23,4 +25,4 @@ export function buildCssLoader(isDev: boolean) {
       "sass-loader",
     ],
   };
-}
+};

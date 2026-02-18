@@ -10,6 +10,17 @@
   min-height: 100vh;
 }
 
+.app-sb {
+  font: var(--font-m);
+  background: var(--bg-color);
+  color: var(--primary-color);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .content-page {
   display: flex;
 }

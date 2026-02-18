@@ -11,7 +11,7 @@
     "yarn": ">= 1.22.22"
   },
   "scripts": {
-    "start": "webpack serve --env port=3001",
+    "dev": "webpack serve --env port=3001",
     "build:prod": "webpack --env mode=production",
     "build:dev": "webpack --env mode=development",
     "analyze:prod": "webpack --env mode=production --env analyze=enabled",
@@ -24,7 +24,7 @@
     "lint:scss:fix": "yarn run lint:scss --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,scss,json}\"",
     "test:unit": "jest --config ./config/jest/jest.config.ts",
-    "sb": "storybook dev -p 6006 -c config/storybook",
+    "sb": "storybook dev --no-open -p 6006 -c config/storybook ",
     "build-sb": "storybook build -c config/storybook"
   },
   "devDependencies": {

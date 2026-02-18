@@ -67,6 +67,11 @@ const writePng = async (filePath, png) => {
   await fs.writeFile(filePath, buffer)
 }
 
+const recreateDir = async (dirPath) => {
+  await fs.rm(dirPath, { recursive: true, force: true })
+  await fs.mkdir(dirPath, { recursive: true })
+}
+
 const cropHorizontalPanel = ({ composed, panelWidth, panelStartX }) => {
   const panel = new PNG({ width: panelWidth, height: composed.height })
 
@@ -182,9 +187,9 @@ const createDiffOnlyFromComposedDiff = async ({
 
 const main = async () => {
   await fs.mkdir(diffsOnlyDirPath, { recursive: true })
-  await fs.mkdir(reportExpectedDirPath, { recursive: true })
-  await fs.mkdir(reportActualDirPath, { recursive: true })
-  await fs.mkdir(reportDiffDirPath, { recursive: true })
+  await recreateDir(reportExpectedDirPath)
+  await recreateDir(reportActualDirPath)
+  await recreateDir(reportDiffDirPath)
 
   const diffFiles = (await safeReadDir(diffsDirPath)).filter((fileName) =>
     fileName.toLowerCase().endsWith('.png'),

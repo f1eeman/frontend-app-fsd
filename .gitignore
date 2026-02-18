@@ -38,3 +38,6 @@ screen-tests/diffs
 screen-tests/current
 screen-tests/report.html
 screen-tests/report.json
+screen-tests/report-expected
+screen-tests/report-actual
+screen-tests/report-diff

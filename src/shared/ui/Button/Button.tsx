@@ -8,6 +8,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: ButtonTheme
   size?: ButtonSize
   square?: boolean
+  testId?: string
 }
 
 export const Button: FC<ButtonProps> = (props) => {
@@ -18,8 +19,11 @@ export const Button: FC<ButtonProps> = (props) => {
     theme = 'clear',
     square = false,
     size = 'size-m',
+    testId = 'button',
     ...otherProps
   } = props
+
+  console.log(testId)
 
   return (
     <button

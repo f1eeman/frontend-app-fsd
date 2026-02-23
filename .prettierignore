@@ -2,8 +2,8 @@
 .vscode/
 .yarn/
 coverage/
-dist/
-build/
-public/assets/
+./dist/
+./build/
+./public/assets/
 node_modules
 

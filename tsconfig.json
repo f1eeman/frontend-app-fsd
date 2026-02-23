@@ -18,7 +18,7 @@
     "strictNullChecks": true
   },
   "include": ["./config", "./src", "webpack.config.ts"],
-  "exclude": ["node_modules", "config/storybook"],
+  "exclude": ["node_modules", "config/storybook", "build", "dist"],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"

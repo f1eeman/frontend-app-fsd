@@ -2,6 +2,19 @@
 @use 'vars/global';
 @use 'themes/light';
 @use 'themes/dark';
+@use 'fonts';
+
+html,
+body {
+  font-family: var(--font-family-main);
+  font-weight: 400;
+  font-style: normal;
+
+  /* Важно для скриншотов: делаем отрисовку шрифтов одинаковой */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+}
 
 .app {
   font: var(--font-m);

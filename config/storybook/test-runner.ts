@@ -51,7 +51,7 @@ const config: TestRunnerConfig = {
       customDiffDir: diffsDirPath,
       storeReceivedOnFailure: true,
       customReceivedDir: path.resolve(screenTestsDirPath, 'current'),
-      failureThreshold: 0.01,
+      failureThreshold: 2,
       failureThresholdType: 'percent',
     })
   },

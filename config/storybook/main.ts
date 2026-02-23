@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { buildCssLoader } from '../build/loaders/css-loader'
+import { buildCssLoader } from '../build/loaders/css-loader.ts'
 import type { StorybookConfig } from '@storybook/react-webpack5'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))

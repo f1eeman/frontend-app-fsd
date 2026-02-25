@@ -1,9 +1,9 @@
 import { combineSlices, configureStore } from '@reduxjs/toolkit'
-// import { userReducer } from 'entities/user'
+import { userReducer } from '@/entities/user'
 import type { DeepPartial } from '@/shared/types'
 
 export const rootReducer = combineSlices({
-  // user: userReducer,
+  user: userReducer,
 }).withLazyLoadedSlices<LazyLoadedSlices>()
 
 export function setupStore(preloadedState?: DeepPartial<RootState>) {

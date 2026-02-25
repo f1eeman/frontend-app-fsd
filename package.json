@@ -30,7 +30,7 @@
     "test:unit": "jest --config ./config/jest/jest.config.ts",
     "test:ui": "test-storybook --url http://127.0.0.1:6006 --config-dir config/storybook --testTimeout=60000",
     "test:ui:ci": "start-server-and-test 'yarn http-server sb-static --port 6006 -s' http://127.0.0.1:6006 'yarn test:ui'",
-    "test:ui:approve": "test-storybook --url http://127.0.0.1:6006 --config-dir config/storybook --testTimeout=60000 --updateSnapshot",
+    "test:ui:ok": "test-storybook --url http://127.0.0.1:6006 --config-dir config/storybook --testTimeout=60000 --updateSnapshot",
     "test:ui:report:json": "node scripts/generate-visual-json-report.mjs",
     "test:ui:report:html": "reg-cli --from screen-tests/report.json --report screen-tests/report.html",
     "test:ui:report": "yarn test:ui:report:json && yarn test:ui:report:html"

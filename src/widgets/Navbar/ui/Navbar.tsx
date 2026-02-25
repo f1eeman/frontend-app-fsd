@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 // import { LoginModal } from 'features/AuthByUsername'
 // import { getUserAuthData, userActions } from 'entities/user'
 import cls from './Navbar.module.scss'
+import { LoginModal } from '@/features/AuthByUsername'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button } from '@/shared/ui/Button/Button'
 
@@ -15,7 +16,7 @@ export const Navbar: FC = ({ className = '' }: NavbarProps) => {
   const { t } = useTranslation()
   // const authData = useAppSelector(getUserAuthData)
   // const dispatch = useAppDispatch()
-  const [_isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false)
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false)
   const toggleAuthModal = useCallback(() => {
     setIsAuthModalOpen((prev) => !prev)
   }, [])
@@ -45,7 +46,7 @@ export const Navbar: FC = ({ className = '' }: NavbarProps) => {
           {t('Войти')}
         </Button>
       </div>
-      {/* <LoginModal isOpen={isAuthModalOpen} onClose={toggleAuthModal} /> */}
+      <LoginModal isOpen={isAuthModalOpen} onClose={toggleAuthModal} />
     </div>
   )
 }

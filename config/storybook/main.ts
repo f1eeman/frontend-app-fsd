@@ -20,7 +20,20 @@ const config: StorybookConfig = {
   ],
   framework: '@storybook/react-webpack5',
   webpackFinal: async (config) => {
+    const webpack = await import('webpack')
     const srcPath = path.resolve(currentDir, '../../src')
+
+    const defineGlobals = {
+      __IS_DEV__: JSON.stringify(true),
+    }
+
+    if (config.plugins) {
+      config.plugins.push(
+        new webpack.default.DefinePlugin(defineGlobals) as any,
+      )
+    } else {
+      config.plugins = [new webpack.default.DefinePlugin(defineGlobals) as any]
+    }
 
     if (config.resolve) {
       config.resolve.alias = {

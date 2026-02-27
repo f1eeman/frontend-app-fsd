@@ -1,22 +1,16 @@
-import { Suspense } from 'react'
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
+import { useEffect } from 'react'
 import { AppRouter } from './routing/App.Router'
-import { StoreProvider } from './store'
-import { ThemeProvider } from './theme/Provider'
+import { useAppDispatch } from './store'
 import './styles/index.scss'
 import './i18n'
-import { AppLoader } from '@/widgets/AppLoader/ui/AppLoader'
+import { userActions } from '@/entities/user'
 
 export const App = () => {
-  return (
-    <ErrorBoundary>
-      <Suspense fallback={<AppLoader />}>
-        <StoreProvider>
-          <ThemeProvider>
-            <AppRouter />
-          </ThemeProvider>
-        </StoreProvider>
-      </Suspense>
-    </ErrorBoundary>
-  )
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(userActions.initAuthData())
+  }, [dispatch])
+
+  return <AppRouter />
 }

@@ -1,9 +1,12 @@
 import { lazy } from 'react'
+import type { FC } from 'react'
 
-export const MainPageAsync = lazy(
+export const MainPageAsync = lazy<FC>(
   () =>
     new Promise((resolve) => {
-      // @ts-expect-error  // ОБМАНКА
-      setTimeout(() => resolve(import('./MainPage')), 3500)
+      setTimeout(
+        () => resolve(import(/* webpackChunkName: "MainPage" */ './MainPage')),
+        3500,
+      )
     }),
 )

@@ -6,7 +6,7 @@ export const LoginFormAsync = lazy<FC<LoginFormProps>>(
   async () =>
     await new Promise((resolve) => {
       setTimeout(() => {
-        resolve(import('./LoginForm'))
+        resolve(import(/* webpackChunkName: "LoginForm" */ './LoginForm'))
       }, 1500)
     }),
 )

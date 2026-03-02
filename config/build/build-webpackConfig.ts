@@ -1,30 +1,31 @@
-import { buildDevServer } from "./build-devServer";
-import { buildLoaders } from "./build-loaders";
-import { buildPlugins } from "./build-plugins";
-import { buildResolvers } from "./build-resolvers";
-import type webpack from "webpack";
-import type { BuildOptions } from "./types";
+import { buildDevServer } from './build-devServer'
+import { buildLoaders } from './build-loaders'
+import { buildPlugins } from './build-plugins'
+import { buildResolvers } from './build-resolvers'
+import type webpack from 'webpack'
+import type { BuildOptions } from './types'
 
 export function buildWebpackConfig(
   options: BuildOptions,
 ): webpack.Configuration {
-  const { paths, mode, isDev } = options;
+  const { paths, mode, isDev } = options
 
   return {
     mode,
     entry: paths.entry,
     output: {
-      filename: "[name].[contenthash].js",
+      filename: '[name].[contenthash].js',
+      chunkFilename: '[name].[contenthash].chunk.js',
       path: paths.build,
       clean: true,
-      assetModuleFilename: "images/[name].[contenthash][ext]",
+      assetModuleFilename: 'images/[name].[contenthash][ext]',
     },
-    devtool: isDev ? "inline-source-map" : undefined,
+    devtool: isDev ? 'inline-source-map' : undefined,
     plugins: buildPlugins(options),
     module: {
       rules: buildLoaders(options),
     },
     devServer: isDev ? buildDevServer(options) : undefined,
     resolve: buildResolvers(options),
-  };
+  }
 }

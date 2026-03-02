@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { loginByUsername } from './loginByUsername'
 import { type User, userActions } from '@/entities/user'
+import { TestAsyncThunk } from '@/shared/lib/tests/async.thunk.tests'
 
 jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>
@@ -31,9 +32,6 @@ Object.defineProperty(window, 'localStorage', {
 })
 
 describe('loginByUsername', () => {
-  const mockDispatch = jest.fn()
-  const mockGetState = jest.fn()
-
   beforeEach(() => {
     jest.clearAllMocks()
     localStorageMock.clear()
@@ -47,8 +45,8 @@ describe('loginByUsername', () => {
       data: mockUserData,
     })
 
-    const thunk = loginByUsername(mockPayload)
-    const result = await thunk(mockDispatch, mockGetState, undefined)
+    const testThunk = new TestAsyncThunk(loginByUsername)
+    const result = await testThunk.callThunk(mockPayload)
 
     expect(mockedAxios.post).toHaveBeenCalledWith(
       'http://localhost:8000/login',
@@ -59,6 +57,9 @@ describe('loginByUsername', () => {
       JSON.stringify(mockUserData),
     )
     expect(userActions.setAuthData).toHaveBeenCalledWith(mockUserData)
+    expect(testThunk.dispatch).toHaveBeenCalledWith(
+      userActions.setAuthData(mockUserData),
+    )
     expect(result.meta.requestStatus).toBe('fulfilled')
     expect(result.type).toBe('login/loginByUsername/fulfilled')
     expect(result.payload).toEqual(mockUserData)
@@ -71,8 +72,8 @@ describe('loginByUsername', () => {
       data: null,
     })
 
-    const thunk = loginByUsername(mockPayload)
-    const result = await thunk(mockDispatch, mockGetState, undefined)
+    const testThunk = new TestAsyncThunk(loginByUsername)
+    const result = await testThunk.callThunk(mockPayload)
 
     expect(mockedAxios.post).toHaveBeenCalledWith(
       'http://localhost:8000/login',
@@ -80,6 +81,10 @@ describe('loginByUsername', () => {
     )
     expect(localStorageMock.setItem).not.toHaveBeenCalled()
     expect(userActions.setAuthData).not.toHaveBeenCalled()
+    expect(testThunk.dispatch).toHaveBeenCalledTimes(2)
+    expect(testThunk.dispatch).not.toHaveBeenCalledWith(
+      userActions.setAuthData(expect.anything()),
+    )
     expect(result.meta.requestStatus).toBe('rejected')
     expect(result.type).toBe('login/loginByUsername/rejected')
     expect(result.payload).toBe('Вы ввели неверный логин или пароль')
@@ -90,8 +95,8 @@ describe('loginByUsername', () => {
 
     mockedAxios.post.mockRejectedValue(new Error('Network error'))
 
-    const thunk = loginByUsername(mockPayload)
-    const result = await thunk(mockDispatch, mockGetState, undefined)
+    const testThunk = new TestAsyncThunk(loginByUsername)
+    const result = await testThunk.callThunk(mockPayload)
 
     expect(mockedAxios.post).toHaveBeenCalledWith(
       'http://localhost:8000/login',
@@ -99,6 +104,10 @@ describe('loginByUsername', () => {
     )
     expect(localStorageMock.setItem).not.toHaveBeenCalled()
     expect(userActions.setAuthData).not.toHaveBeenCalled()
+    expect(testThunk.dispatch).toHaveBeenCalledTimes(2)
+    expect(testThunk.dispatch).not.toHaveBeenCalledWith(
+      userActions.setAuthData(expect.anything()),
+    )
     expect(result.meta.requestStatus).toBe('rejected')
     expect(result.type).toBe('login/loginByUsername/rejected')
     expect(result.payload).toBe('Вы ввели неверный логин или пароль')
@@ -112,10 +121,10 @@ describe('loginByUsername', () => {
       data: mockUserData,
     })
 
-    const thunk = loginByUsername(mockPayload)
-    await thunk(mockDispatch, mockGetState, undefined)
+    const testThunk = new TestAsyncThunk(loginByUsername)
+    await testThunk.callThunk(mockPayload)
 
-    expect(mockDispatch).toHaveBeenCalledWith(
+    expect(testThunk.dispatch).toHaveBeenCalledWith(
       userActions.setAuthData(mockUserData),
     )
   })
@@ -125,10 +134,10 @@ describe('loginByUsername', () => {
 
     mockedAxios.post.mockRejectedValue(new Error('Network error'))
 
-    const thunk = loginByUsername(mockPayload)
-    await thunk(mockDispatch, mockGetState, undefined)
+    const testThunk = new TestAsyncThunk(loginByUsername)
+    await testThunk.callThunk(mockPayload)
 
-    expect(mockDispatch).not.toHaveBeenCalledWith(
+    expect(testThunk.dispatch).not.toHaveBeenCalledWith(
       userActions.setAuthData(expect.anything()),
     )
   })

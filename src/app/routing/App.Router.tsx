@@ -2,6 +2,7 @@ import { BrowserRouter, useRoutes } from 'react-router'
 import { AboutPageAsync } from '@/pages/AboutPage/AboutPage.async'
 import { MainPageAsync } from '@/pages/MainPage/MainPage.async'
 import { NotFoundPage } from '@/pages/NotFoundPage'
+import { ProfilePageAsync } from '@/pages/ProfilePage'
 import { routesPaths } from '@/shared/config/routes'
 import type { RouteObject } from 'react-router'
 
@@ -15,6 +16,11 @@ const routesConfig: RouteObject[] = [
         element: <AboutPageAsync />,
         path: routesPaths.about.path,
         id: routesPaths.about.id,
+      },
+      {
+        element: <ProfilePageAsync />,
+        path: routesPaths.profile.path,
+        id: routesPaths.profile.id,
       },
       {
         element: <NotFoundPage />,

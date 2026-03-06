@@ -1,15 +1,9 @@
 .sidebar {
   height: calc(100vh - var(--navbar-height));
-  background: var(--inverted-bg-color);
   width: var(--sidebar-width);
-  transition: width 0.3s;
+  background: var(--inverted-bg-color);
   position: relative;
-}
-
-.collapseBtn {
-  position: absolute;
-  right: -32px;
-  bottom: 32px;
+  transition: width 0.3s;
 }
 
 .switchers {
@@ -20,6 +14,23 @@
   width: 100%;
 }
 
+.lang {
+  margin-left: 20px;
+}
+
+.collapseBtn {
+  position: absolute;
+  right: -32px;
+  bottom: 32px;
+}
+
+.items {
+  margin-top: 20px;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
 .collapsed {
   width: var(--sidebar-width-collapsed);
 
@@ -28,26 +39,7 @@
     align-items: center;
   }
 
-  .navLinkText {
-    display: none;
+  .lang {
+    margin-left: 0;
   }
-}
-
-.navLinks {
-  padding-top: 30px;
-  padding-left: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.navLink {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.toggleBtn {
-  display: block;
-  margin: 0 auto;
 }

@@ -1,20 +1,17 @@
-import ProfilePageComponent from './ProfilePage'
+import { ProfileCard as ProfileCardComponent } from './ProfileCard'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
-  title: 'pages/ProfilePage',
-  component: ProfilePageComponent,
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
-} as Meta<typeof ProfilePageComponent>
+  title: 'shared/ProfileCard',
+  component: ProfileCardComponent,
+} satisfies Meta<typeof ProfileCardComponent>
 
 export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const ProfilePage: Story = {
+export const ProfileCard: Story = {
   decorators: [
     StoreDecorator({
       profile: {

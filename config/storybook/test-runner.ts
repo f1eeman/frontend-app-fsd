@@ -52,7 +52,7 @@ const config: TestRunnerConfig = {
       storeReceivedOnFailure: true,
       customReceivedDir: path.resolve(screenTestsDirPath, 'current'),
       failureThreshold: 2,
-      failureThresholdType: 'percent',
+      failureThresholdType: 'pixel',
     })
   },
 }

@@ -1,4 +1,7 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useAppDispatch } from '@/app/store'
+import { fetchProfileData, ProfileCard } from '@/entities/profile'
 import { classNames } from '@/shared/lib/classNames/classNames'
 
 interface ProfilePageProps {
@@ -8,8 +11,17 @@ interface ProfilePageProps {
 const ProfilePage = ({ className = '' }: ProfilePageProps) => {
   const { t } = useTranslation()
 
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(fetchProfileData())
+  }, [dispatch])
+
   return (
-    <div className={classNames('', {}, [className])}>{t('PROFILE PAGE')}</div>
+    <div className={classNames('', {}, [className])}>
+      {t('PROFILE PAGE')}
+      <ProfileCard />
+    </div>
   )
 }
 

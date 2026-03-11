@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
+import { BrowserRouter } from 'react-router'
 import { App } from './app/App'
 import ErrorBoundary from './app/ErrorBoundary/ErrorBoundary'
 import { ThemeProvider } from './app/theme'
@@ -13,11 +14,13 @@ if (container) {
     <React.StrictMode>
       <ErrorBoundary>
         <Suspense fallback={<AppLoader />}>
-          <StoreProvider>
-            <ThemeProvider>
-              <App />
-            </ThemeProvider>
-          </StoreProvider>
+          <BrowserRouter>
+            <StoreProvider>
+              <ThemeProvider>
+                <App />
+              </ThemeProvider>
+            </StoreProvider>
+          </BrowserRouter>
         </Suspense>
       </ErrorBoundary>
     </React.StrictMode>,

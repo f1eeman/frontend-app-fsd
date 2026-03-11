@@ -1,23 +1,25 @@
-export type BuildMode = "production" | "development";
-export type AnalyzeMode = "enabled" | "disabled";
+export type BuildMode = 'production' | 'development'
+export type AnalyzeMode = 'enabled' | 'disabled'
 
 export interface BuildPaths {
-  entry: string;
-  build: string;
-  html: string;
-  src: string;
+  entry: string
+  build: string
+  html: string
+  src: string
 }
 
 export interface BuildEnv {
-  mode: BuildMode;
-  port: number;
-  analyze: AnalyzeMode;
+  mode: BuildMode
+  port: number
+  analyze: AnalyzeMode
+  apiUrl: string
 }
 
 export interface BuildOptions {
-  mode: BuildMode;
-  paths: BuildPaths;
-  isDev: boolean;
-  port: number;
-  isAnalyzeModeEnable: boolean;
+  mode: BuildMode
+  paths: BuildPaths
+  isDev: boolean
+  port: number
+  isAnalyzeModeEnable: boolean
+  apiUrl: string
 }

@@ -14,7 +14,10 @@ const ProfilePage = ({ className = '' }: ProfilePageProps) => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(fetchProfileData())
+    const promise = dispatch(fetchProfileData())
+    return () => {
+      promise.abort()
+    }
   }, [dispatch])
 
   return (

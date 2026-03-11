@@ -7,9 +7,9 @@ interface ThunkExtraArgs {
   nav?: NavigateFunction
 }
 
-export interface ThunkConfig {
+export interface ThunkConfig<T> {
   extra: ThunkExtraArgs
-  rejectValue: string
+  rejectValue: T
   state: RootState
   dispatch: AppDispatch
 }

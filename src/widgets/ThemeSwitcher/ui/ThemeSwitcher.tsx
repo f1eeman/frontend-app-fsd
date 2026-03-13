@@ -1,4 +1,4 @@
-import { useTheme } from '@/app/theme'
+import { Theme, useTheme } from '@/app/theme'
 import ThemeDarkIcon from '@/shared/assets/icons/theme-dark.svg'
 import ThemeLightIcon from '@/shared/assets/icons/theme-light.svg'
 import { Button } from '@/shared/ui/Button/Button'
@@ -13,8 +13,8 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className = '' }) => {
 
   return (
     <Button theme={'clear'} onClick={toggleTheme} className={className}>
-      {theme === 'app_theme_dark' && <ThemeDarkIcon />}
-      {theme === 'app_theme_light' && <ThemeLightIcon />}
+      {theme === Theme.DARK && <ThemeDarkIcon />}
+      {theme === Theme.LIGHT && <ThemeLightIcon />}
     </Button>
   )
 }

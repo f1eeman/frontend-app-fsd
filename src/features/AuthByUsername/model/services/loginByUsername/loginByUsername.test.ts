@@ -1,10 +1,6 @@
-import axios from 'axios'
 import { loginByUsername } from './loginByUsername'
 import { type User, userActions } from '@/entities/user'
 import { TestAsyncThunk } from '@/shared/lib/tests/async.thunk.tests'
-
-jest.mock('axios')
-const mockedAxios = axios as jest.Mocked<typeof axios>
 
 jest.mock('@/entities/user', () => ({
   userActions: {
@@ -41,14 +37,13 @@ describe('loginByUsername', () => {
     const mockUserData: User = { id: '1', username: 'testuser' }
     const mockPayload = { username: 'testuser', password: 'password123' }
 
-    mockedAxios.post.mockResolvedValue({
+    const testThunk = new TestAsyncThunk(loginByUsername)
+    testThunk.api.post.mockResolvedValue({
       data: mockUserData,
     })
-
-    const testThunk = new TestAsyncThunk(loginByUsername)
     const result = await testThunk.callThunk(mockPayload)
 
-    expect(mockedAxios.post).toHaveBeenCalledWith(
+    expect(testThunk.api.post).toHaveBeenCalledWith(
       'http://localhost:8000/login',
       mockPayload,
     )
@@ -68,14 +63,13 @@ describe('loginByUsername', () => {
   test('should reject with error when response data is missing', async () => {
     const mockPayload = { username: 'testuser', password: 'wrongpassword' }
 
-    mockedAxios.post.mockResolvedValue({
+    const testThunk = new TestAsyncThunk(loginByUsername)
+    testThunk.api.post.mockResolvedValue({
       data: null,
     })
-
-    const testThunk = new TestAsyncThunk(loginByUsername)
     const result = await testThunk.callThunk(mockPayload)
 
-    expect(mockedAxios.post).toHaveBeenCalledWith(
+    expect(testThunk.api.post).toHaveBeenCalledWith(
       'http://localhost:8000/login',
       mockPayload,
     )
@@ -93,12 +87,11 @@ describe('loginByUsername', () => {
   test('should reject with error when axios request fails', async () => {
     const mockPayload = { username: 'testuser', password: 'wrongpassword' }
 
-    mockedAxios.post.mockRejectedValue(new Error('Network error'))
-
     const testThunk = new TestAsyncThunk(loginByUsername)
+    testThunk.api.post.mockRejectedValue(new Error('Network error'))
     const result = await testThunk.callThunk(mockPayload)
 
-    expect(mockedAxios.post).toHaveBeenCalledWith(
+    expect(testThunk.api.post).toHaveBeenCalledWith(
       'http://localhost:8000/login',
       mockPayload,
     )
@@ -117,11 +110,11 @@ describe('loginByUsername', () => {
     const mockUserData: User = { id: '1', username: 'testuser' }
     const mockPayload = { username: 'testuser', password: 'password123' }
 
-    mockedAxios.post.mockResolvedValue({
+    const testThunk = new TestAsyncThunk(loginByUsername)
+    testThunk.api.post.mockResolvedValue({
       data: mockUserData,
     })
 
-    const testThunk = new TestAsyncThunk(loginByUsername)
     await testThunk.callThunk(mockPayload)
 
     expect(testThunk.dispatch).toHaveBeenCalledWith(
@@ -132,9 +125,9 @@ describe('loginByUsername', () => {
   test('should not call dispatch when request fails', async () => {
     const mockPayload = { username: 'testuser', password: 'wrongpassword' }
 
-    mockedAxios.post.mockRejectedValue(new Error('Network error'))
-
     const testThunk = new TestAsyncThunk(loginByUsername)
+    testThunk.api.post.mockRejectedValue(new Error('Network error'))
+
     await testThunk.callThunk(mockPayload)
 
     expect(testThunk.dispatch).not.toHaveBeenCalledWith(

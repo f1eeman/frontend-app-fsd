@@ -12,11 +12,11 @@ import {
 import cls from './LoginForm.module.scss'
 import { useAppDispatch, useAppSelector } from '@/app/store'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Button } from '@/shared/ui/Button/Button'
-import { Input } from '@/shared/ui/Input/Input'
-import { SpinnerLoader } from '@/shared/ui/Loaders/Spinner/SpinnerLoader'
-import { TextTheme } from '@/shared/ui/Text/consts'
-import { Text } from '@/shared/ui/Text/Text'
+import { Button } from '@/shared/ui/button/Button'
+import { Input } from '@/shared/ui/input/Input'
+import { SpinnerLoader } from '@/shared/ui/loaders/Spinner/SpinnerLoader'
+import { TextTheme } from '@/shared/ui/text/consts'
+import { Text } from '@/shared/ui/text/Text'
 
 export interface LoginFormProps {
   className?: string

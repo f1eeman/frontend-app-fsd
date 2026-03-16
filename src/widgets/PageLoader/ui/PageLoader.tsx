@@ -1,6 +1,6 @@
 import cls from './PageLoader.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { GridLoader } from '@/shared/ui/Loaders/Grid/GridLoader'
+import { GridLoader } from '@/shared/ui/loaders/Grid/GridLoader'
 import type { FC } from 'react'
 
 interface PageLoaderProps {

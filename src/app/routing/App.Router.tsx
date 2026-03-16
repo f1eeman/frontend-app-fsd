@@ -1,8 +1,8 @@
 import { useRoutes } from 'react-router'
-import { AboutPageAsync } from '@/pages/AboutPage/AboutPage.async'
-import { MainPageAsync } from '@/pages/MainPage/MainPage.async'
-import { NotFoundPage } from '@/pages/NotFoundPage'
-import { ProfilePageAsync } from '@/pages/ProfilePage'
+import { AboutPageAsync } from '@/pages/aboutPage/AboutPage.async'
+import { MainPageAsync } from '@/pages/mainPage/MainPage.async'
+import { NotFoundPage } from '@/pages/notFoundPage'
+import { ProfilePageAsync } from '@/pages/profilePage'
 import { routesPaths } from '@/shared/config/routes'
 import type { RouteObject } from 'react-router'
 

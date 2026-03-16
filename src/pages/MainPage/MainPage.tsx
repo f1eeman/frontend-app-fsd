@@ -1,9 +1,9 @@
 import { Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Outlet, useLocation } from 'react-router'
-import { Navbar } from '@/widgets/Navbar'
-import { PageLoader } from '@/widgets/PageLoader'
-import { Sidebar } from '@/widgets/Sidebar'
+import { Navbar } from '@/widgets/navbar'
+import { PageLoader } from '@/widgets/pageLoader'
+import { Sidebar } from '@/widgets/sidebar'
 
 const MainPage = () => {
   const { t } = useTranslation('main')

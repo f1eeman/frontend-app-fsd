@@ -1,11 +1,11 @@
 import { type FC, useCallback, useState } from 'react'
 import { sidebarItemList } from '../../model/items'
-import { SidebarItem } from '../sidebar-Item/SidebarItem'
+import { SidebarItem } from '../sidebar-item/SidebarItem'
 import cls from './Sidebar.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Button } from '@/shared/ui/Button/Button'
-import { LangSwitcher } from '@/widgets/LangSwticher'
-import { ThemeSwitcher } from '@/widgets/ThemeSwitcher'
+import { Button } from '@/shared/ui'
+import { LangSwitcher } from '@/widgets/langSwticher'
+import { ThemeSwitcher } from '@/widgets/themeSwitcher'
 
 interface SidebarProps {
   className?: string

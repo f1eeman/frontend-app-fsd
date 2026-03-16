@@ -1,5 +1,5 @@
 import { TextTheme } from './consts'
-import { Text } from '@/shared/ui/Text/Text'
+import { Text } from '@/shared/ui/text/Text'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {

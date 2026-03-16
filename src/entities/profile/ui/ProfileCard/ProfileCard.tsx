@@ -7,10 +7,10 @@ import {
 } from '../../model/slice/profileSlice'
 import cls from './ProfileCard.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Button } from '@/shared/ui/Button/Button'
-import { buttonTheme } from '@/shared/ui/Button/consts'
-import { Input } from '@/shared/ui/Input/Input'
-import { Text } from '@/shared/ui/Text/Text'
+import { Button } from '@/shared/ui/button/Button'
+import { buttonTheme } from '@/shared/ui/button/consts'
+import { Input } from '@/shared/ui/input/Input'
+import { Text } from '@/shared/ui/text/Text'
 
 interface ProfileCardProps {
   className?: string

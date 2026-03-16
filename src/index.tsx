@@ -2,9 +2,9 @@ import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router'
 import { App } from './app/App'
-import ErrorBoundary from './app/ErrorBoundary/ErrorBoundary'
+import ErrorBoundary from './app/errorBoundary/ErrorBoundary'
 import { ThemeProvider } from './app/theme'
-import { AppLoader } from './widgets/AppLoader'
+import { AppLoader } from './widgets/appLoader'
 import { StoreProvider } from '@/app/store'
 
 const container = document.getElementById('root')

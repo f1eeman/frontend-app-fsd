@@ -3,6 +3,10 @@ export const buttonTheme = {
   invertedClear: 'clear-inverted',
   background: 'background',
   invertedBackground: 'background-inverted',
+  outline: 'outline',
+  outlineInverted: 'outline-inverted',
+  outlineRed: 'outline-red',
+  backgroundRed: 'background-red',
 } as const
 
 export const buttonSize = {

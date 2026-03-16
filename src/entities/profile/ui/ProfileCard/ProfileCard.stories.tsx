@@ -12,6 +12,19 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const ProfileCard: Story = {
+  args: {
+    profile: {
+      first: 'John',
+      lastname: 'Doe',
+      age: 30,
+      city: 'Moscow',
+      username: 'johndoe',
+      avatar: 'https://via.placeholder.com/150',
+    },
+    error: null,
+    isLoading: false,
+    readonly: false,
+  },
   decorators: [
     StoreDecorator({
       profile: {
@@ -23,8 +36,17 @@ export const ProfileCard: Story = {
           username: 'johndoe',
           avatar: 'https://via.placeholder.com/150',
         },
+        form: {
+          first: 'John',
+          lastname: 'Doe',
+          age: 30,
+          city: 'Moscow',
+          username: 'johndoe',
+          avatar: 'https://via.placeholder.com/150',
+        },
         isLoading: false,
         readonly: false,
+        error: null,
       },
     }),
   ],

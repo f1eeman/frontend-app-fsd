@@ -39,6 +39,7 @@ export default [
 
     rules: {
       ...i18next.configs['flat/recommended'].rules,
+      'import/no-unresolved': ['error', { caseSensitive: false }],
       'react/prop-types': 'off',
       'import/order': [
         'error',

@@ -43,6 +43,34 @@ export const BackgroundInverted = {
   },
 }
 
+export const Outline = {
+  args: {
+    theme: 'outline',
+    children: 'Button',
+  },
+}
+
+export const OutlineInverted = {
+  args: {
+    theme: 'outline-inverted',
+    children: 'Button',
+  },
+}
+
+export const OutlineRed = {
+  args: {
+    theme: 'outline-red',
+    children: 'Delete',
+  },
+}
+
+export const BackgroundRed = {
+  args: {
+    theme: 'background-red',
+    children: 'Delete',
+  },
+}
+
 export const SquareSizeMedium = {
   args: {
     theme: 'background-inverted',

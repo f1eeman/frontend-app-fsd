@@ -32,11 +32,11 @@
   ],
   "profile": {
     "first": "Alex",
-    "lastname": "Front",
-    "age": 22,
-    "currency": "RUB",
-    "country": "Russia",
-    "city": "Moscow",
+    "lastname": "FrontBack",
+    "age": 234,
+    "currency": "USD",
+    "country": "Kazahstan",
+    "city": "Astana",
     "username": "admin",
     "avatar": "https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg"
   }

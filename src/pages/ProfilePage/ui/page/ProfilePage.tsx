@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { ProfilePageHeader } from '../../../ProfilePage/ui/pageHeader/ProfilePageHeader'
+import { ProfilePageHeader } from '../header/ProfilePageHeader'
 import { useAppDispatch } from '@/app/store'
 import { ProfileCard } from '@/entities/profile'
 import {

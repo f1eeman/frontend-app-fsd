@@ -37,6 +37,7 @@ export const ProfilePage: Story = {
         isLoading: false,
         readonly: false,
         error: null,
+        validateErrors: [],
       },
     }),
   ],

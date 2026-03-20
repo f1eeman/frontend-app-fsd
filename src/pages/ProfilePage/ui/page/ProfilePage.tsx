@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { ProfilePageHeader } from '../profilePageHeader/ProfilePageHeader'
+import { ProfilePageHeader } from '../header/ProfilePageHeader'
 import { useAppDispatch } from '@/app/store'
 import { ProfileCard } from '@/entities/profile'
 import {
@@ -9,9 +10,13 @@ import {
   selectProfileForm,
   selectProfileError,
   selectProfileReadonly,
+  selectProfileValidateErrors,
   profileActions,
+  ValidateProfileError,
 } from '@/features/editableProfileCard'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { Text } from '@/shared/ui'
+import { TextTheme } from '@/shared/ui/text/consts'
 import type { Country } from '@/entities/country'
 import type { Currency } from '@/entities/currency'
 
@@ -20,18 +25,22 @@ interface ProfilePageProps {
 }
 
 const ProfilePage = ({ className = '' }: ProfilePageProps) => {
+  const { t } = useTranslation('profile')
+
   const dispatch = useAppDispatch()
   const formData = useSelector(selectProfileForm)
   const isLoading = useSelector(selectIsLoading)
   const error = useSelector(selectProfileError)
   const readonly = useSelector(selectProfileReadonly)
+  const validateErrors = useSelector(selectProfileValidateErrors)
 
-  useEffect(() => {
-    const result = dispatch(fetchProfileData())
-    return () => {
-      result.abort()
-    }
-  }, [dispatch])
+  const validateErrorTranslates = {
+    [ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка при сохранении'),
+    [ValidateProfileError.INCORRECT_COUNTRY]: t('Некорректный регион'),
+    [ValidateProfileError.NO_DATA]: t('Данные не указаны'),
+    [ValidateProfileError.INCORRECT_USER_DATA]: t('Имя и фамилия обязательны'),
+    [ValidateProfileError.INCORRECT_AGE]: t('Некорректный возраст'),
+  }
 
   const onChangeFirstname = useCallback(
     (value?: string) => {
@@ -90,9 +99,24 @@ const ProfilePage = ({ className = '' }: ProfilePageProps) => {
     [dispatch],
   )
 
+  useEffect(() => {
+    const result = dispatch(fetchProfileData())
+    return () => {
+      result.abort()
+    }
+  }, [dispatch])
+
   return (
     <div className={classNames('', {}, [className])}>
       <ProfilePageHeader />
+      {validateErrors.length &&
+        validateErrors.map((err) => (
+          <Text
+            key={err}
+            theme={TextTheme.ERROR}
+            text={validateErrorTranslates[err]}
+          />
+        ))}
       <ProfileCard
         profile={formData}
         isLoading={isLoading}

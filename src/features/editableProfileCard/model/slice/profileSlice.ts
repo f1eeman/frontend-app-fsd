@@ -11,6 +11,7 @@ const initialState: ProfileSchema = {
   error: null,
   data: null,
   form: null,
+  validateErrors: [],
 }
 
 export const profileSlice = createSlice({
@@ -22,6 +23,7 @@ export const profileSlice = createSlice({
     },
     cancelEdit: (state) => {
       state.readonly = true
+      state.validateErrors = []
       state.form = state.data
     },
     updateProfile: (state, action: PayloadAction<Profile>) => {
@@ -52,6 +54,7 @@ export const profileSlice = createSlice({
       .addCase(updateProfileData.pending, (state) => {
         state.error = null
         state.isLoading = true
+        state.validateErrors = []
       })
       .addCase(
         updateProfileData.fulfilled,
@@ -60,11 +63,12 @@ export const profileSlice = createSlice({
           state.data = action.payload
           state.form = action.payload
           state.readonly = true
+          state.validateErrors = []
         },
       )
       .addCase(updateProfileData.rejected, (state, action) => {
         state.isLoading = false
-        state.error = action.payload ?? null
+        state.validateErrors = action.payload ?? []
       })
   },
   selectors: {
@@ -73,6 +77,7 @@ export const profileSlice = createSlice({
     selectProfileData: (state) => state.data,
     selectProfileReadonly: (state) => state.readonly,
     selectProfileForm: (state) => state.form ?? {},
+    selectProfileValidateErrors: (state) => state.validateErrors,
   },
 })
 
@@ -86,6 +91,7 @@ export const {
   selectProfileData,
   selectProfileReadonly,
   selectProfileForm,
+  selectProfileValidateErrors,
 } = withProfileSlice.selectors
 
 declare module '@/app/store' {

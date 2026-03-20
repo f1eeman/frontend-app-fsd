@@ -14,6 +14,10 @@ export const fetchProfileData = createAsyncThunk<
       signal: thunkApi.signal,
     })
 
+    if (!response.data) {
+      throw new Error()
+    }
+
     return response.data
   } catch (e) {
     console.log(e)

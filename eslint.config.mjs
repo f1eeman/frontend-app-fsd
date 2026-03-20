@@ -30,7 +30,13 @@ export default [
       parser: eslintTS.parser,
       ecmaVersion: 'latest',
       sourceType: 'module',
-      globals: { ...globals.browser, ...globals.node },
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        __IS_DEV__: true,
+        __API__: true,
+        __PROJECT__: true,
+      },
     },
     plugins: {
       'react-refresh': eslintReactRefresh,
@@ -179,6 +185,9 @@ export default [
     files: ['scripts/**/*.mjs'],
     languageOptions: {
       globals: globals.node,
+      __IS_DEV__: true,
+      __API__: true,
+      __PROJECT__: true,
     },
   },
   ...storybook.configs['flat/recommended'],

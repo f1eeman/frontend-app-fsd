@@ -22,4 +22,5 @@ export interface BuildOptions {
   port: number
   isAnalyzeModeEnable: boolean
   apiUrl: string
+  project: 'sb' | 'front' | 'jest'
 }

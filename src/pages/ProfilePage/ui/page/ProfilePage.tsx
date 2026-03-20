@@ -100,6 +100,8 @@ const ProfilePage = ({ className = '' }: ProfilePageProps) => {
   )
 
   useEffect(() => {
+    if (__PROJECT__ === 'sb') return
+
     const result = dispatch(fetchProfileData())
     return () => {
       result.abort()

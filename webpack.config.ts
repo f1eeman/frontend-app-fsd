@@ -26,5 +26,6 @@ export default (env: BuildEnv): webpack.Configuration => {
     port,
     isAnalyzeModeEnable,
     apiUrl,
+    project: 'front',
   })
 }

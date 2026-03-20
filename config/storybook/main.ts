@@ -26,6 +26,7 @@ const config: StorybookConfig = {
     const defineGlobals = {
       __IS_DEV__: JSON.stringify(true),
       __API__: JSON.stringify(''),
+      __PROJECT__: JSON.stringify('sb'),
     } as const
 
     if (config.plugins) {

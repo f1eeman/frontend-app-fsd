@@ -1,4 +1,5 @@
 import ProfilePageComponent from './ProfilePage'
+import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
@@ -24,7 +25,7 @@ export const ProfilePage: Story = {
           age: 30,
           city: 'Moscow',
           username: 'johndoe',
-          avatar: 'https://via.placeholder.com/150',
+          avatar: AvatarImg,
         },
         form: {
           first: 'John',
@@ -32,7 +33,7 @@ export const ProfilePage: Story = {
           age: 30,
           city: 'Moscow',
           username: 'johndoe',
-          avatar: 'https://via.placeholder.com/150',
+          avatar: AvatarImg,
         },
         isLoading: false,
         readonly: false,

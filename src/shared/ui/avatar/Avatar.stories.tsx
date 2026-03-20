@@ -1,5 +1,5 @@
 import { Avatar as AvatarComponent } from './Avatar'
-import AvatarImg from './storybook.jpg'
+import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {

@@ -1,9 +1,10 @@
 import { ProfileCard as ProfileCardComponent } from './ProfileCard'
+import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
-  title: 'shared/ProfileCard',
+  title: 'entities/ProfileCard',
   component: ProfileCardComponent,
 } satisfies Meta<typeof ProfileCardComponent>
 
@@ -19,7 +20,7 @@ export const ProfileCard: Story = {
       age: 30,
       city: 'Moscow',
       username: 'johndoe',
-      avatar: 'https://via.placeholder.com/150',
+      avatar: AvatarImg,
     },
     error: null,
     isLoading: false,
@@ -50,4 +51,17 @@ export const ProfileCard: Story = {
       },
     }),
   ],
+}
+
+export const ProfileCardWithError: Story = {
+  args: {
+    error: 'true',
+  },
+}
+
+export const ProfileCardWithLoading: Story = {
+  args: {
+    error: null,
+    isLoading: true,
+  },
 }

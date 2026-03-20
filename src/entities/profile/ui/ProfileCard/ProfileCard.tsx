@@ -12,10 +12,11 @@ import type { Profile } from '../../../../features/editableProfileCard/model/typ
 import type { Country } from '@/entities/country'
 import type { Currency } from '@/entities/currency'
 import type { Mods } from '@/shared/lib/classNames/classNames'
+import type { DeepPartial } from '@/shared/types'
 
 interface ProfileCardProps {
   className?: string
-  profile: Profile
+  profile?: DeepPartial<Profile>
   error: string | null
   isLoading?: boolean
   readonly?: boolean

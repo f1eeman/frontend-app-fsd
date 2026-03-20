@@ -1,6 +1,6 @@
 import { useRoutes } from 'react-router'
-import { AboutPageAsync } from '@/pages/aboutPage/AboutPage.async'
-import { MainPageAsync } from '@/pages/mainPage/MainPage.async'
+import { AboutPageAsync } from '@/pages/aboutPage'
+import { MainPageAsync } from '@/pages/mainPage'
 import { NotFoundPage } from '@/pages/notFoundPage'
 import { ProfilePageAsync } from '@/pages/profilePage'
 import { routesPaths } from '@/shared/config/routes'

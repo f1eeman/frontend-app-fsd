@@ -48,6 +48,7 @@ export const ProfileCard: Story = {
         isLoading: false,
         readonly: false,
         error: null,
+        validateErrors: [],
       },
     }),
   ],

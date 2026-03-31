@@ -32,16 +32,26 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     },
   }
 
-  // const babelLoader = {
-  //   test: /\.(js|ts|jsx|tsx)$/,
-  //   exclude: /node_modules/,
-  //   use: {
-  //     loader: "babel-loader",
-  //     options: {
-  //       presets: ["@babel/preset-env"],
-  //     },
-  //   },
-  // };
+  const babelLoader = {
+    test: /\.(js|ts|jsx|tsx)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+        plugins: [isDev && require.resolve('react-refresh/babel')].filter(
+          Boolean,
+        ),
+      },
+    },
+  }
 
-  return [cssLoader, svgLoader, tsLoader, fontsLoader, imagesLoader]
+  return [
+    cssLoader,
+    svgLoader,
+    fontsLoader,
+    imagesLoader,
+    babelLoader,
+    tsLoader,
+  ]
 }

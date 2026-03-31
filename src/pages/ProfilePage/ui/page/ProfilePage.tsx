@@ -111,7 +111,7 @@ const ProfilePage = ({ className = '' }: ProfilePageProps) => {
   return (
     <div className={classNames('', {}, [className])}>
       <ProfilePageHeader />
-      {validateErrors.length &&
+      {validateErrors.length > 0 &&
         validateErrors.map((err) => (
           <Text
             key={err}

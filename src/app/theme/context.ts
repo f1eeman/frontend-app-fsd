@@ -14,4 +14,5 @@ export const LOCAL_STORAGE_THEME_KEY = 'app_theme'
 export const enum Theme {
   LIGHT = 'app_theme_light',
   DARK = 'app_theme_dark',
+  ORANGE = 'app_theme_orange',
 }

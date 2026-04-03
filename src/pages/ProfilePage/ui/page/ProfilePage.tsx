@@ -1,8 +1,7 @@
 import { useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import { ProfilePageHeader } from '../header/ProfilePageHeader'
-import { useAppDispatch } from '@/app/store'
+import { useAppDispatch, useAppSelector } from '@/app/store'
 import { ProfileCard } from '@/entities/profile'
 import {
   fetchProfileData,
@@ -28,11 +27,11 @@ const ProfilePage = ({ className = '' }: ProfilePageProps) => {
   const { t } = useTranslation('profile')
 
   const dispatch = useAppDispatch()
-  const formData = useSelector(selectProfileForm)
-  const isLoading = useSelector(selectIsLoading)
-  const error = useSelector(selectProfileError)
-  const readonly = useSelector(selectProfileReadonly)
-  const validateErrors = useSelector(selectProfileValidateErrors)
+  const formData = useAppSelector(selectProfileForm)
+  const isLoading = useAppSelector(selectIsLoading)
+  const error = useAppSelector(selectProfileError)
+  const readonly = useAppSelector(selectProfileReadonly)
+  const validateErrors = useAppSelector(selectProfileValidateErrors)
 
   const validateErrorTranslates = {
     [ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка при сохранении'),

@@ -1,8 +1,7 @@
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import cls from './ProfilePageHeader.module.scss'
-import { useAppDispatch } from '@/app/store'
+import { useAppDispatch, useAppSelector } from '@/app/store'
 import {
   profileActions,
   selectProfileReadonly,
@@ -20,7 +19,7 @@ export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
 
   const { t } = useTranslation('profile')
 
-  const readonly = useSelector(selectProfileReadonly)
+  const readonly = useAppSelector(selectProfileReadonly)
   const dispatch = useAppDispatch()
 
   const onEdit = useCallback(() => {

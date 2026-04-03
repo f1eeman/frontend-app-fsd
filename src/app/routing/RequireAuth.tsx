@@ -10,7 +10,11 @@ export function RequireAuth({ children }: { children: ReactNode }) {
 
   if (!auth) {
     return (
-      <Navigate to={routesPaths.root.path} state={{ from: location }} replace />
+      <Navigate
+        to={routesPaths.about.path}
+        state={{ from: location }}
+        replace
+      />
     )
   }
 

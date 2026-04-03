@@ -1,3 +1,4 @@
+import ArticleIcon from '@/shared/assets/icons/article-20-20.svg'
 import MainIcon from '@/shared/assets/icons/home.svg'
 import AboutIcon from '@/shared/assets/icons/list.svg'
 import ProfileIcon from '@/shared/assets/icons/profile.svg'
@@ -26,6 +27,12 @@ export const sidebarItemList: SidebarItemModel[] = [
     path: routesPaths.profile.path,
     Icon: ProfileIcon,
     text: 'Профиль',
+    authOnly: true,
+  },
+  {
+    path: routesPaths.articles.path,
+    Icon: ArticleIcon,
+    text: 'Статьи',
     authOnly: true,
   },
 ]

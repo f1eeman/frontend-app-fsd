@@ -17,6 +17,7 @@ export function buildWebpackConfig(
       filename: '[name].[contenthash].js',
       chunkFilename: '[name].[contenthash].chunk.js',
       path: paths.build,
+      publicPath: '/',
       clean: true,
       assetModuleFilename: 'images/[name].[contenthash][ext]',
     },

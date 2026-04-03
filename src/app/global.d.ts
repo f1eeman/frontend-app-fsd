@@ -26,3 +26,9 @@ declare module '*.svg' {
 declare const __IS_DEV__: boolean
 declare const __API__: string
 declare const __PROJECT__: 'sb' | 'front' | 'jest'
+
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+declare type AppRouteObject = import('react-router').RouteObject & {
+  authOnly?: boolean
+  children?: AppRouteObject[]
+}

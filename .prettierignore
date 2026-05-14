@@ -4,6 +4,7 @@
 coverage/
 ./dist/
 ./build/
+.claude
 ./public/assets/
 node_modules
 

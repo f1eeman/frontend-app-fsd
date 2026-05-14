@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { TextTheme, TextAlign } from './consts'
+import { TextTheme, TextAlign, TextSize } from './consts'
 import cls from './Text.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import type { Mods } from '@/shared/lib/classNames/classNames'
@@ -10,6 +10,7 @@ interface TextProps {
   text?: string
   theme?: TextTheme
   align?: TextAlign
+  size?: TextSize
 }
 
 export const Text = memo<TextProps>((props) => {
@@ -19,11 +20,13 @@ export const Text = memo<TextProps>((props) => {
     title,
     theme = TextTheme.PRIMARY,
     align = TextAlign.LEFT,
+    size = TextSize.M,
   } = props
 
   const mods: Mods = {
     [cls[theme]]: true,
     [cls[align]]: true,
+    [cls[size]]: true,
   }
 
   return (

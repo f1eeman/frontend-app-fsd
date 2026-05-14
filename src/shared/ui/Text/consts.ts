@@ -8,3 +8,8 @@ export const enum TextAlign {
   LEFT = 'left',
   CENTER = 'center',
 }
+
+export const enum TextSize {
+  M = 'size_m',
+  L = 'size_l',
+}

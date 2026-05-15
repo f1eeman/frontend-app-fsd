@@ -77,7 +77,7 @@ export const profileSlice = createSlice({
     selectProfileData: (state) => state.data,
     selectProfileReadonly: (state) => state.readonly,
     selectProfileForm: (state) => state.form ?? {},
-    selectProfileValidateErrors: (state) => state.validateErrors,
+    selectProfileValidateErrors: (state) => state?.validateErrors ?? [],
   },
 })
 

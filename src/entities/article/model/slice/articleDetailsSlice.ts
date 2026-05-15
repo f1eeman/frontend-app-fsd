@@ -45,11 +45,11 @@ export const articleDetailsSlice = createSlice({
 
 export const { actions: articleDetailsActions } = articleDetailsSlice
 export const { reducer: articleDetailsReducer } = articleDetailsSlice
-export const { selectError, selectIsLoading, getArticleDetailsData } =
-  articleDetailsSlice.selectors
-
 export const withArticleDetailsSlice =
   articleDetailsSlice.injectInto(rootReducer)
+
+export const { selectError, selectIsLoading, getArticleDetailsData } =
+  withArticleDetailsSlice.selectors
 
 declare module '@/app/store' {
   export interface LazyLoadedSlices

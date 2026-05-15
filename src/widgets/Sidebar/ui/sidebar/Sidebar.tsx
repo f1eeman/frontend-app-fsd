@@ -24,6 +24,17 @@ export const Sidebar: FC = ({ className = '' }: SidebarProps) => {
         className,
       ])}
     >
+      <div className={cls.content}>
+        <div className={cls.items}>
+          {sidebarItemList.map((item) => (
+            <SidebarItem item={item} collapsed={collapsed} key={item.path} />
+          ))}
+        </div>
+        <div className={cls.switchers}>
+          <ThemeSwitcher />
+          <LangSwitcher short />
+        </div>
+      </div>
       <Button
         square
         theme={'background-inverted'}
@@ -34,15 +45,6 @@ export const Sidebar: FC = ({ className = '' }: SidebarProps) => {
       >
         {`${collapsed ? '>' : '<'}`}
       </Button>
-      <div className={cls.items}>
-        {sidebarItemList.map((item) => (
-          <SidebarItem item={item} collapsed={collapsed} key={item.path} />
-        ))}
-      </div>
-      <div className={cls.switchers}>
-        <ThemeSwitcher />
-        <LangSwitcher short />
-      </div>
     </div>
   )
 }

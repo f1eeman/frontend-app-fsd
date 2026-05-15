@@ -43,5 +43,15 @@ jobs:
       - name: Screenshot testing
         run: yarn test:ui:ci
 
+      - name: Upload screenshot diffs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshot-diffs
+          path: |
+            screen-tests/diffs
+            screen-tests/current
+          retention-days: 7
+
       - name: Build production project
         run: yarn build:prod

@@ -190,10 +190,12 @@ export default [
   {
     files: ['scripts/**/*.mjs'],
     languageOptions: {
-      globals: globals.node,
-      __IS_DEV__: true,
-      __API__: true,
-      __PROJECT__: true,
+      globals: {
+        ...globals.node,
+        __IS_DEV__: true,
+        __API__: true,
+        __PROJECT__: true,
+      },
     },
   },
   ...storybook.configs['flat/recommended'],

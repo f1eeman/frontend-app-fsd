@@ -19,6 +19,6 @@ describe('selectProfileValidateErrors.test', () => {
     const state = {
       profile: {},
     }
-    expect(selectProfileValidateErrors(state as RootState)).toEqual(undefined)
+    expect(selectProfileValidateErrors(state as RootState)).toEqual([])
   })
 })

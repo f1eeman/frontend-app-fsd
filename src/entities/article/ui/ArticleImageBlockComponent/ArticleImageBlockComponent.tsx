@@ -1,8 +1,8 @@
 import { memo } from 'react'
 import cls from './ArticleImageBlockComponent.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { TextAlign } from '@/shared/ui/text2/consts'
-import { Text2 } from '@/shared/ui/text2/Text2'
+import { TextAlign } from '@/shared/ui/text/consts'
+import { Text } from '@/shared/ui/text/Text'
 import type { ArticleImageBlock } from '../../model/types/article'
 
 interface ArticleImageBlockComponentProps {
@@ -19,7 +19,7 @@ export const ArticleImageBlockComponent = memo(
         className={classNames(cls.ArticleImageBlockComponent, {}, [className])}
       >
         <img src={block.src} alt={block.title} className={cls.img} />
-        {block.title && <Text2 text={block.title} align={TextAlign.CENTER} />}
+        {block.title && <Text text={block.title} align={TextAlign.CENTER} />}
       </div>
     )
   },

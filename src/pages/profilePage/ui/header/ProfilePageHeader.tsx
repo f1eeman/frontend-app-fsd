@@ -8,7 +8,7 @@ import {
   updateProfileData,
 } from '@/features/editableProfileCard'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Button, buttonTheme, Text2 } from '@/shared/ui'
+import { Button, buttonTheme, Text } from '@/shared/ui'
 
 interface ProfilePageHeaderProps {
   className?: string
@@ -36,7 +36,7 @@ export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
 
   return (
     <div className={classNames(cls.ProfilePageHeader, {}, [className])}>
-      <Text2 title={t('Профиль')} />
+      <Text title={t('Профиль')} />
       {readonly ? (
         <Button
           className={cls.editBtn}

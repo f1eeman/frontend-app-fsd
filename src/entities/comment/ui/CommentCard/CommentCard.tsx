@@ -3,7 +3,7 @@ import cls from './CommentCard.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Avatar } from '@/shared/ui/avatar/Avatar'
 import { Skeleton } from '@/shared/ui/skeleton/Skeleton'
-import { Text2 } from '@/shared/ui/text2/Text2'
+import { Text } from '@/shared/ui/text/Text'
 import type { Comment } from '../../model/types/comment'
 
 interface CommentCardProps {
@@ -33,9 +33,9 @@ export const CommentCard = memo((props: CommentCardProps) => {
         {comment.user.avatar ? (
           <Avatar size={30} src={comment.user.avatar} />
         ) : null}
-        <Text2 className={cls.username} title={comment.user.username} />
+        <Text className={cls.username} title={comment.user.username} />
       </div>
-      <Text2 className={cls.text} text={comment.text} />
+      <Text className={cls.text} text={comment.text} />
     </div>
   )
 })

@@ -13,7 +13,7 @@ interface TextProps {
   size?: TextSize
 }
 
-export const Text2 = memo<TextProps>((props) => {
+export const Text = memo<TextProps>((props) => {
   const {
     className = '',
     text,
@@ -37,4 +37,4 @@ export const Text2 = memo<TextProps>((props) => {
   )
 })
 
-Text2.displayName = 'Text2'
+Text.displayName = 'Text'

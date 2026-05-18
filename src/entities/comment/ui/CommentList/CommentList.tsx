@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { CommentCard } from '../CommentCard/CommentCard'
 import cls from './CommentList.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Text2 } from '@/shared/ui/text2/Text2'
+import { Text } from '@/shared/ui/text/Text'
 import type { Comment } from '../../model/types/comment'
 
 interface CommentListProps {
@@ -28,7 +28,7 @@ export const CommentList = memo((props: CommentListProps) => {
           />
         ))
       ) : (
-        <Text2 text={t('Комментарии отсутствуют')} />
+        <Text text={t('Комментарии отсутствуют')} />
       )}
     </div>
   )

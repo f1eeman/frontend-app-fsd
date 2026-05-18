@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import cls from './ArticleTextBlockComponent.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Text2 } from '@/shared/ui/text2/Text2'
+import { Text } from '@/shared/ui/text/Text'
 import type { ArticleTextBlock } from '../../model/types/article'
 
 interface ArticleTextBlockComponentProps {
@@ -17,9 +17,9 @@ export const ArticleTextBlockComponent = memo(
       <div
         className={classNames(cls.ArticleTextBlockComponent, {}, [className])}
       >
-        {block.title && <Text2 title={block.title} className={cls.title} />}
+        {block.title && <Text title={block.title} className={cls.title} />}
         {block.paragraphs.map((paragraph) => (
-          <Text2 key={paragraph} text={paragraph} className={cls.paragraph} />
+          <Text key={paragraph} text={paragraph} className={cls.paragraph} />
         ))}
       </div>
     )

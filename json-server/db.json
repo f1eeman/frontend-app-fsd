@@ -80,26 +80,683 @@
           ]
         }
       ]
+    },
+    {
+      "id": "2",
+      "title": "TypeScript в 2026: полный гайд",
+      "subtitle": "Почему TypeScript стал стандартом индустрии",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 3845,
+      "createdAt": "10.01.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Зачем нужен TypeScript?",
+          "paragraphs": [
+            "TypeScript — это надмножество JavaScript, которое добавляет статическую типизацию. В 2026 году TypeScript используется в подавляющем большинстве серьёзных проектов, от стартапов до крупных корпораций.",
+            "Главное преимущество TypeScript — это возможность отлавливать ошибки на этапе компиляции, а не в рантайме. Это экономит часы отладки и делает код более предсказуемым.",
+            "Система типов TypeScript позволяет описывать сложные структуры данных, использовать дженерики, условные типы и маппированные типы для создания гибких и переиспользуемых абстракций."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface User {\n  id: string;\n  name: string;\n  email: string;\n  role: 'admin' | 'user' | 'moderator';\n}\n\nfunction getFullName<T extends { name: string }>(entity: T): string {\n  return entity.name;\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Новые возможности в TypeScript 5.x",
+          "paragraphs": [
+            "Декораторы наконец-то стали стабильной частью языка. Теперь можно использовать декораторы без экспериментальных флагов, что упрощает работу с фреймворками вроде Angular и NestJS.",
+            "Улучшенный вывод типов позволяет писать меньше явных аннотаций. TypeScript стал умнее в определении типов из контекста, что делает код чище и лаконичнее.",
+            "Модульная система TypeScript теперь лучше работает с ESM-модулями, что упрощает миграцию проектов на современные стандарты."
+          ]
+        },
+        {
+          "id": "4",
+          "type": "CODE",
+          "code": "// Декораторы в TypeScript 5.x\nfunction log(target: any, context: ClassMethodDecoratorContext) {\n  return function (...args: any[]) {\n    console.log(`Calling ${String(context.name)}`);\n    return target.apply(this, args);\n  };\n}\n\nclass UserService {\n  @log\n  getUser(id: string) {\n    return { id, name: 'John' };\n  }\n}"
+        },
+        {
+          "id": "5",
+          "type": "TEXT",
+          "title": "TypeScript и React",
+          "paragraphs": [
+            "Комбинация TypeScript и React стала золотым стандартом фронтенд-разработки. Типизация пропсов, хуков и контекстов делает компоненты самодокументируемыми.",
+            "Generics позволяют создавать универсальные компоненты, которые сохраняют информацию о типах данных, с которыми работают. Это особенно полезно для таблиц, списков и форм."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "React Server Components",
+      "subtitle": "Серверные компоненты меняют правила игры",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 5210,
+      "createdAt": "15.03.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Что такое Server Components?",
+          "paragraphs": [
+            "React Server Components (RSC) — это новая парадигма, позволяющая рендерить компоненты исключительно на сервере. В отличие от SSR, серверные компоненты не отправляют свой JavaScript-код на клиент.",
+            "Это означает значительное уменьшение размера бандла. Компоненты, которые только отображают данные и не имеют интерактивности, больше не нагружают клиентский бандл.",
+            "RSC позволяют напрямую обращаться к базе данных, файловой системе и другим серверным ресурсам прямо из компонента, без необходимости создавать отдельные API-эндпоинты."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "// Серверный компонент — выполняется только на сервере\nasync function ArticleList() {\n  const articles = await db.article.findMany({\n    orderBy: { createdAt: 'desc' },\n    take: 10,\n  });\n\n  return (\n    <ul>\n      {articles.map((article) => (\n        <ArticleCard key={article.id} article={article} />\n      ))}\n    </ul>\n  );\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Клиентские vs серверные компоненты",
+          "paragraphs": [
+            "Ключевое правило: серверные компоненты не могут использовать хуки (useState, useEffect) и обработчики событий (onClick, onChange). Для интерактивности нужны клиентские компоненты с директивой 'use client'.",
+            "Хорошая практика — держать серверные компоненты как обёртки, а клиентские — как маленькие интерактивные островки внутри них. Это минимизирует количество JavaScript на клиенте.",
+            "Next.js App Router сделал RSC первоклассной функцией. Все компоненты по умолчанию серверные, и только те, которым нужна интерактивность, помечаются как клиентские."
+          ]
+        },
+        {
+          "id": "4",
+          "type": "IMAGE",
+          "src": "https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png",
+          "title": "Архитектура серверных компонентов"
+        },
+        {
+          "id": "5",
+          "type": "TEXT",
+          "title": "Когда использовать RSC?",
+          "paragraphs": [
+            "RSC идеальны для контентных страниц: блоги, документация, каталоги товаров. Везде, где данные читаются чаще, чем изменяются.",
+            "Для сложных интерактивных интерфейсов (редакторы, дашборды с drag-and-drop) клиентские компоненты по-прежнему предпочтительнее. RSC — это инструмент, а не серебряная пуля."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Node.js: бэкенд на JavaScript",
+      "subtitle": "Как Node.js захватил серверную разработку",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 2890,
+      "createdAt": "05.04.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Эволюция Node.js",
+          "paragraphs": [
+            "Node.js прошёл долгий путь от экспериментальной платформы до основы корпоративных приложений. Событийно-ориентированная архитектура и неблокирующий ввод/вывод делают его идеальным для высоконагруженных приложений.",
+            "С появлением Node.js 22 LTS платформа получила нативную поддержку TypeScript через флаг --experimental-strip-types, встроенный test runner и улучшенную поддержку ES-модулей.",
+            "Экосистема Node.js насчитывает более 2 миллионов пакетов в npm, что делает его одной из самых богатых платформ для разработки."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "import { createServer } from 'node:http';\nimport { readFile } from 'node:fs/promises';\n\nconst server = createServer(async (req, res) => {\n  if (req.url === '/api/users') {\n    const data = await readFile('./data/users.json', 'utf-8');\n    res.writeHead(200, { 'Content-Type': 'application/json' });\n    res.end(data);\n  }\n});\n\nserver.listen(3000, () => {\n  console.log('Server running on port 3000');\n});"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Фреймворки для Node.js",
+          "paragraphs": [
+            "Express.js остаётся самым популярным фреймворком, но всё больше разработчиков переходят на Fastify из-за его производительности и нативной поддержки JSON Schema для валидации.",
+            "NestJS завоевал популярность в корпоративной среде благодаря модульной архитектуре, dependency injection и отличной интеграции с TypeScript.",
+            "Для микросервисов и API часто выбирают tRPC, который позволяет создавать type-safe API без генерации кода и схем — типы передаются напрямую между клиентом и сервером."
+          ]
+        },
+        {
+          "id": "4",
+          "type": "CODE",
+          "code": "// tRPC — type-safe API\nimport { initTRPC } from '@trpc/server';\nimport { z } from 'zod';\n\nconst t = initTRPC.create();\n\nconst appRouter = t.router({\n  getUser: t.procedure\n    .input(z.object({ id: z.string() }))\n    .query(async ({ input }) => {\n      return await db.user.findUnique({ where: { id: input.id } });\n    }),\n});\n\nexport type AppRouter = typeof appRouter;"
+        },
+        {
+          "id": "5",
+          "type": "TEXT",
+          "title": "Node.js vs Deno vs Bun",
+          "paragraphs": [
+            "Bun позиционирует себя как замену Node.js с кратно более высокой скоростью запуска и выполнения. Однако экосистема Bun пока не может конкурировать с Node.js по зрелости и стабильности.",
+            "Deno 2.0 наконец добился совместимости с npm-пакетами, что устранило главный барьер для миграции. Встроенная безопасность и поддержка TypeScript из коробки — сильные стороны Deno."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "CSS-in-JS умер? Обзор стилей в 2026",
+      "subtitle": "Tailwind, CSS Modules, vanilla-extract и другие подходы",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 4120,
+      "createdAt": "20.02.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Закат runtime CSS-in-JS",
+          "paragraphs": [
+            "Библиотеки вроде styled-components и emotion теряют популярность. Причина — их runtime-overhead: стили генерируются в JavaScript, что увеличивает размер бандла и замедляет рендеринг.",
+            "React Server Components окончательно поставили крест на runtime CSS-in-JS: серверные компоненты не могут использовать контекст и хуки, от которых зависят эти библиотеки.",
+            "На смену пришли zero-runtime решения, которые извлекают стили на этапе сборки: vanilla-extract, Linaria, Panda CSS."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "// vanilla-extract — типобезопасные стили на этапе сборки\nimport { style, createTheme } from '@vanilla-extract/css';\n\nexport const [themeClass, vars] = createTheme({\n  color: { brand: '#1a73e8', text: '#333' },\n  space: { small: '4px', medium: '8px', large: '16px' },\n});\n\nexport const button = style({\n  backgroundColor: vars.color.brand,\n  padding: `${vars.space.medium} ${vars.space.large}`,\n  borderRadius: '8px',\n  color: 'white',\n});"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Tailwind CSS: утилитарный подход",
+          "paragraphs": [
+            "Tailwind CSS стал самым популярным CSS-фреймворком. Утилитарные классы позволяют быстро верстать без переключения между файлами стилей и компонентами.",
+            "Tailwind v4 перешёл на Lightning CSS в качестве движка, что дало прирост скорости сборки в 10 раз. Конфигурация теперь через CSS вместо JavaScript-файла.",
+            "Главный аргумент против Tailwind — читаемость. Длинные строки классов в JSX могут выглядеть пугающе, но плагины для IDE и утилита prettier-plugin-tailwindcss решают эту проблему."
+          ]
+        },
+        {
+          "id": "4",
+          "type": "TEXT",
+          "title": "CSS Modules — золотая середина",
+          "paragraphs": [
+            "CSS Modules остаются отличным выбором для проектов, которым нужна изоляция стилей без runtime-зависимостей. Каждый файл .module.css автоматически получает уникальные имена классов.",
+            "В сочетании с SCSS и PostCSS, CSS Modules дают полный контроль над стилями при минимальном оверхеде. Это проверенный подход, который работает с любым фреймворком."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Тестирование фронтенда",
+      "subtitle": "Vitest, Testing Library и Playwright",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 1870,
+      "createdAt": "12.05.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Пирамида тестирования",
+          "paragraphs": [
+            "Классическая пирамида тестирования предлагает много юнит-тестов, меньше интеграционных и совсем мало e2e-тестов. Но в мире фронтенда эта модель трансформировалась.",
+            "Современный подход — «тестировочный трофей» (Testing Trophy) от Kent C. Dodds: основной упор на интеграционные тесты, которые проверяют взаимодействие компонентов так, как это делает пользователь.",
+            "Юнит-тесты остаются полезными для чистых функций, хуков и утилит. Но тестировать отдельные компоненты в изоляции от их контекста — часто пустая трата времени."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "// Интеграционный тест с Vitest + Testing Library\nimport { render, screen, userEvent } from '@testing-library/react';\nimport { describe, it, expect } from 'vitest';\nimport { LoginForm } from './LoginForm';\n\ndescribe('LoginForm', () => {\n  it('shows error on invalid credentials', async () => {\n    render(<LoginForm />);\n    const user = userEvent.setup();\n\n    await user.type(screen.getByLabelText('Email'), 'test@mail.com');\n    await user.type(screen.getByLabelText('Password'), 'wrong');\n    await user.click(screen.getByRole('button', { name: /войти/i }));\n\n    expect(await screen.findByText(/неверный пароль/i)).toBeInTheDocument();\n  });\n});"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Vitest вместо Jest",
+          "paragraphs": [
+            "Vitest стал де-факто стандартом для юнит- и интеграционного тестирования в проектах на Vite. Он совместим с API Jest, но работает значительно быстрее за счёт нативной интеграции с Vite.",
+            "Hot Module Replacement для тестов — киллер-фича Vitest. Изменил файл — и только затронутые тесты перезапустились за миллисекунды, а не секунды."
+          ]
+        },
+        {
+          "id": "4",
+          "type": "TEXT",
+          "title": "E2E-тестирование с Playwright",
+          "paragraphs": [
+            "Playwright от Microsoft вытеснил Cypress из лидеров e2e-тестирования. Поддержка нескольких браузеров из коробки, параллельное выполнение и мощный API — его главные преимущества.",
+            "Playwright умеет тестировать не только веб-приложения, но и API. Встроенные инструменты для скриншот-тестирования и трейсинга делают отладку падающих тестов намного проще."
+          ]
+        },
+        {
+          "id": "5",
+          "type": "CODE",
+          "code": "// E2E-тест с Playwright\nimport { test, expect } from '@playwright/test';\n\ntest('user can create article', async ({ page }) => {\n  await page.goto('/login');\n  await page.getByLabel('Email').fill('admin@test.com');\n  await page.getByLabel('Password').fill('admin123');\n  await page.getByRole('button', { name: 'Войти' }).click();\n\n  await page.goto('/articles/new');\n  await page.getByLabel('Заголовок').fill('Новая статья');\n  await page.getByRole('button', { name: 'Опубликовать' }).click();\n\n  await expect(page.getByText('Статья опубликована')).toBeVisible();\n});"
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Архитектура фронтенд-приложений",
+      "subtitle": "Feature-Sliced Design, модули и микрофронтенды",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 6340,
+      "createdAt": "28.01.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Зачем нужна архитектура?",
+          "paragraphs": [
+            "Когда проект растёт, хаотичная структура папок превращается в кошмар. Новые разработчики тратят дни на понимание кодовой базы, а любое изменение рискует сломать что-то в другом конце приложения.",
+            "Архитектурная методология задаёт правила: где лежит код, как модули общаются между собой, какие зависимости допустимы. Это снижает когнитивную нагрузку и делает проект предсказуемым.",
+            "В 2026 году наиболее популярные подходы — Feature-Sliced Design (FSD), модульная архитектура и микрофронтенды для крупных команд."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "TEXT",
+          "title": "Feature-Sliced Design",
+          "paragraphs": [
+            "FSD делит приложение на слои (app, pages, widgets, features, entities, shared), каждый из которых имеет чёткую зону ответственности. Зависимости идут только сверху вниз: page может импортировать из features, но не наоборот.",
+            "Каждый слой разбит на слайсы — самостоятельные модули с публичным API через index.ts. Это обеспечивает инкапсуляцию и позволяет безопасно рефакторить внутренности слайса.",
+            "FSD особенно хорошо подходит для средних и больших проектов с командой от 3 разработчиков. Для маленьких проектов он может ощущаться как overkill."
+          ]
+        },
+        {
+          "id": "3",
+          "type": "CODE",
+          "code": "// Типичная структура FSD-проекта\nsrc/\n├── app/          # Инициализация приложения, роутинг, провайдеры\n├── pages/        # Композиция страниц из виджетов и фич\n├── widgets/      # Самостоятельные блоки UI (Sidebar, Navbar)\n├── features/     # Действия пользователя (authByUsername, editProfile)\n├── entities/     # Бизнес-сущности (User, Article, Comment)\n└── shared/       # Переиспользуемый код (UI-kit, утилиты, API)"
+        },
+        {
+          "id": "4",
+          "type": "TEXT",
+          "title": "Микрофронтенды",
+          "paragraphs": [
+            "Микрофронтенды — это подход, при котором фронтенд разделён на независимые приложения, разрабатываемые разными командами. Каждый микрофронтенд может использовать свой фреймворк и деплоиться отдельно.",
+            "Module Federation в Webpack 5 и его аналоги в Vite сделали микрофронтенды практичными. Но сложность инфраструктуры и оверхед по размеру оправданы только для очень больших организаций."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "title": "Асинхронный JavaScript",
+      "subtitle": "Промисы, async/await и параллельное выполнение",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 2150,
+      "createdAt": "18.03.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "От колбэков к промисам",
+          "paragraphs": [
+            "В ранние годы JavaScript асинхронный код писался через колбэки. Вложенные колбэки быстро превращались в «callback hell» — нечитаемую пирамиду из отступов.",
+            "Промисы решили эту проблему, предоставив цепочку .then() вместо вложенных функций. А async/await сделал асинхронный код визуально неотличимым от синхронного."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "// Promise.allSettled — ждёт завершения всех промисов\nconst results = await Promise.allSettled([\n  fetch('/api/users'),\n  fetch('/api/articles'),\n  fetch('/api/comments'),\n]);\n\nconst successful = results\n  .filter((r) => r.status === 'fulfilled')\n  .map((r) => r.value);\n\nconst failed = results\n  .filter((r) => r.status === 'rejected')\n  .map((r) => r.reason);"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Обработка ошибок",
+          "paragraphs": [
+            "Одна из частых ошибок — игнорирование rejected промисов. Необработанный промис может привести к крашу Node.js-приложения или незаметному багу в браузере.",
+            "Паттерн try/catch в async-функциях — стандартный способ обработки ошибок. Но для сложных сценариев стоит рассмотреть библиотеки вроде neverthrow, реализующие Result-тип из функционального программирования."
+          ]
+        },
+        {
+          "id": "4",
+          "type": "CODE",
+          "code": "// Паттерн обработки ошибок без try/catch\nasync function safeAsync<T>(promise: Promise<T>): Promise<[T, null] | [null, Error]> {\n  try {\n    const result = await promise;\n    return [result, null];\n  } catch (error) {\n    return [null, error as Error];\n  }\n}\n\nconst [data, error] = await safeAsync(fetchUser(id));\nif (error) {\n  console.error('Failed to fetch user:', error.message);\n}"
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "title": "Webpack vs Vite: сборщики в 2026",
+      "subtitle": "Почему Vite побеждает и когда Webpack всё ещё нужен",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 3560,
+      "createdAt": "02.04.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Проблема Webpack",
+          "paragraphs": [
+            "Webpack был стандартом сборки фронтенда почти десятилетие. Но его главная проблема — скорость. В крупных проектах холодный старт dev-сервера занимает десятки секунд, а HMR может тормозить на каждом сохранении.",
+            "Конфигурация Webpack печально известна своей сложностью. Десятки плагинов и лоадеров, webpack.config.js на сотни строк — типичная картина для продакшн-проекта."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "TEXT",
+          "title": "Vite: скорость прежде всего",
+          "paragraphs": [
+            "Vite использует нативные ES-модули браузера в режиме разработки, что даёт мгновенный холодный старт независимо от размера проекта. Для продакшн-сборки используется Rollup.",
+            "Конфигурация Vite минимальна. В большинстве случаев достаточно нескольких строк в vite.config.ts. Плагины Vite проще писать и поддерживать благодаря унифицированному API.",
+            "Turbopack от Vercel — ещё одна альтернатива, написанная на Rust. Он обещает быть ещё быстрее Vite, но пока доступен только в связке с Next.js."
+          ]
+        },
+        {
+          "id": "3",
+          "type": "CODE",
+          "code": "// vite.config.ts — минимальная конфигурация\nimport { defineConfig } from 'vite';\nimport react from '@vitejs/plugin-react';\n\nexport default defineConfig({\n  plugins: [react()],\n  resolve: {\n    alias: { '@': '/src' },\n  },\n  server: {\n    port: 3000,\n    proxy: {\n      '/api': 'http://localhost:8080',\n    },\n  },\n});"
+        },
+        {
+          "id": "4",
+          "type": "TEXT",
+          "title": "Когда Webpack всё ещё нужен",
+          "paragraphs": [
+            "Module Federation для микрофронтендов — главная киллер-фича Webpack, у которой пока нет зрелых аналогов в Vite. Если проект использует микрофронтенды, миграция на Vite будет болезненной.",
+            "Легаси-проекты с кастомными лоадерами и сложными пайплайнами проще оставить на Webpack, чем переписывать всю конфигурацию. Миграция оправдана, только если скорость сборки — реальный bottleneck."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": "State management в React",
+      "subtitle": "Redux Toolkit, Zustand, Jotai — что выбрать?",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 4780,
+      "createdAt": "08.05.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Нужен ли вам стейт-менеджер?",
+          "paragraphs": [
+            "Прежде чем выбирать стейт-менеджер, задайте себе вопрос: нужен ли он вообще? React Context + useReducer покрывают большинство случаев для небольших приложений.",
+            "Стейт-менеджер становится необходим, когда: состояние шарится между многими компонентами, есть сложная бизнес-логика, нужно кэширование серверных данных или time-travel debugging."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "TEXT",
+          "title": "Redux Toolkit — проверенный стандарт",
+          "paragraphs": [
+            "Redux Toolkit (RTK) устранил главные претензии к Redux: бойлерплейт и сложность настройки. createSlice, createAsyncThunk и RTK Query сделали Redux удобным и продуктивным.",
+            "RTK Query — встроенное решение для работы с серверным состоянием. Оно кэширует данные, автоматически инвалидирует кэш и предоставляет хуки для запросов. Для многих проектов RTK Query полностью заменяет react-query."
+          ]
+        },
+        {
+          "id": "3",
+          "type": "CODE",
+          "code": "// Zustand — минималистичный стейт-менеджер\nimport { create } from 'zustand';\n\ninterface CounterStore {\n  count: number;\n  increment: () => void;\n  decrement: () => void;\n  reset: () => void;\n}\n\nconst useCounter = create<CounterStore>((set) => ({\n  count: 0,\n  increment: () => set((state) => ({ count: state.count + 1 })),\n  decrement: () => set((state) => ({ count: state.count - 1 })),\n  reset: () => set({ count: 0 }),\n}));"
+        },
+        {
+          "id": "4",
+          "type": "TEXT",
+          "title": "Zustand и Jotai — лёгкие альтернативы",
+          "paragraphs": [
+            "Zustand — это стейт-менеджер весом менее 1 КБ. Нет провайдеров, нет бойлерплейта, просто функция create(). Идеален для проектов, где Redux ощущается как overkill.",
+            "Jotai использует атомарный подход к состоянию, вдохновлённый Recoil. Каждый атом — независимый кусочек состояния, который можно комбинировать и производить. Отлично подходит для сложных форм и вычисляемых значений.",
+            "Для серверного состояния (данные с API) стоит рассмотреть TanStack Query (react-query). Он не заменяет стейт-менеджер, а дополняет его, беря на себя кэширование, ревалидацию и пагинацию."
+          ]
+        }
+      ]
     }
   ],
   "comments": [
     {
       "id": "1",
-      "text": "some comment",
+      "text": "Отличная статья! Наконец-то понятно объяснили, как работает Hello World в JS.",
       "articleId": "1",
       "userId": "1"
     },
     {
       "id": "2",
-      "text": "some comment 2",
+      "text": "А что насчёт Deno? Он уже может заменить Node.js для продакшна?",
+      "articleId": "1",
+      "userId": "2"
+    },
+    {
+      "id": "3",
+      "text": "Пример с json-server очень полезный, как раз искал что-то подобное для моков.",
       "articleId": "1",
       "userId": "1"
     },
     {
-      "id": "3",
-      "text": "some comment 3",
-      "articleId": "1",
+      "id": "4",
+      "text": "TypeScript спас наш проект от десятков багов. Рекомендую всем!",
+      "articleId": "2",
       "userId": "1"
+    },
+    {
+      "id": "5",
+      "text": "Декораторы — это мощно, но пока не везде стабильно работают.",
+      "articleId": "2",
+      "userId": "2"
+    },
+    {
+      "id": "6",
+      "text": "Мы перешли на strict mode в TypeScript и сначала было больно, но потом стало намного лучше.",
+      "articleId": "2",
+      "userId": "1"
+    },
+    {
+      "id": "7",
+      "text": "Generics — самая сложная тема в TS. Можете написать отдельную статью?",
+      "articleId": "2",
+      "userId": "2"
+    },
+    {
+      "id": "8",
+      "text": "Server Components — это будущее React. Бандл стал меньше на 40%!",
+      "articleId": "3",
+      "userId": "1"
+    },
+    {
+      "id": "9",
+      "text": "Не понимаю хайп вокруг RSC. Для SPA они бесполезны.",
+      "articleId": "3",
+      "userId": "2"
+    },
+    {
+      "id": "10",
+      "text": "Next.js App Router поначалу казался сложным, но после недели уже не могу без него.",
+      "articleId": "3",
+      "userId": "1"
+    },
+    {
+      "id": "11",
+      "text": "А как быть с SEO в SPA без серверных компонентов?",
+      "articleId": "3",
+      "userId": "2"
+    },
+    {
+      "id": "12",
+      "text": "Серверные компоненты отлично подходят для блогов и лендингов, но для дашбордов я бы не стал.",
+      "articleId": "3",
+      "userId": "1"
+    },
+    {
+      "id": "13",
+      "text": "Node.js + Express — это мой go-to стек для любого проекта.",
+      "articleId": "4",
+      "userId": "1"
+    },
+    {
+      "id": "14",
+      "text": "tRPC — это магия. Типобезопасность между клиентом и сервером без кодогенерации!",
+      "articleId": "4",
+      "userId": "2"
+    },
+    {
+      "id": "15",
+      "text": "Попробовал Bun — скорость впечатляет, но пакеты иногда ломаются.",
+      "articleId": "4",
+      "userId": "1"
+    },
+    {
+      "id": "16",
+      "text": "NestJS слишком тяжёлый для маленьких проектов. Fastify — идеальный баланс.",
+      "articleId": "4",
+      "userId": "2"
+    },
+    {
+      "id": "17",
+      "text": "Styled-components был хорош, пока не столкнулись с проблемами производительности.",
+      "articleId": "5",
+      "userId": "1"
+    },
+    {
+      "id": "18",
+      "text": "Tailwind изменил мою жизнь. Верстаю в 3 раза быстрее!",
+      "articleId": "5",
+      "userId": "2"
+    },
+    {
+      "id": "19",
+      "text": "CSS Modules + SCSS — простой и рабочий вариант для любого проекта.",
+      "articleId": "5",
+      "userId": "1"
+    },
+    {
+      "id": "20",
+      "text": "vanilla-extract — отличный выбор, если хотите типизацию стилей.",
+      "articleId": "5",
+      "userId": "2"
+    },
+    {
+      "id": "21",
+      "text": "Tailwind на больших проектах превращается в кашу из классов. Не для всех.",
+      "articleId": "5",
+      "userId": "1"
+    },
+    {
+      "id": "22",
+      "text": "Vitest заменил нам Jest полностью. Тесты теперь летают!",
+      "articleId": "6",
+      "userId": "1"
+    },
+    {
+      "id": "23",
+      "text": "Playwright vs Cypress — кто-нибудь делал детальное сравнение?",
+      "articleId": "6",
+      "userId": "2"
+    },
+    {
+      "id": "24",
+      "text": "Testing Library научил меня тестировать компоненты правильно — как пользователь, а не как разработчик.",
+      "articleId": "6",
+      "userId": "1"
+    },
+    {
+      "id": "25",
+      "text": "Тесты — это хорошо, но покрытие 100% — это утопия и пустая трата времени.",
+      "articleId": "6",
+      "userId": "2"
+    },
+    {
+      "id": "26",
+      "text": "Мы пишем только e2e-тесты для критических путей. Юниты — для утилит.",
+      "articleId": "6",
+      "userId": "1"
+    },
+    {
+      "id": "27",
+      "text": "FSD — лучшая архитектура для React-проектов. Структура наконец-то стала понятной.",
+      "articleId": "7",
+      "userId": "1"
+    },
+    {
+      "id": "28",
+      "text": "Микрофронтенды — это сложно и дорого. Не стоит, если команда меньше 50 человек.",
+      "articleId": "7",
+      "userId": "2"
+    },
+    {
+      "id": "29",
+      "text": "FSD на маленьком проекте — это оверхед. Для pet-проекта достаточно папки components/.",
+      "articleId": "7",
+      "userId": "1"
+    },
+    {
+      "id": "30",
+      "text": "Module Federation — единственная причина, по которой мы ещё на Webpack.",
+      "articleId": "7",
+      "userId": "2"
+    },
+    {
+      "id": "31",
+      "text": "Главное правило архитектуры — зависимости идут в одну сторону. Всё остальное — детали.",
+      "articleId": "7",
+      "userId": "1"
+    },
+    {
+      "id": "32",
+      "text": "async/await сделал JavaScript по-настоящему удобным для серверного кода.",
+      "articleId": "8",
+      "userId": "2"
+    },
+    {
+      "id": "33",
+      "text": "Promise.allSettled — недооценённая функция. Спасает, когда часть запросов может упасть.",
+      "articleId": "8",
+      "userId": "1"
+    },
+    {
+      "id": "34",
+      "text": "Паттерн safeAsync — гениально! Сразу утащил в свой проект.",
+      "articleId": "8",
+      "userId": "2"
+    },
+    {
+      "id": "35",
+      "text": "Забыл await перед промисом и потратил 2 часа на отладку. Лучше используйте ESLint-правило no-floating-promises.",
+      "articleId": "8",
+      "userId": "1"
+    },
+    {
+      "id": "36",
+      "text": "Перешли на Vite — dev-сервер стартует за 300мс вместо 40 секунд на Webpack.",
+      "articleId": "9",
+      "userId": "1"
+    },
+    {
+      "id": "37",
+      "text": "Turbopack пока сырой. Vite проверен временем и сообществом.",
+      "articleId": "9",
+      "userId": "2"
+    },
+    {
+      "id": "38",
+      "text": "Webpack 5 всё ещё мощнее по возможностям кастомизации. Не спешите переходить.",
+      "articleId": "9",
+      "userId": "1"
+    },
+    {
+      "id": "39",
+      "text": "Zustand — это то, чем Redux должен был быть с самого начала. Просто и без магии.",
+      "articleId": "10",
+      "userId": "2"
+    },
+    {
+      "id": "40",
+      "text": "RTK Query заменил нам и axios, и react-query. Всё в одном месте.",
+      "articleId": "10",
+      "userId": "1"
+    },
+    {
+      "id": "41",
+      "text": "Jotai отлично подходит для форм с зависимыми полями. Атомарный подход решает.",
+      "articleId": "10",
+      "userId": "2"
+    },
+    {
+      "id": "42",
+      "text": "Не нужен стейт-менеджер для серверных данных — используйте TanStack Query.",
+      "articleId": "10",
+      "userId": "1"
+    },
+    {
+      "id": "43",
+      "text": "Redux DevTools — главная причина, по которой мы остаёмся на Redux. Time-travel debugging бесценен.",
+      "articleId": "10",
+      "userId": "2"
     }
   ],
   "users": [
@@ -116,14 +773,26 @@
       "role": "USER"
     }
   ],
-  "profile": {
-    "first": "Alex",
-    "lastname": "FrontBack",
-    "age": 234,
-    "currency": "USD",
-    "country": "Kazakhstan",
-    "city": "Astana",
-    "username": "admin",
-    "avatar": "https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg"
-  }
+  "profile": [
+    {
+      "first": "Alex",
+      "lastname": "FrontBack",
+      "age": 23,
+      "currency": "USD",
+      "country": "Kazakhstan",
+      "city": "Astana",
+      "username": "admin",
+      "avatar": "https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg"
+    },
+    {
+      "first": "Anton",
+      "lastname": "Rumin",
+      "age": 34,
+      "currency": "USD",
+      "country": "Kazakhstan",
+      "city": "Astana",
+      "username": "anton",
+      "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
+    }
+  ]
 }

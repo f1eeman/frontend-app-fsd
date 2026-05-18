@@ -1,5 +1,6 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router'
 import { ProfilePageHeader } from '../header/ProfilePageHeader'
 import { useAppDispatch, useAppSelector } from '@/app/store'
 import { ProfileCard } from '@/entities/profile'
@@ -14,6 +15,7 @@ import {
   ValidateProfileError,
 } from '@/features/editableProfileCard'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { useInitialEffect } from '@/shared/lib/hooks/useInitEffect'
 import { TextTheme } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
 import type { Country } from '@/entities/country'
@@ -32,6 +34,7 @@ const ProfilePage = ({ className = '' }: ProfilePageProps) => {
   const error = useAppSelector(selectProfileError)
   const readonly = useAppSelector(selectProfileReadonly)
   const validateErrors = useAppSelector(selectProfileValidateErrors)
+  const { id } = useParams<{ id: string }>()
 
   const validateErrorTranslates = {
     [ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка при сохранении'),
@@ -98,14 +101,13 @@ const ProfilePage = ({ className = '' }: ProfilePageProps) => {
     [dispatch],
   )
 
-  useEffect(() => {
-    if (__PROJECT__ === 'sb') return
-
-    const result = dispatch(fetchProfileData())
+  useInitialEffect(() => {
+    if (!id) return
+    const result = dispatch(fetchProfileData(id))
     return () => {
       result.abort()
     }
-  }, [dispatch])
+  })
 
   return (
     <div className={classNames('', {}, [className])}>

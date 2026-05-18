@@ -28,7 +28,10 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
   const commentsIsLoading = useSelector(selectIsLoading)
 
   useInitialEffect(() => {
-    dispatch(fetchCommentsByArticleId(id))
+    const res = dispatch(fetchCommentsByArticleId(id))
+    return () => {
+      res.abort()
+    }
   })
 
   if (!id) {

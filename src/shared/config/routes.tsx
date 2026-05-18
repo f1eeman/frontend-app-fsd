@@ -24,7 +24,7 @@ export const routesPaths: Record<AppRoutes, Record<'id' | 'path', string>> = {
     id: 'about-page',
   },
   [AppRoutes.PROFILE]: {
-    path: '/profile',
+    path: '/profile/',
     id: 'profile-page',
   },
   [AppRoutes.ARTICLES]: {

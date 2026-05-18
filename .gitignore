@@ -15,7 +15,7 @@ dist
 dist-ssr
 *.local
 .claude
-docs/superpowers/
+/docs/superpowers/
 
 # Editor directories and files
 .vscode/*

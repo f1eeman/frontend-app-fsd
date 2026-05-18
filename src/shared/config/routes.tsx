@@ -65,7 +65,7 @@ export const routesConfig: AppRouteObject[] = [
       {
         authOnly: true,
         element: <ProfilePageAsync />,
-        path: routesPaths.profile.path,
+        path: `${routesPaths.profile.path}:id`,
         id: routesPaths.profile.id,
       },
       {

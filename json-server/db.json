@@ -757,6 +757,12 @@
       "text": "Redux DevTools — главная причина, по которой мы остаёмся на Redux. Time-travel debugging бесценен.",
       "articleId": "10",
       "userId": "2"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "Супер статья!",
+      "id": "91ruhcU"
     }
   ],
   "users": [
@@ -775,6 +781,7 @@
   ],
   "profile": [
     {
+      "id": "1",
       "first": "Alex",
       "lastname": "FrontBack",
       "age": 23,
@@ -785,6 +792,7 @@
       "avatar": "https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg"
     },
     {
+      "id": "2",
       "first": "Anton",
       "lastname": "Rumin",
       "age": 34,

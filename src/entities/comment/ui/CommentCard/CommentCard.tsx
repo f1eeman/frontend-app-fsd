@@ -32,7 +32,7 @@ export const CommentCard = memo((props: CommentCardProps) => {
   return (
     <div className={classNames(cls.CommentCard, {}, [className])}>
       <AppLink
-        to={`${routesPaths.profile}${comment.user.id}`}
+        to={`${routesPaths.profile.path}${comment.user.id}`}
         className={cls.header}
       >
         {comment.user.avatar ? (

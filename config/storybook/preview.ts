@@ -17,6 +17,7 @@ const preview: Preview = {
         items: [
           { value: Theme.LIGHT, title: 'Light' },
           { value: Theme.DARK, title: 'Dark' },
+          { value: Theme.ORANGE, title: 'Orange' },
         ],
         dynamicTitle: true,
       },

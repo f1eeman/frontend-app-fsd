@@ -19,3 +19,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Normal: Story = {}
+
+export const WithText: Story = {
+  decorators: [
+    StoreDecorator({
+      addCommentForm: { text: 'Уже введённый комментарий' },
+    }),
+  ],
+}

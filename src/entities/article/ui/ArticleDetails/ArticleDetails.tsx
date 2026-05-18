@@ -19,8 +19,8 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { Avatar } from '@/shared/ui/avatar/Avatar'
 import { Icon } from '@/shared/ui/icon/Icon'
 import { Skeleton } from '@/shared/ui/skeleton/Skeleton'
-import { TextAlign, TextSize } from '@/shared/ui/text/consts'
-import { Text } from '@/shared/ui/text/Text'
+import { TextAlign, TextSize } from '@/shared/ui/text2/consts'
+import { Text2 } from '@/shared/ui/text2/Text2'
 import type { ArticleBlock } from '../../model/types/article'
 
 interface ArticleDetailsProps {
@@ -92,7 +92,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     )
   } else if (error) {
     content = (
-      <Text
+      <Text2
         align={TextAlign.CENTER}
         title={t('Произошла ошибка при загрузке статьи.')}
       />
@@ -103,7 +103,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         <div className={cls.avatarWrapper}>
           <Avatar size={200} src={article?.img} className={cls.avatar} />
         </div>
-        <Text
+        <Text2
           className={cls.title}
           title={article?.title}
           text={article?.subtitle}
@@ -111,11 +111,11 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         />
         <div className={cls.articleInfo}>
           <Icon className={cls.icon} Svg={EyeIcon} />
-          <Text text={String(article?.views)} />
+          <Text2 text={String(article?.views)} />
         </div>
         <div className={cls.articleInfo}>
           <Icon className={cls.icon} Svg={CalendarIcon} />
-          <Text text={article?.createdAt} />
+          <Text2 text={article?.createdAt} />
         </div>
         {article?.blocks.map(renderBlock)}
       </>

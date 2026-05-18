@@ -1,9 +1,9 @@
 import { TextTheme } from './consts'
-import { Text } from '@/shared/ui/text/Text'
+import { Text2 as Text } from './Text2'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
-  title: 'shared/Text',
+  title: 'shared/Text2',
   component: Text,
 } satisfies Meta<typeof Text>
 

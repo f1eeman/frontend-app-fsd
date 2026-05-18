@@ -5,8 +5,8 @@ import { CurrencySelect } from '@/entities/currency'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Avatar, SpinnerLoader } from '@/shared/ui'
 import { Input } from '@/shared/ui/input/Input'
-import { TextAlign, TextTheme } from '@/shared/ui/text/consts'
-import { Text } from '@/shared/ui/text/Text'
+import { TextAlign, TextTheme } from '@/shared/ui/text2/consts'
+import { Text2 } from '@/shared/ui/text2/Text2'
 import type { FC } from 'react'
 import type { Profile } from '../../../../features/editableProfileCard/model/types/profile'
 import type { Country } from '@/entities/country'
@@ -63,7 +63,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
   if (error) {
     return (
       <div className={classNames(cls.ProfileCard, {}, [className, cls.error])}>
-        <Text
+        <Text2
           theme={TextTheme.ERROR}
           title={t('Произошла ошибка при загрузке профиля')}
           text={t('Попробуйте обновить страницу')}

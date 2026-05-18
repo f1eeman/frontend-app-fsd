@@ -15,8 +15,8 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button } from '@/shared/ui/button/Button'
 import { Input } from '@/shared/ui/input/Input'
 import { SpinnerLoader } from '@/shared/ui/loaders/Spinner/SpinnerLoader'
-import { TextTheme } from '@/shared/ui/text/consts'
-import { Text } from '@/shared/ui/text/Text'
+import { TextTheme } from '@/shared/ui/text2/consts'
+import { Text2 } from '@/shared/ui/text2/Text2'
 
 export interface LoginFormProps {
   className?: string
@@ -56,8 +56,8 @@ const LoginForm = memo<LoginFormProps>((props) => {
 
   return (
     <div className={classNames(cls.LoginForm, {}, [className])}>
-      <Text title={t('Форма авторизации')} />
-      {error && <Text text={t(error)} theme={TextTheme.ERROR} />}
+      <Text2 title={t('Форма авторизации')} />
+      {error && <Text2 text={t(error)} theme={TextTheme.ERROR} />}
       {isLoading && (
         <div className={cls.spinnerWrap}>
           <SpinnerLoader />

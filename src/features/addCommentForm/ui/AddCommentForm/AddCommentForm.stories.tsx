@@ -1,4 +1,5 @@
 import AddCommentForm from './AddCommentForm'
+import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
@@ -7,6 +8,11 @@ const meta = {
   args: {
     onSendComment: () => {},
   },
+  decorators: [
+    StoreDecorator({
+      addCommentForm: { text: '' },
+    }),
+  ],
 } satisfies Meta<typeof AddCommentForm>
 
 export default meta

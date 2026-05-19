@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
 import { ProfilePageHeader } from '../header/ProfilePageHeader'
@@ -15,7 +15,6 @@ import {
   ValidateProfileError,
 } from '@/features/editableProfileCard'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { useInitialEffect } from '@/shared/lib/hooks/useInitEffect'
 import { TextTheme } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
 import type { Country } from '@/entities/country'
@@ -101,13 +100,16 @@ const ProfilePage = ({ className = '' }: ProfilePageProps) => {
     [dispatch],
   )
 
-  useInitialEffect(() => {
+  useEffect(() => {
+    if (__PROJECT__ === 'sb') {
+      return
+    }
     if (!id) return
     const result = dispatch(fetchProfileData(id))
     return () => {
       result.abort()
     }
-  })
+  }, [])
 
   return (
     <div className={classNames('', {}, [className])}>

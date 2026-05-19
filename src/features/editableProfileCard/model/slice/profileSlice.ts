@@ -3,7 +3,11 @@ import { fetchProfileData } from '../services/fetchProfileData/fetchProfileData'
 import { updateProfileData } from '../services/updateProfileData/updateProfileData'
 import { rootReducer } from '@/app/store'
 import type { PayloadAction, WithSlice } from '@reduxjs/toolkit'
-import type { Profile, ProfileSchema } from '../types/profile'
+import type {
+  Profile,
+  ProfileSchema,
+  ValidateProfileError,
+} from '../types/profile'
 
 const initialState: ProfileSchema = {
   readonly: true,
@@ -13,6 +17,9 @@ const initialState: ProfileSchema = {
   form: null,
   validateErrors: [],
 }
+
+const EMPTY_FORM: Profile = {}
+const EMPTY_VALIDATE_ERRORS: ValidateProfileError[] = []
 
 export const profileSlice = createSlice({
   name: 'profile',
@@ -76,8 +83,9 @@ export const profileSlice = createSlice({
     selectIsLoading: (state) => state.isLoading,
     selectProfileData: (state) => state.data,
     selectProfileReadonly: (state) => state.readonly,
-    selectProfileForm: (state) => state.form ?? {},
-    selectProfileValidateErrors: (state) => state?.validateErrors ?? [],
+    selectProfileForm: (state) => state.form ?? EMPTY_FORM,
+    selectProfileValidateErrors: (state) =>
+      state?.validateErrors ?? EMPTY_VALIDATE_ERRORS,
   },
 })
 

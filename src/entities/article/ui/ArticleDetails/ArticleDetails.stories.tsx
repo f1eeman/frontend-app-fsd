@@ -1,5 +1,6 @@
 import { ArticleBlockType, ArticleType } from '../../model/types/article'
 import { ArticleDetails } from './ArticleDetails'
+import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import type { Article } from '../../model/types/article'
@@ -24,6 +25,11 @@ const article: Article = {
   views: 1022,
   createdAt: '26.02.2022',
   type: [ArticleType.IT],
+  user: {
+    id: '1',
+    username: 'John',
+    avatar: AvatarImg,
+  },
   blocks: [
     {
       id: '1',

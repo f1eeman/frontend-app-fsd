@@ -54,9 +54,10 @@ export const { reducer: articleDetailsCommentsReducer } =
 export const withArticleDetailsCommentsSlice =
   articleDetailsCommentsSlice.injectInto(rootReducer)
 
+const initialCommentsState = commentsAdapter.getInitialState()
+
 export const getArticleComments = commentsAdapter.getSelectors(
-  (state: RootState) =>
-    state.articleDetailsComments ?? commentsAdapter.getInitialState(),
+  (state: RootState) => state.articleDetailsComments ?? initialCommentsState,
 )
 
 export const { selectIsLoading, selectError } =

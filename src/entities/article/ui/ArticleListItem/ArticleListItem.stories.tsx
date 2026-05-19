@@ -4,6 +4,7 @@ import {
   ArticleView,
 } from '../../model/types/article'
 import { ArticleListItem } from './ArticleListItem'
+import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import type { Article } from '../../model/types/article'
 
@@ -20,14 +21,13 @@ const article: Article = {
   id: '1',
   title: 'Javascript news asfasjf asfjkask f',
   subtitle: 'Что нового в JS за 2022 год?',
-  img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
+  img: AvatarImg,
   views: 1022,
   createdAt: '26.02.2022',
   user: {
     id: '1',
     username: 'Ulbi tv',
-    avatar:
-      'https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg',
+    avatar: AvatarImg,
   },
   type: [ArticleType.IT, ArticleType.SCIENCE, ArticleType.ECONOMICS],
   blocks: [

@@ -172,7 +172,7 @@ export default [
     },
   },
   {
-    files: ['**/*.test.tsx'],
+    files: ['**/*.test.tsx', '**/*.stories.tsx'],
     rules: {
       'i18next/no-literal-string': 'off',
     },

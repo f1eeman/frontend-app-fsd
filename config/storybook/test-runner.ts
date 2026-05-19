@@ -2,6 +2,17 @@ import path from 'node:path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
 import type { TestRunnerConfig } from '@storybook/test-runner'
 
+const PLACEHOLDER_PNG = Buffer.from(
+  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Z6L66QAAAAASUVORK5CYII=',
+  'base64',
+)
+
+const isImageRequest = (url: string) =>
+  /\.(png|jpe?g|gif|webp|avif)(\?|$)/i.test(url)
+
+const isLocalUrl = (url: string) =>
+  /^https?:\/\/(localhost|127\.0\.0\.1)/i.test(url)
+
 const config: TestRunnerConfig = {
   setup() {
     expect.extend({ toMatchImageSnapshot })
@@ -9,6 +20,18 @@ const config: TestRunnerConfig = {
   async preVisit(page) {
     page.setDefaultTimeout(60000)
     page.setDefaultNavigationTimeout(60000)
+
+    await page.route('**/*', (route) => {
+      const url = route.request().url()
+      if (isImageRequest(url) && !isLocalUrl(url)) {
+        return route.fulfill({
+          status: 200,
+          contentType: 'image/png',
+          body: PLACEHOLDER_PNG,
+        })
+      }
+      return route.continue()
+    })
 
     await page.addStyleTag({
       content: `

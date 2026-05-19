@@ -4,6 +4,7 @@ import {
   ArticleBlockType,
   ArticleType,
 } from '@/entities/article/model/types/article'
+import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Decorator, Meta, StoryObj } from '@storybook/react-webpack5'
 import type { Article } from '@/entities/article'
@@ -26,6 +27,11 @@ const article: Article = {
   subtitle: 'Что нового в JS за 2022 год?',
   img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
   views: 1022,
+  user: {
+    id: '1',
+    username: 'John',
+    avatar: AvatarImg,
+  },
   createdAt: '26.02.2022',
   type: [ArticleType.IT],
   blocks: [
@@ -78,8 +84,8 @@ const RouteWithIdDecorator: Decorator = (Story) => (
 )
 
 export const Normal: Story = {
+  parameters: { router: 'none' },
   decorators: [
-    RouteWithIdDecorator,
     StoreDecorator({
       user: { authData: { id: '42', username: 'admin' }, _inited: true },
       articleDetails: { isLoading: false, data: article },
@@ -89,6 +95,7 @@ export const Normal: Story = {
         entities: { 1: comments[0], 2: comments[1] },
       },
     }),
+    RouteWithIdDecorator,
   ],
 }
 

@@ -1,0 +1,57 @@
+name: update screen-test snapshots
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Branch to regenerate snapshots on
+        required: true
+        default: main
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [24.11.0]
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Starting Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+
+      - name: Install modules
+        run: yarn install --frozen-lockfile
+
+      - name: Build Storybook
+        run: yarn build:sb
+
+      - name: Install Playwright browsers
+        run: yarn playwright install --with-deps chromium
+
+      - name: Regenerate snapshots
+        run: yarn test:ui:ok:ci
+
+      - name: Commit and push updated snapshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- screen-tests/snapshots; then
+            echo "No snapshot changes to commit"
+            exit 0
+          fi
+
+          git add screen-tests/snapshots
+          git commit -m "chore(snapshots): regenerate screen-test baselines on Linux"
+          git push origin HEAD:${{ inputs.branch }}

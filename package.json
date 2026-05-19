@@ -33,6 +33,7 @@
     "test:ui": "test-storybook --url http://127.0.0.1:9658 --config-dir config/storybook --testTimeout=60000",
     "test:ui:ci": "start-server-and-test 'yarn http-server sb-static --port 9658 -s' http://127.0.0.1:9658 'yarn test:ui'",
     "test:ui:ok": "test-storybook --url http://127.0.0.1:9658 --config-dir config/storybook --testTimeout=60000 --updateSnapshot",
+    "test:ui:ok:ci": "start-server-and-test 'yarn http-server sb-static --port 9658 -s' http://127.0.0.1:9658 'yarn test:ui:ok'",
     "test:ui:report:json": "node scripts/generate-visual-json-report.mjs",
     "test:ui:report:html": "reg-cli --from screen-tests/report.json --report screen-tests/report.html",
     "test:ui:report": "yarn test:ui:report:json && yarn test:ui:report:html"

@@ -57,6 +57,10 @@ const config: Config = {
   // Маппинг из регулярных выражений в имена модулей или массив имён модулей, чтобы подменять ресурсы одним модулем
   moduleNameMapper: {
     '\\.svg': path.resolve(__dirname, 'jest.EmptyComponent.tsx'),
+    '\\.(jpe?g|png|gif|webp|avif|ico)$': path.resolve(
+      __dirname,
+      'jest.fileMock.ts',
+    ),
     '\\.s?css$': 'identity-obj-proxy',
     '^@/(.*)$': '<rootDir>src/$1',
   },

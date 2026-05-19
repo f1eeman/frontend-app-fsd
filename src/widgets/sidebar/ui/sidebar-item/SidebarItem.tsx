@@ -5,10 +5,10 @@ import { useAppSelector } from '@/app/store'
 import { getUserAuthData } from '@/entities/user'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { AppLink, AppLinkTheme } from '@/shared/ui'
-import type { SidebarItemModel } from '../../model/items'
+import type { SidebarItemType } from '../../model/types/sidebar'
 
 interface SidebarItemProps {
-  item: SidebarItemModel
+  item: SidebarItemType
   collapsed: boolean
 }
 

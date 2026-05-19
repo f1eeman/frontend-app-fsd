@@ -1,5 +1,6 @@
 import { addCommentForArticle } from './addCommentForArticle'
 import { ArticleType } from '@/entities/article/model/types/article'
+import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { TestAsyncThunk } from '@/shared/lib/tests/async.thunk.tests'
 import type { Article } from '@/entities/article'
 import type { Comment } from '@/entities/comment'
@@ -13,6 +14,11 @@ const article: Article = {
   createdAt: '01.01.2026',
   type: [ArticleType.IT],
   blocks: [],
+  user: {
+    id: '1',
+    username: 'John',
+    avatar: AvatarImg,
+  },
 }
 
 const user = { id: '42', username: 'admin' }

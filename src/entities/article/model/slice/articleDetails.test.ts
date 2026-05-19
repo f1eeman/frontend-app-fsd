@@ -4,6 +4,7 @@ import {
   articleDetailsReducer,
   articleDetailsSlice,
 } from './articleDetailsSlice'
+import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import type { ArticleDetailsSchema } from '../types/articleDetailsSchema'
 
 const mockArticle: Article = {
@@ -15,6 +16,11 @@ const mockArticle: Article = {
   createdAt: '',
   type: [ArticleType.IT],
   blocks: [],
+  user: {
+    username: 'johndoe',
+    id: '1',
+    avatar: AvatarImg,
+  },
 }
 
 describe('articleDetails.test', () => {

@@ -1,7 +1,8 @@
 import { type FC, useCallback, useState } from 'react'
-import { sidebarItemList } from '../../model/items'
+import { getSidebarItems } from '../../model/selectors/getSidebarItems'
 import { SidebarItem } from '../sidebar-item/SidebarItem'
 import cls from './Sidebar.module.scss'
+import { useAppSelector } from '@/app/store'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button } from '@/shared/ui'
 import { LangSwitcher } from '@/widgets/langSwticher'
@@ -13,6 +14,7 @@ interface SidebarProps {
 
 export const Sidebar: FC = ({ className = '' }: SidebarProps) => {
   const [collapsed, setCollapsed] = useState(false)
+  const sidebarItemList = useAppSelector(getSidebarItems)
   const toggleCollapsed = useCallback(() => {
     setCollapsed((collapsed) => !collapsed)
   }, [])

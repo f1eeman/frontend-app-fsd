@@ -8,10 +8,11 @@ interface PageProps {
   className?: string
   children: ReactNode
   onScrollEnd?: () => void
+  isLoading?: boolean
 }
 
 export const Page = memo((props: PageProps) => {
-  const { className = '', children, onScrollEnd } = props
+  const { className = '', children, onScrollEnd, isLoading } = props
   const wrapperRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLDivElement>(null)
 
@@ -19,6 +20,7 @@ export const Page = memo((props: PageProps) => {
     triggerRef,
     wrapperRef,
     callback: onScrollEnd,
+    isLoading,
   })
 
   return (

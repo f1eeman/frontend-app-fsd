@@ -1,5 +1,6 @@
 import { memo, useEffect, useCallback } from 'react'
 import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList'
+import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage'
 import {
   getArticles,
   getArticlesPageError,
@@ -11,6 +12,7 @@ import cls from './ArticlesPage.module.scss'
 import { useAppDispatch, useAppSelector } from '@/app/store'
 import { ArticleViewSelector, ArticleList } from '@/entities/article'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { Page } from '@/shared/ui'
 import type { ArticleView } from '@/entities/article/model/types/article'
 
 interface ArticlesPageProps {
@@ -32,19 +34,27 @@ const ArticlesPage = (props: ArticlesPageProps) => {
     [dispatch],
   )
 
+  const onScrollEnd = useCallback(() => {
+    dispatch(fetchNextArticlesPage())
+  }, [dispatch])
+
   useEffect(() => {
     if (__PROJECT__ === 'sb') return
-    const resultArticles = dispatch(fetchArticlesList())
     dispatch(articlesPageActions.initState())
+    const resultArticles = dispatch(fetchArticlesList({ page: 1 }))
     return () => {
       resultArticles.abort()
     }
   }, [])
+
   return (
-    <div className={classNames(cls.ArticlesPage, {}, [className])}>
+    <Page
+      onScrollEnd={onScrollEnd}
+      className={classNames(cls.ArticlesPage, {}, [className])}
+    >
       <ArticleViewSelector view={view} onViewClick={onChangeView} />
       <ArticleList isLoading={isLoading} view={view} articles={articles} />
-    </div>
+    </Page>
   )
 }
 

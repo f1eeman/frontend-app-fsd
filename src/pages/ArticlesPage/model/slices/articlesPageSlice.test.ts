@@ -76,7 +76,7 @@ describe('articlesPageSlice.test', () => {
       )
     })
 
-    test('initState reads view from localStorage', () => {
+    test('initState sets BIG view and limit=4 from localStorage', () => {
       localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, ArticleView.BIG)
       const state: Partial<ArticlesPageSchema> = { view: ArticleView.SMALL }
       const result = articlesPageReducer(
@@ -84,6 +84,18 @@ describe('articlesPageSlice.test', () => {
         articlesPageActions.initState(),
       )
       expect(result.view).toBe(ArticleView.BIG)
+      expect(result.limit).toBe(4)
+    })
+
+    test('initState sets SMALL view and limit=9 from localStorage', () => {
+      localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, ArticleView.SMALL)
+      const state: Partial<ArticlesPageSchema> = { view: ArticleView.BIG }
+      const result = articlesPageReducer(
+        state as ArticlesPageSchema,
+        articlesPageActions.initState(),
+      )
+      expect(result.view).toBe(ArticleView.SMALL)
+      expect(result.limit).toBe(9)
     })
   })
 
@@ -97,6 +109,8 @@ describe('articlesPageSlice.test', () => {
           ids: [],
           entities: {},
           view: ArticleView.SMALL,
+          page: 1,
+          hasMore: true,
         },
       }
       expect(mockSelectors.getArticlesPageIsLoading(state)).toBe(true)
@@ -109,6 +123,8 @@ describe('articlesPageSlice.test', () => {
           ids: [],
           entities: {},
           view: ArticleView.SMALL,
+          page: 1,
+          hasMore: true,
         },
       }
       expect(mockSelectors.getArticlesPageIsLoading(state)).toBe(false)
@@ -121,6 +137,8 @@ describe('articlesPageSlice.test', () => {
           ids: [],
           entities: {},
           view: ArticleView.SMALL,
+          page: 1,
+          hasMore: true,
         },
       }
       expect(mockSelectors.getArticlesPageError(state)).toBe('some error')
@@ -128,13 +146,27 @@ describe('articlesPageSlice.test', () => {
 
     test('getArticlesPageView returns view', () => {
       const state = {
-        articlesPage: { view: ArticleView.BIG, ids: [], entities: {} },
+        articlesPage: {
+          view: ArticleView.BIG,
+          ids: [],
+          entities: {},
+          page: 1,
+          hasMore: true,
+        },
       }
       expect(mockSelectors.getArticlesPageView(state)).toBe(ArticleView.BIG)
     })
 
     test('getArticlesPageView returns SMALL as default', () => {
-      const state = { articlesPage: { view: undefined, ids: [], entities: {} } }
+      const state = {
+        articlesPage: {
+          view: undefined as unknown as ArticleView,
+          ids: [],
+          entities: {},
+          page: 1,
+          hasMore: true,
+        },
+      }
       expect(mockSelectors.getArticlesPageView(state)).toBe(ArticleView.SMALL)
     })
   })

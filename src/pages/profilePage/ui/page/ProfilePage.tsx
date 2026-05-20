@@ -15,6 +15,7 @@ import {
   ValidateProfileError,
 } from '@/features/editableProfileCard'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { Page } from '@/shared/ui'
 import { TextTheme } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
 import type { Country } from '@/entities/country'
@@ -112,7 +113,7 @@ const ProfilePage = ({ className = '' }: ProfilePageProps) => {
   }, [])
 
   return (
-    <div className={classNames('', {}, [className])}>
+    <Page className={classNames('', {}, [className])}>
       <ProfilePageHeader />
       {validateErrors.length > 0 &&
         validateErrors.map((err) => (
@@ -136,7 +137,7 @@ const ProfilePage = ({ className = '' }: ProfilePageProps) => {
         onChangeCurrency={onChangeCurrency}
         onChangeCountry={onChangeCountry}
       />
-    </div>
+    </Page>
   )
 }
 

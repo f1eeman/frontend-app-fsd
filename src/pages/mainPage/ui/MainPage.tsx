@@ -7,7 +7,7 @@ import { Sidebar } from '@/widgets/sidebar'
 const MainPage = () => {
   const location = useLocation()
   return (
-    <div>
+    <div className='app-layout'>
       <Navbar />
       <div className='content-page'>
         <Sidebar />

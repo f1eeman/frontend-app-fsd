@@ -34,7 +34,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
     [dispatch],
   )
 
-  const onScrollEnd = useCallback(() => {
+  const onLoadNextPart = useCallback(() => {
     dispatch(fetchNextArticlesPage())
   }, [dispatch])
 
@@ -49,7 +49,8 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 
   return (
     <Page
-      onScrollEnd={onScrollEnd}
+      onScrollEnd={onLoadNextPart}
+      isLoading={isLoading}
       className={classNames(cls.ArticlesPage, {}, [className])}
     >
       <ArticleViewSelector view={view} onViewClick={onChangeView} />

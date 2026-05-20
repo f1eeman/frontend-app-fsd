@@ -79,7 +79,8 @@
             "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
           ]
         }
-      ]
+      ],
+      "userId": "1"
     },
     {
       "id": "2",
@@ -129,7 +130,8 @@
             "Generics позволяют создавать универсальные компоненты, которые сохраняют информацию о типах данных, с которыми работают. Это особенно полезно для таблиц, списков и форм."
           ]
         }
-      ]
+      ],
+      "userId": "2"
     },
     {
       "id": "3",
@@ -180,7 +182,8 @@
             "Для сложных интерактивных интерфейсов (редакторы, дашборды с drag-and-drop) клиентские компоненты по-прежнему предпочтительнее. RSC — это инструмент, а не серебряная пуля."
           ]
         }
-      ]
+      ],
+      "userId": "1"
     },
     {
       "id": "4",
@@ -230,7 +233,8 @@
             "Deno 2.0 наконец добился совместимости с npm-пакетами, что устранило главный барьер для миграции. Встроенная безопасность и поддержка TypeScript из коробки — сильные стороны Deno."
           ]
         }
-      ]
+      ],
+      "userId": "2"
     },
     {
       "id": "5",
@@ -275,7 +279,8 @@
             "В сочетании с SCSS и PostCSS, CSS Modules дают полный контроль над стилями при минимальном оверхеде. Это проверенный подход, который работает с любым фреймворком."
           ]
         }
-      ]
+      ],
+      "userId": "1"
     },
     {
       "id": "6",
@@ -324,7 +329,8 @@
           "type": "CODE",
           "code": "// E2E-тест с Playwright\nimport { test, expect } from '@playwright/test';\n\ntest('user can create article', async ({ page }) => {\n  await page.goto('/login');\n  await page.getByLabel('Email').fill('admin@test.com');\n  await page.getByLabel('Password').fill('admin123');\n  await page.getByRole('button', { name: 'Войти' }).click();\n\n  await page.goto('/articles/new');\n  await page.getByLabel('Заголовок').fill('Новая статья');\n  await page.getByRole('button', { name: 'Опубликовать' }).click();\n\n  await expect(page.getByText('Статья опубликована')).toBeVisible();\n});"
         }
-      ]
+      ],
+      "userId": "2"
     },
     {
       "id": "7",
@@ -369,7 +375,8 @@
             "Module Federation в Webpack 5 и его аналоги в Vite сделали микрофронтенды практичными. Но сложность инфраструктуры и оверхед по размеру оправданы только для очень больших организаций."
           ]
         }
-      ]
+      ],
+      "userId": "1"
     },
     {
       "id": "8",
@@ -408,7 +415,8 @@
           "type": "CODE",
           "code": "// Паттерн обработки ошибок без try/catch\nasync function safeAsync<T>(promise: Promise<T>): Promise<[T, null] | [null, Error]> {\n  try {\n    const result = await promise;\n    return [result, null];\n  } catch (error) {\n    return [null, error as Error];\n  }\n}\n\nconst [data, error] = await safeAsync(fetchUser(id));\nif (error) {\n  console.error('Failed to fetch user:', error.message);\n}"
         }
-      ]
+      ],
+      "userId": "2"
     },
     {
       "id": "9",
@@ -452,7 +460,8 @@
             "Легаси-проекты с кастомными лоадерами и сложными пайплайнами проще оставить на Webpack, чем переписывать всю конфигурацию. Миграция оправдана, только если скорость сборки — реальный bottleneck."
           ]
         }
-      ]
+      ],
+      "userId": "1"
     },
     {
       "id": "10",
@@ -496,7 +505,3068 @@
             "Для серверного состояния (данные с API) стоит рассмотреть TanStack Query (react-query). Он не заменяет стейт-менеджер, а дополняет его, беря на себя кэширование, ревалидацию и пагинацию."
           ]
         }
-      ]
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "11",
+      "title": "React 19: новые возможности",
+      "subtitle": "Что изменилось в React 19?",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 300,
+      "createdAt": "01.01.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "React 19: новые возможности",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "12",
+      "title": "Node.js и производительность",
+      "subtitle": "Оптимизация серверного кода",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 437,
+      "createdAt": "02.02.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Node.js и производительность",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "13",
+      "title": "CSS Grid vs Flexbox",
+      "subtitle": "Когда использовать что?",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 574,
+      "createdAt": "03.03.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "CSS Grid vs Flexbox",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "14",
+      "title": "REST vs GraphQL",
+      "subtitle": "Выбираем API архитектуру",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 711,
+      "createdAt": "04.04.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "REST vs GraphQL",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "15",
+      "title": "Docker для фронтендеров",
+      "subtitle": "Контейнеры в веб-разработке",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 848,
+      "createdAt": "05.05.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Docker для фронтендеров",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "16",
+      "title": "Git flow в команде",
+      "subtitle": "Стратегии ветвления",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 985,
+      "createdAt": "06.06.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Git flow в команде",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "17",
+      "title": "Webpack vs Vite",
+      "subtitle": "Инструменты сборки в 2026",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 1122,
+      "createdAt": "07.07.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Webpack vs Vite",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "18",
+      "title": "Тестирование React компонентов",
+      "subtitle": "Jest и Testing Library",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 1259,
+      "createdAt": "08.08.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Тестирование React компонентов",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "19",
+      "title": "Redux Toolkit в 2026",
+      "subtitle": "Современный state management",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 1396,
+      "createdAt": "09.09.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Redux Toolkit в 2026",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "20",
+      "title": "Next.js SSR vs SSG",
+      "subtitle": "Рендеринг на сервере",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 1533,
+      "createdAt": "10.10.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Next.js SSR vs SSG",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "21",
+      "title": "PostgreSQL vs MongoDB",
+      "subtitle": "Реляционные и документные БД",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 1670,
+      "createdAt": "11.11.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "PostgreSQL vs MongoDB",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "22",
+      "title": "Архитектура микросервисов",
+      "subtitle": "Плюсы и минусы подхода",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 1807,
+      "createdAt": "12.12.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Архитектура микросервисов",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "23",
+      "title": "WebSockets и реальное время",
+      "subtitle": "Чаты и уведомления",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 1944,
+      "createdAt": "13.01.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "WebSockets и реальное время",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "24",
+      "title": "PWA: прогрессивные приложения",
+      "subtitle": "Офлайн-режим в браузере",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 2081,
+      "createdAt": "14.02.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "PWA: прогрессивные приложения",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "25",
+      "title": "Безопасность в веб",
+      "subtitle": "XSS, CSRF и защита от них",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 2218,
+      "createdAt": "15.03.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Безопасность в веб",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "26",
+      "title": "Алгоритмы и структуры данных",
+      "subtitle": "Подготовка к собеседованию",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 2355,
+      "createdAt": "16.04.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Алгоритмы и структуры данных",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "27",
+      "title": "CI/CD с GitHub Actions",
+      "subtitle": "Автоматизация деплоя",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 2492,
+      "createdAt": "17.05.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "CI/CD с GitHub Actions",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "28",
+      "title": "Feature-Sliced Design",
+      "subtitle": "Архитектура фронтенд-проектов",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 2629,
+      "createdAt": "18.06.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Feature-Sliced Design",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "29",
+      "title": "Tanstack Query",
+      "subtitle": "Работа с серверным состоянием",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 2766,
+      "createdAt": "19.07.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Tanstack Query",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "30",
+      "title": "Zustand vs Redux",
+      "subtitle": "Лёгкий стейт-менеджмент",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 2903,
+      "createdAt": "20.08.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Zustand vs Redux",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "31",
+      "title": "Web Performance",
+      "subtitle": "Core Web Vitals и оптимизация",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 3040,
+      "createdAt": "21.09.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Web Performance",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "32",
+      "title": "TypeScript Generics",
+      "subtitle": "Продвинутая типизация",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 3177,
+      "createdAt": "22.10.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "TypeScript Generics",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "33",
+      "title": "Монорепозитории с Nx",
+      "subtitle": "Организация крупных проектов",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 3314,
+      "createdAt": "23.11.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Монорепозитории с Nx",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "34",
+      "title": "Storybook 8",
+      "subtitle": "Разработка компонентов изолированно",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 3451,
+      "createdAt": "24.12.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Storybook 8",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "35",
+      "title": "ESLint и Prettier",
+      "subtitle": "Линтинг и форматирование",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 3588,
+      "createdAt": "25.01.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "ESLint и Prettier",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "36",
+      "title": "Tailwind CSS",
+      "subtitle": "Утилитарный подход к стилям",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 3725,
+      "createdAt": "26.02.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Tailwind CSS",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "37",
+      "title": "Accessibility в React",
+      "subtitle": "ARIA и семантика",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 3862,
+      "createdAt": "27.03.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Accessibility в React",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "38",
+      "title": "Интернационализация i18n",
+      "subtitle": "React-i18next на практике",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 3999,
+      "createdAt": "28.04.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Интернационализация i18n",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "39",
+      "title": "Lazy loading в React",
+      "subtitle": "Code splitting и React.lazy",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 4136,
+      "createdAt": "01.05.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Lazy loading в React",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "40",
+      "title": "Анимации с Framer Motion",
+      "subtitle": "Плавные переходы в React",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 4273,
+      "createdAt": "02.06.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Анимации с Framer Motion",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "41",
+      "title": "WebAssembly основы",
+      "subtitle": "Высокопроизводительный код в браузере",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 4410,
+      "createdAt": "03.07.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "WebAssembly основы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "42",
+      "title": "GraphQL и Apollo Client",
+      "subtitle": "Декларативные запросы данных",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 4547,
+      "createdAt": "04.08.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "GraphQL и Apollo Client",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "43",
+      "title": "Паттерны проектирования в JS",
+      "subtitle": "Singleton, Observer, Factory",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 4684,
+      "createdAt": "05.09.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Паттерны проектирования в JS",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "44",
+      "title": "Functional Programming в JS",
+      "subtitle": "Чистые функции и иммутабельность",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 4821,
+      "createdAt": "06.10.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Functional Programming в JS",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "45",
+      "title": "Event Loop и асинхронность",
+      "subtitle": "Как работает JS под капотом",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 4958,
+      "createdAt": "07.11.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Event Loop и асинхронность",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "46",
+      "title": "Kubernetes для разработчиков",
+      "subtitle": "Оркестрация контейнеров",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 5095,
+      "createdAt": "08.12.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Kubernetes для разработчиков",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "47",
+      "title": "Serverless архитектура",
+      "subtitle": "AWS Lambda и облачные функции",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 232,
+      "createdAt": "09.01.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Serverless архитектура",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "48",
+      "title": "Machine Learning в браузере",
+      "subtitle": "TensorFlow.js на практике",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 369,
+      "createdAt": "10.02.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Machine Learning в браузере",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "49",
+      "title": "Web Components",
+      "subtitle": "Нативные компоненты без фреймворков",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 506,
+      "createdAt": "11.03.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Web Components",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "50",
+      "title": "HTTP/3 и QUIC",
+      "subtitle": "Новый протокол передачи данных",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 643,
+      "createdAt": "12.04.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "HTTP/3 и QUIC",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "51",
+      "title": "Мониторинг фронтенда",
+      "subtitle": "Sentry и обработка ошибок",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 780,
+      "createdAt": "13.05.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Мониторинг фронтенда",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "52",
+      "title": "Оптимизация изображений",
+      "subtitle": "WebP, AVIF и lazy loading",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 917,
+      "createdAt": "14.06.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Оптимизация изображений",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "53",
+      "title": "Design Tokens",
+      "subtitle": "Система дизайна на практике",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 1054,
+      "createdAt": "15.07.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Design Tokens",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "54",
+      "title": "Микрофронтенды",
+      "subtitle": "Module Federation в Webpack",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 1191,
+      "createdAt": "16.08.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Микрофронтенды",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "55",
+      "title": "SOLID принципы",
+      "subtitle": "Чистый код на TypeScript",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 1328,
+      "createdAt": "17.09.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "SOLID принципы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "56",
+      "title": "Функциональные компоненты",
+      "subtitle": "Хуки и их правила",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 1465,
+      "createdAt": "18.10.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Функциональные компоненты",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "57",
+      "title": "Работа с формами",
+      "subtitle": "React Hook Form и Zod",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 1602,
+      "createdAt": "19.11.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Работа с формами",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "58",
+      "title": "Drag and Drop API",
+      "subtitle": "Перетаскивание без библиотек",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 1739,
+      "createdAt": "20.12.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Drag and Drop API",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "59",
+      "title": "IndexedDB и офлайн-хранилище",
+      "subtitle": "Данные в браузере",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 1876,
+      "createdAt": "21.01.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "IndexedDB и офлайн-хранилище",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "60",
+      "title": "Service Workers",
+      "subtitle": "Фоновая синхронизация и кэш",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 2013,
+      "createdAt": "22.02.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Service Workers",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "61",
+      "title": "Canvas API",
+      "subtitle": "Рисование в браузере",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 2150,
+      "createdAt": "23.03.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Canvas API",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "62",
+      "title": "WebRTC основы",
+      "subtitle": "Видеозвонки в браузере",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 2287,
+      "createdAt": "24.04.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "WebRTC основы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "63",
+      "title": "Регулярные выражения",
+      "subtitle": "RegExp на практике",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 2424,
+      "createdAt": "25.05.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Регулярные выражения",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "64",
+      "title": "Работа с датами",
+      "subtitle": "date-fns vs Day.js",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 2561,
+      "createdAt": "26.06.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Работа с датами",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "65",
+      "title": "Виртуализация списков",
+      "subtitle": "react-window и react-virtual",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 2698,
+      "createdAt": "27.07.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Виртуализация списков",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "66",
+      "title": "Suspense и Concurrent",
+      "subtitle": "React 18+ возможности",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 2835,
+      "createdAt": "28.08.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Suspense и Concurrent",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "67",
+      "title": "Error Boundaries",
+      "subtitle": "Обработка ошибок в React",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 2972,
+      "createdAt": "01.09.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Error Boundaries",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "68",
+      "title": "Custom Hooks",
+      "subtitle": "Переиспользование логики",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 3109,
+      "createdAt": "02.10.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Custom Hooks",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "69",
+      "title": "Context API",
+      "subtitle": "Глобальный стейт без Redux",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 3246,
+      "createdAt": "03.11.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Context API",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "70",
+      "title": "Порталы в React",
+      "subtitle": "ReactDOM.createPortal",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 3383,
+      "createdAt": "04.12.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Порталы в React",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "71",
+      "title": "Мемоизация",
+      "subtitle": "useMemo и useCallback",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 3520,
+      "createdAt": "05.01.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Мемоизация",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "72",
+      "title": "Refs в React",
+      "subtitle": "useRef и forwardRef",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 3657,
+      "createdAt": "06.02.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Refs в React",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "73",
+      "title": "TypeScript утилитарные типы",
+      "subtitle": "Partial, Pick, Omit и другие",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 3794,
+      "createdAt": "07.03.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "TypeScript утилитарные типы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "74",
+      "title": "Паттерн Container/Presenter",
+      "subtitle": "Разделение логики и UI",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 3931,
+      "createdAt": "08.04.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Паттерн Container/Presenter",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "75",
+      "title": "Атомарный дизайн",
+      "subtitle": "Atoms, Molecules, Organisms",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 4068,
+      "createdAt": "09.05.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Атомарный дизайн",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "76",
+      "title": "Прогрессивное улучшение",
+      "subtitle": "Доступность и надёжность",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 4205,
+      "createdAt": "10.06.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Прогрессивное улучшение",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "77",
+      "title": "SEO для SPA",
+      "subtitle": "Мета-теги и SSR",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 4342,
+      "createdAt": "11.07.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "SEO для SPA",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "78",
+      "title": "Работа с API",
+      "subtitle": "fetch, axios и обработка ошибок",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 4479,
+      "createdAt": "12.08.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Работа с API",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "79",
+      "title": "Управление зависимостями",
+      "subtitle": "npm, yarn, pnpm",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 4616,
+      "createdAt": "13.09.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Управление зависимостями",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "80",
+      "title": "Семантическое версионирование",
+      "subtitle": "SemVer на практике",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 4753,
+      "createdAt": "14.10.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Семантическое версионирование",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "81",
+      "title": "Open Source контрибьютинг",
+      "subtitle": "Первый PR в большой проект",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 4890,
+      "createdAt": "15.11.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Open Source контрибьютинг",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "82",
+      "title": "Code Review практики",
+      "subtitle": "Как давать и принимать обратную связь",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 5027,
+      "createdAt": "16.12.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Code Review практики",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "83",
+      "title": "Техдолг в проектах",
+      "subtitle": "Управление и планирование",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 164,
+      "createdAt": "17.01.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Техдолг в проектах",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "84",
+      "title": "Pair Programming",
+      "subtitle": "Совместная разработка",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 301,
+      "createdAt": "18.02.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Pair Programming",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "85",
+      "title": "DDD во фронтенде",
+      "subtitle": "Domain-Driven Design",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 438,
+      "createdAt": "19.03.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "DDD во фронтенде",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "86",
+      "title": "Event Sourcing",
+      "subtitle": "Паттерн для сложных систем",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 575,
+      "createdAt": "20.04.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Event Sourcing",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "87",
+      "title": "CQRS паттерн",
+      "subtitle": "Разделение чтения и записи",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 712,
+      "createdAt": "21.05.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "CQRS паттерн",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "88",
+      "title": "Функциональное программирование",
+      "subtitle": "Монады и функторы в JS",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 849,
+      "createdAt": "22.06.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Функциональное программирование",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "89",
+      "title": "Работа с WebSocket",
+      "subtitle": "Socket.io и нативный API",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 986,
+      "createdAt": "23.07.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Работа с WebSocket",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "90",
+      "title": "Очереди задач",
+      "subtitle": "Bull и Redis в Node.js",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 1123,
+      "createdAt": "24.08.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Очереди задач",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "91",
+      "title": "Авторизация JWT",
+      "subtitle": "Access и Refresh токены",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 1260,
+      "createdAt": "25.09.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Авторизация JWT",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "92",
+      "title": "OAuth 2.0",
+      "subtitle": "Авторизация через провайдеров",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 1397,
+      "createdAt": "26.10.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "OAuth 2.0",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "93",
+      "title": "REST API Design",
+      "subtitle": "Принципы проектирования API",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 1534,
+      "createdAt": "27.11.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "REST API Design",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "94",
+      "title": "OpenAPI и Swagger",
+      "subtitle": "Документация API",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 1671,
+      "createdAt": "28.12.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "OpenAPI и Swagger",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "95",
+      "title": "Тестирование API",
+      "subtitle": "Postman и автотесты",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 1808,
+      "createdAt": "01.01.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Тестирование API",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "96",
+      "title": "E2E тестирование",
+      "subtitle": "Playwright на практике",
+      "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
+      "views": 1945,
+      "createdAt": "02.02.2026",
+      "type": ["IT"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "E2E тестирование",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики.",
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const result = data\n  .filter(Boolean)\n  .map(item => ({ ...item, processed: true }));"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "97",
+      "title": "Юнит-тесты на практике",
+      "subtitle": "Покрытие кода и TDD",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png",
+      "views": 2082,
+      "createdAt": "03.03.2026",
+      "type": ["SCIENCE"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Юнит-тесты на практике",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания.",
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "export const useData = () => {\n  const [state, setState] = useState(null);\n\n  useEffect(() => {\n    fetchData().then(setState);\n  }, []);\n\n  return state;\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "98",
+      "title": "React 19: новые возможности",
+      "subtitle": "Что изменилось в React 19?",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      "views": 2219,
+      "createdAt": "04.04.2026",
+      "type": ["ECONOMICS"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "React 19: новые возможности",
+          "paragraphs": [
+            "Хорошая архитектура — залог долгосрочного успеха проекта. Правильно выбранные паттерны и инструменты экономят время и нервы всей команды.",
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "interface Config<T> {\n  data: T;\n  loading: boolean;\n  error?: string;\n}\n\nfunction createStore<T>(initial: T): Config<T> {\n  return { data: initial, loading: false };\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        }
+      ],
+      "userId": "2"
+    },
+    {
+      "id": "99",
+      "title": "Node.js и производительность",
+      "subtitle": "Оптимизация серверного кода",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png",
+      "views": 2356,
+      "createdAt": "05.05.2026",
+      "type": ["HOBBY"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "Node.js и производительность",
+          "paragraphs": [
+            "Практический опыт важнее теоретических знаний. Рассмотрим реальные примеры из production-проектов.",
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "async function retry(fn, attempts = 3) {\n  try {\n    return await fn();\n  } catch (e) {\n    if (attempts <= 1) throw e;\n    return retry(fn, attempts - 1);\n  }\n}"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        }
+      ],
+      "userId": "1"
+    },
+    {
+      "id": "100",
+      "title": "CSS Grid vs Flexbox",
+      "subtitle": "Когда использовать что?",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/233px-Postgresql_elephant.svg.png",
+      "views": 2493,
+      "createdAt": "06.06.2026",
+      "type": ["OTHER"],
+      "blocks": [
+        {
+          "id": "1",
+          "type": "TEXT",
+          "title": "CSS Grid vs Flexbox",
+          "paragraphs": [
+            "Производительность напрямую влияет на пользовательский опыт. Каждая миллисекунда имеет значение для конверсии и удержания пользователей.",
+            "Современная разработка требует глубокого понимания инструментов и паттернов. В этой статье мы рассмотрим ключевые концепции и лучшие практики."
+          ]
+        },
+        {
+          "id": "2",
+          "type": "CODE",
+          "code": "const memoize = (fn) => {\n  const cache = new Map();\n  return (arg) => {\n    if (cache.has(arg)) return cache.get(arg);\n    const result = fn(arg);\n    cache.set(arg, result);\n    return result;\n  };\n};"
+        },
+        {
+          "id": "3",
+          "type": "TEXT",
+          "title": "Выводы",
+          "paragraphs": [
+            "Технологии развиваются стремительно. Чтобы оставаться актуальным специалистом, важно следить за трендами и регулярно обновлять свои знания."
+          ]
+        }
+      ],
+      "userId": "2"
     }
   ],
   "comments": [
@@ -770,13 +3840,15 @@
       "id": "1",
       "username": "admin",
       "password": "admin",
-      "role": "ADMIN"
+      "role": "ADMIN",
+      "avatar": "https://avatars.mds.yandex.net/get-zen_doc/3413519/pub_5ff887b2fe4e686f6ae6ba3f_5ff887d7f906b16872a69755/scale_1200"
     },
     {
       "id": "2",
       "username": "user",
       "password": "user",
-      "role": "USER"
+      "role": "USER",
+      "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
     }
   ],
   "profile": [

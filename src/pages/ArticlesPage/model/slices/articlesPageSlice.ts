@@ -1,8 +1,8 @@
 import {
   createEntityAdapter,
   createSlice,
-  type WithSlice,
   type PayloadAction,
+  type WithSlice,
 } from '@reduxjs/toolkit'
 import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList'
 import { rootReducer } from '@/app/store'
@@ -21,6 +21,8 @@ const articlesPageSlice = createSlice({
   initialState: articlesAdapter.getInitialState<ArticlesPageSchema>({
     isLoading: false,
     error: undefined,
+    page: 1,
+    hasMore: true,
     ids: [],
     entities: {},
     view: ArticleView.SMALL,
@@ -30,10 +32,15 @@ const articlesPageSlice = createSlice({
       state.view = action.payload
       localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, action.payload)
     },
+    setPage: (state, action: PayloadAction<number>) => {
+      state.page = action.payload
+    },
     initState: (state) => {
-      state.view = localStorage.getItem(
+      const view = localStorage.getItem(
         ARTICLES_VIEW_LOCALSTORAGE_KEY,
       ) as ArticleView
+      state.view = view
+      state.limit = view === ArticleView.BIG ? 4 : 9
     },
   },
   extraReducers: (builder) => {
@@ -55,6 +62,9 @@ const articlesPageSlice = createSlice({
       })
   },
   selectors: {
+    getArticlesPageNum: (state) => state?.page || 1,
+    getArticlesPageLimit: (state) => state?.limit || 9,
+    getArticlesPageHasMore: (state) => state?.hasMore,
     getArticlesPageIsLoading: (state) => state.isLoading ?? false,
     getArticlesPageError: (state) => state.error,
     getArticlesPageView: (state) => state.view ?? ArticleView.SMALL,
@@ -75,6 +85,9 @@ export const {
   getArticlesPageIsLoading,
   getArticlesPageError,
   getArticlesPageView,
+  getArticlesPageNum,
+  getArticlesPageLimit,
+  getArticlesPageHasMore,
 } = withArticlesPageSlice.selectors
 
 declare module '@/app/store' {

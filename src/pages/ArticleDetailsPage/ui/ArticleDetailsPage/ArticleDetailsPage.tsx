@@ -15,7 +15,7 @@ import { AddCommentForm } from '@/features/addCommentForm'
 import { fetchCommentsByArticleId } from '@/pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
 import { routesPaths } from '@/shared/config/routes'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Button, buttonTheme } from '@/shared/ui'
+import { Button, buttonTheme, Page } from '@/shared/ui'
 import { Text } from '@/shared/ui/text/Text'
 
 interface ArticleDetailsPageProps {
@@ -54,14 +54,14 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 
   if (!id) {
     return (
-      <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+      <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
         {t('Статья не найдена')}
-      </div>
+      </Page>
     )
   }
 
   return (
-    <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+    <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
       <Button theme={buttonTheme.outline} onClick={onBackToList}>
         {t('Назад к списку')}
       </Button>
@@ -69,7 +69,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
       <Text className={cls.commentTitle} title={t('Комментарии')} />
       <AddCommentForm onSendComment={onSendComment} />
       <CommentList isLoading={commentsIsLoading} comments={comments} />
-    </div>
+    </Page>
   )
 }
 

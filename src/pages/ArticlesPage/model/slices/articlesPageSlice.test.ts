@@ -6,6 +6,7 @@ import {
   withArticlesPageSlice,
 } from './articlesPageSlice'
 import {
+  ArticleSortField,
   ArticleType,
   ArticleView,
 } from '@/entities/article/model/types/article'
@@ -36,6 +37,7 @@ describe('articlesPageSlice.test', () => {
       expect(
         articlesPageReducer(state as ArticlesPageSchema, {
           type: fetchArticlesList.pending.type,
+          meta: { arg: { replace: false } },
         }),
       ).toMatchObject({ isLoading: true, error: undefined })
     })
@@ -49,6 +51,7 @@ describe('articlesPageSlice.test', () => {
       const result = articlesPageReducer(state as ArticlesPageSchema, {
         type: fetchArticlesList.fulfilled.type,
         payload: [mockArticle],
+        meta: { arg: { replace: false } },
       })
       expect(result.isLoading).toBe(false)
       expect(result.ids).toEqual(['1'])
@@ -108,6 +111,10 @@ describe('articlesPageSlice.test', () => {
           isLoading: true,
           ids: [],
           entities: {},
+          order: 'asc' as const,
+          sort: ArticleSortField.CREATED,
+          search: '',
+          type: ArticleType.ALL,
           view: ArticleView.SMALL,
           page: 1,
           hasMore: true,
@@ -123,6 +130,10 @@ describe('articlesPageSlice.test', () => {
           isLoading: undefined,
           ids: [],
           entities: {},
+          order: 'asc' as const,
+          sort: ArticleSortField.CREATED,
+          search: '',
+          type: ArticleType.ALL,
           view: ArticleView.SMALL,
           page: 1,
           hasMore: true,
@@ -138,6 +149,10 @@ describe('articlesPageSlice.test', () => {
           error: 'some error',
           ids: [],
           entities: {},
+          order: 'asc' as const,
+          sort: ArticleSortField.CREATED,
+          search: '',
+          type: ArticleType.ALL,
           view: ArticleView.SMALL,
           page: 1,
           hasMore: true,
@@ -153,6 +168,10 @@ describe('articlesPageSlice.test', () => {
           view: ArticleView.BIG,
           ids: [],
           entities: {},
+          order: 'asc' as const,
+          sort: ArticleSortField.CREATED,
+          search: '',
+          type: ArticleType.ALL,
           page: 1,
           hasMore: true,
           _inited: false,
@@ -167,6 +186,10 @@ describe('articlesPageSlice.test', () => {
           view: undefined as unknown as ArticleView,
           ids: [],
           entities: {},
+          order: 'asc' as const,
+          sort: ArticleSortField.CREATED,
+          search: '',
+          type: ArticleType.ALL,
           page: 1,
           hasMore: true,
           _inited: false,

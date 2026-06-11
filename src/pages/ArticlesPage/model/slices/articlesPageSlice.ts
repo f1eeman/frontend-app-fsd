@@ -26,6 +26,7 @@ const articlesPageSlice = createSlice({
     ids: [],
     entities: {},
     view: ArticleView.SMALL,
+    _inited: false,
   }),
   reducers: {
     setView: (state, action: PayloadAction<ArticleView>) => {
@@ -41,6 +42,7 @@ const articlesPageSlice = createSlice({
       ) as ArticleView
       state.view = view
       state.limit = view === ArticleView.BIG ? 4 : 9
+      state._inited = true
     },
   },
   extraReducers: (builder) => {
@@ -69,6 +71,7 @@ const articlesPageSlice = createSlice({
     getArticlesPageIsLoading: (state) => state.isLoading ?? false,
     getArticlesPageError: (state) => state.error,
     getArticlesPageView: (state) => state.view ?? ArticleView.SMALL,
+    getArticlesPageInited: (state) => state._inited ?? false,
   },
 })
 
@@ -89,6 +92,7 @@ export const {
   getArticlesPageNum,
   getArticlesPageLimit,
   getArticlesPageHasMore,
+  getArticlesPageInited,
 } = withArticlesPageSlice.selectors
 
 declare module '@/app/store' {

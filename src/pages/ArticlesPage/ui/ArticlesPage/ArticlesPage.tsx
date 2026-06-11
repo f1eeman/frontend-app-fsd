@@ -1,6 +1,6 @@
 import { memo, useEffect, useCallback } from 'react'
-import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList'
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage'
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage'
 import {
   getArticles,
   getArticlesPageError,
@@ -40,10 +40,9 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 
   useEffect(() => {
     if (__PROJECT__ === 'sb') return
-    dispatch(articlesPageActions.initState())
-    const resultArticles = dispatch(fetchArticlesList({ page: 1 }))
+    const result = dispatch(initArticlesPage())
     return () => {
-      resultArticles.abort()
+      result.abort()
     }
   }, [])
 

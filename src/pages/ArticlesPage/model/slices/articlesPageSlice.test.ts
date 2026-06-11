@@ -111,6 +111,7 @@ describe('articlesPageSlice.test', () => {
           view: ArticleView.SMALL,
           page: 1,
           hasMore: true,
+          _inited: false,
         },
       }
       expect(mockSelectors.getArticlesPageIsLoading(state)).toBe(true)
@@ -125,6 +126,7 @@ describe('articlesPageSlice.test', () => {
           view: ArticleView.SMALL,
           page: 1,
           hasMore: true,
+          _inited: false,
         },
       }
       expect(mockSelectors.getArticlesPageIsLoading(state)).toBe(false)
@@ -139,6 +141,7 @@ describe('articlesPageSlice.test', () => {
           view: ArticleView.SMALL,
           page: 1,
           hasMore: true,
+          _inited: false,
         },
       }
       expect(mockSelectors.getArticlesPageError(state)).toBe('some error')
@@ -152,6 +155,7 @@ describe('articlesPageSlice.test', () => {
           entities: {},
           page: 1,
           hasMore: true,
+          _inited: false,
         },
       }
       expect(mockSelectors.getArticlesPageView(state)).toBe(ArticleView.BIG)
@@ -165,6 +169,7 @@ describe('articlesPageSlice.test', () => {
           entities: {},
           page: 1,
           hasMore: true,
+          _inited: false,
         },
       }
       expect(mockSelectors.getArticlesPageView(state)).toBe(ArticleView.SMALL)

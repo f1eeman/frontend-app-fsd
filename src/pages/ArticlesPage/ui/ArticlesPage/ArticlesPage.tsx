@@ -12,7 +12,7 @@ import cls from './ArticlesPage.module.scss'
 import { useAppDispatch, useAppSelector } from '@/app/store'
 import { ArticleViewSelector, ArticleList } from '@/entities/article'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Page } from '@/shared/ui'
+import { Page } from '@/widgets/page/Page'
 import type { ArticleView } from '@/entities/article/model/types/article'
 
 interface ArticlesPageProps {

@@ -15,8 +15,9 @@ import { AddCommentForm } from '@/features/addCommentForm'
 import { fetchCommentsByArticleId } from '@/pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
 import { routesPaths } from '@/shared/config/routes'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Button, buttonTheme, Page } from '@/shared/ui'
+import { Button, buttonTheme } from '@/shared/ui'
 import { Text } from '@/shared/ui/text/Text'
+import { Page } from '@/widgets/page/Page'
 
 interface ArticleDetailsPageProps {
   className?: string

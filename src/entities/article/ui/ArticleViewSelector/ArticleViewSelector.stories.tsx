@@ -6,6 +6,9 @@ import type { Meta, StoryObj } from '@storybook/react-webpack5'
 const meta = {
   title: 'entities/Article/ArticleViewSelector',
   component: ArticleViewSelector,
+  args: {
+    onViewClick: fn(),
+  },
 } satisfies Meta<typeof ArticleViewSelector>
 
 export default meta
@@ -21,12 +24,5 @@ export const Normal: Story = {
 export const Big: Story = {
   args: {
     view: ArticleView.BIG,
-  },
-}
-
-export const BigWithOnViewClick: Story = {
-  args: {
-    view: ArticleView.BIG,
-    onViewClick: fn(),
   },
 }

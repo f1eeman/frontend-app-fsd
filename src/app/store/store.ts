@@ -7,6 +7,7 @@ import {
   type UnknownAction,
 } from '@reduxjs/toolkit'
 import { userReducer } from '@/entities/user'
+import { uiReducer } from '@/features/scrollSave'
 import { $api } from '@/shared/api/api'
 import type { AxiosInstance } from 'axios'
 import type { DeepPartial } from '@/shared/types'
@@ -19,6 +20,7 @@ export interface LazyLoadedSlices {}
 
 export const rootReducer = combineSlices({
   user: userReducer,
+  ui: uiReducer,
 }).withLazyLoadedSlices<LazyLoadedSlices>()
 
 export type RootState = ReturnType<typeof rootReducer>

@@ -31,6 +31,8 @@ dist-ssr
 
 # Env
 *.local
+.env
+!.env.example
 #gitlab
 .gitlab-ci.yml
 

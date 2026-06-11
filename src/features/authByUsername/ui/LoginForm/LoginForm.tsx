@@ -1,6 +1,6 @@
-import { unwrapResult } from '@reduxjs/toolkit'
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router'
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername'
 import {
   loginActions,
@@ -11,6 +11,7 @@ import {
 } from '../../model/slice/loginSlice'
 import cls from './LoginForm.module.scss'
 import { useAppDispatch, useAppSelector } from '@/app/store'
+import { routesPaths } from '@/shared/config/routes'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button } from '@/shared/ui/button/Button'
 import { Input } from '@/shared/ui/input/Input'
@@ -26,6 +27,7 @@ export interface LoginFormProps {
 const LoginForm = memo<LoginFormProps>((props) => {
   const { className = '', onSuccess } = props
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const username = useAppSelector(selectUsername)
   const password = useAppSelector(selectPassword)
@@ -48,11 +50,11 @@ const LoginForm = memo<LoginFormProps>((props) => {
 
   const onLoginClick = useCallback(async () => {
     const result = await dispatch(loginByUsername({ username, password }))
-    unwrapResult(result)
-    if (result.meta.requestStatus === 'fulfilled') {
+    if (loginByUsername.fulfilled.match(result)) {
       onSuccess()
+      navigate(`${routesPaths.profile.path}${result.payload.id}`)
     }
-  }, [dispatch, onSuccess, password, username])
+  }, [dispatch, navigate, onSuccess, password, username])
 
   return (
     <div className={classNames(cls.LoginForm, {}, [className])}>

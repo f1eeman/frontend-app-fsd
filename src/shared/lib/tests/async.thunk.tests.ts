@@ -13,7 +13,6 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
   getState: () => RootState
 
   actionCreator: AsyncThunk<Return, Arg, ThunkConfig<RejectedValue>>
-  nav: jest.MockedFn<any>
   api: jest.MockedFunctionDeep<AxiosStatic>
 
   constructor(
@@ -24,7 +23,6 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
     this.dispatch = jest.fn()
     this.getState = jest.fn(() => state as RootState)
 
-    this.nav = jest.fn()
     this.api = mockedAxios
   }
 
@@ -45,7 +43,6 @@ export class TestAsyncThunk<Return, Arg, RejectedValue> {
           )(args[0])
     const result = await action(this.dispatch, this.getState, {
       api: this.api,
-      nav: this.nav,
     })
 
     return result

@@ -28,6 +28,7 @@ const stateWithLimit = {
     entities: {},
     page: 1,
     hasMore: true,
+    _inited: true,
   },
 }
 
@@ -43,6 +44,7 @@ describe('fetchArticlesList.test', () => {
 
     expect(thunk.api.get).toHaveBeenCalledWith('/articles', {
       params: { _expand: 'user', _limit: 9, _page: 1 },
+      signal: expect.any(AbortSignal),
     })
     expect(result.meta.requestStatus).toBe('fulfilled')
     expect(result.payload).toEqual(mockArticles)

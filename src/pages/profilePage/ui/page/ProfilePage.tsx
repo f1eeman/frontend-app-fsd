@@ -15,9 +15,9 @@ import {
   ValidateProfileError,
 } from '@/features/editableProfileCard'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Page } from '@/shared/ui'
 import { TextTheme } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
+import { Page } from '@/widgets/page/Page'
 import type { Country } from '@/entities/country'
 import type { Currency } from '@/entities/currency'
 

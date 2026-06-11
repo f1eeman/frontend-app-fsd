@@ -38,6 +38,9 @@ dist-ssr
 
 *storybook.log
 storybook-static
+
+# Playwright MCP debug artifacts
+.playwright-mcp
 screen-tests/diffs
 screen-tests/diffs-only
 screen-tests/current

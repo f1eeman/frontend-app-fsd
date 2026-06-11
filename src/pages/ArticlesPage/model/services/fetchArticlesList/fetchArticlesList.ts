@@ -1,13 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import {
-  getArticlesPageLimit,
-  getArticlesPageNum,
-  getArticlesPageOrder,
-  getArticlesPageSearch,
-  getArticlesPageSort,
-  getArticlesPageType,
-} from '../../slices/articlesPageSlice'
-import { ArticleType } from '@/entities/article'
+import { ArticleSortField, ArticleType } from '@/entities/article'
 import { addQueryParams } from '@/shared/lib/url/addQueryParams/addQueryParams'
 import type { ThunkConfig } from '@/app/store'
 import type { Article } from '@/entities/article'
@@ -22,12 +14,13 @@ export const fetchArticlesList = createAsyncThunk<
   ThunkConfig<string>
 >('articlesPage/fetchArticlesList', async (_props, thunkApi) => {
   const { extra, rejectWithValue, getState, signal } = thunkApi
-  const limit = getArticlesPageLimit(getState())
-  const sort = getArticlesPageSort(getState())
-  const order = getArticlesPageOrder(getState())
-  const search = getArticlesPageSearch(getState())
-  const page = getArticlesPageNum(getState())
-  const type = getArticlesPageType(getState())
+  const articlesPage = getState().articlesPage
+  const limit = articlesPage?.limit ?? 9
+  const sort = articlesPage?.sort ?? ArticleSortField.CREATED
+  const order = articlesPage?.order ?? 'asc'
+  const search = articlesPage?.search ?? ''
+  const page = articlesPage?.page ?? 1
+  const type = articlesPage?.type ?? ArticleType.ALL
 
   try {
     addQueryParams({

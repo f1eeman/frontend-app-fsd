@@ -1,5 +1,6 @@
 import { Theme } from '@/app/theme'
 import { RouterDecorator } from '@/shared/lib/sb/decorators/Router'
+import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import { StyleDecorator } from '@/shared/lib/sb/decorators/Style'
 import {
   ThemeProviderDecorator,
@@ -24,6 +25,7 @@ const preview: Preview = {
     },
   },
   decorators: [
+    StoreDecorator({}),
     StyleDecorator,
     ThemeProviderDecorator,
     ThemeRootClassDecorator,

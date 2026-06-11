@@ -29,6 +29,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
   const [searchParams] = useSearchParams()
 
   const onLoadNextPart = useCallback(() => {
+    if (__PROJECT__ === 'sb') return
     dispatch(fetchNextArticlesPage())
   }, [dispatch])
 

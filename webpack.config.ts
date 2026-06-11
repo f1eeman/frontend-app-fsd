@@ -1,4 +1,5 @@
 import path from 'node:path'
+import 'dotenv/config'
 import { buildWebpackConfig } from './config/build/build-webpackConfig'
 import type webpack from 'webpack'
 import type { BuildEnv, BuildPaths } from './config/build/types'
@@ -17,7 +18,7 @@ export default (env: BuildEnv): webpack.Configuration => {
 
   const isDev = mode === 'development'
   const isAnalyzeModeEnable = analyze === 'enabled'
-  const apiUrl = env.apiUrl ?? 'http://localhost:2222'
+  const apiUrl = env.apiUrl ?? process.env.API_URL ?? 'http://localhost:2222'
 
   return buildWebpackConfig({
     mode,

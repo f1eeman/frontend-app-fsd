@@ -43,10 +43,7 @@ describe('loginByUsername', () => {
     })
     const result = await testThunk.callThunk(mockPayload)
 
-    expect(testThunk.api.post).toHaveBeenCalledWith(
-      'http://localhost:8000/login',
-      mockPayload,
-    )
+    expect(testThunk.api.post).toHaveBeenCalledWith('/login', mockPayload)
     expect(localStorageMock.setItem).toHaveBeenCalledWith(
       'test-user-key',
       JSON.stringify(mockUserData),
@@ -69,10 +66,7 @@ describe('loginByUsername', () => {
     })
     const result = await testThunk.callThunk(mockPayload)
 
-    expect(testThunk.api.post).toHaveBeenCalledWith(
-      'http://localhost:8000/login',
-      mockPayload,
-    )
+    expect(testThunk.api.post).toHaveBeenCalledWith('/login', mockPayload)
     expect(localStorageMock.setItem).not.toHaveBeenCalled()
     expect(userActions.setAuthData).not.toHaveBeenCalled()
     expect(testThunk.dispatch).toHaveBeenCalledTimes(2)
@@ -91,10 +85,7 @@ describe('loginByUsername', () => {
     testThunk.api.post.mockRejectedValue(new Error('Network error'))
     const result = await testThunk.callThunk(mockPayload)
 
-    expect(testThunk.api.post).toHaveBeenCalledWith(
-      'http://localhost:8000/login',
-      mockPayload,
-    )
+    expect(testThunk.api.post).toHaveBeenCalledWith('/login', mockPayload)
     expect(localStorageMock.setItem).not.toHaveBeenCalled()
     expect(userActions.setAuthData).not.toHaveBeenCalled()
     expect(testThunk.dispatch).toHaveBeenCalledTimes(2)

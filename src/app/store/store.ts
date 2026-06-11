@@ -9,12 +9,10 @@ import {
 import { userReducer } from '@/entities/user'
 import { $api } from '@/shared/api/api'
 import type { AxiosInstance } from 'axios'
-import type { NavigateFunction } from 'react-router'
 import type { DeepPartial } from '@/shared/types'
 
 export interface ThunkExtraArgs {
   api: AxiosInstance
-  nav: NavigateFunction | undefined
 }
 
 export interface LazyLoadedSlices {}
@@ -29,10 +27,7 @@ type AppMiddleware = Tuple<
   [ThunkMiddleware<RootState, UnknownAction, ThunkExtraArgs>]
 >
 
-export function setupStore(
-  preloadedState?: DeepPartial<RootState>,
-  nav?: NavigateFunction,
-) {
+export function setupStore(preloadedState?: DeepPartial<RootState>) {
   return configureStore<RootState, UnknownAction, AppMiddleware>({
     reducer: rootReducer as Reducer<RootState>,
     preloadedState: preloadedState as RootState | undefined,
@@ -42,7 +37,6 @@ export function setupStore(
         thunk: {
           extraArgument: {
             api: $api,
-            nav,
           } satisfies ThunkExtraArgs,
         },
       }) as AppMiddleware,

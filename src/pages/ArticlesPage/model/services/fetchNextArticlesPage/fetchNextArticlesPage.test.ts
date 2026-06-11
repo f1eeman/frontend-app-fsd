@@ -1,6 +1,10 @@
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList'
 import { fetchNextArticlesPage } from './fetchNextArticlesPage'
-import { ArticleView } from '@/entities/article/model/types/article'
+import {
+  ArticleSortField,
+  ArticleType,
+  ArticleView,
+} from '@/entities/article/model/types/article'
 import { TestAsyncThunk } from '@/shared/lib/tests/async.thunk.tests'
 
 jest.mock('../fetchArticlesList/fetchArticlesList')
@@ -16,6 +20,10 @@ describe('fetchNextArticlesPage.test', () => {
         isLoading: false,
         hasMore: true,
         view: ArticleView.SMALL,
+        order: 'asc',
+        sort: ArticleSortField.CREATED,
+        search: '',
+        type: ArticleType.ALL,
         _inited: true,
       },
     })
@@ -23,7 +31,7 @@ describe('fetchNextArticlesPage.test', () => {
     await thunk.callThunk()
 
     expect(thunk.dispatch).toHaveBeenCalledTimes(4)
-    expect(fetchArticlesList).toHaveBeenCalledWith({ page: 3 })
+    expect(fetchArticlesList).toHaveBeenCalledWith({})
   })
   test('fetchAritcleList not called', async () => {
     const thunk = new TestAsyncThunk(fetchNextArticlesPage, {
@@ -35,6 +43,10 @@ describe('fetchNextArticlesPage.test', () => {
         isLoading: false,
         hasMore: false,
         view: ArticleView.SMALL,
+        order: 'asc',
+        sort: ArticleSortField.CREATED,
+        search: '',
+        type: ArticleType.ALL,
         _inited: true,
       },
     })

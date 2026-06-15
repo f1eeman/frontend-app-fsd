@@ -7,12 +7,14 @@ import cls from './ArticleList.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { TextSize } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
+import type { HTMLAttributeAnchorTarget } from 'react'
 import type { Article } from '../../model/types/article'
 
 interface ArticleListProps {
   className?: string
   articles: Article[]
   isLoading?: boolean
+  target?: HTMLAttributeAnchorTarget
   view?: ArticleView
 }
 
@@ -29,6 +31,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
     articles,
     view = ArticleView.SMALL,
     isLoading,
+    target,
   } = props
   const { t } = useTranslation()
 
@@ -38,6 +41,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
       view={view}
       className={cls.card}
       key={article.id}
+      target={target}
     />
   )
 

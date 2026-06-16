@@ -1,0 +1,12 @@
+.ArticleCodeBlockEditor {
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea {
+  min-height: 120px;
+  padding: 8px;
+  resize: vertical;
+  font-family: monospace;
+  font-size: 14px;
+}

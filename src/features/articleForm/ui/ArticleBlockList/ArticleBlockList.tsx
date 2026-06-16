@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import {
   articleFormActions,
   selectBlocks,
-} from '../../../model/slices/articleFormSlice'
+} from '../../model/slices/articleFormSlice'
+import { ArticleCodeBlockEditor } from '../ArticleCodeBlockEditor/ArticleCodeBlockEditor'
+import { ArticleImageBlockEditor } from '../ArticleImageBlockEditor/ArticleImageBlockEditor'
+import { ArticleTextBlockEditor } from '../ArticleTextBlockEditor/ArticleTextBlockEditor'
 import cls from './ArticleBlockList.module.scss'
-import { ArticleCodeBlockEditor } from './ArticleCodeBlockEditor'
-import { ArticleImageBlockEditor } from './ArticleImageBlockEditor'
-import { ArticleTextBlockEditor } from './ArticleTextBlockEditor'
 import { useAppDispatch, useAppSelector } from '@/app/store'
 import {
   ArticleBlockType,

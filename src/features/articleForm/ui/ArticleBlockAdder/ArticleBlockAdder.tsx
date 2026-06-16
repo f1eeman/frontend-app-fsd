@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { articleFormActions } from '../../../model/slices/articleFormSlice'
+import { articleFormActions } from '../../model/slices/articleFormSlice'
 import cls from './ArticleBlockAdder.module.scss'
 import { useAppDispatch } from '@/app/store'
 import { ArticleBlockType } from '@/entities/article'

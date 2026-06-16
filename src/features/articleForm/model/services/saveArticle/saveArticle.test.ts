@@ -27,6 +27,7 @@ const savedArticle: Article = {
 }
 
 const stateWith = (formData: ArticleFormData) => ({
+  user: { authData: { id: '1', username: 'admin' }, _inited: true },
   articleForm: { formData, isLoading: false },
 })
 
@@ -35,7 +36,7 @@ describe('saveArticle', () => {
     jest.clearAllMocks()
   })
 
-  test('create: posts form data and resolves, calling onSuccess', async () => {
+  test('create: posts form data enriched with author and resolves', async () => {
     const thunk = new TestAsyncThunk<Article, SaveArg, string>(
       saveArticle,
       stateWith(validFormData),
@@ -45,25 +46,35 @@ describe('saveArticle', () => {
 
     const result = await thunk.callThunk({ onSuccess })
 
-    expect(thunk.api.post).toHaveBeenCalledWith('/articles', validFormData)
+    expect(thunk.api.post).toHaveBeenCalledWith(
+      '/articles',
+      expect.objectContaining({
+        ...validFormData,
+        userId: '1',
+        views: 0,
+        createdAt: expect.any(String),
+      }),
+    )
     expect(result.meta.requestStatus).toBe('fulfilled')
     expect(result.payload).toEqual(savedArticle)
     expect(onSuccess).toHaveBeenCalledWith('10')
   })
 
-  test('edit: puts form data to /articles/:id', async () => {
+  test('edit: patches form data to /articles/:id and keeps the id', async () => {
     const thunk = new TestAsyncThunk<Article, SaveArg, string>(
       saveArticle,
       stateWith(validFormData),
     )
-    thunk.api.put.mockReturnValue(Promise.resolve({ data: savedArticle }))
+    thunk.api.patch.mockReturnValue(Promise.resolve({ data: savedArticle }))
+    const onSuccess = jest.fn()
 
-    const result = await thunk.callThunk({ id: '10' })
+    const result = await thunk.callThunk({ id: '10', onSuccess })
 
-    expect(thunk.api.put).toHaveBeenCalledWith('/articles/10', validFormData)
+    expect(thunk.api.patch).toHaveBeenCalledWith('/articles/10', validFormData)
     expect(thunk.api.post).not.toHaveBeenCalled()
     expect(result.meta.requestStatus).toBe('fulfilled')
     expect(result.payload).toEqual(savedArticle)
+    expect(onSuccess).toHaveBeenCalledWith('10')
   })
 
   test('rejects with VALIDATION prefix when title is empty', async () => {
@@ -77,7 +88,19 @@ describe('saveArticle', () => {
     expect(result.meta.requestStatus).toBe('rejected')
     expect(result.payload).toBe('VALIDATION:Заголовок обязателен')
     expect(thunk.api.post).not.toHaveBeenCalled()
-    expect(thunk.api.put).not.toHaveBeenCalled()
+    expect(thunk.api.patch).not.toHaveBeenCalled()
+  })
+
+  test('create rejects with error when there is no authorized user', async () => {
+    const thunk = new TestAsyncThunk<Article, SaveArg, string>(saveArticle, {
+      articleForm: { formData: validFormData, isLoading: false },
+    })
+
+    const result = await thunk.callThunk({})
+
+    expect(result.meta.requestStatus).toBe('rejected')
+    expect(result.payload).toBe('error')
+    expect(thunk.api.post).not.toHaveBeenCalled()
   })
 
   test('rejects with error on api failure', async () => {

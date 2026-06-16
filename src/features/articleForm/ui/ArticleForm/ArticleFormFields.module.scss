@@ -1,0 +1,35 @@
+.ArticleFormFields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.error {
+  margin: 0;
+  font-size: 12px;
+  color: red;
+}
+
+.types {
+  display: flex;
+  gap: 8px;
+}
+
+.typeBtn {
+  padding: 6px 12px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.typeBtnActive {
+  background: rgb(92 86 245 / 12%);
+  border-color: #5c56f5;
+}

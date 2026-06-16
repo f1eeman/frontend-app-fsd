@@ -34,7 +34,7 @@ export const ArticleBlockList = memo(({ className = '' }: Props) => {
   )
 
   const onChange = useCallback(
-    (id: string, changes: Omit<Partial<ArticleBlock>, 'type'>) =>
+    (id: string, changes: Partial<ArticleBlock>) =>
       dispatch(articleFormActions.updateBlock({ id, changes })),
     [dispatch],
   )
@@ -46,34 +46,19 @@ export const ArticleBlockList = memo(({ className = '' }: Props) => {
           {block.type === ArticleBlockType.TEXT && (
             <ArticleTextBlockEditor
               block={block as ArticleTextBlock}
-              onChange={(changes) =>
-                onChange(
-                  block.id,
-                  changes as Omit<Partial<ArticleTextBlock>, 'type'>,
-                )
-              }
+              onChange={(changes) => onChange(block.id, changes)}
             />
           )}
           {block.type === ArticleBlockType.CODE && (
             <ArticleCodeBlockEditor
               block={block as ArticleCodeBlock}
-              onChange={(changes) =>
-                onChange(
-                  block.id,
-                  changes as Omit<Partial<ArticleCodeBlock>, 'type'>,
-                )
-              }
+              onChange={(changes) => onChange(block.id, changes)}
             />
           )}
           {block.type === ArticleBlockType.IMAGE && (
             <ArticleImageBlockEditor
               block={block as ArticleImageBlock}
-              onChange={(changes) =>
-                onChange(
-                  block.id,
-                  changes as Omit<Partial<ArticleImageBlock>, 'type'>,
-                )
-              }
+              onChange={(changes) => onChange(block.id, changes)}
             />
           )}
           <Button

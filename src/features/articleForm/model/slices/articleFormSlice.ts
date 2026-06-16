@@ -17,6 +17,10 @@ import {
 } from '@/entities/article'
 import type { ArticleFormSchema } from '../types/articleFormSchema'
 
+type DistributiveOmit<T, K extends PropertyKey> = T extends unknown
+  ? Omit<T, K>
+  : never
+
 const articleFormSlice = createSlice({
   name: 'articleForm',
   initialState: {
@@ -87,7 +91,7 @@ const articleFormSlice = createSlice({
       state,
       action: PayloadAction<{
         id: string
-        changes: Omit<Partial<ArticleBlock>, 'type'>
+        changes: DistributiveOmit<Partial<ArticleBlock>, 'type'>
       }>,
     ) => {
       const { id, changes } = action.payload

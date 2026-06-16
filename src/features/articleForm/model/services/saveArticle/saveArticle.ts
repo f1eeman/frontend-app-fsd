@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { selectFormData } from '../../slices/articleFormSlice'
 import { validateArticleForm } from '../validateArticleForm/validateArticleForm'
 import type { ThunkConfig } from '@/app/store'
 import type { Article } from '@/entities/article'
@@ -11,7 +10,11 @@ export const saveArticle = createAsyncThunk<
 >('articleForm/saveArticle', async ({ id, onSuccess }, thunkApi) => {
   const { extra, rejectWithValue, getState } = thunkApi
 
-  const formData = selectFormData(getState())
+  const formData = getState().articleForm?.formData
+  if (!formData) {
+    return rejectWithValue('error')
+  }
+
   const validateError = validateArticleForm(formData)
 
   if (validateError) {

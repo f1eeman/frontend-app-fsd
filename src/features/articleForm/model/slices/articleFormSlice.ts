@@ -3,6 +3,8 @@ import {
   type PayloadAction,
   type WithSlice,
 } from '@reduxjs/toolkit'
+import { fetchArticleForEdit } from '../services/fetchArticleForEdit/fetchArticleForEdit'
+import { saveArticle } from '../services/saveArticle/saveArticle'
 import { rootReducer } from '@/app/store'
 import {
   ArticleBlockType,
@@ -123,6 +125,43 @@ const articleFormSlice = createSlice({
     selectValidateError: (state) => state.validateError,
     selectTitle: (state) => state.formData.title,
     selectBlocks: (state) => state.formData.blocks,
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchArticleForEdit.pending, (state) => {
+        state.isLoading = true
+        state.error = undefined
+      })
+      .addCase(
+        fetchArticleForEdit.fulfilled,
+        (state, action: PayloadAction<Article>) => {
+          const { title, subtitle, img, type, blocks } = action.payload
+          state.formData = { title, subtitle, img, type, blocks }
+          state.isLoading = false
+          state.validateError = undefined
+          state.error = undefined
+        },
+      )
+      .addCase(fetchArticleForEdit.rejected, (state, action) => {
+        state.isLoading = false
+        state.error = action.payload
+      })
+      .addCase(saveArticle.pending, (state) => {
+        state.isLoading = true
+        state.error = undefined
+      })
+      .addCase(saveArticle.fulfilled, (state) => {
+        state.isLoading = false
+      })
+      .addCase(saveArticle.rejected, (state, action) => {
+        state.isLoading = false
+        const payload = action.payload ?? ''
+        if (payload.startsWith('VALIDATION:')) {
+          state.validateError = payload.replace('VALIDATION:', '')
+        } else {
+          state.error = payload
+        }
+      })
   },
 })
 

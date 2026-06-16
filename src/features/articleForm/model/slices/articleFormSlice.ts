@@ -153,17 +153,20 @@ const articleFormSlice = createSlice({
       .addCase(saveArticle.pending, (state) => {
         state.isLoading = true
         state.error = undefined
+        state.validateError = undefined
       })
       .addCase(saveArticle.fulfilled, (state) => {
         state.isLoading = false
       })
       .addCase(saveArticle.rejected, (state, action) => {
         state.isLoading = false
-        const payload = action.payload ?? ''
-        if (payload.startsWith('VALIDATION:')) {
+        const payload = action.payload
+        if (payload?.startsWith('VALIDATION:')) {
           state.validateError = payload.replace('VALIDATION:', '')
+          state.error = undefined
         } else {
           state.error = payload
+          state.validateError = undefined
         }
       })
   },

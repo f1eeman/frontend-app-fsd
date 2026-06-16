@@ -53,7 +53,6 @@ const ArticlesPage = (props: ArticlesPageProps) => {
         view={view}
         articles={articles}
         className={cls.list}
-        target={'_blank'}
       />
     </Page>
   )

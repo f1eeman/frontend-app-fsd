@@ -7,10 +7,10 @@ import {
   articleFormActions,
   selectIsLoading,
 } from '../../model/slices/articleFormSlice'
+import { ArticleBlockAdder } from '../ArticleBlockAdder/ArticleBlockAdder'
+import { ArticleBlockList } from '../ArticleBlockList/ArticleBlockList'
+import { ArticleFormFields } from '../ArticleFormFields/ArticleFormFields'
 import cls from './ArticleForm.module.scss'
-import { ArticleFormFields } from './ArticleFormFields'
-import { ArticleBlockAdder } from './blocks/ArticleBlockAdder'
-import { ArticleBlockList } from './blocks/ArticleBlockList'
 import { useAppDispatch, useAppSelector } from '@/app/store'
 import { AppRoutes, routesPaths } from '@/shared/config/routes'
 import { classNames } from '@/shared/lib/classNames/classNames'

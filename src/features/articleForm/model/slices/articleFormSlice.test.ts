@@ -52,6 +52,29 @@ describe('articleFormSlice', () => {
     expect(r2.formData.blocks[0].id).not.toBe(r2.formData.blocks[1].id)
   })
 
+  test('addBlock creates TEXT block with empty paragraphs array', () => {
+    const result = articleFormReducer(
+      emptyState,
+      articleFormActions.addBlock(ArticleBlockType.TEXT),
+    )
+    const block = result.formData.blocks[0]
+    expect(block.type).toBe(ArticleBlockType.TEXT)
+    if (block.type !== ArticleBlockType.TEXT) throw new Error('expected TEXT')
+    expect(block.paragraphs).toEqual([])
+  })
+
+  test('addBlock creates IMAGE block with empty src and title', () => {
+    const result = articleFormReducer(
+      emptyState,
+      articleFormActions.addBlock(ArticleBlockType.IMAGE),
+    )
+    const block = result.formData.blocks[0]
+    expect(block.type).toBe(ArticleBlockType.IMAGE)
+    if (block.type !== ArticleBlockType.IMAGE) throw new Error('expected IMAGE')
+    expect(block.src).toBe('')
+    expect(block.title).toBe('')
+  })
+
   test('removeBlock removes only the target block', () => {
     const state: ArticleFormSchema = {
       ...emptyState,

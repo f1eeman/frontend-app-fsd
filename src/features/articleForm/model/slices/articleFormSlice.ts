@@ -83,7 +83,10 @@ const articleFormSlice = createSlice({
     },
     updateBlock: (
       state,
-      action: PayloadAction<{ id: string; changes: Partial<ArticleBlock> }>,
+      action: PayloadAction<{
+        id: string
+        changes: Omit<Partial<ArticleBlock>, 'type'>
+      }>,
     ) => {
       const { id, changes } = action.payload
       const idx = state.formData.blocks.findIndex((b) => b.id === id)

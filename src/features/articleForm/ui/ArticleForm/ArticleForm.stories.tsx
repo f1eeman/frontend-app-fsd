@@ -47,32 +47,3 @@ export const Edit: Story = {
     }),
   ],
 }
-
-export const WithValidationError: Story = {
-  decorators: [
-    StoreDecorator({
-      articleForm: {
-        formData: { title: '', subtitle: '', img: '', type: [], blocks: [] },
-        isLoading: false,
-        validateError: 'Заголовок обязателен',
-      },
-    }),
-  ],
-}
-
-export const Loading: Story = {
-  decorators: [
-    StoreDecorator({
-      articleForm: {
-        formData: {
-          title: 'My Article',
-          subtitle: '',
-          img: '',
-          type: [],
-          blocks: [],
-        },
-        isLoading: true,
-      },
-    }),
-  ],
-}

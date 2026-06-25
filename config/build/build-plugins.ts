@@ -28,7 +28,10 @@ export function buildPlugins({
       __PROJECT__: JSON.stringify(project),
     }),
     new CopyPlugin({
-      patterns: [{ from: paths.locales, to: paths.buildLocales }],
+      patterns: [
+        { from: paths.locales, to: paths.buildLocales },
+        { from: paths.netlifyConfig, to: '' },
+      ],
     }),
   ]
 

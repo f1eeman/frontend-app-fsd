@@ -1,5 +1,9 @@
 # frontend-app-fsd
 
+# front https://6a3d2bef212d258ab08751a2--effervescent-crepe-1e6434.netlify.app/about
+
+# json-server https://back-for-front-app-fsd.vercel.app/
+
 ## Визуальные тесты (Storybook screenshot tests)
 
 В проекте включены визуальные регрессионные тесты на базе:

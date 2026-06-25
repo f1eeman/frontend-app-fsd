@@ -8,6 +8,7 @@ export interface BuildPaths {
   src: string
   locales: string
   buildLocales: string
+  netlifyConfig: string
 }
 
 export interface BuildEnv {

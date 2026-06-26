@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef } from 'react'
+import { forwardRef, memo, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router'
 import cls from './Page.module.scss'
 import { useAppDispatch, useAppSelector } from '@/app/store'
@@ -16,50 +16,63 @@ interface PageProps {
   isLoading?: boolean
 }
 
-export const Page = memo((props: PageProps) => {
-  const { className = '', children, onScrollEnd, isLoading } = props
-  const { pathname } = useLocation()
-  const dispatch = useAppDispatch()
-  const scrollPosition = useAppSelector((state: RootState) =>
-    getUIScrollByPath(state, pathname),
-  )
-  const wrapperRef = useRef<HTMLDivElement>(null)
-  const triggerRef = useRef<HTMLDivElement>(null)
+export const Page = memo(
+  forwardRef<HTMLElement, PageProps>((props, ref) => {
+    const { className = '', children, onScrollEnd, isLoading } = props
+    const { pathname } = useLocation()
+    const dispatch = useAppDispatch()
+    const scrollPosition = useAppSelector((state: RootState) =>
+      getUIScrollByPath(state, pathname),
+    )
+    const wrapperRef = useRef<HTMLElement>(null)
+    const triggerRef = useRef<HTMLDivElement>(null)
 
-  useInfiniteScroll({
-    triggerRef,
-    wrapperRef,
-    callback: onScrollEnd,
-    isLoading,
-  })
-
-  useEffect(() => {
-    if (__PROJECT__ !== 'sb') {
-      if (wrapperRef.current) {
-        wrapperRef.current.scrollTop = scrollPosition
+    // Объединяем внутренний ref (для скролла/бесконечной подгрузки)
+    // с внешним, чтобы родитель мог получить скролл-контейнер.
+    const setWrapperRef = (element: HTMLElement | null) => {
+      wrapperRef.current = element
+      if (typeof ref === 'function') {
+        ref(element)
+      } else if (ref) {
+        ref.current = element
       }
     }
-  }, [])
 
-  const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
-    dispatch(
-      uiActions.setScrollPosition({
-        position: e.currentTarget.scrollTop,
-        path: pathname,
-      }),
+    useInfiniteScroll({
+      triggerRef,
+      wrapperRef,
+      callback: onScrollEnd,
+      isLoading,
+    })
+
+    useEffect(() => {
+      if (__PROJECT__ !== 'sb') {
+        if (wrapperRef.current) {
+          wrapperRef.current.scrollTop = scrollPosition
+        }
+      }
+    }, [])
+
+    const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
+      dispatch(
+        uiActions.setScrollPosition({
+          position: e.currentTarget.scrollTop,
+          path: pathname,
+        }),
+      )
+    }, 500)
+
+    return (
+      <section
+        ref={setWrapperRef}
+        onScroll={onScroll}
+        className={classNames(cls.Page, {}, [className])}
+      >
+        {children}
+        <div ref={triggerRef} />
+      </section>
     )
-  }, 500)
-
-  return (
-    <section
-      ref={wrapperRef}
-      onScroll={onScroll}
-      className={classNames(cls.Page, {}, [className])}
-    >
-      {children}
-      <div ref={triggerRef} />
-    </section>
-  )
-})
+  }),
+)
 
 Page.displayName = 'Page Wrap Component'

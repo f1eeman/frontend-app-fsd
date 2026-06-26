@@ -1,4 +1,4 @@
-import { memo, useEffect, useCallback } from 'react'
+import { memo, useEffect, useCallback, useState } from 'react'
 import { useSearchParams } from 'react-router'
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage'
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage'
@@ -27,6 +27,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
   const view = useAppSelector(getArticlesPageView)
   const _error = useAppSelector(getArticlesPageError)
   const [searchParams] = useSearchParams()
+  const [pageElement, setPageElement] = useState<HTMLElement | null>(null)
 
   const onLoadNextPart = useCallback(() => {
     if (__PROJECT__ === 'sb') return
@@ -43,6 +44,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 
   return (
     <Page
+      ref={setPageElement}
       onScrollEnd={onLoadNextPart}
       isLoading={isLoading}
       className={classNames(cls.ArticlesPage, {}, [className])}
@@ -53,6 +55,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
         view={view}
         articles={articles}
         className={cls.list}
+        customScrollParent={pageElement ?? undefined}
       />
     </Page>
   )

@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
 import { ProfilePageHeader } from '../header/ProfilePageHeader'
 import { useAppDispatch, useAppSelector } from '@/app/store'
+import { CountrySelect } from '@/entities/country'
+import { CurrencySelect } from '@/entities/currency'
 import { ProfileCard } from '@/entities/profile'
 import {
   fetchProfileData,
@@ -17,7 +19,7 @@ import {
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { TextTheme } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
-import { Page } from '@/widgets/page/Page'
+import { Page } from '@/widgets/page'
 import type { Country } from '@/entities/country'
 import type { Currency } from '@/entities/currency'
 
@@ -134,8 +136,20 @@ const ProfilePage = ({ className = '' }: ProfilePageProps) => {
         onChangeCity={onChangeCity}
         onChangeUsername={onChangeUsername}
         onChangeAvatar={onChangeAvatar}
-        onChangeCurrency={onChangeCurrency}
-        onChangeCountry={onChangeCountry}
+        currencySelect={
+          <CurrencySelect
+            value={formData?.currency}
+            onChange={onChangeCurrency}
+            readonly={readonly}
+          />
+        }
+        countrySelect={
+          <CountrySelect
+            value={formData?.country}
+            onChange={onChangeCountry}
+            readonly={readonly}
+          />
+        }
       />
     </Page>
   )

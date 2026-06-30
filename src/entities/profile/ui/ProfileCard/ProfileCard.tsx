@@ -1,16 +1,12 @@
 import { useTranslation } from 'react-i18next'
 import cls from './ProfileCard.module.scss'
-import { CountrySelect } from '@/entities/country'
-import { CurrencySelect } from '@/entities/currency'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Avatar, SpinnerLoader } from '@/shared/ui'
 import { Input } from '@/shared/ui/input/Input'
 import { TextAlign, TextTheme } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
-import type { FC } from 'react'
-import type { Profile } from '../../../../features/editableProfileCard/model/types/profile'
-import type { Country } from '@/entities/country'
-import type { Currency } from '@/entities/currency'
+import type { FC, ReactNode } from 'react'
+import type { Profile } from '@/features/editableProfileCard'
 import type { Mods } from '@/shared/lib/classNames/classNames'
 import type { DeepPartial } from '@/shared/types'
 
@@ -26,8 +22,8 @@ interface ProfileCardProps {
   onChangeAge?: (value?: string) => void
   onChangeUsername?: (value?: string) => void
   onChangeAvatar?: (value?: string) => void
-  onChangeCurrency?: (currency: Currency) => void
-  onChangeCountry?: (country: Country) => void
+  currencySelect?: ReactNode
+  countrySelect?: ReactNode
 }
 
 export const ProfileCard: FC<ProfileCardProps> = (props) => {
@@ -43,8 +39,8 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
     onChangeCity,
     onChangeAvatar,
     onChangeUsername,
-    onChangeCountry,
-    onChangeCurrency,
+    currencySelect,
+    countrySelect,
   } = props
   const { t } = useTranslation('profile')
 
@@ -128,18 +124,8 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
           onChange={onChangeAvatar}
           readonly={readonly}
         />
-        <CurrencySelect
-          className={cls.input}
-          value={profile?.currency}
-          onChange={onChangeCurrency}
-          readonly={readonly}
-        />
-        <CountrySelect
-          className={cls.input}
-          value={profile?.country}
-          onChange={onChangeCountry}
-          readonly={readonly}
-        />
+        <div className={cls.input}>{currencySelect}</div>
+        <div className={cls.input}>{countrySelect}</div>
       </div>
     </div>
   )

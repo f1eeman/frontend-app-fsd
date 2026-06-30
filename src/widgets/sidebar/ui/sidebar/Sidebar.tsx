@@ -3,10 +3,10 @@ import { getSidebarItems } from '../../model/selectors/getSidebarItems'
 import { SidebarItem } from '../sidebar-item/SidebarItem'
 import cls from './Sidebar.module.scss'
 import { useAppSelector } from '@/app/store'
+import { LangSwitcher } from '@/features/langSwitcher'
+import { ThemeSwitcher } from '@/features/themeSwitcher'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button } from '@/shared/ui'
-import { LangSwitcher } from '@/widgets/langSwticher'
-import { ThemeSwitcher } from '@/widgets/themeSwitcher'
 
 interface SidebarProps {
   className?: string

@@ -9,6 +9,7 @@ import eslintConfigPrettier from 'eslint-config-prettier'
 import importPlugin from 'eslint-plugin-import'
 import i18next from 'eslint-plugin-i18next'
 import storybook from 'eslint-plugin-storybook'
+import fsdBoundaries from 'eslint-plugin-fsd-boundaries'
 
 const codeFiles = ['**/*.{js,jsx,ts,tsx}']
 
@@ -41,6 +42,7 @@ export default [
     plugins: {
       'react-refresh': eslintReactRefresh,
       i18next: i18next,
+      'fsd-boundaries': fsdBoundaries,
     },
 
     rules: {
@@ -108,6 +110,14 @@ export default [
       ],
       'react/jsx-curly-brace-presence': 'off',
       'react/self-closing-comp': ['error', { component: true, html: true }],
+      'fsd-boundaries/public-api': 'error',
+      'fsd-boundaries/layer-imports': [
+        'error',
+        {
+          exceptions: ['app', 'pages'],
+        },
+      ],
+      'fsd-boundaries/relative-path': ['error', { alias: '@' }],
       'i18next/no-literal-string': [
         'error',
         {

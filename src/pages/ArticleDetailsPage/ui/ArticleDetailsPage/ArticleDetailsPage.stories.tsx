@@ -1,9 +1,6 @@
 import { MemoryRouter, Route, Routes } from 'react-router'
 import ArticleDetailsPage from './ArticleDetailsPage'
-import {
-  ArticleBlockType,
-  ArticleType,
-} from '@/entities/article/model/types/article'
+import { ArticleBlockType, ArticleType } from '@/entities/article'
 import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Decorator, Meta, StoryObj } from '@storybook/react-webpack5'

@@ -1,5 +1,5 @@
 import { useRoutes } from 'react-router'
-import { RequireAuth } from './RequireAuth'
+import { RequireAuth } from '@/app/routing/RequireAuth'
 import { routesConfig } from '@/shared/config/routes'
 import type { RouteObject } from 'react-router'
 

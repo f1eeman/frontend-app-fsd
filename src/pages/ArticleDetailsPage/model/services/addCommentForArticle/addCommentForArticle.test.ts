@@ -1,5 +1,5 @@
 import { addCommentForArticle } from './addCommentForArticle'
-import { ArticleType } from '@/entities/article/model/types/article'
+import { ArticleType } from '@/entities/article'
 import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { TestAsyncThunk } from '@/shared/lib/tests/async.thunk.tests'
 import type { Article } from '@/entities/article'

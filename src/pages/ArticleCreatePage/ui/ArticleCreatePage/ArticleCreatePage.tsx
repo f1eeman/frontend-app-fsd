@@ -2,7 +2,7 @@ import { memo } from 'react'
 import cls from './ArticleCreatePage.module.scss'
 import { ArticleForm } from '@/features/articleForm'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Page } from '@/widgets/page/Page'
+import { Page } from '@/widgets/page'
 
 interface ArticleCreatePageProps {
   className?: string

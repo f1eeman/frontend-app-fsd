@@ -1,7 +1,7 @@
 import { useMemo, type FC, type ReactNode } from 'react'
 import { Provider } from 'react-redux'
-import { setupStore } from './store'
-import type { RootState } from './store'
+import { setupStore } from '@/app/store/store'
+import type { RootState } from '@/app/store/store'
 import type { DeepPartial } from '@/shared/types'
 
 interface StoreProviderProps {

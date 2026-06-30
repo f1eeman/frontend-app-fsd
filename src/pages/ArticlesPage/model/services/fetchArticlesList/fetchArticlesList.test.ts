@@ -1,9 +1,5 @@
 import { fetchArticlesList } from './fetchArticlesList'
-import {
-  ArticleSortField,
-  ArticleType,
-  ArticleView,
-} from '@/entities/article/model/types/article'
+import { ArticleSortField, ArticleType, ArticleView } from '@/entities/article'
 import { TestAsyncThunk } from '@/shared/lib/tests/async.thunk.tests'
 import type { Article } from '@/entities/article'
 

@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 import cls from './ArticleEditPage.module.scss'
 import { ArticleForm } from '@/features/articleForm'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Page } from '@/widgets/page/Page'
+import { Page } from '@/widgets/page'
 
 interface ArticleEditPageProps {
   className?: string

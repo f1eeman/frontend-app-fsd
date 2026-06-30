@@ -1,5 +1,5 @@
 import { AboutPageAsync } from '@/pages/aboutPage'
-import ArticleCreatePage from '@/pages/ArticleCreatePage/ui/ArticleCreatePage/ArticleCreatePage'
+import { ArticleCreatePage } from '@/pages/ArticleCreatePage'
 import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage'
 import { ArticleEditPage } from '@/pages/ArticleEditPage'
 import { ArticlesPage } from '@/pages/ArticlesPage'

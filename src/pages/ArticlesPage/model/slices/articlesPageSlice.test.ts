@@ -5,11 +5,7 @@ import {
   getArticles,
   withArticlesPageSlice,
 } from './articlesPageSlice'
-import {
-  ArticleSortField,
-  ArticleType,
-  ArticleView,
-} from '@/entities/article/model/types/article'
+import { ArticleSortField, ArticleType, ArticleView } from '@/entities/article'
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/consts/localstorage'
 import type { ArticlesPageSchema } from '../types/articlesPageSchema'
 import type { RootState } from '@/app/store'

@@ -21,7 +21,7 @@ import { AddCommentForm } from '@/features/addCommentForm'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { TextSize } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
-import { Page } from '@/widgets/page/Page'
+import { Page } from '@/widgets/page'
 
 interface ArticleDetailsPageProps {
   className?: string

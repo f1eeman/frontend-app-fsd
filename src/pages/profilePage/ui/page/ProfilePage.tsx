@@ -17,6 +17,7 @@ import {
   ValidateProfileError,
 } from '@/features/editableProfileCard'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { VStack } from '@/shared/ui/stack'
 import { TextTheme } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
 import { Page } from '@/widgets/page'
@@ -116,41 +117,43 @@ const ProfilePage = ({ className = '' }: ProfilePageProps) => {
 
   return (
     <Page className={classNames('', {}, [className])}>
-      <ProfilePageHeader />
-      {validateErrors.length > 0 &&
-        validateErrors.map((err) => (
-          <Text
-            key={err}
-            theme={TextTheme.ERROR}
-            text={validateErrorTranslates[err]}
-          />
-        ))}
-      <ProfileCard
-        profile={formData}
-        isLoading={isLoading}
-        error={error}
-        readonly={readonly}
-        onChangeFirstname={onChangeFirstname}
-        onChangeLastname={onChangeLastname}
-        onChangeAge={onChangeAge}
-        onChangeCity={onChangeCity}
-        onChangeUsername={onChangeUsername}
-        onChangeAvatar={onChangeAvatar}
-        currencySelect={
-          <CurrencySelect
-            value={formData?.currency}
-            onChange={onChangeCurrency}
-            readonly={readonly}
-          />
-        }
-        countrySelect={
-          <CountrySelect
-            value={formData?.country}
-            onChange={onChangeCountry}
-            readonly={readonly}
-          />
-        }
-      />
+      <VStack gap={'16'} max>
+        <ProfilePageHeader />
+        {validateErrors.length > 0 &&
+          validateErrors.map((err) => (
+            <Text
+              key={err}
+              theme={TextTheme.ERROR}
+              text={validateErrorTranslates[err]}
+            />
+          ))}
+        <ProfileCard
+          profile={formData}
+          isLoading={isLoading}
+          error={error}
+          readonly={readonly}
+          onChangeFirstname={onChangeFirstname}
+          onChangeLastname={onChangeLastname}
+          onChangeAge={onChangeAge}
+          onChangeCity={onChangeCity}
+          onChangeUsername={onChangeUsername}
+          onChangeAvatar={onChangeAvatar}
+          currencySelect={
+            <CurrencySelect
+              value={formData?.currency}
+              onChange={onChangeCurrency}
+              readonly={readonly}
+            />
+          }
+          countrySelect={
+            <CountrySelect
+              value={formData?.country}
+              onChange={onChangeCountry}
+              readonly={readonly}
+            />
+          }
+        />
+      </VStack>
     </Page>
   )
 }

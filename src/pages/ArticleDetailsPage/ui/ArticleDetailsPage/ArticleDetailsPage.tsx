@@ -19,6 +19,7 @@ import { ArticleDetails, ArticleList } from '@/entities/article'
 import { CommentList } from '@/entities/comment'
 import { AddCommentForm } from '@/features/addCommentForm'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { VStack } from '@/shared/ui/stack'
 import { TextSize } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
 import { Page } from '@/widgets/page'
@@ -66,22 +67,24 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 
   return (
     <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-      <ArticleDetailsPageHeader />
-      <ArticleDetails id={id} />
-      <Text
-        size={TextSize.L}
-        className={cls.commentTitle}
-        title={t('Рекомендуем')}
-      />
-      <ArticleList
-        articles={recommendations}
-        isLoading={recommendationsIsLoading}
-        className={cls.recommendations}
-        target={'_blank'}
-      />
-      <Text className={cls.commentTitle} title={t('Комментарии')} />
-      <AddCommentForm onSendComment={onSendComment} />
-      <CommentList isLoading={commentsIsLoading} comments={comments} />
+      <VStack gap={'16'} max>
+        <ArticleDetailsPageHeader />
+        <ArticleDetails id={id} />
+        <Text
+          size={TextSize.L}
+          className={cls.commentTitle}
+          title={t('Рекомендуем')}
+        />
+        <ArticleList
+          articles={recommendations}
+          isLoading={recommendationsIsLoading}
+          className={cls.recommendations}
+          target={'_blank'}
+        />
+        <Text className={cls.commentTitle} title={t('Комментарии')} />
+        <AddCommentForm onSendComment={onSendComment} />
+        <CommentList isLoading={commentsIsLoading} comments={comments} />
+      </VStack>
     </Page>
   )
 }

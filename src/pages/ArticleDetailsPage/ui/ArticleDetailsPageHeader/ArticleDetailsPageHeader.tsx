@@ -2,13 +2,13 @@ import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { generatePath, useNavigate } from 'react-router'
 import { getCanEditArticle } from '../../model/selectors/article'
-import cls from './ArticleDetailsPageHeader.module.scss'
 import { useAppSelector } from '@/app/store'
 import { getArticleDetailsData } from '@/entities/article'
 import { routesPaths } from '@/shared/config/routes'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { buttonTheme } from '@/shared/ui'
 import { Button } from '@/shared/ui/button/Button'
+import { HStack } from '@/shared/ui/stack'
 
 interface ArticleDetailsPageHeaderProps {
   className?: string
@@ -31,22 +31,20 @@ export const ArticleDetailsPageHeader = memo(
     }, [article?.id, navigate])
 
     return (
-      <div
-        className={classNames(cls.ArticleDetailsPageHeader, {}, [className])}
+      <HStack
+        max
+        justify={'between'}
+        className={classNames('', {}, [className])}
       >
         <Button theme={buttonTheme.outline} onClick={onBackToList}>
           {t('Назад к списку')}
         </Button>
         {canEdit && (
-          <Button
-            className={cls.editBtn}
-            theme={buttonTheme.outline}
-            onClick={onEditArticle}
-          >
+          <Button theme={buttonTheme.outline} onClick={onEditArticle}>
             {t('Редактировать')}
           </Button>
         )}
-      </div>
+      </HStack>
     )
   },
 )

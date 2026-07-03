@@ -5,12 +5,13 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { AppLink } from '@/shared/ui'
 import { Avatar } from '@/shared/ui/avatar/Avatar'
 import { Skeleton } from '@/shared/ui/skeleton/Skeleton'
+import { VStack } from '@/shared/ui/stack'
 import { Text } from '@/shared/ui/text/Text'
 import type { Comment } from '../../model/types/comment'
 
 interface CommentCardProps {
   className?: string
-  comment: Comment
+  comment?: Comment
   isLoading?: boolean
 }
 
@@ -30,18 +31,22 @@ export const CommentCard = memo((props: CommentCardProps) => {
   }
 
   return (
-    <div className={classNames(cls.CommentCard, {}, [className])}>
+    <VStack
+      max
+      gap={'8'}
+      className={classNames(cls.CommentCard, {}, [className])}
+    >
       <AppLink
-        to={`${routesPaths.profile.path}${comment.user.id}`}
+        to={`${routesPaths.profile.path}${comment?.user.id}`}
         className={cls.header}
       >
-        {comment.user.avatar ? (
+        {comment?.user.avatar ? (
           <Avatar size={30} src={comment.user.avatar} />
         ) : null}
-        <Text className={cls.username} title={comment.user.username} />
+        <Text className={cls.username} title={comment?.user.username} />
       </AppLink>
-      <Text className={cls.text} text={comment.text} />
-    </div>
+      <Text className={cls.text} text={comment?.text} />
+    </VStack>
   )
 })
 

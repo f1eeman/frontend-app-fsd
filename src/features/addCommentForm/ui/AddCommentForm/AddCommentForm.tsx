@@ -9,6 +9,7 @@ import cls from './AddCommentForm.module.scss'
 import { useAppDispatch, useAppSelector } from '@/app/store'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Input, Button, buttonTheme } from '@/shared/ui'
+import { HStack } from '@/shared/ui/stack'
 
 export interface AddCommentFormProps {
   className?: string
@@ -35,7 +36,11 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
   }, [onCommentTextChange, onSendComment, text])
 
   return (
-    <div className={classNames(cls.AddCommentForm, {}, [className])}>
+    <HStack
+      justify={'between'}
+      max
+      className={classNames(cls.AddCommentForm, {}, [className])}
+    >
       <Input
         className={cls.input}
         placeholder={t('Введите текст комментария')}
@@ -45,7 +50,7 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
       <Button theme={buttonTheme.outline} onClick={onSendHandler}>
         {t('Отправить')}
       </Button>
-    </div>
+    </HStack>
   )
 })
 

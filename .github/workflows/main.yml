@@ -5,6 +5,11 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  # Нужен после «update screen-test snapshots»: тот workflow пушит эталоны от
+  # имени бота через GITHUB_TOKEN, а такой push GitHub намеренно не считает
+  # событием push (защита от рекурсии). Без ручного запуска пришлось бы делать
+  # пустой коммит, чтобы прогнать CI на обновлённых эталонах.
+  workflow_dispatch:
 
 jobs:
   pipeline:

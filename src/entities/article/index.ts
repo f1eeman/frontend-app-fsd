@@ -1,6 +1,6 @@
 export { ArticleDetails } from './ui/ArticleDetails/ArticleDetails'
 export {
-  Article,
+  type Article,
   ArticleSortField,
   ArticleType,
   ArticleView,

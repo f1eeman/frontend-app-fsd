@@ -1,22 +1,35 @@
 .item {
-  margin-top: 10px;
   display: flex;
   align-items: center;
 }
 
 .link {
   margin-left: 10px;
+  white-space: nowrap;
   opacity: 1;
+
+  /* При разворачивании: текст проявляется, когда сайдбар уже расширяется */
+  transition: opacity 0.15s 0.15s;
 }
 
 .icon {
+  flex-shrink: 0;
+  width: var(--sidebar-icon-size);
+  height: var(--sidebar-icon-size);
   fill: var(--inverted-primary-color);
 }
 
 .collapsed {
   .link {
-    opacity: 0;
-    transition: 0.2s opacity;
     width: 0;
+    margin-left: 0;
+    overflow: hidden;
+    opacity: 0;
+
+    /* При сворачивании: сначала текст гаснет, потом схлопывается его место */
+    transition:
+      opacity 0.15s,
+      width 0s 0.15s,
+      margin-left 0s 0.15s;
   }
 }

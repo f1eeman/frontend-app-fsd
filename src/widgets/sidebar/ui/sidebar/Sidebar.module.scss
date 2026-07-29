@@ -14,8 +14,6 @@
 .content {
   height: 100%;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
 }
 
 .switchers {
@@ -40,8 +38,6 @@
 .items {
   margin-top: 20px;
   margin-left: 30px;
-  display: flex;
-  flex-direction: column;
 }
 
 .collapsed {

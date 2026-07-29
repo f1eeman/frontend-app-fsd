@@ -25,7 +25,10 @@
   "exclude": ["node_modules", "config/storybook", "build", "dist"],
   "ts-node": {
     "compilerOptions": {
-      "module": "CommonJS"
+      "module": "CommonJS",
+      // ts-node транспилирует webpack.config.ts в CommonJS, а под ним
+      // verbatimModuleSyntax запрещает ESM-синтаксис (TS1295)
+      "verbatimModuleSyntax": false
     }
   }
 }

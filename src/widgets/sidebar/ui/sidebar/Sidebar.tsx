@@ -28,7 +28,7 @@ export const Sidebar: FC = ({ className = '' }: SidebarProps) => {
       ])}
     >
       <VStack className={cls.content}>
-        <VStack role='navigation' gap='8' className={cls.items}>
+        <VStack role='navigation' gap='16' className={cls.items}>
           {sidebarItemList.map((item) => (
             <SidebarItem item={item} collapsed={collapsed} key={item.path} />
           ))}

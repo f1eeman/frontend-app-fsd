@@ -11,6 +11,48 @@ import type { Article } from '../../model/types/article'
 const meta = {
   title: 'entities/Article/ArticleList',
   component: ArticleList,
+  tags: ['autodocs'],
+  parameters: {
+    controls: { expanded: true },
+  },
+  argTypes: {
+    articles: {
+      control: 'object',
+      description: 'Список статей для отрисовки',
+      table: { type: { summary: 'Article[]' } },
+    },
+    view: {
+      control: 'inline-radio',
+      options: Object.values(ArticleView),
+      description: 'Режим отображения: плитка (SMALL) или лента (BIG)',
+      table: {
+        type: { summary: 'ArticleView' },
+        defaultValue: { summary: ArticleView.SMALL },
+      },
+    },
+    isLoading: {
+      control: 'boolean',
+      description: 'Показать скелетоны в конце списка',
+      table: { type: { summary: 'boolean' } },
+    },
+    target: {
+      control: 'inline-radio',
+      options: ['_self', '_blank'],
+      description: 'Атрибут target ссылок на статью',
+      table: { type: { summary: 'HTMLAttributeAnchorTarget' } },
+    },
+    className: {
+      control: 'text',
+      description: 'Внешний класс для композиции стилей',
+      table: { type: { summary: 'string' } },
+    },
+    customScrollParent: {
+      control: false,
+      description:
+        'Скролл-контейнер для виртуализации. Без него список рендерится обычным способом',
+      table: { type: { summary: 'HTMLElement' } },
+    },
+  },
 } satisfies Meta<typeof ArticleList>
 
 export default meta
@@ -67,6 +109,19 @@ const article: Article = {
       code: "const path = require('path');\n\nconst server = jsonServer.create();\n\nconst router = jsonServer.router(path.resolve(__dirname, 'db.json'));\n\nserver.use(jsonServer.defaults({}));\nserver.use(jsonServer.bodyParser);",
     },
   ],
+}
+
+/** Полностью настраиваемая песочница — крути любой проп в панели Controls */
+export const Playground: Story = {
+  args: {
+    articles: new Array(9).fill(0).map((_, index) => ({
+      ...article,
+      id: String(index),
+    })),
+    isLoading: false,
+    view: ArticleView.SMALL,
+    target: '_self',
+  },
 }
 
 export const LoadingBig: Story = {

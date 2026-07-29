@@ -6,6 +6,23 @@ import type { Meta, StoryObj } from '@storybook/react-webpack5'
 const meta = {
   title: 'features/ArticleForm',
   component: ArticleForm,
+  tags: ['autodocs'],
+  parameters: {
+    controls: { expanded: true },
+  },
+  argTypes: {
+    articleId: {
+      control: 'text',
+      description:
+        'id редактируемой статьи. Без него форма работает в режиме создания',
+      table: { type: { summary: 'string' } },
+    },
+    className: {
+      control: 'text',
+      description: 'Внешний класс для композиции стилей',
+      table: { type: { summary: 'string' } },
+    },
+  },
 } satisfies Meta<typeof ArticleForm>
 
 export default meta

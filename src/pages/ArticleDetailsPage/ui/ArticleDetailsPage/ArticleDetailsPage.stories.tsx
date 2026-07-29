@@ -13,6 +13,17 @@ const ARTICLE_ROUTE_ENTRY = '/articles/1/'
 const meta = {
   title: 'pages/ArticleDetailsPage',
   component: ArticleDetailsPage,
+  tags: ['autodocs'],
+  parameters: {
+    controls: { expanded: true },
+  },
+  argTypes: {
+    className: {
+      control: 'text',
+      description: 'Внешний класс для композиции стилей',
+      table: { type: { summary: 'string' } },
+    },
+  },
 } satisfies Meta<typeof ArticleDetailsPage>
 
 export default meta

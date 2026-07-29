@@ -6,6 +6,17 @@ import type { Meta, StoryObj } from '@storybook/react-webpack5'
 const meta = {
   title: 'features/ArticleForm/ArticleBlockList',
   component: ArticleBlockList,
+  tags: ['autodocs'],
+  parameters: {
+    controls: { expanded: true },
+  },
+  argTypes: {
+    className: {
+      control: 'text',
+      description: 'Внешний класс для композиции стилей',
+      table: { type: { summary: 'string' } },
+    },
+  },
 } satisfies Meta<typeof ArticleBlockList>
 
 export default meta

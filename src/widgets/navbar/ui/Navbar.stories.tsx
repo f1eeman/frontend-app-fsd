@@ -5,8 +5,16 @@ import type { Meta, StoryObj } from '@storybook/react-webpack5'
 const meta = {
   title: 'widget/Navbar',
   component: NavbarComponent,
+  tags: ['autodocs'],
+  parameters: {
+    controls: { expanded: true },
+  },
   argTypes: {
-    onClick: () => {},
+    className: {
+      control: 'text',
+      description: 'Внешний класс для композиции стилей',
+      table: { type: { summary: 'string' } },
+    },
   },
 } satisfies Meta<typeof NavbarComponent>
 

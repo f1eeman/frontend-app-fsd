@@ -8,8 +8,25 @@ import type { Article } from '../../model/types/article'
 const meta = {
   title: 'entities/ArticleDetails',
   component: ArticleDetails,
+  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
+    controls: { expanded: true },
+  },
+  argTypes: {
+    id: {
+      control: 'text',
+      description: 'id статьи, по нему грузятся данные из стора',
+      table: { type: { summary: 'string' } },
+    },
+    className: {
+      control: 'text',
+      description: 'Внешний класс для композиции стилей',
+      table: { type: { summary: 'string' } },
+    },
+  },
+  args: {
+    id: '1',
   },
 } satisfies Meta<typeof ArticleDetails>
 

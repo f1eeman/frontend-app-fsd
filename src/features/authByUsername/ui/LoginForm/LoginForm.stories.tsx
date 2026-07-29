@@ -1,3 +1,4 @@
+import { fn } from 'storybook/test'
 import LoginForm from './LoginForm'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
@@ -5,6 +6,25 @@ import type { Meta, StoryObj } from '@storybook/react-webpack5'
 const meta = {
   title: 'shared/LoginForm',
   component: LoginForm,
+  tags: ['autodocs'],
+  parameters: {
+    controls: { expanded: true },
+  },
+  argTypes: {
+    className: {
+      control: 'text',
+      description: 'Внешний класс для композиции стилей',
+      table: { type: { summary: 'string' } },
+    },
+    onSuccess: {
+      control: false,
+      description: 'Вызывается после успешного логина',
+      table: { type: { summary: '() => void' } },
+    },
+  },
+  args: {
+    onSuccess: fn(),
+  },
 } satisfies Meta<typeof LoginForm>
 
 export default meta
@@ -12,9 +32,6 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const PrimaryLoginForm: Story = {
-  args: {
-    onSuccess: () => {},
-  },
   decorators: [
     StoreDecorator({
       login: { username: '123', password: 'asd', isLoading: false },
@@ -23,7 +40,6 @@ export const PrimaryLoginForm: Story = {
 }
 
 export const LoadingLoginForm: Story = {
-  args: PrimaryLoginForm.args,
   decorators: [
     StoreDecorator({
       login: {
@@ -36,7 +52,6 @@ export const LoadingLoginForm: Story = {
 }
 
 export const WithErrorLoginForm: Story = {
-  args: PrimaryLoginForm.args,
   decorators: [
     StoreDecorator({
       login: {

@@ -1,4 +1,3 @@
-import { fn } from 'storybook/test'
 import { Sidebar as SidebarComponent } from './Sidebar'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
@@ -6,7 +5,17 @@ import type { Meta, StoryObj } from '@storybook/react-webpack5'
 const meta = {
   title: 'widget/Sidebar',
   component: SidebarComponent,
-  args: { onClick: fn() },
+  tags: ['autodocs'],
+  parameters: {
+    controls: { expanded: true },
+  },
+  argTypes: {
+    className: {
+      control: 'text',
+      description: 'Внешний класс для композиции стилей',
+      table: { type: { summary: 'string' } },
+    },
+  },
 } satisfies Meta<typeof SidebarComponent>
 
 export default meta

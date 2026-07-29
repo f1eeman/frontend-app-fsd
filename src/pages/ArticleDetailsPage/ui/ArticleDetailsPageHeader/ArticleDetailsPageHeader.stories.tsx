@@ -6,6 +6,17 @@ import type { Decorator, Meta, StoryObj } from '@storybook/react-webpack5'
 const meta = {
   title: 'pages/ArticleDetailsPage/ArticleDetailsPageHeader',
   component: ArticleDetailsPageHeader,
+  tags: ['autodocs'],
+  parameters: {
+    controls: { expanded: true },
+  },
+  argTypes: {
+    className: {
+      control: 'text',
+      description: 'Внешний класс для композиции стилей',
+      table: { type: { summary: 'string' } },
+    },
+  },
 } satisfies Meta<typeof ArticleDetailsPageHeader>
 
 export default meta

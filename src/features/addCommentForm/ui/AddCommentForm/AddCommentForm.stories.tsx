@@ -1,3 +1,4 @@
+import { fn } from 'storybook/test'
 import AddCommentForm from './AddCommentForm'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
@@ -5,8 +6,24 @@ import type { Meta, StoryObj } from '@storybook/react-webpack5'
 const meta = {
   title: 'features/AddCommentForm',
   component: AddCommentForm,
+  tags: ['autodocs'],
+  parameters: {
+    controls: { expanded: true },
+  },
+  argTypes: {
+    className: {
+      control: 'text',
+      description: 'Внешний класс для композиции стилей',
+      table: { type: { summary: 'string' } },
+    },
+    onSendComment: {
+      control: false,
+      description: 'Вызывается при отправке комментария',
+      table: { type: { summary: '(text: string) => void' } },
+    },
+  },
   args: {
-    onSendComment: () => {},
+    onSendComment: fn(),
   },
   decorators: [
     StoreDecorator({
@@ -17,6 +34,9 @@ const meta = {
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+/** Текст поля живёт в сторе — меняется через StoreDecorator, не через Controls */
+export const Playground: Story = {}
 
 export const Normal: Story = {}
 

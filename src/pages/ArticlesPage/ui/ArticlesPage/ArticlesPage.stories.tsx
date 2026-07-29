@@ -24,6 +24,17 @@ const articles = new Array(9).fill(0).map((_, index) => ({
 const meta = {
   title: 'pages/ArticlesPage',
   component: ArticlesPage,
+  tags: ['autodocs'],
+  parameters: {
+    controls: { expanded: true },
+  },
+  argTypes: {
+    className: {
+      control: 'text',
+      description: 'Внешний класс для композиции стилей',
+      table: { type: { summary: 'string' } },
+    },
+  },
   decorators: [
     StoreDecorator({
       articlesPage: {

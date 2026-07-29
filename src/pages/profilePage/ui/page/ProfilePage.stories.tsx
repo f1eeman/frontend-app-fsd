@@ -6,10 +6,18 @@ import type { Meta, StoryObj } from '@storybook/react-webpack5'
 const meta = {
   title: 'pages/ProfilePage',
   component: ProfilePageComponent,
-  argTypes: {
-    backgroundColor: { control: 'color' },
+  tags: ['autodocs'],
+  parameters: {
+    controls: { expanded: true },
   },
-} as Meta<typeof ProfilePageComponent>
+  argTypes: {
+    className: {
+      control: 'text',
+      description: 'Внешний класс для композиции стилей',
+      table: { type: { summary: 'string' } },
+    },
+  },
+} satisfies Meta<typeof ProfilePageComponent>
 
 export default meta
 

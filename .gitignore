@@ -38,6 +38,7 @@ dist-ssr
 
 *storybook.log
 storybook-static
+sb-static
 
 # Playwright MCP debug artifacts
 .playwright-mcp

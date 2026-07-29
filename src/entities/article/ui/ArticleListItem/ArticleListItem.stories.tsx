@@ -11,6 +11,34 @@ import type { Article } from '../../model/types/article'
 const meta = {
   title: 'entities/Article/ArticleListItem',
   component: ArticleListItem,
+  tags: ['autodocs'],
+  parameters: {
+    controls: { expanded: true },
+  },
+  argTypes: {
+    article: {
+      control: 'object',
+      description: 'Данные статьи',
+      table: { type: { summary: 'Article' } },
+    },
+    view: {
+      control: 'inline-radio',
+      options: Object.values(ArticleView),
+      description: 'Режим отображения: карточка (SMALL) или лента (BIG)',
+      table: { type: { summary: 'ArticleView' } },
+    },
+    target: {
+      control: 'inline-radio',
+      options: ['_self', '_blank'],
+      description: 'Атрибут target ссылки на статью',
+      table: { type: { summary: 'HTMLAttributeAnchorTarget' } },
+    },
+    className: {
+      control: 'text',
+      description: 'Внешний класс для композиции стилей',
+      table: { type: { summary: 'string' } },
+    },
+  },
 } satisfies Meta<typeof ArticleListItem>
 
 export default meta
@@ -67,6 +95,15 @@ const article: Article = {
       code: "const path = require('path');\n\nconst server = jsonServer.create();\n\nconst router = jsonServer.router(path.resolve(__dirname, 'db.json'));\n\nserver.use(jsonServer.defaults({}));\nserver.use(jsonServer.bodyParser);",
     },
   ],
+}
+
+/** Полностью настраиваемая песочница — крути любой проп в панели Controls */
+export const Playground: Story = {
+  args: {
+    view: ArticleView.SMALL,
+    article,
+    target: '_self',
+  },
 }
 
 export const Big: Story = {

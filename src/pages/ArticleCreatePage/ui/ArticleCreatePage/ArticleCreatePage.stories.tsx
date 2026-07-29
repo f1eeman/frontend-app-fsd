@@ -5,6 +5,17 @@ import type { Meta, StoryObj } from '@storybook/react-webpack5'
 const meta = {
   title: 'pages/ArticleCreatePage',
   component: ArticleCreatePage,
+  tags: ['autodocs'],
+  parameters: {
+    controls: { expanded: true },
+  },
+  argTypes: {
+    className: {
+      control: 'text',
+      description: 'Внешний класс для композиции стилей',
+      table: { type: { summary: 'string' } },
+    },
+  },
 } satisfies Meta<typeof ArticleCreatePage>
 
 export default meta

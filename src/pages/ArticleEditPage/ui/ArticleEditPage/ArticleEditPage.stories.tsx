@@ -10,6 +10,17 @@ const EDIT_ROUTE_ENTRY = '/articles/1/edit'
 const meta = {
   title: 'pages/ArticleEditPage',
   component: ArticleEditPage,
+  tags: ['autodocs'],
+  parameters: {
+    controls: { expanded: true },
+  },
+  argTypes: {
+    className: {
+      control: 'text',
+      description: 'Внешний класс для композиции стилей',
+      table: { type: { summary: 'string' } },
+    },
+  },
 } satisfies Meta<typeof ArticleEditPage>
 
 export default meta

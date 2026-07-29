@@ -74,8 +74,24 @@ const config: TestRunnerConfig = {
       customDiffDir: diffsDirPath,
       storeReceivedOnFailure: true,
       customReceivedDir: path.resolve(screenTestsDirPath, 'current'),
-      failureThreshold: 0.02,
+      /**
+       * failureThresholdType: 'percent' задаёт долю ОТЛИЧАЮЩИХСЯ пикселей кадра.
+       * 0.02 — это 2%, а не 0.02%: при кадре 1248x720 почти целиком пустом
+       * такой порог пропускал даже сдвиг всех пунктов меню в сайдбаре.
+       * 0.001 (0.1%, ~900 пикселей) ловит подобные сдвиги.
+       */
+      failureThreshold: 0.001,
       failureThresholdType: 'percent',
+
+      /**
+       * Порог различия ОДНОГО пикселя (pixelmatch). Дефолтные 0.01 слишком
+       * строги: сглаживание шрифтов даёт ложные срабатывания. includeAA: false
+       * дополнительно исключает пиксели, отличающиеся только антиалиасингом.
+       */
+      customDiffConfig: {
+        threshold: 0.1,
+        includeAA: false,
+      },
     })
   },
 }

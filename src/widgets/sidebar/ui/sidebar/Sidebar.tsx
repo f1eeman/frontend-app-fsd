@@ -7,6 +7,7 @@ import { LangSwitcher } from '@/features/langSwitcher'
 import { ThemeSwitcher } from '@/features/themeSwitcher'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button } from '@/shared/ui'
+import { VStack } from '@/shared/ui/stack'
 
 interface SidebarProps {
   className?: string
@@ -20,23 +21,23 @@ export const Sidebar: FC = ({ className = '' }: SidebarProps) => {
   }, [])
 
   return (
-    <div
+    <aside
       data-testid='sidebar'
       className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [
         className,
       ])}
     >
-      <div className={cls.content}>
-        <div className={cls.items}>
+      <VStack className={cls.content}>
+        <VStack role='navigation' gap='8' className={cls.items}>
           {sidebarItemList.map((item) => (
             <SidebarItem item={item} collapsed={collapsed} key={item.path} />
           ))}
-        </div>
+        </VStack>
         <div className={cls.switchers}>
           <ThemeSwitcher />
           <LangSwitcher short />
         </div>
-      </div>
+      </VStack>
       <Button
         square
         theme={'background-inverted'}
@@ -47,6 +48,6 @@ export const Sidebar: FC = ({ className = '' }: SidebarProps) => {
       >
         {`${collapsed ? '>' : '<'}`}
       </Button>
-    </div>
+    </aside>
   )
 }

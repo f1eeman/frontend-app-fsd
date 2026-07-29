@@ -63,14 +63,14 @@ export const Page = memo(
     }, 500)
 
     return (
-      <section
+      <main
         ref={setWrapperRef}
         onScroll={onScroll}
         className={classNames(cls.Page, {}, [className])}
       >
         {children}
         <div ref={triggerRef} />
-      </section>
+      </main>
     )
   }),
 )

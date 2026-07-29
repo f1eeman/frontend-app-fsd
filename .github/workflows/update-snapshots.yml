@@ -14,6 +14,12 @@ permissions:
 jobs:
   regenerate:
     runs-on: ubuntu-latest
+
+    # Тот же образ, что и в main.yml: baseline должен сниматься ровно в том
+    # окружении, в котором его потом проверяет CI.
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+
     strategy:
       matrix:
         node-version: [24.17.0]
@@ -36,14 +42,15 @@ jobs:
       - name: Build Storybook
         run: yarn build:sb
 
-      - name: Install Playwright browsers
-        run: yarn playwright install --with-deps chromium
-
       - name: Regenerate snapshots
         run: yarn test:ui:ok:ci
 
       - name: Commit and push updated snapshots
         run: |
+          # Внутри контейнера workspace принадлежит другому uid, без этого
+          # git отказывается работать с "dubious ownership"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 

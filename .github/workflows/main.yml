@@ -9,6 +9,14 @@ on:
 jobs:
   pipeline:
     runs-on: ubuntu-latest
+
+    # Браузер и шрифты уже внутри образа, поэтому шага `playwright install` нет.
+    # Тег обязан совпадать с версией playwright в yarn.lock: образ фиксирует
+    # сборку Chromium, а от неё зависят эталоны скриншотов. Обновляешь
+    # playwright — обновляй тег и перегенерируй baseline.
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+
     strategy:
       matrix:
         node-version: [24.17.0]
@@ -36,9 +44,6 @@ jobs:
 
       - name: Build Storybook
         run: yarn build:sb
-
-      - name: Install Playwright browsers
-        run: yarn playwright install --with-deps chromium
 
       - name: Screenshot testing
         run: yarn test:ui:ci

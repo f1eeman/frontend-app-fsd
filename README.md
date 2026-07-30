@@ -57,6 +57,15 @@
 - `yarn test:ui:ok:ci`
   - Версия `test:ui:ok` для CI (поднимает http-server для `sb-static`). Используется внутри GitHub Actions workflow для обновления эталонов.
 
+- `yarn test:ui:docker` ← **этим проверяй локально**
+  - Прогоняет скриншотные тесты в Docker-контейнере, идентичном CI (тот же образ `mcr.microsoft.com/playwright`, тот же Node из `.nvmrc`).
+  - Результат совпадает с тем, что получит CI, поэтому локальный красный/зелёный здесь — валидный критерий (в отличие от `yarn test:ui` под Windows/macOS).
+  - Storybook собирается внутри контейнера, руками `yarn sb` / `yarn build:sb` запускать не нужно.
+
+- `yarn test:ui:ok:docker` ← **этим обновляй эталоны**
+  - То же, но с `--updateSnapshot`: перегенерирует `screen-tests/snapshots` в CI-окружении.
+  - Эталоны появляются прямо в рабочем дереве — коммить их вместе с изменением компонента, и CI будет зелёным с первого push.
+
 - `yarn test:ui:report`
   - Генерирует HTML-отчёт по упавшим визуальным тестам.
   - Полезно, когда нужно быстро посмотреть ожидаемое/актуальное/разницу по всем фейлам.
@@ -147,13 +156,13 @@
 #### Локальная разработка (Windows/macOS)
 
 1. Запусти Storybook (`yarn sb`) и убедись, что страницы/компоненты выглядят корректно.
-2. Запусти `yarn test:ui`.
+2. Запусти `yarn test:ui:docker` — прогон в CI-окружении.
 3. Если есть падения:
    - смотри `screen-tests/diffs/*-diff.png`
    - (опционально) генерируй отчёт `yarn test:ui:report` и открывай `screen-tests/report.html`
-4. Если изменения ожидаемые и должны стать новым эталоном — **не делай `yarn test:ui:ok` локально под Windows/macOS**. Запушь ветку и регенерируй baseline через CI (см. ниже).
+4. Если изменения ожидаемые и должны стать новым эталоном — `yarn test:ui:ok:docker`, затем коммить обновлённые `screen-tests/snapshots` вместе с изменением компонента.
 
-> Локальный `yarn test:ui:ok` оставлен на случай, если ты разрабатываешь под Linux с тем же шрифтовым стэком, что и CI runner. На Windows/macOS получишь пиксельную дельту с CI из-за разных растеризаторов шрифтов (DirectWrite/CoreText vs FreeType).
+> **Не запускай `yarn test:ui` / `yarn test:ui:ok` напрямую под Windows/macOS для оценки результата.** DirectWrite и CoreText растеризуют шрифты иначе, чем FreeType в Linux: дельта с CI-эталонами доходит до 4.6% на текстоёмких стори, и никакой разумный порог её не покроет. Красный результат там ничего не доказывает, а обновлённые таким образом эталоны сразу же уронят CI. Эти скрипты остались как низкоуровневые (их дёргает docker-обвязка) и для тех, кто разрабатывает под Linux с тем же шрифтовым стэком.
 
 ### Регенерация baseline для CI
 
@@ -161,34 +170,54 @@
 
 Точнее — не просто «на Linux», а в **том же контейнере**. Оба workflow выполняются в `mcr.microsoft.com/playwright:v1.58.2-noble`: браузер и шрифты уже внутри образа, поэтому шага `playwright install --with-deps` в них нет (он к тому же воспроизводимо подвисал на runner-е после скачивания Chromium — молча, без таймаута, до отмены прогона вручную).
 
-Тег образа обязан совпадать с версией `playwright` в `yarn.lock`. Образ фиксирует сборку Chromium, а от неё напрямую зависят пиксели эталонов. Поэтому при обновлении `playwright`: подними тег в обоих workflow **и** перегенерируй baseline, иначе CI посыпется на дельтах, не связанных с кодом.
+Тег образа обязан совпадать с версией `playwright` в `yarn.lock`. Образ фиксирует сборку Chromium, а от неё напрямую зависят пиксели эталонов. Поэтому при обновлении `playwright`: подними тег в обоих workflow **и** перегенерируй baseline, иначе CI посыпется на дельтах, не связанных с кодом. За этим следит `scripts/assert-playwright-image.mjs`: он сверяет все ссылки на образ в `.github/workflows/*.yml` с версией playwright из `node_modules` и валит пайплайн до скриншотного шага, если они разъехались.
 
-Для этого есть отдельный workflow: `.github/workflows/update-snapshots.yml`.
+Отсюда два пути регенерации.
 
-**Как запустить:**
+#### Основной путь: локально в Docker
+
+```
+yarn test:ui:ok:docker
+```
+
+Обёртка `scripts/screenshots-docker.mjs` собирает `docker/screenshots.Dockerfile` (тот же playwright-образ + Node из `.nvmrc`) и внутри контейнера гоняет `yarn install --frozen-lockfile && yarn build:sb && yarn test:ui:ok:ci`. Репозиторий подключён bind-mount'ом, поэтому обновлённые эталоны появляются прямо в рабочем дереве — смотри `git status`, проверяй глазами и коммить их вместе с изменением компонента. CI на следующем push проходит скриншотный шаг с первого раза, ничего запускать руками не нужно.
+
+Детали, о которых стоит знать:
+
+- `node_modules` живёт в отдельном Docker volume, а не берётся с хоста: в хостовом лежат windows-бинарники (`@swc/core`, esbuild), в Linux они не запустятся. Volume переиспользуется между прогонами.
+- Первый запуск качает ~2.2 ГБ базового образа и ставит зависимости в volume — это единоразово, дальше прогон занимает пару минут.
+- Для быстрых повторов есть флаги: `node scripts/screenshots-docker.mjs --update --skip-install --skip-build`.
+- Внутри выставлен `CI=true`, как в Actions: при `ci: true` jest не пишет новые снапшоты молча, а падает — поведение локального прогона совпадает с CI, включая новые стори без baseline.
+
+#### Fallback: workflow в Actions
+
+Нужен, если Docker недоступен (нет места, чужая машина, PR от другого человека): `.github/workflows/update-snapshots.yml`.
 
 1. Запушь ветку с изменениями.
 2. GitHub → **Actions** → **update screen-test snapshots** → **Run workflow** → выбери ветку → **Run workflow**.
 3. Workflow:
    - собирает Storybook (`yarn build:sb`)
-   - запускает `yarn test:ui:ok:ci` на Ubuntu
+   - запускает `yarn test:ui:ok:ci` в том же контейнере
    - если есть дельты в `screen-tests/snapshots/` — коммитит их обратно в ту же ветку от имени `github-actions[bot]`
-4. Локально подтяни изменения: `git pull`. Теперь baseline'ы соответствуют тому, что увидит CI на следующем push'е.
+   - и **сам запускает `main.yml`** на обновлённых эталонах: push от `GITHUB_TOKEN` не считается событием `push` (защита от рекурсии), но `workflow_dispatch` — документированное исключение, поэтому отдельный job `dispatch` дёргает пайплайн через `gh workflow run`. Второй ручной запуск больше не нужен.
+4. Локально подтяни изменения: `git pull`.
 
 **Что нужно настроить один раз** (если ещё не сделано):
 
-GitHub репозиторий → **Settings** → **Actions** → **General** → **Workflow permissions** → **"Read and write permissions"**. Без этого workflow не сможет запушить обновлённый baseline.
+GitHub репозиторий → **Settings** → **Actions** → **General** → **Workflow permissions** → **"Read and write permissions"**. Без этого workflow не сможет ни запушить обновлённый baseline, ни запустить `main.yml`.
 
 ### CI pipeline
 
 `.github/workflows/main.yml`:
 
-- Запускается на каждый push в `main` и каждый PR в `main`.
-- Шаги: lint TS, lint SCSS, unit tests, build Storybook, screenshot tests (`yarn test:ui:ci`), build prod.
+- Запускается на каждый push в `main`, каждый PR в `main` и по `workflow_dispatch` (его дёргает workflow регенерации эталонов).
+- Шаги: lint TS, lint SCSS, сверка тега playwright-образа с lockfile, unit tests, build Storybook, screenshot tests (`yarn test:ui:ci`), build prod.
 - При падении скриншот-тестов загружает `screen-tests/diffs` и `screen-tests/current` как артефакт `screenshot-diffs` (7 дней).
+
+CI здесь — гейт: он проверяет, что закоммиченные эталоны соответствуют закоммиченному коду. Он ловит то, что локальный прогон в принципе не может: правку компонента без запуска скриншотов, регрессию от обновления зависимости в `yarn.lock`, результат мержа двух зелёных по отдельности веток.
 
 Если CI падает на скриншотах:
 
-1. Скачай артефакт `screenshot-diffs` со страницы failed run на GitHub Actions.
-2. Открой `*-diff.png` и сравни с `*-received.png` — если изменение ожидаемое, запусти workflow «update screen-test snapshots».
+1. Локально прогони `yarn test:ui:docker` — получишь тот же результат и diff'ы под рукой (либо скачай артефакт `screenshot-diffs` со страницы failed run).
+2. Открой `*-diff.png` и сравни с `*-received.png` — если изменение ожидаемое, `yarn test:ui:ok:docker` и коммить эталоны (без Docker — workflow «update screen-test snapshots»).
 3. Если изменение **не** ожидаемое — это регрессия, чини код.

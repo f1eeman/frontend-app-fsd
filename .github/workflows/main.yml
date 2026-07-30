@@ -5,10 +5,11 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-  # Нужен после «update screen-test snapshots»: тот workflow пушит эталоны от
+  # Нужен для «update screen-test snapshots»: тот workflow пушит эталоны от
   # имени бота через GITHUB_TOKEN, а такой push GitHub намеренно не считает
-  # событием push (защита от рекурсии). Без ручного запуска пришлось бы делать
-  # пустой коммит, чтобы прогнать CI на обновлённых эталонах.
+  # событием push (защита от рекурсии). workflow_dispatch и repository_dispatch —
+  # документированные исключения из этой защиты, поэтому по завершении он сам
+  # дёргает этот пайплайн. Руками запускать больше не нужно.
   workflow_dispatch:
 
 jobs:
@@ -37,6 +38,12 @@ jobs:
 
       - name: Install modules
         run: yarn install --frozen-lockfile
+
+      # Сверяет тег образа в обоих workflow с версией playwright из
+      # node_modules. Разъехались — падаем сразу с внятным сообщением, а не
+      # через полтора шага на пиксельных дельтах, не связанных с кодом.
+      - name: Assert playwright image matches lockfile
+        run: node scripts/assert-playwright-image.mjs
 
       - name: Linting TypeScript
         run: yarn lint:ts

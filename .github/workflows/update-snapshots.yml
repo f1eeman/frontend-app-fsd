@@ -10,10 +10,15 @@ on:
 
 permissions:
   contents: write
+  # Нужно, чтобы по завершении дёрнуть main.yml через workflow_dispatch.
+  actions: write
 
 jobs:
   regenerate:
     runs-on: ubuntu-latest
+
+    outputs:
+      pushed: ${{ steps.commit.outputs.pushed }}
 
     # Тот же образ, что и в main.yml: baseline должен сниматься ровно в том
     # окружении, в котором его потом проверяет CI.
@@ -39,6 +44,11 @@ jobs:
       - name: Install modules
         run: yarn install --frozen-lockfile
 
+      # Особенно важно здесь: эталоны, снятые образом не той версии, отравят
+      # репозиторий, и CI начнёт падать уже на них.
+      - name: Assert playwright image matches lockfile
+        run: node scripts/assert-playwright-image.mjs
+
       - name: Build Storybook
         run: yarn build:sb
 
@@ -46,6 +56,7 @@ jobs:
         run: yarn test:ui:ok:ci
 
       - name: Commit and push updated snapshots
+        id: commit
         run: |
           # Внутри контейнера workspace принадлежит другому uid, без этого
           # git отказывается работать с "dubious ownership"
@@ -54,11 +65,33 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          if git diff --quiet -- screen-tests/snapshots; then
+          # Новые стори дают untracked файлы, изменённые — dirty tracked,
+          # поэтому смотрим и то и другое.
+          git add screen-tests/snapshots
+
+          if git diff --cached --quiet -- screen-tests/snapshots; then
             echo "No snapshot changes to commit"
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          git add screen-tests/snapshots
           git commit -m "chore(snapshots): regenerate screen-test baselines on Linux"
           git push origin HEAD:${{ inputs.branch }}
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+  # Push от имени GITHUB_TOKEN не считается событием push, поэтому пайплайн
+  # запускаем явно. Отдельный job без контейнера: в образе playwright нет gh,
+  # а на голом ubuntu-latest он предустановлен.
+  dispatch:
+    needs: regenerate
+    if: needs.regenerate.outputs.pushed == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run main pipeline on updated baselines
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run main.yml \
+            --repo ${{ github.repository }} \
+            --ref ${{ inputs.branch }}

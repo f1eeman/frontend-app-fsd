@@ -1,0 +1,55 @@
+.ListBox {
+  position: relative;
+}
+
+.label {
+  color: var(--primary-color);
+}
+
+.dropdown {
+  position: relative;
+}
+
+.options {
+  /* В проекте нет глобального сброса списков, поэтому гасим маркеры локально */
+  list-style: none;
+
+  /* Абсолютный бокс иначе сжимается до ширины кнопки и переносит текст пунктов */
+  min-width: max-content;
+  background: var(--listbox-bg);
+  position: absolute;
+  z-index: 10000;
+  border-radius: 12px;
+  box-shadow: 4px 4px 8px var(--listbox-bg);
+
+  /**
+   * Headless UI с пропом transition сам навешивает data-closed/data-enter/
+   * data-leave и ждёт окончания CSS-транзишена перед размонтированием.
+   */
+  transform-origin: top;
+  transition:
+    opacity 200ms ease-out,
+    transform 200ms ease-out;
+
+  &[data-closed] {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.item {
+  padding: 10px 20px;
+}
+
+.focused {
+  background: var(--inverted-primary-color);
+}
+
+.disabled {
+  opacity: 0.7;
+}
+
+.optionsTop {
+  bottom: 100%;
+  transform-origin: bottom;
+}

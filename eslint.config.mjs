@@ -126,6 +126,7 @@ export default [
           'jsx-attributes': {
             exclude: [
               'align',
+              'anchor',
               'aria-label',
               'as',
               'border',

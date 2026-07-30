@@ -1,4 +1,4 @@
-export { ArticleDetails } from './ui/ArticleDetails/ArticleDetails'
+export { ArticleDetails } from './ui/articleDetails/ArticleDetails'
 export {
   type Article,
   ArticleSortField,
@@ -11,8 +11,8 @@ export {
   type ArticleImageBlock,
 } from './model/types/article'
 export type { ArticleDetailsSchema } from './model/types/articleDetailsSchema'
-export { ArticleList } from './ui/ArticleList/ArticleList'
-export { ArticleViewSelector } from './ui/ArticleViewSelector/ArticleViewSelector'
-export { ArticleSortSelector } from './ui/ArticleSortSelector/ArticleSortSelector'
-export { ArticleTypeTabs } from './ui/ArticleTypeTabs/ArticleTypeTabs'
+export { ArticleList } from './ui/articleList/ArticleList'
+export { ArticleViewSelector } from './ui/articleViewSelector/ArticleViewSelector'
+export { ArticleSortSelector } from './ui/articleSortSelector/ArticleSortSelector'
+export { ArticleTypeTabs } from './ui/articleTypeTabs/ArticleTypeTabs'
 export { getArticleDetailsData } from './model/slice/articleDetailsSlice'

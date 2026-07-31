@@ -57,6 +57,11 @@ jobs:
 
       - name: Commit and push updated snapshots
         id: commit
+        # Ветка приходит из инпута, то есть это недоверенный текст. Подстановка
+        # ${{ }} прямо в команду означала бы выполнение чего угодно из значения
+        # инпута в job-е с contents: write и токеном, поэтому передаём через env.
+        env:
+          BRANCH: ${{ inputs.branch }}
         run: |
           # Внутри контейнера workspace принадлежит другому uid, без этого
           # git отказывается работать с "dubious ownership"
@@ -76,7 +81,7 @@ jobs:
           fi
 
           git commit -m "chore(snapshots): regenerate screen-test baselines on Linux"
-          git push origin HEAD:${{ inputs.branch }}
+          git push origin "HEAD:$BRANCH"
           echo "pushed=true" >> "$GITHUB_OUTPUT"
 
   # Push от имени GITHUB_TOKEN не считается событием push, поэтому пайплайн
@@ -91,7 +96,6 @@ jobs:
       - name: Run main pipeline on updated baselines
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh workflow run main.yml \
-            --repo ${{ github.repository }} \
-            --ref ${{ inputs.branch }}
+          BRANCH: ${{ inputs.branch }}
+          REPO: ${{ github.repository }}
+        run: gh workflow run main.yml --repo "$REPO" --ref "$BRANCH"

@@ -28,7 +28,7 @@ export const routesPaths: Record<AppRoutes, Record<'id' | 'path', string>> = {
     id: 'about-page',
   },
   [AppRoutes.PROFILE]: {
-    path: '/profile/',
+    path: '/profile/:id',
     id: 'profile-page',
   },
   [AppRoutes.ARTICLES]: {
@@ -70,12 +70,12 @@ export const routesConfig: AppRouteObject[] = [
         authOnly: true,
       },
       {
-        path: `${routesPaths.article_create.path}`,
+        path: routesPaths.article_create.path,
         element: <ArticleCreatePage />,
         authOnly: true,
       },
       {
-        path: `${routesPaths.article_edit.path}`,
+        path: routesPaths.article_edit.path,
         element: <ArticleEditPage />,
         authOnly: true,
       },
@@ -87,7 +87,7 @@ export const routesConfig: AppRouteObject[] = [
       {
         authOnly: true,
         element: <ProfilePageAsync />,
-        path: `${routesPaths.profile.path}:id`,
+        path: routesPaths.profile.path,
         id: routesPaths.profile.id,
       },
       {

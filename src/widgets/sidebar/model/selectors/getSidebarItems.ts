@@ -1,4 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit'
+import { generatePath } from 'react-router'
 import { getUserAuthData } from '@/entities/user'
 import ArticleIcon from '@/shared/assets/icons/article-20-20.svg'
 import MainIcon from '@/shared/assets/icons/home.svg'
@@ -24,7 +25,7 @@ export const getSidebarItems = createSelector(getUserAuthData, (userData) => {
   if (userData) {
     sidebarItemsList.push(
       {
-        path: routesPaths.profile.path + userData.id,
+        path: generatePath(routesPaths.profile.path, { id: userData.id }),
         Icon: ProfileIcon,
         text: 'Профиль',
         authOnly: true,

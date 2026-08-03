@@ -5,11 +5,11 @@
 }
 
 .SMALL {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  gap: 30px;
 
-  .card {
-    margin-right: 30px;
-    margin-bottom: 30px;
-  }
+  /* Карточка в SMALL имеет жёсткую ширину 230px, поэтому треки фиксированные */
+  grid-template-columns: repeat(auto-fill, 230px);
+  grid-auto-rows: max-content;
+  justify-content: start;
 }

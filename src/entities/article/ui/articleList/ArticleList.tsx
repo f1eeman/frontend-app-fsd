@@ -1,4 +1,4 @@
-import { forwardRef, memo } from 'react'
+import { forwardRef, memo, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Virtuoso,
@@ -33,11 +33,24 @@ interface ArticleListProps {
 
 interface ListContext {
   isLoading?: boolean
-  view: ArticleView
+}
+
+/**
+ * Скелетоны дозагрузки в SMALL — обычные элементы сетки, а не отдельный блок:
+ * иначе они образуют вторую сетку со своими треками, без gap до последнего ряда
+ * и не добирают незаполненные ячейки последнего ряда.
+ */
+type GridItem =
+  | { kind: 'article'; article: Article }
+  | { kind: 'skeleton'; key: string }
+
+const SKELETONS_COUNT: Record<ArticleView, number> = {
+  [ArticleView.SMALL]: 9,
+  [ArticleView.BIG]: 3,
 }
 
 const getSkeletons = (view: ArticleView) =>
-  new Array(view === ArticleView.SMALL ? 9 : 3)
+  new Array(SKELETONS_COUNT[view])
     .fill(0)
     .map((item, index) => (
       <ArticleListItemSkeleton className={cls.card} key={index} view={view} />
@@ -46,10 +59,6 @@ const getSkeletons = (view: ArticleView) =>
 const Footer = ({ context }: ContextProp<ListContext>) => {
   if (!context?.isLoading) {
     return null
-  }
-
-  if (context.view === ArticleView.SMALL) {
-    return <div className={cls.SMALL}>{getSkeletons(ArticleView.SMALL)}</div>
   }
 
   return <>{getSkeletons(ArticleView.BIG)}</>
@@ -75,6 +84,21 @@ export const ArticleList = memo((props: ArticleListProps) => {
     customScrollParent,
   } = props
   const { t } = useTranslation()
+
+  const gridItems = useMemo<GridItem[]>(() => {
+    const items: GridItem[] = articles.map((article) => ({
+      kind: 'article',
+      article,
+    }))
+
+    if (isLoading) {
+      for (let index = 0; index < SKELETONS_COUNT[ArticleView.SMALL]; index++) {
+        items.push({ kind: 'skeleton', key: `skeleton-${index}` })
+      }
+    }
+
+    return items
+  }, [articles, isLoading])
 
   const renderArticle = (article: Article) => (
     <ArticleListItem
@@ -104,7 +128,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
     )
   }
 
-  const context: ListContext = { isLoading, view }
+  const context: ListContext = { isLoading }
 
   if (view === ArticleView.BIG) {
     return (
@@ -123,12 +147,23 @@ export const ArticleList = memo((props: ArticleListProps) => {
   return (
     <VirtuosoGrid
       className={classNames(cls.ArticleList, {}, [className])}
-      data={articles}
+      data={gridItems}
       context={context}
       customScrollParent={customScrollParent}
-      computeItemKey={(_, article) => article.id}
-      itemContent={(_, article) => renderArticle(article)}
-      components={{ List: GridList, Footer }}
+      computeItemKey={(_, item) =>
+        item.kind === 'article' ? item.article.id : item.key
+      }
+      itemContent={(_, item) =>
+        item.kind === 'article' ? (
+          renderArticle(item.article)
+        ) : (
+          <ArticleListItemSkeleton
+            className={cls.card}
+            view={ArticleView.SMALL}
+          />
+        )
+      }
+      components={{ List: GridList }}
     />
   )
 })

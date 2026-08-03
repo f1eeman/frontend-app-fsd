@@ -32,11 +32,13 @@ const meta = {
     },
     direction: {
       control: 'radio',
-      options: ['top', 'bottom'],
+      options: ['top left', 'top right', 'bottom left', 'bottom right'],
       description: 'Направление раскрытия выпадающего списка',
       table: {
-        type: { summary: "'top' | 'bottom'" },
-        defaultValue: { summary: 'bottom' },
+        type: {
+          summary: "'top left' | 'top right' | 'bottom left' | 'bottom right'",
+        },
+        defaultValue: { summary: 'bottom right' },
       },
     },
     readonly: {
@@ -64,7 +66,7 @@ const meta = {
     ],
     value: '123',
     defaultValue: 'Выберите значение',
-    direction: 'bottom',
+    direction: 'bottom right',
     readonly: false,
     onChange: fn(),
   },

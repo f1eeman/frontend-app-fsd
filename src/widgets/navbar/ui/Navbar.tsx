@@ -1,13 +1,15 @@
 import { type FC, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { generatePath } from 'react-router'
 import cls from './Navbar.module.scss'
 import { useAppDispatch, useAppSelector } from '@/app/store'
 import { getUserAuthData, userActions } from '@/entities/user'
 import { LoginModal } from '@/features/authByUsername'
 import { routesPaths } from '@/shared/config/routes'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { AppLink, AppLinkTheme } from '@/shared/ui'
+import { AppLink, AppLinkTheme, Avatar } from '@/shared/ui'
 import { Button } from '@/shared/ui/button/Button'
+import { Dropdown } from '@/shared/ui/dropdown/Dropdown'
 import { TextTheme } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
 
@@ -30,7 +32,7 @@ export const Navbar: FC = ({ className = '' }: NavbarProps) => {
 
   if (authData) {
     return (
-      <div className={classNames(cls.navbar, {}, [className])}>
+      <header className={classNames(cls.navbar, {}, [className])}>
         <Text
           className={cls.appName}
           title={t('MY APP')}
@@ -43,14 +45,22 @@ export const Navbar: FC = ({ className = '' }: NavbarProps) => {
         >
           {t('Создать статью')}
         </AppLink>
-        <Button
-          theme={'clear-inverted'}
-          className={cls.links}
-          onClick={onLogout}
-        >
-          {t('Выйти')}
-        </Button>
-      </div>
+        <Dropdown
+          direction='bottom left'
+          className={cls.dropdown}
+          items={[
+            {
+              content: t('Профиль'),
+              href: generatePath(routesPaths.profile.path, { id: authData.id }),
+            },
+            {
+              content: t('Выйти'),
+              onClick: onLogout,
+            },
+          ]}
+          trigger={<Avatar size={30} src={authData.avatar} />}
+        />
+      </header>
     )
   }
 

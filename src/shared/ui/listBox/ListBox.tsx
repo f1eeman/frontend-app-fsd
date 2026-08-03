@@ -17,7 +17,11 @@ export interface ListBoxItem {
   disabled?: boolean
 }
 
-type DropdownDirection = 'top' | 'bottom'
+type DropdownDirection =
+  | 'top left'
+  | 'top right'
+  | 'bottom left'
+  | 'bottom right'
 
 interface ListBoxProps {
   items?: ListBoxItem[]
@@ -31,8 +35,10 @@ interface ListBoxProps {
 }
 
 const mapDirectionClass: Record<DropdownDirection, string> = {
-  bottom: cls.optionsBottom,
-  top: cls.optionsTop,
+  'bottom left': cls.optionsBottomLeft,
+  'bottom right': cls.optionsBottomRight,
+  'top right': cls.optionsTopRight,
+  'top left': cls.optionsTopLeft,
 }
 
 export const ListBox: FC<ListBoxProps> = (props) => {
@@ -43,7 +49,7 @@ export const ListBox: FC<ListBoxProps> = (props) => {
     defaultValue,
     onChange,
     readonly = false,
-    direction = 'bottom',
+    direction = 'bottom right',
     label,
   } = props
 

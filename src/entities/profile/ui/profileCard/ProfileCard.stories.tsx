@@ -9,6 +9,7 @@ const meta = {
   component: ProfileCardComponent,
   tags: ['autodocs'],
   parameters: {
+    layout: 'centered',
     controls: { expanded: true },
   },
   argTypes: {

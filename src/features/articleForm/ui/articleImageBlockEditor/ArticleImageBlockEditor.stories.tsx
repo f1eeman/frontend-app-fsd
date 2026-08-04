@@ -8,6 +8,7 @@ const meta = {
   component: ArticleImageBlockEditor,
   tags: ['autodocs'],
   parameters: {
+    layout: 'centered',
     controls: { expanded: true },
   },
   argTypes: {

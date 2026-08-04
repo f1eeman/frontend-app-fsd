@@ -12,7 +12,7 @@ export function useInfiniteScroll({
   callback,
   wrapperRef,
   triggerRef,
-  isLoading,
+  isLoading = false,
 }: UseInfiniteScrollOptions) {
   const observer = useRef<IntersectionObserver | null>(null)
 
@@ -45,7 +45,7 @@ export function useInfiniteScroll({
 
   // After loading completes, re-observe to check if trigger is still visible
   useEffect(() => {
-    if (isLoading === false) {
+    if (!isLoading) {
       const triggerElement = triggerRef.current
       if (observer.current && triggerElement) {
         observer.current.unobserve(triggerElement)

@@ -8,6 +8,7 @@ const meta = {
   component: ArticleTypeTabs,
   tags: ['autodocs'],
   parameters: {
+    layout: 'centered',
     controls: { expanded: true },
   },
   argTypes: {

@@ -7,6 +7,7 @@ const meta = {
   component: InputFC,
   tags: ['autodocs'],
   parameters: {
+    layout: 'centered',
     controls: { expanded: true },
   },
   argTypes: {

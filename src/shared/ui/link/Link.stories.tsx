@@ -7,6 +7,7 @@ const meta = {
   component: AppLinkFC,
   tags: ['autodocs'],
   parameters: {
+    layout: 'centered',
     controls: { expanded: true },
   },
   argTypes: {

@@ -6,6 +6,7 @@ const meta = {
   component: ThemeSwitcherFC,
   tags: ['autodocs'],
   parameters: {
+    layout: 'centered',
     controls: { expanded: true },
   },
   argTypes: {

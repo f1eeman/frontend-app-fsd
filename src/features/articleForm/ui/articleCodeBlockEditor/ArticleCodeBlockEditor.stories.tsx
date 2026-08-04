@@ -8,6 +8,7 @@ const meta = {
   component: ArticleCodeBlockEditor,
   tags: ['autodocs'],
   parameters: {
+    layout: 'centered',
     controls: { expanded: true },
   },
   argTypes: {

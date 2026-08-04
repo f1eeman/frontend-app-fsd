@@ -13,6 +13,7 @@ const meta = {
   component: ArticleListItem,
   tags: ['autodocs'],
   parameters: {
+    layout: 'centered',
     controls: { expanded: true },
   },
   argTypes: {

@@ -7,6 +7,7 @@ const meta = {
   component: ListBoxComponent,
   tags: ['autodocs'],
   parameters: {
+    layout: 'centered',
     controls: { expanded: true },
   },
   argTypes: {

@@ -6,6 +6,7 @@ const meta = {
   component: LangSwitcher,
   tags: ['autodocs'],
   parameters: {
+    layout: 'centered',
     controls: { expanded: true },
   },
   argTypes: {

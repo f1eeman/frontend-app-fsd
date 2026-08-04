@@ -38,15 +38,30 @@ body {
   height: 100%;
 }
 
+/**
+ * Только тема. Раскладку задаёт сам Storybook через parameters.layout
+ * ('centered' / 'padded'), иначе стори страниц и виджетов получают
+ * shrink-to-fit ширину вместо полной.
+ */
 .app-sb {
   font: var(--font-m);
-  background: var(--bg-color);
   color: var(--primary-color);
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+/* Фон отдан body: на .app-sb он требовал min-height: 100vh, что вместе
+   с отступами sb-main-padded давало лишний скролл в каждой стори. */
+body.sb-show-main {
+  background: var(--bg-color);
+}
+
+/**
+ * В padded-режиме корень стори занимает вьюпорт целиком (минус отступы
+ * sb-main-padded). Иначе стори из одних fixed-элементов — Modal — дают нулевую
+ * высоту, и скриншотный тест виснет на ожидании видимости #storybook-root.
+ * Для centered высоту задаёт сам Storybook.
+ */
+body.sb-main-padded .app-sb {
+  min-height: calc(100vh - 2rem);
 }
 
 .app-layout {

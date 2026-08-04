@@ -7,6 +7,7 @@ const meta = {
   component: SelectComponent,
   tags: ['autodocs'],
   parameters: {
+    layout: 'centered',
     controls: { expanded: true },
   },
   argTypes: {

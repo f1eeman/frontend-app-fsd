@@ -2,7 +2,7 @@ import { LangSwitcher } from './LangSwitcher'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
-  title: 'feature/LangSwitcher',
+  title: 'features/LangSwitcher',
   component: LangSwitcher,
   tags: ['autodocs'],
   parameters: {

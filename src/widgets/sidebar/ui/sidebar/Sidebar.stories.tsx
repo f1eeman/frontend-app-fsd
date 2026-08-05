@@ -3,7 +3,7 @@ import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
-  title: 'widget/Sidebar',
+  title: 'widgets/Sidebar',
   component: SidebarComponent,
   tags: ['autodocs'],
   parameters: {

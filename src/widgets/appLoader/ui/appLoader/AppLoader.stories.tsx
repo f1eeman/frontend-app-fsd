@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 /** AppLoader не принимает пропсов — панель Controls для него пуста */
 const meta = {
-  title: 'widget/AppLoader',
+  title: 'widgets/AppLoader',
   component: AppLoader,
   tags: ['autodocs'],
   parameters: {

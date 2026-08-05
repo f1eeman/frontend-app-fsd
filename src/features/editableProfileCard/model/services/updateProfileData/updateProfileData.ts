@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { selectProfileForm } from '../../slice/profileSlice'
+import { selectProfileForm } from '../../slices/profileSlice'
 import { ValidateProfileError } from '../../types/profile'
 import { validateProfileData } from '../validateProfileData/validateProfileData'
 import type { Profile } from '../../types/profile'

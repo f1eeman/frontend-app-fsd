@@ -1,9 +1,9 @@
-import { PageLoader } from './PageLoader'
+import { PageError as PageErrorFC } from './PageError'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
-  title: 'widget/PageLoader',
-  component: PageLoader,
+  title: 'widgets/PageError',
+  component: PageErrorFC,
   tags: ['autodocs'],
   parameters: {
     controls: { expanded: true },
@@ -15,9 +15,10 @@ const meta = {
       table: { type: { summary: 'string' } },
     },
   },
-} satisfies Meta<typeof PageLoader>
+} satisfies Meta<typeof PageErrorFC>
 
 export default meta
+
 type Story = StoryObj<typeof meta>
 
-export const Normal: Story = {}
+export const PageError: Story = {}

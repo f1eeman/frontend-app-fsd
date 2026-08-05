@@ -4,7 +4,7 @@ import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
-  title: 'widget/Navbar',
+  title: 'widgets/Navbar',
   component: NavbarComponent,
   tags: ['autodocs'],
   parameters: {

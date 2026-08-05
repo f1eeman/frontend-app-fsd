@@ -1,12 +1,11 @@
-import { ThemeSwitcher as ThemeSwitcherFC } from './ThemeSwitcher'
+import { PageLoader } from './PageLoader'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
-  title: 'feature/ThemeSwitcher',
-  component: ThemeSwitcherFC,
+  title: 'widgets/PageLoader',
+  component: PageLoader,
   tags: ['autodocs'],
   parameters: {
-    layout: 'centered',
     controls: { expanded: true },
   },
   argTypes: {
@@ -16,10 +15,9 @@ const meta = {
       table: { type: { summary: 'string' } },
     },
   },
-} satisfies Meta<typeof ThemeSwitcherFC>
+} satisfies Meta<typeof PageLoader>
 
 export default meta
-
 type Story = StoryObj<typeof meta>
 
-export const ThemeSwitcher: Story = {}
+export const Normal: Story = {}

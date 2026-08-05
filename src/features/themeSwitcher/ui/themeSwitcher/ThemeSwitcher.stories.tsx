@@ -1,11 +1,12 @@
-import { PageError as PageErrorFC } from './PageError'
+import { ThemeSwitcher as ThemeSwitcherFC } from './ThemeSwitcher'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
-  title: 'widget/PageError',
-  component: PageErrorFC,
+  title: 'features/ThemeSwitcher',
+  component: ThemeSwitcherFC,
   tags: ['autodocs'],
   parameters: {
+    layout: 'centered',
     controls: { expanded: true },
   },
   argTypes: {
@@ -15,10 +16,10 @@ const meta = {
       table: { type: { summary: 'string' } },
     },
   },
-} satisfies Meta<typeof PageErrorFC>
+} satisfies Meta<typeof ThemeSwitcherFC>
 
 export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const PageError: Story = {}
+export const ThemeSwitcher: Story = {}

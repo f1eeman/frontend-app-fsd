@@ -1,6 +1,6 @@
 import { type FC, useCallback, useState } from 'react'
 import { getSidebarItems } from '../../model/selectors/getSidebarItems'
-import { SidebarItem } from '../sidebar-item/SidebarItem'
+import { SidebarItem } from '../sidebarItem/SidebarItem'
 import cls from './Sidebar.module.scss'
 import { useAppSelector } from '@/app/store'
 import { LangSwitcher } from '@/features/langSwitcher'

@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
-import { ProfilePageHeader } from '../header/ProfilePageHeader'
+import { ProfilePageHeader } from '../profilePageHeader/ProfilePageHeader'
 import { useAppDispatch, useAppSelector } from '@/app/store'
 import { CountrySelect } from '@/entities/country'
 import { CurrencySelect } from '@/entities/currency'

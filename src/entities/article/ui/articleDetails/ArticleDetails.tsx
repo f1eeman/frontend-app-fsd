@@ -5,7 +5,7 @@ import {
   getArticleDetailsData,
   selectIsLoading,
   selectError,
-} from '../../model/slice/articleDetailsSlice'
+} from '../../model/slices/articleDetailsSlice'
 import { ArticleBlockType } from '../../model/types/article'
 import { ArticleCodeBlockComponent } from '../articleCodeBlockComponent/ArticleCodeBlockComponent'
 import { ArticleImageBlockComponent } from '../articleImageBlockComponent/ArticleImageBlockComponent'

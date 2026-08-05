@@ -8,7 +8,7 @@ import {
   selectPassword,
   selectUsername,
   selectLoginError,
-} from '../../model/slice/loginSlice'
+} from '../../model/slices/loginSlice'
 import cls from './LoginForm.module.scss'
 import { useAppDispatch, useAppSelector } from '@/app/store'
 import { routesPaths } from '@/shared/config/routes'

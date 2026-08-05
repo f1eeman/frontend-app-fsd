@@ -27,6 +27,8 @@
     "lint:scss:fix": "yarn run lint:scss --fix",
     "lint:ts": "tsc --noEmit",
     "format": "prettier --write \"src/**/*.{ts,tsx,scss,json}\"",
+    "create:slice": "node scripts/createSlice/index.mjs",
+    "check:generator": "node scripts/createSlice/smoke.mjs",
     "sb": "storybook dev --no-open -p 9658 -c config/storybook ",
     "build:sb": "storybook build -c config/storybook -o ./sb-static",
     "test:unit": "jest --config ./config/jest/jest.config.ts",

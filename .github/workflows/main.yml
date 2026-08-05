@@ -54,6 +54,12 @@ jobs:
       - name: Unit testing
         run: yarn test:unit
 
+      # Генерирует слайсы всеми вариантами шаблонов, линтует и типизирует их,
+      # затем удаляет. Ловит расхождение генератора с конвенциями проекта —
+      # именно так шаблоны успели отстать на две мажорные версии Storybook.
+      - name: Assert slice generator matches conventions
+        run: yarn check:generator
+
       - name: Build Storybook
         run: yarn build:sb
 

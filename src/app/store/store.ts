@@ -9,6 +9,7 @@ import {
 import { userReducer } from '@/entities/user'
 import { uiReducer } from '@/features/scrollSave'
 import { $api } from '@/shared/api/api'
+import { baseRtkApi } from '@/shared/api/rtkApi'
 import type { AxiosInstance } from 'axios'
 import type { DeepPartial } from '@/shared/types'
 
@@ -18,16 +19,24 @@ export interface ThunkExtraArgs {
 
 export interface LazyLoadedSlices {}
 
+export type RootState = ReturnType<typeof rootReducer>
+
+type DefaultMiddleware = Tuple<
+  [ThunkMiddleware<RootState, UnknownAction, ThunkExtraArgs>]
+>
+
+type AppMiddleware = Tuple<
+  [
+    ThunkMiddleware<RootState, UnknownAction, ThunkExtraArgs>,
+    typeof baseRtkApi.middleware,
+  ]
+>
+
 export const rootReducer = combineSlices({
   user: userReducer,
   ui: uiReducer,
+  [baseRtkApi.reducerPath]: baseRtkApi.reducer,
 }).withLazyLoadedSlices<LazyLoadedSlices>()
-
-export type RootState = ReturnType<typeof rootReducer>
-
-type AppMiddleware = Tuple<
-  [ThunkMiddleware<RootState, UnknownAction, ThunkExtraArgs>]
->
 
 export function setupStore(preloadedState?: DeepPartial<RootState>) {
   return configureStore<RootState, UnknownAction, AppMiddleware>({
@@ -35,13 +44,15 @@ export function setupStore(preloadedState?: DeepPartial<RootState>) {
     preloadedState: preloadedState as RootState | undefined,
     devTools: __IS_DEV__,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware({
-        thunk: {
-          extraArgument: {
-            api: $api,
-          } satisfies ThunkExtraArgs,
-        },
-      }) as AppMiddleware,
+      (
+        getDefaultMiddleware({
+          thunk: {
+            extraArgument: {
+              api: $api,
+            } satisfies ThunkExtraArgs,
+          },
+        }) as DefaultMiddleware
+      ).concat(baseRtkApi.middleware),
   })
 }
 

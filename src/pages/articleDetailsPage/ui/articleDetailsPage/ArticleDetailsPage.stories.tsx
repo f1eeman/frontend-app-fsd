@@ -2,6 +2,7 @@ import { MemoryRouter, Route, Routes } from 'react-router'
 import ArticleDetailsPage from './ArticleDetailsPage'
 import { ArticleBlockType, ArticleType } from '@/entities/article'
 import AvatarImg from '@/shared/assets/tests/avatar.jpg'
+import { MockFetchDecorator } from '@/shared/lib/sb/decorators/MockFetch'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Decorator, Meta, StoryObj } from '@storybook/react-webpack5'
 import type { Article } from '@/entities/article'
@@ -9,6 +10,9 @@ import type { Comment } from '@/entities/comment'
 
 const ARTICLE_ROUTE_PATTERN = '/articles/:id/'
 const ARTICLE_ROUTE_ENTRY = '/articles/1/'
+const ARTICLES_ROUTE = '/articles/'
+/** Подстрока URL, по которой ловится запрос рекомендаций */
+const ARTICLES_URL = '/articles'
 
 const meta = {
   title: 'pages/ArticleDetailsPage',
@@ -60,6 +64,13 @@ const article: Article = {
   ],
 }
 
+/** Отдаются блоку рекомендаций, поэтому статья страницы в список не входит */
+const recommendations: Article[] = [
+  { ...article, id: '2', title: 'Python news', views: 512, blocks: [] },
+  { ...article, id: '3', title: 'Go news', views: 77, blocks: [] },
+  { ...article, id: '4', title: 'Rust news', views: 33, blocks: [] },
+]
+
 const comments: Comment[] = [
   {
     id: '1',
@@ -81,6 +92,23 @@ const RouteWithIdDecorator: Decorator = (Story) => (
   </MemoryRouter>
 )
 
+/** Тот же маршрут без `:id` — страница уходит в ветку «Статья не найдена» */
+const RouteWithoutIdDecorator: Decorator = (Story) => (
+  <MemoryRouter initialEntries={[ARTICLES_ROUTE]}>
+    <Routes>
+      <Route path={ARTICLES_ROUTE} element={<Story />} />
+    </Routes>
+  </MemoryRouter>
+)
+
+/**
+ * Блок рекомендаций живёт на RTK Query и запрашивает данные даже в Storybook,
+ * поэтому его нужно кормить моком — иначе запрос падает и блок молча исчезает.
+ */
+const recommendationsDecorator = MockFetchDecorator({
+  [ARTICLES_URL]: { body: recommendations },
+})
+
 export const Normal: Story = {
   parameters: { router: 'none' },
   decorators: [
@@ -92,14 +120,10 @@ export const Normal: Story = {
         ids: ['1', '2'],
         entities: { '1': comments[0], '2': comments[1] },
       },
-      articleDetailsPageRecommendations: {
-        isLoading: false,
-        ids: [],
-        entities: {},
-      },
       addCommentForm: { text: '' },
     }),
     RouteWithIdDecorator,
+    recommendationsDecorator,
   ],
 }
 
@@ -109,13 +133,20 @@ export const NoArticle: Story = {
     StoreDecorator({
       user: { authData: { id: '42', username: 'admin' }, _inited: true },
       articleDetails: { isLoading: false },
-      articleDetailsPageRecommendations: {
-        isLoading: false,
-        ids: [],
-        entities: {},
-      },
+      articleDetailsComments: { isLoading: false, ids: [], entities: {} },
       addCommentForm: { text: '' },
     }),
     RouteWithIdDecorator,
+    recommendationsDecorator,
+  ],
+}
+
+export const NoId: Story = {
+  parameters: { router: 'none' },
+  decorators: [
+    StoreDecorator({
+      user: { authData: { id: '1', username: 'John' }, _inited: true },
+    }),
+    RouteWithoutIdDecorator,
   ],
 }

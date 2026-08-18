@@ -1,4 +1,5 @@
-import { useMemo, type FC, type ReactNode } from 'react'
+import { setupListeners } from '@reduxjs/toolkit/query'
+import { useEffect, useMemo, type FC, type ReactNode } from 'react'
 import { Provider } from 'react-redux'
 import { setupStore } from '@/app/store/store'
 import type { RootState } from '@/app/store/store'
@@ -14,6 +15,8 @@ export const StoreProvider: FC<StoreProviderProps> = ({
   initialState,
 }) => {
   const store = useMemo(() => setupStore(initialState), [initialState])
+
+  useEffect(() => setupListeners(store.dispatch), [store])
 
   return <Provider store={store}>{children}</Provider>
 }

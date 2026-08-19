@@ -6,7 +6,6 @@ export const getCanEditArticle = createSelector(
   getArticleDetailsData,
   getUserAuthData,
   (article, user) => {
-    console.log(article, user)
     if (!article || !user) {
       return false
     }

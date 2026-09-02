@@ -68,6 +68,28 @@ const config: Config = {
   // Корневая директория, которую Jest будет сканировать на наличие тестов и модулей
   rootDir: '../../',
 
+  // Список репортёров: обычный вывод в консоль + HTML-отчёт
+  reporters: [
+    'default',
+    [
+      'jest-html-reporters',
+      {
+        // Директория и имя файла отчёта (относительно корня проекта)
+        publicPath: './unit-tests',
+        filename: 'report.html',
+        pageTitle: 'Unit-тесты frontend-app-fsd',
+        // Не открывать отчёт в браузере автоматически
+        openReport: false,
+        // Все тестовые наборы раскрыты по умолчанию
+        expand: true,
+        // Прикладывать вывод console.* к отчёту
+        includeConsoleLog: true,
+        // Собирать отчёт в один самодостаточный html-файл
+        inlineSource: true,
+      },
+    ],
+  ],
+
   // Glob-паттерны, по которым Jest определяет тестовые файлы
   testMatch: ['<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'],
 
@@ -139,9 +161,6 @@ const config: Config = {
 
   // Запуск тестов из одного или нескольких проектов
   // projects: undefined,
-
-  // Используй эту опцию, чтобы добавить пользовательские репортёры в Jest
-  // reporters: undefined,
 
   // Автоматически сбрасывать состояние моков перед каждым тестом
   // resetMocks: false,

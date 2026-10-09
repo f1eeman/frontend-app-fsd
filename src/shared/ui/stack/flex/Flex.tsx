@@ -3,9 +3,9 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react'
 import type { Mods } from '@/shared/lib/classNames/classNames'
 export type FlexJustify = 'start' | 'center' | 'end' | 'between'
-export type FlexAlign = 'start' | 'center' | 'end'
+export type FlexAlign = 'start' | 'center' | 'end' | 'stretch'
 export type FlexDirection = 'row' | 'column'
-export type FlexGap = '4' | '8' | '16' | '32'
+export type FlexGap = '4' | '8' | '12' | '16' | '20' | '32'
 
 const justifyClasses: Record<FlexJustify, string> = {
   start: cls.justifyStart,
@@ -18,6 +18,7 @@ const alignClasses: Record<FlexAlign, string> = {
   start: cls.alignStart,
   center: cls.alignCenter,
   end: cls.alignEnd,
+  stretch: cls.alignStretch,
 }
 
 const directionClasses: Record<FlexDirection, string> = {
@@ -28,7 +29,9 @@ const directionClasses: Record<FlexDirection, string> = {
 const gapClasses: Record<FlexGap, string> = {
   4: cls.gap4,
   8: cls.gap8,
+  12: cls.gap12,
   16: cls.gap16,
+  20: cls.gap20,
   32: cls.gap32,
 }
 

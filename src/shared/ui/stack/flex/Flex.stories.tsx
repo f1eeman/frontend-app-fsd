@@ -29,7 +29,7 @@ const meta = {
     },
     align: {
       control: 'inline-radio',
-      options: ['start', 'center', 'end'],
+      options: ['start', 'center', 'end', 'stretch'],
       description: 'Раскладка по поперечной оси (align-items)',
       table: {
         type: { summary: 'FlexAlign' },
@@ -38,7 +38,7 @@ const meta = {
     },
     gap: {
       control: 'inline-radio',
-      options: ['4', '8', '16', '32'],
+      options: ['4', '8', '12', '16', '20', '32'],
       description: 'Отступ между элементами в px',
       table: { type: { summary: 'FlexGap' } },
     },
@@ -134,6 +134,13 @@ export const ColumnAlignEnd: Story = {
   args: {
     direction: 'column',
     align: 'end',
+  },
+}
+
+export const ColumnAlignStretch: Story = {
+  args: {
+    direction: 'column',
+    align: 'stretch',
   },
 }
 

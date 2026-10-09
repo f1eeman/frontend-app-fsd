@@ -30,6 +30,10 @@
   align-items: flex-end;
 }
 
+.alignStretch {
+  align-items: stretch;
+}
+
 .directionRow {
   flex-direction: row;
 }
@@ -46,8 +50,16 @@
   gap: 8px;
 }
 
+.gap12 {
+  gap: 12px;
+}
+
 .gap16 {
   gap: 16px;
+}
+
+.gap20 {
+  gap: 20px;
 }
 
 .gap32 {

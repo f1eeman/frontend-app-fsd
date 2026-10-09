@@ -17,19 +17,19 @@ import { Text } from '@/shared/ui/text/Text'
 import type { HTMLAttributeAnchorTarget } from 'react'
 import type { Article } from '../../model/types/article'
 
-interface ArticleListProps {
+interface ArticleListBaseProps {
   className?: string
   articles: Article[]
   isLoading?: boolean
   target?: HTMLAttributeAnchorTarget
   view?: ArticleView
-  /**
-   * Скролл-контейнер, внутри которого работает виртуализация.
-   * Если не передан, список рендерится обычным способом (например, в
-   * блоке рекомендаций или в Storybook).
-   */
-  customScrollParent?: HTMLElement
 }
+
+type ArticleListProps = ArticleListBaseProps &
+  (
+    | { virtualized?: false; customScrollParent?: never }
+    | { virtualized: true; customScrollParent: HTMLElement }
+  )
 
 interface ListContext {
   isLoading?: boolean
@@ -81,6 +81,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
     view = ArticleView.SMALL,
     isLoading,
     target,
+    virtualized,
     customScrollParent,
   } = props
   const { t } = useTranslation()
@@ -118,8 +119,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
     )
   }
 
-  // Без внешнего скролл-контейнера виртуализация невозможна — обычный рендер.
-  if (!customScrollParent) {
+  if (!virtualized) {
     return (
       <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
         {articles.map(renderArticle)}

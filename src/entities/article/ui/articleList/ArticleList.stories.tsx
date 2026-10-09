@@ -46,10 +46,19 @@ const meta = {
       description: 'Внешний класс для композиции стилей',
       table: { type: { summary: 'string' } },
     },
+    virtualized: {
+      control: false,
+      description:
+        'Рендерить через Virtuoso. Требует customScrollParent; без флага список рендерится как есть',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     customScrollParent: {
       control: false,
       description:
-        'Скролл-контейнер для виртуализации. Без него список рендерится обычным способом',
+        'Скролл-контейнер для виртуализации, обязателен при virtualized',
       table: { type: { summary: 'HTMLElement' } },
     },
   },

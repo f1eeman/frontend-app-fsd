@@ -46,6 +46,7 @@ const ArticleInfiniteList = (props: Props) => {
       view={view}
       articles={articles}
       className={className}
+      virtualized
       customScrollParent={scrollParent}
     />
   )

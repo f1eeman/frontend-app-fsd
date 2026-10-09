@@ -6,12 +6,12 @@ const comments: Comment[] = [
   {
     id: '1',
     text: 'hello world',
-    user: { id: '1', username: 'Vasya', role: 'user' },
+    user: { id: '1', username: 'Vasya', role: 'USER' },
   },
   {
     id: '2',
     text: 'how are you?',
-    user: { id: '2', username: 'Petya', role: 'user' },
+    user: { id: '2', username: 'Petya', role: 'USER' },
   },
 ]
 

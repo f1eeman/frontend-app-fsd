@@ -34,7 +34,7 @@ describe('loginByUsername', () => {
   })
 
   test('should successfully login and return user data', async () => {
-    const mockUserData: User = { id: '1', username: 'testuser', role: 'user' }
+    const mockUserData: User = { id: '1', username: 'testuser', role: 'USER' }
     const mockPayload = { username: 'testuser', password: 'password123' }
 
     const testThunk = new TestAsyncThunk(loginByUsername)
@@ -98,7 +98,7 @@ describe('loginByUsername', () => {
   })
 
   test('should call dispatch with correct user actions on success', async () => {
-    const mockUserData: User = { id: '1', username: 'testuser', role: 'user' }
+    const mockUserData: User = { id: '1', username: 'testuser', role: 'USER' }
     const mockPayload = { username: 'testuser', password: 'password123' }
 
     const testThunk = new TestAsyncThunk(loginByUsername)

@@ -18,7 +18,7 @@ const mockArticle: Article = {
   blocks: [],
   user: {
     username: 'johndoe',
-    role: 'user',
+    role: 'USER',
     id: '1',
     avatar: AvatarImg,
   },

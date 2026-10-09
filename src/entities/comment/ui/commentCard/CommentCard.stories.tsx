@@ -5,7 +5,7 @@ import type { Comment } from '../../model/types/comment'
 const comment: Comment = {
   id: '1',
   text: 'hello world',
-  user: { id: '1', username: 'Vasya', role: 'user' },
+  user: { id: '1', username: 'Vasya', role: 'USER' },
 }
 
 const meta = {

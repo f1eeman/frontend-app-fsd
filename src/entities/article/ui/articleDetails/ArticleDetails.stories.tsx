@@ -45,7 +45,7 @@ const article: Article = {
   user: {
     id: '1',
     username: 'John',
-    role: 'user',
+    role: 'USER',
     avatar: AvatarImg,
   },
   blocks: [

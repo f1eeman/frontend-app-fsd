@@ -14,7 +14,7 @@ import { useAppDispatch, useAppSelector } from '@/app/store'
 import { CountrySelect } from '@/entities/country'
 import { CurrencySelect } from '@/entities/currency'
 import { ProfileCard } from '@/entities/profile'
-import { classNames } from '@/shared/lib/classNames/classNames'
+import { VStack } from '@/shared/ui/stack'
 import { TextTheme } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
 import type { Country } from '@/entities/country'
@@ -115,7 +115,7 @@ export const EditableProfileCard = ({
   }, [])
 
   return (
-    <div className={classNames('', {}, [className])}>
+    <VStack gap='16' max className={className}>
       {validateErrors.length > 0 &&
         validateErrors.map((err) => (
           <Text
@@ -151,6 +151,6 @@ export const EditableProfileCard = ({
           />
         }
       />
-    </div>
+    </VStack>
   )
 }

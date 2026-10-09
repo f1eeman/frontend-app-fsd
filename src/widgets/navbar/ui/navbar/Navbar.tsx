@@ -3,7 +3,12 @@ import { useTranslation } from 'react-i18next'
 import { generatePath } from 'react-router'
 import cls from './Navbar.module.scss'
 import { useAppDispatch, useAppSelector } from '@/app/store'
-import { getUserAuthData, userActions } from '@/entities/user'
+import {
+  getUserAuthData,
+  getUserIsAdmin,
+  getUserIsManager,
+  userActions,
+} from '@/entities/user'
 import { LoginModal } from '@/features/authByUsername'
 import { routesPaths } from '@/shared/config/routes'
 import { classNames } from '@/shared/lib/classNames/classNames'
@@ -20,6 +25,9 @@ interface NavbarProps {
 export const Navbar: FC = ({ className = '' }: NavbarProps) => {
   const { t } = useTranslation()
   const authData = useAppSelector(getUserAuthData)
+  const isAdmin = useAppSelector(getUserIsAdmin)
+  const isManager = useAppSelector(getUserIsManager)
+  const isAdminPanelAvailable = isAdmin || isManager
   const dispatch = useAppDispatch()
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false)
   const toggleAuthModal = useCallback(() => {
@@ -53,6 +61,14 @@ export const Navbar: FC = ({ className = '' }: NavbarProps) => {
               content: t('Профиль'),
               href: generatePath(routesPaths.profile.path, { id: authData.id }),
             },
+            ...(isAdminPanelAvailable
+              ? [
+                  {
+                    content: t('Админка'),
+                    href: routesPaths.admin_panel.path,
+                  },
+                ]
+              : []),
             {
               content: t('Выйти'),
               onClick: onLogout,

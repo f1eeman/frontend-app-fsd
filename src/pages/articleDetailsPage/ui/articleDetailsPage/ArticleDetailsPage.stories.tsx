@@ -1,6 +1,7 @@
 import { MemoryRouter, Route, Routes } from 'react-router'
 import ArticleDetailsPage from './ArticleDetailsPage'
 import { ArticleBlockType, ArticleType } from '@/entities/article'
+import { userRole } from '@/entities/user'
 import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { MockFetchDecorator } from '@/shared/lib/sb/decorators/MockFetch'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
@@ -41,6 +42,7 @@ const article: Article = {
   user: {
     id: '1',
     username: 'John',
+    role: userRole.USER,
     avatar: AvatarImg,
   },
   createdAt: '26.02.2022',
@@ -73,12 +75,12 @@ const comments: Comment[] = [
   {
     id: '1',
     text: 'Первый комментарий',
-    user: { id: '1', username: 'admin' },
+    user: { id: '1', username: 'admin', role: userRole.ADMIN },
   },
   {
     id: '2',
     text: 'Второй комментарий',
-    user: { id: '2', username: 'anton' },
+    user: { id: '2', username: 'anton', role: userRole.USER },
   },
 ]
 
@@ -106,7 +108,10 @@ export const Normal: Story = {
   parameters: { router: 'none' },
   decorators: [
     StoreDecorator({
-      user: { authData: { id: '1', username: 'John' }, _inited: true },
+      user: {
+        authData: { id: '1', username: 'John', role: userRole.USER },
+        _inited: true,
+      },
       articleDetails: { isLoading: false, data: article },
       articleDetailsComments: {
         isLoading: false,
@@ -124,7 +129,10 @@ export const NoArticle: Story = {
   parameters: { router: 'none' },
   decorators: [
     StoreDecorator({
-      user: { authData: { id: '42', username: 'admin' }, _inited: true },
+      user: {
+        authData: { id: '42', username: 'admin', role: userRole.ADMIN },
+        _inited: true,
+      },
       articleDetails: { isLoading: false },
       articleDetailsComments: { isLoading: false, ids: [], entities: {} },
       addCommentForm: { text: '' },
@@ -138,7 +146,10 @@ export const NoId: Story = {
   parameters: { router: 'none' },
   decorators: [
     StoreDecorator({
-      user: { authData: { id: '1', username: 'John' }, _inited: true },
+      user: {
+        authData: { id: '1', username: 'John', role: userRole.USER },
+        _inited: true,
+      },
     }),
     RouteWithoutIdDecorator,
   ],

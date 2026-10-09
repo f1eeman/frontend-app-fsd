@@ -1,6 +1,7 @@
 import { EditableProfileCardHeader } from './EditableProfileCardHeader'
 import { Country } from '@/entities/country'
 import { Currency } from '@/entities/currency'
+import { userRole } from '@/entities/user'
 import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
@@ -29,7 +30,10 @@ const profileState: ProfileSchema = {
 
 const withStore = (authDataId: string, state: ProfileSchema) => [
   StoreDecorator({
-    user: { authData: { id: authDataId, username: 'johndoe' }, _inited: true },
+    user: {
+      authData: { id: authDataId, username: 'johndoe', role: userRole.USER },
+      _inited: true,
+    },
     profile: state,
   }),
 ]

@@ -1,5 +1,6 @@
 import { addCommentForArticle } from './addCommentForArticle'
 import { ArticleType } from '@/entities/article'
+import { userRole } from '@/entities/user'
 import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { TestAsyncThunk } from '@/shared/lib/tests/async.thunk.tests'
 import type { Article } from '@/entities/article'
@@ -17,11 +18,12 @@ const article: Article = {
   user: {
     id: '1',
     username: 'John',
+    role: userRole.USER,
     avatar: AvatarImg,
   },
 }
 
-const user = { id: '42', username: 'admin' }
+const user = { id: '42', username: 'admin', role: userRole.ADMIN }
 
 const baseState = {
   user: { authData: user, _inited: true },

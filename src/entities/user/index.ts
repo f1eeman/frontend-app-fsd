@@ -1,4 +1,12 @@
-export { getUserAuthData } from './model/selectors/getUserAuthData/getUserAuthData'
-export { getUserInited } from './model/selectors/getUserInited/getUserInited'
-export { userReducer, userActions } from './model/slices/userSlice'
+export {
+  userReducer,
+  userActions,
+  getUserAuthData,
+  getUserInited,
+  getUserIsAdmin,
+  getUserIsUser,
+  getUserIsManager,
+} from './model/slices/userSlice'
+export { userRole } from './model/consts/consts'
+export type { UserRole } from './model/consts/consts'
 export type { UserSchema, User } from './model/types/user'

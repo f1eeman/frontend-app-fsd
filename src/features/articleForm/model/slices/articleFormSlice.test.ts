@@ -1,5 +1,6 @@
 import { articleFormActions, articleFormReducer } from './articleFormSlice'
 import { ArticleBlockType, ArticleType } from '@/entities/article'
+import { userRole } from '@/entities/user'
 import type { ArticleFormSchema } from '../types/articleFormSchema'
 
 const emptyState: ArticleFormSchema = {
@@ -127,7 +128,7 @@ describe('articleFormSlice', () => {
       img: 'img.jpg',
       type: [ArticleType.IT],
       blocks: [],
-      user: { id: '1', username: 'admin' },
+      user: { id: '1', username: 'admin', role: userRole.ADMIN },
       views: 0,
       createdAt: '',
     }

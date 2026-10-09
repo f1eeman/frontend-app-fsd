@@ -1,4 +1,4 @@
-import { getUserAuthData } from './getUserAuthData'
+import { getUserAuthData } from './userSlice'
 import type { RootState } from '@/app/store'
 
 describe('getUserAuthData.test', () => {

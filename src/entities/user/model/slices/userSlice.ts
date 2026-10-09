@@ -1,4 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+import { userRole } from '../consts/consts'
 import { USER_LOCALSTORAGE_KEY } from '@/shared/consts/localstorage'
 import type { UserSchema, User } from '../types/user'
 
@@ -25,7 +26,23 @@ export const userSlice = createSlice({
       localStorage.removeItem(USER_LOCALSTORAGE_KEY)
     },
   },
+  selectors: {
+    getUserAuthData: (state) => state.authData,
+    getUserInited: (state) => state._inited,
+    getUserRole: (state) => state.authData?.role,
+    getUserIsAdmin: (state) => state.authData?.role === userRole.ADMIN,
+    getUserIsUser: (state) => state.authData?.role === userRole.USER,
+    getUserIsManager: (state) => state.authData?.role === userRole.MANAGER,
+  },
 })
 
 export const { actions: userActions } = userSlice
 export const { reducer: userReducer } = userSlice
+export const {
+  getUserAuthData,
+  getUserInited,
+  getUserRole,
+  getUserIsAdmin,
+  getUserIsUser,
+  getUserIsManager,
+} = userSlice.selectors

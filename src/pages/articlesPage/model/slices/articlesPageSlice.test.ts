@@ -6,6 +6,7 @@ import {
   withArticlesPageSlice,
 } from './articlesPageSlice'
 import { ArticleSortField, ArticleType, ArticleView } from '@/entities/article'
+import { userRole } from '@/entities/user'
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/consts/localstorage'
 import type { ArticlesPageSchema } from '../types/articlesPageSchema'
 import type { RootState } from '@/app/store'
@@ -20,7 +21,7 @@ const mockArticle: Article = {
   createdAt: '',
   type: [ArticleType.IT],
   blocks: [],
-  user: { id: '1', username: 'admin' },
+  user: { id: '1', username: 'admin', role: userRole.ADMIN },
 }
 
 describe('articlesPageSlice.test', () => {

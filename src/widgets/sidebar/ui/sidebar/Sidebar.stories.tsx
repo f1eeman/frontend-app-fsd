@@ -1,4 +1,5 @@
 import { Sidebar as SidebarComponent } from './Sidebar'
+import { userRole } from '@/entities/user'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
@@ -29,6 +30,7 @@ export const Sidebar: Story = {
         authData: {
           id: '1',
           username: 'test',
+          role: userRole.USER,
         },
       },
     }),

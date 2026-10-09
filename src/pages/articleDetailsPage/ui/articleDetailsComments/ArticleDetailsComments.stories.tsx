@@ -1,4 +1,5 @@
 import ArticleDetailsComments from './ArticleDetailsComments'
+import { userRole } from '@/entities/user'
 import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
@@ -32,16 +33,26 @@ const comments: Comment[] = [
   {
     id: '1',
     text: 'Первый комментарий',
-    user: { id: '1', username: 'admin', avatar: AvatarImg },
+    user: {
+      id: '1',
+      username: 'admin',
+      avatar: AvatarImg,
+      role: userRole.ADMIN,
+    },
   },
   {
     id: '2',
     text: 'Второй комментарий',
-    user: { id: '2', username: 'anton', avatar: AvatarImg },
+    user: {
+      id: '2',
+      username: 'anton',
+      avatar: AvatarImg,
+      role: userRole.USER,
+    },
   },
 ]
 
-const authData = { id: '1', username: 'admin' }
+const authData = { id: '1', username: 'admin', role: userRole.ADMIN }
 
 const filledComments = {
   isLoading: false,

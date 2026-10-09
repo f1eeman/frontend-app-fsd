@@ -1,5 +1,6 @@
 import { ArticleRecommendationList } from './ArticleRecommendationList'
 import { ArticleBlockType, ArticleType } from '@/entities/article'
+import { userRole } from '@/entities/user'
 import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { MockFetchDecorator } from '@/shared/lib/sb/decorators/MockFetch'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
@@ -38,6 +39,7 @@ const article: Article = {
   user: {
     id: '1',
     username: 'John',
+    role: userRole.USER,
     avatar: AvatarImg,
   },
   createdAt: '26.02.2022',

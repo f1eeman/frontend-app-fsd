@@ -4,6 +4,7 @@ import { EditableProfileCard } from '../editableProfileCard/EditableProfileCard'
 import { EditableProfileCardHeader } from './EditableProfileCardHeader'
 import { Country } from '@/entities/country'
 import { Currency } from '@/entities/currency'
+import { userRole } from '@/entities/user'
 import { $api } from '@/shared/api/api'
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender'
 import type { UserEvent } from '@testing-library/user-event'
@@ -39,7 +40,11 @@ const renderProfile = async (authDataId = '1') => {
     {
       initialState: {
         user: {
-          authData: { id: authDataId, username: 'johndoe' },
+          authData: {
+            id: authDataId,
+            username: 'johndoe',
+            role: userRole.USER,
+          },
           _inited: true,
         },
         profile: profileState,

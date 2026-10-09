@@ -56,6 +56,7 @@ const article: Article = {
   user: {
     id: '1',
     username: 'Ulbi tv',
+    role: 'user',
     avatar: AvatarImg,
   },
   type: [ArticleType.IT, ArticleType.SCIENCE, ArticleType.ECONOMICS],

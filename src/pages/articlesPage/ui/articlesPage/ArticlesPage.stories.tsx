@@ -1,5 +1,6 @@
 import ArticlesPage from './ArticlesPage'
 import { ArticleSortField, ArticleType, ArticleView } from '@/entities/article'
+import { userRole } from '@/entities/user'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import type { Article } from '@/entities/article'
@@ -12,7 +13,7 @@ const article: Article = {
   views: 1022,
   createdAt: '26.02.2022',
   type: [ArticleType.IT],
-  user: { id: '1', username: 'admin' },
+  user: { id: '1', username: 'admin', role: userRole.ADMIN },
   blocks: [],
 }
 

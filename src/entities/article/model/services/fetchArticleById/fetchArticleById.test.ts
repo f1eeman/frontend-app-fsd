@@ -12,7 +12,7 @@ const mockArticle: Article = {
   createdAt: '',
   type: [ArticleType.IT],
   blocks: [],
-  user: { id: '1', username: 'admin' },
+  user: { id: '1', username: 'admin', role: 'admin' },
 }
 
 describe('fetchArticleById.test', () => {

@@ -1,4 +1,5 @@
 import { Navbar as NavbarComponent } from './Navbar'
+import { userRole } from '@/entities/user'
 import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
@@ -29,7 +30,14 @@ export const Navbar: Story = {
 export const AuthNavbar: Story = {
   decorators: [
     StoreDecorator({
-      user: { authData: { username: '123', id: '123', avatar: AvatarImg } },
+      user: {
+        authData: {
+          username: '123',
+          id: '123',
+          avatar: AvatarImg,
+          role: userRole.USER,
+        },
+      },
     }),
   ],
 }

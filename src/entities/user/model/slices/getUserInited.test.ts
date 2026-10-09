@@ -1,4 +1,4 @@
-import { getUserInited } from './getUserInited'
+import { getUserInited } from './userSlice'
 import type { RootState } from '@/app/store'
 
 describe('getUserInited.test', () => {

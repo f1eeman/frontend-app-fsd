@@ -1,5 +1,6 @@
 import { saveArticle } from './saveArticle'
 import { ArticleType } from '@/entities/article'
+import { userRole } from '@/entities/user'
 import { TestAsyncThunk } from '@/shared/lib/tests/async.thunk.tests'
 import type { ArticleFormData } from '../../types/articleFormSchema'
 import type { Article } from '@/entities/article'
@@ -23,11 +24,14 @@ const savedArticle: Article = {
   createdAt: '',
   type: [ArticleType.IT],
   blocks: [],
-  user: { id: '1', username: 'admin' },
+  user: { id: '1', username: 'admin', role: userRole.ADMIN },
 }
 
 const stateWith = (formData: ArticleFormData) => ({
-  user: { authData: { id: '1', username: 'admin' }, _inited: true },
+  user: {
+    authData: { id: '1', username: 'admin', role: userRole.ADMIN },
+    _inited: true,
+  },
   articleForm: { formData, isLoading: false },
 })
 

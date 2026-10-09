@@ -1,5 +1,6 @@
 import { fetchArticleForEdit } from './fetchArticleForEdit'
 import { ArticleType } from '@/entities/article'
+import { userRole } from '@/entities/user'
 import { TestAsyncThunk } from '@/shared/lib/tests/async.thunk.tests'
 import type { Article } from '@/entities/article'
 
@@ -12,7 +13,7 @@ const mockArticle: Article = {
   createdAt: '',
   type: [ArticleType.IT],
   blocks: [],
-  user: { id: '1', username: 'admin' },
+  user: { id: '1', username: 'admin', role: userRole.ADMIN },
 }
 
 describe('fetchArticleForEdit', () => {

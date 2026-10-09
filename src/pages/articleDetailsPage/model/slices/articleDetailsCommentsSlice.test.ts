@@ -1,5 +1,6 @@
 import { fetchCommentsByArticleId } from '../services/fetchCommentsByArticleId/fetchCommentsByArticleId'
 import { articleDetailsCommentsReducer } from './articleDetailsCommentsSlice'
+import { userRole } from '@/entities/user'
 import type { ArticleDetailsCommentsSchema } from '../types/ArticleDetailsCommentsSchema'
 import type { Comment } from '@/entities/comment'
 import type { DeepPartial } from '@/shared/types'
@@ -8,12 +9,12 @@ const comments: Comment[] = [
   {
     id: '1',
     text: 'first',
-    user: { id: '1', username: 'admin' },
+    user: { id: '1', username: 'admin', role: userRole.ADMIN },
   },
   {
     id: '2',
     text: 'second',
-    user: { id: '2', username: 'anton' },
+    user: { id: '2', username: 'anton', role: userRole.USER },
   },
 ]
 

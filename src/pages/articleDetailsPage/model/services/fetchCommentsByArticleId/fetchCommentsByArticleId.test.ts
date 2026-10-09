@@ -1,4 +1,5 @@
 import { fetchCommentsByArticleId } from './fetchCommentsByArticleId'
+import { userRole } from '@/entities/user'
 import { TestAsyncThunk } from '@/shared/lib/tests/async.thunk.tests'
 import type { Comment } from '@/entities/comment'
 
@@ -6,7 +7,7 @@ const comments: Comment[] = [
   {
     id: '1',
     text: 'comment 1',
-    user: { id: '1', username: 'admin' },
+    user: { id: '1', username: 'admin', role: userRole.ADMIN },
   },
 ]
 

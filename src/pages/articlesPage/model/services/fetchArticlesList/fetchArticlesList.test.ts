@@ -1,5 +1,6 @@
 import { fetchArticlesList } from './fetchArticlesList'
 import { ArticleSortField, ArticleType, ArticleView } from '@/entities/article'
+import { userRole } from '@/entities/user'
 import { TestAsyncThunk } from '@/shared/lib/tests/async.thunk.tests'
 import type { Article } from '@/entities/article'
 
@@ -13,7 +14,7 @@ const mockArticles: Article[] = [
     createdAt: '',
     type: [ArticleType.IT],
     blocks: [],
-    user: { id: '1', username: 'admin' },
+    user: { id: '1', username: 'admin', role: userRole.ADMIN },
   },
 ]
 

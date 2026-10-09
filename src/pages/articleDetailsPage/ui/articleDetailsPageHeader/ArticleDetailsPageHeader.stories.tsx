@@ -1,5 +1,6 @@
 import { MemoryRouter } from 'react-router'
 import { ArticleDetailsPageHeader } from './ArticleDetailsPageHeader'
+import { userRole } from '@/entities/user'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Decorator, Meta, StoryObj } from '@storybook/react-webpack5'
 
@@ -32,12 +33,15 @@ export const CanEdit: Story = {
   parameters: { router: 'none' },
   decorators: [
     StoreDecorator({
-      user: { authData: { id: '1', username: 'admin' }, _inited: true },
+      user: {
+        authData: { id: '1', username: 'admin', role: userRole.ADMIN },
+        _inited: true,
+      },
       articleDetails: {
         isLoading: false,
         data: {
           id: '1',
-          user: { id: '1', username: 'admin' },
+          user: { id: '1', username: 'admin', role: userRole.ADMIN },
           title: '',
           subtitle: '',
           img: '',
@@ -56,12 +60,15 @@ export const CannotEdit: Story = {
   parameters: { router: 'none' },
   decorators: [
     StoreDecorator({
-      user: { authData: { id: '2', username: 'other' }, _inited: true },
+      user: {
+        authData: { id: '2', username: 'other', role: userRole.USER },
+        _inited: true,
+      },
       articleDetails: {
         isLoading: false,
         data: {
           id: '1',
-          user: { id: '1', username: 'admin' },
+          user: { id: '1', username: 'admin', role: userRole.ADMIN },
           title: '',
           subtitle: '',
           img: '',

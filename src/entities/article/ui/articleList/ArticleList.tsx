@@ -35,11 +35,6 @@ interface ListContext {
   isLoading?: boolean
 }
 
-/**
- * Скелетоны дозагрузки в SMALL — обычные элементы сетки, а не отдельный блок:
- * иначе они образуют вторую сетку со своими треками, без gap до последнего ряда
- * и не добирают незаполненные ячейки последнего ряда.
- */
 type GridItem =
   | { kind: 'article'; article: Article }
   | { kind: 'skeleton'; key: string }

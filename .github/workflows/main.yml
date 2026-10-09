@@ -16,10 +16,6 @@ jobs:
   pipeline:
     runs-on: ubuntu-latest
 
-    # Браузер и шрифты уже внутри образа, поэтому шага `playwright install` нет.
-    # Тег обязан совпадать с версией playwright в yarn.lock: образ фиксирует
-    # сборку Chromium, а от неё зависят эталоны скриншотов. Обновляешь
-    # playwright — обновляй тег и перегенерируй baseline.
     container:
       image: mcr.microsoft.com/playwright:v1.58.2-noble
 
@@ -54,9 +50,6 @@ jobs:
       - name: Unit testing
         run: yarn test:unit
 
-      # Генерирует слайсы всеми вариантами шаблонов, линтует и типизирует их,
-      # затем удаляет. Ловит расхождение генератора с конвенциями проекта —
-      # именно так шаблоны успели отстать на две мажорные версии Storybook.
       - name: Assert slice generator matches conventions
         run: yarn check:generator
 

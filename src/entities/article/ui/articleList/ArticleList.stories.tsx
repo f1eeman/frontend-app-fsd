@@ -120,7 +120,6 @@ const article: Article = {
   ],
 }
 
-/** Полностью настраиваемая песочница — крути любой проп в панели Controls */
 export const Playground: Story = {
   args: {
     articles: new Array(9).fill(0).map((_, index) => ({

@@ -1,7 +1,6 @@
 import { AppLoader } from './AppLoader'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
-/** AppLoader не принимает пропсов — панель Controls для него пуста */
 const meta = {
   title: 'widgets/AppLoader',
   component: AppLoader,

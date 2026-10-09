@@ -2,11 +2,6 @@ import { firstCharUpperCase } from '../firstCharUpperCase.mjs'
 import { resolveRoot } from '../resolveRoot.mjs'
 import { writeFormatted } from '../writeFormatted.mjs'
 
-/**
- * Public API слайса. Схема идёт первой строкой — так сделано в articleForm и
- * addCommentForm. Асинхронный вариант отдаёт обёртку под именем компонента,
- * чтобы точка входа не зависела от способа загрузки.
- */
 export const createPublicApi = async ({
   layer,
   sliceName,

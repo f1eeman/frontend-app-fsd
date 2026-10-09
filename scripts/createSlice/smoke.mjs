@@ -1,17 +1,3 @@
-/**
- * Смоук-проверка генератора слайсов.
- *
- * Зачем: шаблоны отстают от проекта молча. К моменту этой проверки они успели
- * разойтись с кодовой базой на две мажорные версии Storybook и на смену
- * устройства стора, и заметить это было можно только вручную. Скрипт
- * генерирует три варианта слайса прямо в src (иначе не работают алиас @/ и
- * tsconfig.include), прогоняет по ним eslint, stylelint, tsc и jest, затем
- * удаляет сгенерированное. Любое расхождение — падение с кодом 1.
- *
- * Использование:
- *   yarn check:generator
- */
-
 import { spawnSync } from 'node:child_process'
 import { rm } from 'node:fs/promises'
 import path from 'node:path'
@@ -90,8 +76,6 @@ const cleanup = async () => {
 }
 
 const main = async () => {
-  // Прогон мог быть прерван на полпути: writeFormatted пишет с флагом wx и
-  // упал бы на остатках прошлого запуска
   await cleanup()
 
   const created = await generate()

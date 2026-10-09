@@ -7,7 +7,6 @@ import { firstCharUpperCase } from '../firstCharUpperCase.mjs'
 import { resolveRoot } from '../resolveRoot.mjs'
 import { writeFormatted } from '../writeFormatted.mjs'
 
-/** ui-сегмент: ui/<sliceName>/<ComponentName>.{tsx,module.scss,stories.tsx}. */
 export const createUI = async ({ layer, sliceName, withAsync }) => {
   const componentName = firstCharUpperCase(sliceName)
   const resolveUIPath = (...segments) =>

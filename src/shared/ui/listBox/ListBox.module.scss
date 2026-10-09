@@ -25,7 +25,6 @@
   /**
    * Headless UI с пропом transition сам навешивает data-closed/data-enter/
    * data-leave и ждёт окончания CSS-транзишена перед размонтированием.
-   * transform-origin задаёт класс направления, чтобы список сжимался к кнопке.
    */
   transition:
     opacity 200ms ease-out,

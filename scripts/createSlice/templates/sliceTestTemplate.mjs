@@ -1,10 +1,5 @@
 import { firstCharUpperCase } from '../firstCharUpperCase.mjs'
 
-/**
- * Тест слайса по образцу addCommentFormSlice.test.ts: DeepPartial-состояние
- * плюс каст к схеме. Проверяет сгенерированный setIsLoading — переписывается
- * вместе со слайсом.
- */
 export const sliceTestTemplate = (sliceName) => {
   const schemaName = `${firstCharUpperCase(sliceName)}Schema`
 

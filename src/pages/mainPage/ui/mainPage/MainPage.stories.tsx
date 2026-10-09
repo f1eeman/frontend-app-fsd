@@ -3,14 +3,11 @@ import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
-/** MainPage не принимает пропсов — панель Controls для неё пуста */
 const meta = {
   title: 'pages/MainPage',
   component: MainPage,
   tags: ['autodocs'],
   parameters: {
-    /* MainPage — это layout приложения целиком, отступы sb-main-padded ему
-       только добавляют скролл */
     layout: 'fullscreen',
     controls: { expanded: true },
   },

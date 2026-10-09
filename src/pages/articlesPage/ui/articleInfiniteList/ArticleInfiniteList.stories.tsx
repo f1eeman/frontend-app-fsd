@@ -28,7 +28,6 @@ const baseState: ArticlesPageSchema = {
   ids: [],
   entities: {},
   page: 1,
-  // hasMore: false — на случай, если стори окажется под живым инфинити-скроллом
   hasMore: false,
   isLoading: false,
   view: ArticleView.SMALL,
@@ -49,11 +48,6 @@ const withArticlesPage = (articlesPage: ArticlesPageSchema) => [
   StoreDecorator({ articlesPage }),
 ]
 
-/**
- * В приложении скролл-контейнер приходит от Page ref-колбэком, здесь его роль
- * играет обёртка ниже: без реального контейнера Virtuoso не виртуализирует,
- * а компонент до его появления не рендерит список вовсе.
- */
 const WithScrollParent = (
   props: ComponentProps<typeof ArticleInfiniteList>,
 ) => {
@@ -96,7 +90,6 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-/** Полностью настраиваемая песочница — крути любой проп в панели Controls */
 export const Playground: Story = {
   decorators: withArticlesPage(filledState),
 }
@@ -109,7 +102,6 @@ export const BigView: Story = {
   decorators: withArticlesPage({ ...filledState, view: ArticleView.BIG }),
 }
 
-/** Скелетоны дозагрузки поверх уже отрисованных статей */
 export const Loading: Story = {
   decorators: withArticlesPage({ ...filledState, isLoading: true }),
 }
@@ -118,7 +110,6 @@ export const Empty: Story = {
   decorators: withArticlesPage(baseState),
 }
 
-/** Ошибка подгрузки: список не рендерится, скролл-контейнер не нужен */
 export const Error: Story = {
   decorators: withArticlesPage({ ...baseState, error: 'Ошибка сети' }),
 }

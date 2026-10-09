@@ -27,11 +27,6 @@ export const Page = memo((props: PageProps) => {
   const wrapperRef = useRef<HTMLElement>(null)
   const triggerRef = useRef<HTMLDivElement>(null)
 
-  // Объединяем внутренний ref (для скролла/бесконечной подгрузки)
-  // с внешним, чтобы родитель мог получить скролл-контейнер.
-  // useCallback обязателен: при смене идентичности ref-колбэка React
-  // отцепляет и заново прицепляет ref (element -> null -> element),
-  // что дёргает состояние родителя и переинициализирует виртуализацию.
   const setWrapperRef = useCallback(
     (element: HTMLElement | null) => {
       wrapperRef.current = element

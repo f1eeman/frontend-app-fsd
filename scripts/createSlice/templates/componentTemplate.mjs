@@ -1,14 +1,3 @@
-/**
- * Компонент по образцу src/features/articleForm: memo, интерфейс <Name>Props,
- * classNames с внешним className.
- *
- * displayName обязателен: react/display-name считает ошибкой анонимную функцию
- * внутри memo, и весь проект закрывает это присваиванием после объявления.
- *
- * При withAsync компонент экспортируется по умолчанию — этого требует
- * lazy(() => import(...)) в <Name>.async.tsx, а пропсы экспортируются, чтобы
- * async-обёртка могла их типизировать.
- */
 export const componentTemplate = ({ componentName, withAsync }) => {
   const propsExport = withAsync ? 'export interface' : 'interface'
   const componentExport = withAsync ? 'const' : 'export const'

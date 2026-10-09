@@ -1,12 +1,5 @@
 import { firstCharUpperCase } from '../firstCharUpperCase.mjs'
 
-/**
- * Слайс по образцу src/features/articleForm.
- *
- * Стор собран через combineSlices().withLazyLoadedSlices(), поэтому редьюсер
- * подключается сам: injectInto(rootReducer) плюс расширение LazyLoadedSlices
- * через declare module. Править src/app/store после генерации не нужно.
- */
 export const reduxSliceTemplate = (sliceName) => {
   const schemaName = `${firstCharUpperCase(sliceName)}Schema`
 

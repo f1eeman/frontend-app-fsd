@@ -4,12 +4,6 @@ import { createPublicApi } from './createPublicApi.mjs'
 import { createUI } from './createUI.mjs'
 import { resolveRoot } from '../resolveRoot.mjs'
 
-/**
- * Собирает слайс целиком и возвращает список созданных файлов.
- *
- * Порядок важен только для читаемости вывода: public API пишется последним,
- * когда всё, на что он ссылается, уже существует.
- */
 export const createTemplate = async (options) => {
   const { layer, sliceName } = options
 

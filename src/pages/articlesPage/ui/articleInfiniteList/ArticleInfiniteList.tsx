@@ -33,9 +33,6 @@ const ArticleInfiniteList = (props: Props) => {
     )
   }
 
-  // Скролл-контейнер приезжает ref-колбэком после маунта Page. Рендерим
-  // список только с готовым контейнером, иначе Virtuoso переинициализируется
-  // на смене customScrollParent с undefined на элемент.
   if (!scrollParent) {
     return null
   }

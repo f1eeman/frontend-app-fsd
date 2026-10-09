@@ -24,8 +24,6 @@ export const saveArticle = createAsyncThunk<
 
   try {
     if (id) {
-      // PATCH merges, preserving server-side fields (userId, views,
-      // createdAt) that are not part of the editable form.
       const response = await extra.api.patch<Article>(
         `/articles/${id}`,
         formData,

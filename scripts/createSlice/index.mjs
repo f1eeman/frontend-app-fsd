@@ -1,27 +1,3 @@
-/**
- * Генератор FSD-слайсов.
- *
- * Зачем: каркас слайса набирается руками одинаково каждый раз, и шаблоны легко
- * расходятся с проектом — до этой переписки они отдавали CSF2-стори при
- * Storybook 10, импорты без алиаса @/ и слайс, который не подключался к стору.
- * Эталоном считаются src/features/articleForm и src/features/addCommentForm;
- * сгенерированный код проходит prettier, eslint, stylelint, tsc и jest без
- * правок, что проверяет scripts/createSlice/smoke.mjs.
- *
- * Использование:
- *   yarn create:slice <layer> <sliceName> [--with-slice] [--async]
- *
- *   layer         features | entities | pages | widgets
- *   sliceName     camelCase, например articleForm
- *   --with-slice  добавить model/types + model/slices с тестом слайса
- *   --async       добавить <Name>.async.tsx (для слоя pages включён всегда)
- *
- * Примеры:
- *   yarn create:slice widgets header
- *   yarn create:slice features articleForm --with-slice
- *   yarn create:slice pages profilePage --with-slice
- */
-
 import { access } from 'node:fs/promises'
 import path from 'node:path'
 import { resolveRoot } from './resolveRoot.mjs'
@@ -74,7 +50,6 @@ const parseArgs = (argv) => {
     layer,
     sliceName,
     withSlice: rest.includes('--with-slice'),
-    // Страницы в проекте грузятся лениво, поэтому обёртка нужна всегда
     withAsync: rest.includes('--async') || layer === 'pages',
   }
 }

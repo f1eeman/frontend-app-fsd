@@ -7,12 +7,7 @@
 .SMALL {
   display: grid;
   gap: 30px;
-
-  /* auto-fill нужна определённая ширина: во flex-контейнере с align-items: flex-start
-     сетка иначе сжимается по содержимому и схлопывается в одну колонку */
   width: 100%;
-
-  /* Карточка в SMALL имеет жёсткую ширину 230px, поэтому треки фиксированные */
   grid-template-columns: repeat(auto-fill, 230px);
   grid-auto-rows: max-content;
   justify-content: start;

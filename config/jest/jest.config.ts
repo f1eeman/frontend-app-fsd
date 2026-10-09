@@ -31,7 +31,6 @@ const config: Config = {
   // Автоматически очищать вызовы моков, инстансы, контексты и результаты перед каждым тестом
   clearMocks: true,
 
-  // Тестовое окружение: jsdom + проброшенный из Node Fetch API
   testEnvironment: path.resolve(__dirname, 'jest.environment.ts'),
 
   // Массив имён директорий, по которым будет выполняться поиск (с подъёмом вверх по дереву) от расположения require/import

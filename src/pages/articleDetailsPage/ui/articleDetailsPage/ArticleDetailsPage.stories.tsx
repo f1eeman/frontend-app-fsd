@@ -11,7 +11,6 @@ import type { Comment } from '@/entities/comment'
 const ARTICLE_ROUTE_PATTERN = '/articles/:id/'
 const ARTICLE_ROUTE_ENTRY = '/articles/1/'
 const ARTICLES_ROUTE = '/articles/'
-/** Подстрока URL, по которой ловится запрос рекомендаций */
 const ARTICLES_URL = '/articles'
 
 const meta = {
@@ -64,7 +63,6 @@ const article: Article = {
   ],
 }
 
-/** Отдаются блоку рекомендаций, поэтому статья страницы в список не входит */
 const recommendations: Article[] = [
   { ...article, id: '2', title: 'Python news', views: 512, blocks: [] },
   { ...article, id: '3', title: 'Go news', views: 77, blocks: [] },
@@ -92,7 +90,6 @@ const RouteWithIdDecorator: Decorator = (Story) => (
   </MemoryRouter>
 )
 
-/** Тот же маршрут без `:id` — страница уходит в ветку «Статья не найдена» */
 const RouteWithoutIdDecorator: Decorator = (Story) => (
   <MemoryRouter initialEntries={[ARTICLES_ROUTE]}>
     <Routes>
@@ -101,10 +98,6 @@ const RouteWithoutIdDecorator: Decorator = (Story) => (
   </MemoryRouter>
 )
 
-/**
- * Блок рекомендаций живёт на RTK Query и запрашивает данные даже в Storybook,
- * поэтому его нужно кормить моком — иначе запрос падает и блок молча исчезает.
- */
 const recommendationsDecorator = MockFetchDecorator({
   [ARTICLES_URL]: { body: recommendations },
 })

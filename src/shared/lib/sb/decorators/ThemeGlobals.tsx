@@ -18,11 +18,6 @@ export const ThemeRootClassDecorator: Decorator = (Story, context) => {
     storybookRoot.className = `app-sb ${theme}`
   }
 
-  /**
-   * Так же, как это делает useTheme в приложении: без класса на body
-   * переменные темы недоступны за пределами #storybook-root, и фон стори
-   * остаётся прозрачным.
-   */
   document.body.classList.remove(Theme.LIGHT, Theme.DARK, Theme.ORANGE)
   document.body.classList.add(theme)
 

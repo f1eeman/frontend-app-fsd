@@ -20,8 +20,6 @@ jobs:
     outputs:
       pushed: ${{ steps.commit.outputs.pushed }}
 
-    # Тот же образ, что и в main.yml: baseline должен сниматься ровно в том
-    # окружении, в котором его потом проверяет CI.
     container:
       image: mcr.microsoft.com/playwright:v1.58.2-noble
 
@@ -63,8 +61,6 @@ jobs:
         env:
           BRANCH: ${{ inputs.branch }}
         run: |
-          # Внутри контейнера workspace принадлежит другому uid, без этого
-          # git отказывается работать с "dubious ownership"
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
           git config user.name "github-actions[bot]"

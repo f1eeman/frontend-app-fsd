@@ -36,7 +36,6 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-/** Текст поля живёт в сторе — меняется через StoreDecorator, не через Controls */
 export const Playground: Story = {}
 
 export const Normal: Story = {}

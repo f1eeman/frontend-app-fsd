@@ -52,7 +52,6 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-/** Полностью настраиваемая песочница — крути любой проп в панели Controls */
 export const Playground: Story = {}
 
 export const Normal: Story = {}

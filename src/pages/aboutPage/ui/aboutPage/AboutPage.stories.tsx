@@ -1,7 +1,6 @@
 import AboutPage from './AboutPage'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
-/** AboutPage не принимает пропсов — панель Controls для неё пуста */
 const meta = {
   title: 'pages/AboutPage',
   component: AboutPage,

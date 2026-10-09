@@ -7,10 +7,6 @@ import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import type { Profile, ProfileSchema } from '../../model/types/profile'
 
-/**
- * Загрузка профиля отключена гардом `__PROJECT__ === 'sb'`, поэтому данные
- * приходят только из StoreDecorator, а проп `id` ни на что не влияет.
- */
 const profile: Profile = {
   id: '1',
   first: 'John',
@@ -64,17 +60,14 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-/** Полностью настраиваемая песочница — крути любой проп в панели Controls */
 export const Playground: Story = {
   decorators: withProfile(baseState),
 }
 
-/** Просмотр: поля и селекты заблокированы */
 export const Readonly: Story = {
   decorators: withProfile(baseState),
 }
 
-/** Редактирование: поля и селекты активны */
 export const Editable: Story = {
   decorators: withProfile({ ...baseState, readonly: false }),
 }
@@ -88,7 +81,6 @@ export const Loading: Story = {
   }),
 }
 
-/** Ошибка загрузки профиля — вместо формы показывается сообщение */
 export const Error: Story = {
   decorators: withProfile({
     ...baseState,
@@ -98,7 +90,6 @@ export const Error: Story = {
   }),
 }
 
-/** Ошибки валидации над формой, по одной на каждый тип */
 export const WithValidateErrors: Story = {
   decorators: withProfile({
     ...baseState,

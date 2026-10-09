@@ -6,11 +6,6 @@ import type { RootState } from '@/app/store'
 import type { Comment } from '@/entities/comment'
 import type { DeepPartial } from '@/shared/types'
 
-/**
- * Загрузка комментариев в компоненте отключена гардом `__PROJECT__ === 'sb'`,
- * поэтому данные приходят только из StoreDecorator. Роутер берём дефолтный из
- * preview.ts — CommentCard ведёт ссылкой на профиль автора.
- */
 const meta = {
   title: 'pages/ArticleDetailsPage/ArticleDetailsComments',
   component: ArticleDetailsComments,
@@ -64,7 +59,6 @@ const withComments = (
   }),
 ]
 
-/** Полностью настраиваемая песочница — крути любой проп в панели Controls */
 export const Playground: Story = {
   decorators: withComments(filledComments),
 }

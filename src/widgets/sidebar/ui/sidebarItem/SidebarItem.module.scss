@@ -7,8 +7,6 @@
   margin-left: 10px;
   white-space: nowrap;
   opacity: 1;
-
-  /* При разворачивании: текст проявляется, когда сайдбар уже расширяется */
   transition: opacity 0.15s 0.15s;
 }
 
@@ -25,8 +23,6 @@
     margin-left: 0;
     overflow: hidden;
     opacity: 0;
-
-    /* При сворачивании: сначала текст гаснет, потом схлопывается его место */
     transition:
       opacity 0.15s,
       width 0s 0.15s,

@@ -6,11 +6,6 @@ import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import type { Profile, ProfileSchema } from '../../model/types/profile'
 
-/**
- * Кнопки редактирования показываются только владельцу профиля:
- * `canEdit` сравнивает `user.authData.id` с `profile.data.id`, поэтому обе
- * ветки настраиваются через StoreDecorator.
- */
 const profile: Profile = {
   id: '1',
   first: 'John',
@@ -59,22 +54,18 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-/** Полностью настраиваемая песочница — крути любой проп в панели Controls */
 export const Playground: Story = {
   decorators: withStore('1', profileState),
 }
 
-/** Свой профиль в режиме просмотра — доступна кнопка «Редактировать» */
 export const CanEdit: Story = {
   decorators: withStore('1', profileState),
 }
 
-/** Свой профиль в режиме правки — «Отменить» и «Сохранить» */
 export const Editing: Story = {
   decorators: withStore('1', { ...profileState, readonly: false }),
 }
 
-/** Чужой профиль — остаётся только заголовок */
 export const CannotEdit: Story = {
   decorators: withStore('2', profileState),
 }

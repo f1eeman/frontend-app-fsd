@@ -18,3 +18,7 @@ Single-context: one `CONTEXT.md` plus `docs/adr/` at the repo root (both created
 
 - Format: one line, no body — `type(module): what was done`, e.g. `feat(articleList): stretch grid to full width`.
 - No Claude attribution: never add `Co-Authored-By: Claude …` or any "Generated with Claude Code" line to commits or PRs.
+
+## Code style
+
+- No comments in code: don't add `//`, `/* */`, JSDoc or `#` comments. Tool directives (`eslint-disable`, `@ts-expect-error`, etc.) are the only exception.

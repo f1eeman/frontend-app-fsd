@@ -178,4 +178,27 @@ describe('EditableProfileCardHeader', () => {
     ).toBeInTheDocument()
     expect(putSpy).not.toHaveBeenCalled()
   })
+
+  test('«Отменить» стирает ошибки валидации', async () => {
+    const user = await renderProfile()
+    await startEditing(user)
+
+    await user.clear(screen.getByTestId('ProfileCard.Input.Firstname'))
+    await user.click(screen.getByTestId('EditableProfileCardHeader.SaveButton'))
+
+    expect(
+      await screen.findByTestId('EditableProfileCard.Error.Paragraph'),
+    ).toBeInTheDocument()
+
+    await user.click(
+      screen.getByTestId('EditableProfileCardHeader.CancelButton'),
+    )
+
+    expect(
+      screen.queryByTestId('EditableProfileCard.Error.Paragraph'),
+    ).not.toBeInTheDocument()
+    expect(screen.getByTestId('ProfileCard.Input.Firstname')).toHaveValue(
+      'John',
+    )
+  })
 })

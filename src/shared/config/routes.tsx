@@ -7,6 +7,7 @@ export const enum AppRoutes {
   ARTICLE_CREATE = 'article_create',
   ARTICLE_DETAILS = 'article_details',
   ADMIN_PANEL = 'admin_panel',
+  FORBIDDEN = 'forbidden',
   NOT_FOUND = 'not_found',
 }
 
@@ -42,6 +43,10 @@ export const routesPaths: Record<AppRoutes, Record<'id' | 'path', string>> = {
   [AppRoutes.ARTICLE_DETAILS]: {
     path: '/articles/:id/',
     id: 'article-details-page',
+  },
+  [AppRoutes.FORBIDDEN]: {
+    path: '/forbidden',
+    id: 'forbidden-page',
   },
   [AppRoutes.NOT_FOUND]: {
     path: '*',

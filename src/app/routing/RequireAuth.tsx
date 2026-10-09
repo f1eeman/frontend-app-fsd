@@ -24,7 +24,7 @@ export function RequireAuth({ children, roles }: RequireAuthProps) {
   }
 
   if (roles && !roles.includes(auth.role)) {
-    return <Navigate to={routesPaths.root.path} replace />
+    return <Navigate to={routesPaths.forbidden.path} replace />
   }
 
   return children

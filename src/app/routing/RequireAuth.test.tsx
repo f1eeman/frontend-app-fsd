@@ -10,6 +10,7 @@ const renderAdminRoute = (role?: UserRole) =>
     <Routes>
       <Route path={routesPaths.root.path} element={<div>main</div>} />
       <Route path={routesPaths.about.path} element={<div>about</div>} />
+      <Route path={routesPaths.forbidden.path} element={<div>forbidden</div>} />
       <Route
         path={routesPaths.admin_panel.path}
         element={
@@ -37,10 +38,10 @@ describe('RequireAuth.test', () => {
     expect(screen.getByText('admin')).toBeInTheDocument()
   })
 
-  test('should redirect to main page for forbidden role', () => {
+  test('should redirect to forbidden page for wrong role', () => {
     renderAdminRoute(userRole.USER)
 
-    expect(screen.getByText('main')).toBeInTheDocument()
+    expect(screen.getByText('forbidden')).toBeInTheDocument()
   })
 
   test('should redirect to about page when user is not logged in', () => {

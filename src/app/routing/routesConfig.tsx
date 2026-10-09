@@ -5,6 +5,7 @@ import { ArticleCreatePage } from '@/pages/articleCreatePage'
 import { ArticleDetailsPage } from '@/pages/articleDetailsPage'
 import { ArticleEditPage } from '@/pages/articleEditPage'
 import { ArticlesPage } from '@/pages/articlesPage'
+import { ForbiddenPage } from '@/pages/forbiddenPage'
 import { MainPageAsync } from '@/pages/mainPage'
 import { NotFoundPage } from '@/pages/notFoundPage'
 import { ProfilePageAsync } from '@/pages/profilePage'
@@ -60,6 +61,11 @@ export const routesConfig: AppRouteObject[] = [
         element: <AdminPanelPage />,
         path: routesPaths.admin_panel.path,
         id: routesPaths.admin_panel.id,
+      },
+      {
+        element: <ForbiddenPage />,
+        path: routesPaths.forbidden.path,
+        id: routesPaths.forbidden.id,
       },
       {
         element: <NotFoundPage />,

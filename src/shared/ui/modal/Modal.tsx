@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import cls from './Modal.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Portal, type PortalProps } from '@/shared/ui/portal/Portal'
+import { HStack } from '@/shared/ui/stack'
 import type { FC, ReactNode, MouseEvent } from 'react'
 
 interface ModalProps extends Pick<PortalProps, 'elementId' | 'element'> {
@@ -91,11 +92,11 @@ export const Modal: FC<ModalProps> = (props) => {
           [className],
         )}
       >
-        <div className={cls.overlay}>
+        <HStack justify='center' className={cls.overlay}>
           <div className={cls.content} onClick={onContentClick}>
             {children}
           </div>
-        </div>
+        </HStack>
       </div>
     </Portal>
   )

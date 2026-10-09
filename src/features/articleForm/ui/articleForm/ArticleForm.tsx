@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from '@/app/store'
 import { AppRoutes, routesPaths } from '@/shared/config/routes'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button, buttonTheme } from '@/shared/ui'
+import { VStack } from '@/shared/ui/stack'
 
 interface ArticleFormProps {
   className?: string
@@ -52,7 +53,11 @@ export const ArticleForm = memo(
     }, [articleId, dispatch, navigate])
 
     return (
-      <div className={classNames(cls.ArticleForm, {}, [className])}>
+      <VStack
+        gap='20'
+        align='stretch'
+        className={classNames(cls.ArticleForm, {}, [className])}
+      >
         <ArticleFormFields />
         <ArticleBlockList />
         <ArticleBlockAdder />
@@ -63,7 +68,7 @@ export const ArticleForm = memo(
         >
           {isLoading ? t('Сохранение...') : t('Сохранить')}
         </Button>
-      </div>
+      </VStack>
     )
   },
 )

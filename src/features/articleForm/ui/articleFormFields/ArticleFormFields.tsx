@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from '@/app/store'
 import { ArticleType } from '@/entities/article'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Input } from '@/shared/ui'
+import { HStack, VStack } from '@/shared/ui/stack'
 
 interface Props {
   className?: string
@@ -28,15 +29,15 @@ export const ArticleFormFields = memo(({ className = '' }: Props) => {
   const validateError = useAppSelector(selectValidateError)
 
   return (
-    <div className={classNames(cls.ArticleFormFields, {}, [className])}>
-      <div className={cls.field}>
+    <VStack gap='12' align='stretch' className={className}>
+      <VStack gap='4' align='stretch'>
         <Input
           placeholder={t('Заголовок')}
           value={formData.title}
           onChange={(v) => dispatch(articleFormActions.setTitle(v))}
         />
         {validateError && <p className={cls.error}>{validateError}</p>}
-      </div>
+      </VStack>
       <Input
         placeholder={t('Подзаголовок')}
         value={formData.subtitle}
@@ -47,7 +48,7 @@ export const ArticleFormFields = memo(({ className = '' }: Props) => {
         value={formData.img}
         onChange={(v) => dispatch(articleFormActions.setImg(v))}
       />
-      <div className={cls.types}>
+      <HStack gap='8' align='stretch'>
         {ARTICLE_TYPES.map((type) => (
           <button
             key={type}
@@ -62,8 +63,8 @@ export const ArticleFormFields = memo(({ className = '' }: Props) => {
             {t(type)}
           </button>
         ))}
-      </div>
-    </div>
+      </HStack>
+    </VStack>
   )
 })
 

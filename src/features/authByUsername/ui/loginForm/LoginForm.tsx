@@ -16,6 +16,7 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button } from '@/shared/ui/button/Button'
 import { Input } from '@/shared/ui/input/Input'
 import { SpinnerLoader } from '@/shared/ui/loaders/spinner/SpinnerLoader'
+import { HStack, VStack } from '@/shared/ui/stack'
 import { TextTheme } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
 
@@ -59,13 +60,16 @@ const LoginForm = memo<LoginFormProps>((props) => {
   }, [dispatch, navigate, onSuccess, password, username])
 
   return (
-    <div className={classNames(cls.LoginForm, {}, [className])}>
+    <VStack
+      align='stretch'
+      className={classNames(cls.LoginForm, {}, [className])}
+    >
       <Text title={t('Форма авторизации')} />
       {error && <Text text={t(error)} theme={TextTheme.ERROR} />}
       {isLoading && (
-        <div className={cls.spinnerWrap}>
+        <HStack justify='center' max>
           <SpinnerLoader />
-        </div>
+        </HStack>
       )}
       {!isLoading && (
         <>
@@ -94,7 +98,7 @@ const LoginForm = memo<LoginFormProps>((props) => {
           </Button>
         </>
       )}
-    </div>
+    </VStack>
   )
 })
 

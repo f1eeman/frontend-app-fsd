@@ -4,6 +4,7 @@ import cls from './ArticleListItem.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Card } from '@/shared/ui/card/Card'
 import { Skeleton } from '@/shared/ui/skeleton/Skeleton'
+import { HStack } from '@/shared/ui/stack'
 
 interface ArticleListItemSkeletonProps {
   className?: string
@@ -23,16 +24,16 @@ export const ArticleListItemSkeleton = memo(
           ])}
         >
           <Card className={cls.card}>
-            <div className={cls.header}>
+            <HStack>
               <Skeleton border='50%' height={30} width={30} />
               <Skeleton width={150} height={16} className={cls.username} />
               <Skeleton width={150} height={16} className={cls.date} />
-            </div>
+            </HStack>
             <Skeleton width={250} height={24} className={cls.title} />
             <Skeleton height={200} className={cls.img} />
-            <div className={cls.footer}>
+            <HStack className={cls.footer}>
               <Skeleton height={36} width={200} />
-            </div>
+            </HStack>
           </Card>
         </div>
       )
@@ -46,9 +47,9 @@ export const ArticleListItemSkeleton = memo(
           <div className={cls.imageWrapper}>
             <Skeleton width={200} height={200} className={cls.img} />
           </div>
-          <div className={cls.infoWrapper}>
+          <HStack className={cls.infoWrapper}>
             <Skeleton width={130} height={16} />
-          </div>
+          </HStack>
           <Skeleton width={150} height={16} className={cls.title} />
         </Card>
       </div>

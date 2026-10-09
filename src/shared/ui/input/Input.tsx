@@ -1,6 +1,7 @@
 import { memo, useEffect, useRef, useState } from 'react'
 import cls from './Input.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { HStack } from '@/shared/ui/stack'
 import type { ChangeEventHandler, InputHTMLAttributes } from 'react'
 import type { Mods } from '@/shared/lib/classNames/classNames'
 
@@ -62,7 +63,7 @@ export const Input = memo<InputProps>((props) => {
   }
 
   return (
-    <div className={classNames(cls.InputWrapper, mods, [className])}>
+    <HStack align='stretch' className={classNames('', mods, [className])}>
       {placeholder && (
         <div className={cls.placeholder}>{`${placeholder}>`}</div>
       )}
@@ -86,7 +87,7 @@ export const Input = memo<InputProps>((props) => {
           />
         )}
       </div>
-    </div>
+    </HStack>
   )
 })
 

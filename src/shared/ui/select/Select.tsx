@@ -1,8 +1,7 @@
 import { memo, useMemo } from 'react'
 import cls from './Select.module.scss'
-import { classNames } from '@/shared/lib/classNames/classNames'
+import { HStack } from '@/shared/ui/stack'
 import type { ChangeEvent } from 'react'
-import type { Mods } from '@/shared/lib/classNames/classNames'
 
 export interface SelectOption {
   value: string
@@ -37,10 +36,8 @@ export const Select = memo<SelectProps>((props) => {
     [options],
   )
 
-  const mods: Mods = {}
-
   return (
-    <div className={classNames(cls.Wrapper, mods, [className])}>
+    <HStack align='stretch' className={className}>
       {label && <span className={cls.label}>{`${label}>`}</span>}
       <select
         disabled={readonly}
@@ -50,7 +47,7 @@ export const Select = memo<SelectProps>((props) => {
       >
         {optionsList}
       </select>
-    </div>
+    </HStack>
   )
 })
 

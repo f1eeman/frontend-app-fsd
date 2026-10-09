@@ -1,6 +1,4 @@
 .LoginForm {
-  display: flex;
-  flex-direction: column;
   width: 400px;
 }
 
@@ -11,11 +9,4 @@
 .loginBtn {
   margin-top: 15px;
   margin-left: auto;
-}
-
-.spinnerWrap {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

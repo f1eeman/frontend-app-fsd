@@ -19,9 +19,6 @@
 .switchers {
   margin-top: auto;
   padding-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
 }
 
 .lang {
@@ -49,11 +46,6 @@
     padding-left: calc(
       (var(--sidebar-width-collapsed) - var(--sidebar-icon-size)) / 2
     );
-  }
-
-  .switchers {
-    flex-direction: column;
-    align-items: center;
   }
 
   .lang {

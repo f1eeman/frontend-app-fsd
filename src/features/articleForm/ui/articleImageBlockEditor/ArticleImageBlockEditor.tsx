@@ -1,8 +1,7 @@
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import cls from './ArticleImageBlockEditor.module.scss'
-import { classNames } from '@/shared/lib/classNames/classNames'
 import { Input } from '@/shared/ui'
+import { VStack } from '@/shared/ui/stack'
 import type { ArticleImageBlock } from '@/entities/article'
 
 interface Props {
@@ -26,7 +25,7 @@ export const ArticleImageBlockEditor = memo(
     )
 
     return (
-      <div className={classNames(cls.ArticleImageBlockEditor, {}, [className])}>
+      <VStack gap='8' align='stretch' className={className}>
         <Input
           placeholder={t('Ссылка на изображение')}
           value={block.src}
@@ -37,7 +36,7 @@ export const ArticleImageBlockEditor = memo(
           value={block.title}
           onChange={onTitleChange}
         />
-      </div>
+      </VStack>
     )
   },
 )

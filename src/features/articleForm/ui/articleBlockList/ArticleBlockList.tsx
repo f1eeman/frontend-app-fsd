@@ -16,8 +16,8 @@ import {
   type ArticleImageBlock,
   type ArticleTextBlock,
 } from '@/entities/article'
-import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button, buttonTheme } from '@/shared/ui'
+import { VStack } from '@/shared/ui/stack'
 
 interface Props {
   className?: string
@@ -40,9 +40,9 @@ export const ArticleBlockList = memo(({ className = '' }: Props) => {
   )
 
   return (
-    <div className={classNames(cls.ArticleBlockList, {}, [className])}>
+    <VStack gap='16' align='stretch' className={className}>
       {blocks.map((block) => (
-        <div key={block.id} className={cls.block}>
+        <VStack key={block.id} gap='8' align='stretch' className={cls.block}>
           {block.type === ArticleBlockType.TEXT && (
             <ArticleTextBlockEditor
               block={block as ArticleTextBlock}
@@ -68,9 +68,9 @@ export const ArticleBlockList = memo(({ className = '' }: Props) => {
           >
             {t('Удалить блок')}
           </Button>
-        </div>
+        </VStack>
       ))}
-    </div>
+    </VStack>
   )
 })
 

@@ -12,6 +12,7 @@ import { Avatar } from '@/shared/ui/avatar/Avatar'
 import { Button } from '@/shared/ui/button/Button'
 import { Card } from '@/shared/ui/card/Card'
 import { Icon } from '@/shared/ui/icon/Icon'
+import { HStack } from '@/shared/ui/stack'
 import { Text } from '@/shared/ui/text/Text'
 import type { HTMLAttributeAnchorTarget } from 'react'
 import type { Article, ArticleTextBlock } from '../../model/types/article'
@@ -46,11 +47,11 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
         className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
       >
         <Card className={cls.card}>
-          <div className={cls.header}>
+          <HStack>
             <Avatar size={30} src={article.user.avatar} />
             <Text text={article.user.username} className={cls.username} />
             <Text text={article.createdAt} className={cls.date} />
-          </div>
+          </HStack>
           <Text title={article.title} className={cls.title} />
           {types}
           <img src={article.img} className={cls.img} alt={article.title} />
@@ -60,7 +61,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
               className={cls.textBlock}
             />
           )}
-          <div className={cls.footer}>
+          <HStack className={cls.footer}>
             <AppLink
               target={target}
               to={generatePath(routesPaths.article_details.path, {
@@ -72,7 +73,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
               </Button>
             </AppLink>
             {views}
-          </div>
+          </HStack>
         </Card>
       </div>
     )
@@ -89,10 +90,10 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
           <img alt={article.title} src={article.img} className={cls.img} />
           <Text text={article.createdAt} className={cls.date} />
         </div>
-        <div className={cls.infoWrapper}>
+        <HStack className={cls.infoWrapper}>
           {types}
           {views}
-        </div>
+        </HStack>
         <Text text={article.title} className={cls.title} />
       </Card>
     </AppLink>

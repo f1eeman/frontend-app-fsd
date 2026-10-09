@@ -1,11 +1,10 @@
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { articleFormActions } from '../../model/slices/articleFormSlice'
-import cls from './ArticleBlockAdder.module.scss'
 import { useAppDispatch } from '@/app/store'
 import { ArticleBlockType } from '@/entities/article'
-import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button, buttonTheme } from '@/shared/ui'
+import { HStack } from '@/shared/ui/stack'
 
 interface Props {
   className?: string
@@ -21,7 +20,7 @@ export const ArticleBlockAdder = memo(({ className = '' }: Props) => {
   )
 
   return (
-    <div className={classNames(cls.ArticleBlockAdder, {}, [className])}>
+    <HStack gap='8' align='stretch' className={className}>
       <Button
         theme={buttonTheme.outline}
         onClick={() => onAdd(ArticleBlockType.TEXT)}
@@ -40,7 +39,7 @@ export const ArticleBlockAdder = memo(({ className = '' }: Props) => {
       >
         {t('+ Изображение')}
       </Button>
-    </div>
+    </HStack>
   )
 })
 

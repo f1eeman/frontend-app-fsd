@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import cls from './ArticleCodeBlockEditor.module.scss'
-import { classNames } from '@/shared/lib/classNames/classNames'
+import { VStack } from '@/shared/ui/stack'
 import type { ChangeEvent } from 'react'
 import type { ArticleCodeBlock } from '@/entities/article'
 
@@ -22,14 +22,14 @@ export const ArticleCodeBlockEditor = memo(
     )
 
     return (
-      <div className={classNames(cls.ArticleCodeBlockEditor, {}, [className])}>
+      <VStack align='stretch' className={className}>
         <textarea
           className={cls.textarea}
           value={block.code}
           onChange={onCodeChange}
           placeholder={t('Код')}
         />
-      </div>
+      </VStack>
     )
   },
 )

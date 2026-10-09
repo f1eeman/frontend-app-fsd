@@ -20,6 +20,7 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce'
 import { Card } from '@/shared/ui/card/Card'
 import { Input } from '@/shared/ui/input/Input'
+import { HStack } from '@/shared/ui/stack'
 import type {
   ArticleType,
   ArticleSortField,
@@ -92,7 +93,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
 
   return (
     <div className={classNames(cls.ArticlesPageFilters, {}, [className])}>
-      <div className={cls.sortWrapper}>
+      <HStack justify='between'>
         <ArticleSortSelector
           order={order}
           sort={sort}
@@ -100,7 +101,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
           onChangeSort={onChangeSort}
         />
         <ArticleViewSelector view={view} onViewClick={onChangeView} />
-      </div>
+      </HStack>
       <Card className={cls.search}>
         <Input
           onChange={onChangeSearch}

@@ -1,8 +1,8 @@
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import cls from './ArticleTextBlockEditor.module.scss'
-import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button, buttonTheme, Input } from '@/shared/ui'
+import { HStack, VStack } from '@/shared/ui/stack'
 import type { ArticleTextBlock } from '@/entities/article'
 
 interface Props {
@@ -43,14 +43,14 @@ export const ArticleTextBlockEditor = memo(
     )
 
     return (
-      <div className={classNames(cls.ArticleTextBlockEditor, {}, [className])}>
+      <VStack gap='8' align='stretch' className={className}>
         <Input
           placeholder={t('Заголовок блока (необязательно)')}
           value={block.title ?? ''}
           onChange={onTitleChange}
         />
         {block.paragraphs.map((p, i) => (
-          <div key={i} className={cls.paragraph}>
+          <HStack key={i} gap='8' align='start'>
             <textarea
               className={cls.textarea}
               value={p}
@@ -63,12 +63,12 @@ export const ArticleTextBlockEditor = memo(
             >
               {t('Удалить')}
             </Button>
-          </div>
+          </HStack>
         ))}
         <Button theme={buttonTheme.outline} onClick={addParagraph}>
           {t('+ Параграф')}
         </Button>
-      </div>
+      </VStack>
     )
   },
 )

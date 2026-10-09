@@ -7,7 +7,7 @@ import { LangSwitcher } from '@/features/langSwitcher'
 import { ThemeSwitcher } from '@/features/themeSwitcher'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button } from '@/shared/ui'
-import { VStack } from '@/shared/ui/stack'
+import { HStack, VStack } from '@/shared/ui/stack'
 
 interface SidebarProps {
   className?: string
@@ -19,6 +19,7 @@ export const Sidebar: FC = ({ className = '' }: SidebarProps) => {
   const toggleCollapsed = useCallback(() => {
     setCollapsed((collapsed) => !collapsed)
   }, [])
+  const Switchers = collapsed ? VStack : HStack
 
   return (
     <aside
@@ -33,10 +34,15 @@ export const Sidebar: FC = ({ className = '' }: SidebarProps) => {
             <SidebarItem item={item} collapsed={collapsed} key={item.path} />
           ))}
         </VStack>
-        <div className={cls.switchers}>
+        <Switchers
+          justify='center'
+          align={collapsed ? 'center' : 'stretch'}
+          max
+          className={cls.switchers}
+        >
           <ThemeSwitcher />
           <LangSwitcher short />
-        </div>
+        </Switchers>
       </VStack>
       <Button
         square

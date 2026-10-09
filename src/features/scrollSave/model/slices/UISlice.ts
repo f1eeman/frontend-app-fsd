@@ -17,8 +17,12 @@ export const uiSlice = createSlice({
       state.scroll[payload.path] = payload.position
     },
   },
+  selectors: {
+    getUIScrollByPath: (state, path: string) => state.scroll[path] || 0,
+  },
 })
 
 // Action creators are generated for each case reducer function
 export const { actions: uiActions } = uiSlice
 export const { reducer: uiReducer } = uiSlice
+export const { getUIScrollByPath } = uiSlice.selectors

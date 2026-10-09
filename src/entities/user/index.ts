@@ -3,6 +3,7 @@ export {
   userActions,
   getUserAuthData,
   getUserInited,
+  getUserRole,
   getUserIsAdmin,
   getUserIsUser,
   getUserIsManager,

@@ -1,12 +1,3 @@
-import { AboutPageAsync } from '@/pages/aboutPage'
-import { ArticleCreatePage } from '@/pages/articleCreatePage'
-import { ArticleDetailsPage } from '@/pages/articleDetailsPage'
-import { ArticleEditPage } from '@/pages/articleEditPage'
-import { ArticlesPage } from '@/pages/articlesPage'
-import { MainPageAsync } from '@/pages/mainPage'
-import { NotFoundPage } from '@/pages/notFoundPage'
-import { ProfilePageAsync } from '@/pages/profilePage'
-
 export const enum AppRoutes {
   ROOT = 'root',
   ABOUT = 'about',
@@ -15,6 +6,7 @@ export const enum AppRoutes {
   ARTICLE_EDIT = 'article_edit',
   ARTICLE_CREATE = 'article_create',
   ARTICLE_DETAILS = 'article_details',
+  ADMIN_PANEL = 'admin_panel',
   NOT_FOUND = 'not_found',
 }
 
@@ -22,6 +14,10 @@ export const routesPaths: Record<AppRoutes, Record<'id' | 'path', string>> = {
   [AppRoutes.ROOT]: {
     path: '/',
     id: 'root-page',
+  },
+  [AppRoutes.ADMIN_PANEL]: {
+    path: '/admin-panel',
+    id: 'admin-panel',
   },
   [AppRoutes.ABOUT]: {
     path: '/about',
@@ -52,49 +48,3 @@ export const routesPaths: Record<AppRoutes, Record<'id' | 'path', string>> = {
     id: 'not-found-page',
   },
 }
-
-export const routesConfig: AppRouteObject[] = [
-  {
-    element: <MainPageAsync />,
-    path: routesPaths.root.path,
-    id: routesPaths.root.id,
-    children: [
-      {
-        path: routesPaths.articles.path,
-        element: <ArticlesPage />,
-        authOnly: true,
-      },
-      {
-        path: routesPaths.article_details.path,
-        element: <ArticleDetailsPage />,
-        authOnly: true,
-      },
-      {
-        path: routesPaths.article_create.path,
-        element: <ArticleCreatePage />,
-        authOnly: true,
-      },
-      {
-        path: routesPaths.article_edit.path,
-        element: <ArticleEditPage />,
-        authOnly: true,
-      },
-      {
-        element: <AboutPageAsync />,
-        path: routesPaths.about.path,
-        id: routesPaths.about.id,
-      },
-      {
-        authOnly: true,
-        element: <ProfilePageAsync />,
-        path: routesPaths.profile.path,
-        id: routesPaths.profile.id,
-      },
-      {
-        element: <NotFoundPage />,
-        path: routesPaths.not_found.path,
-        id: routesPaths.not_found.id,
-      },
-    ],
-  },
-]

@@ -1,10 +1,15 @@
 import { Navigate, useLocation } from 'react-router'
 import { useAppSelector } from '@/app/store'
-import { getUserAuthData } from '@/entities/user'
+import { getUserAuthData, type UserRole } from '@/entities/user'
 import { routesPaths } from '@/shared/config/routes'
 import type { ReactNode } from 'react'
 
-export function RequireAuth({ children }: { children: ReactNode }) {
+interface RequireAuthProps {
+  children: ReactNode
+  roles?: UserRole[]
+}
+
+export function RequireAuth({ children, roles }: RequireAuthProps) {
   const auth = useAppSelector(getUserAuthData)
   const location = useLocation()
 
@@ -16,6 +21,10 @@ export function RequireAuth({ children }: { children: ReactNode }) {
         replace
       />
     )
+  }
+
+  if (roles && !roles.includes(auth.role)) {
+    return <Navigate to={routesPaths.root.path} replace />
   }
 
   return children

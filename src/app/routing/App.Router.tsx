@@ -1,17 +1,18 @@
 import { useRoutes } from 'react-router'
 import { RequireAuth } from '@/app/routing/RequireAuth'
-import { routesConfig } from '@/shared/config/routes'
+import { routesConfig, type AppRouteObject } from '@/app/routing/routesConfig'
 import type { RouteObject } from 'react-router'
 
 function applyAuth(routes: AppRouteObject[]): RouteObject[] {
-  return routes.map(({ authOnly, children, ...route }) => {
+  return routes.map(({ authOnly, roles, children, ...route }) => {
     const result: RouteObject = {
       ...route,
-      element: authOnly ? (
-        <RequireAuth>{route.element}</RequireAuth>
-      ) : (
-        route.element
-      ),
+      element:
+        authOnly || roles ? (
+          <RequireAuth roles={roles}>{route.element}</RequireAuth>
+        ) : (
+          route.element
+        ),
     }
     if (children) {
       result.children = applyAuth(children)

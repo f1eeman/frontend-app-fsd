@@ -1,4 +1,5 @@
 import { memo } from 'react'
+import { generatePath } from 'react-router'
 import cls from './CommentCard.module.scss'
 import { routesPaths } from '@/shared/config/routes'
 import { classNames } from '@/shared/lib/classNames/classNames'
@@ -30,6 +31,10 @@ export const CommentCard = memo((props: CommentCardProps) => {
     )
   }
 
+  if (!comment) {
+    return null
+  }
+
   return (
     <VStack
       max
@@ -37,15 +42,15 @@ export const CommentCard = memo((props: CommentCardProps) => {
       className={classNames(cls.CommentCard, {}, [className])}
     >
       <AppLink
-        to={`${routesPaths.profile.path}${comment?.user.id}`}
+        to={generatePath(routesPaths.profile.path, { id: comment.user.id })}
         className={cls.header}
       >
-        {comment?.user.avatar ? (
+        {comment.user.avatar ? (
           <Avatar size={30} src={comment.user.avatar} />
         ) : null}
-        <Text className={cls.username} title={comment?.user.username} />
+        <Text className={cls.username} title={comment.user.username} />
       </AppLink>
-      <Text className={cls.text} text={comment?.text} />
+      <Text className={cls.text} text={comment.text} />
     </VStack>
   )
 })

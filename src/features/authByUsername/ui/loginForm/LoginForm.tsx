@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router'
+import { generatePath, useNavigate } from 'react-router'
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername'
 import {
   loginActions,
@@ -52,7 +52,9 @@ const LoginForm = memo<LoginFormProps>((props) => {
     const result = await dispatch(loginByUsername({ username, password }))
     if (loginByUsername.fulfilled.match(result)) {
       onSuccess()
-      navigate(`${routesPaths.profile.path}${result.payload.id}`)
+      navigate(
+        generatePath(routesPaths.profile.path, { id: result.payload.id }),
+      )
     }
   }, [dispatch, navigate, onSuccess, password, username])
 

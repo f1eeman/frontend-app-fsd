@@ -13,3 +13,8 @@ Canonical vocabulary, unchanged — `needs-triage`, `needs-info`, `ready-for-age
 ### Domain docs
 
 Single-context: one `CONTEXT.md` plus `docs/adr/` at the repo root (both created lazily by `/domain-modeling`). See `docs/agents/domain.md`.
+
+## Commits
+
+- Format: one line, no body — `type(module): what was done`, e.g. `feat(articleList): stretch grid to full width`.
+- No Claude attribution: never add `Co-Authored-By: Claude …` or any "Generated with Claude Code" line to commits or PRs.

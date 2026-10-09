@@ -22,7 +22,7 @@ export const ArticleRecommendationList = memo(
 
     if (error) return null
     return (
-      <VStack gap={'8'} className={classNames('', {}, [className])}>
+      <VStack gap={'8'} max className={classNames('', {}, [className])}>
         {isLoading ? (
           t('Загрузка...')
         ) : (

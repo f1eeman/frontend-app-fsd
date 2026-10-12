@@ -97,30 +97,32 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         title={t('Произошла ошибка при загрузке статьи.')}
       />
     )
+  } else if (!article) {
+    content = <Text align={TextAlign.CENTER} title={t('Статья не найдена')} />
   } else {
     content = (
       <>
         <HStack justify={'center'} max>
-          <Avatar size={200} src={article?.img} className={cls.avatar} />
+          <Avatar size={200} src={article.img} className={cls.avatar} />
         </HStack>
         <VStack gap={'4'}>
           <Text
             className={cls.title}
-            title={article?.title}
-            text={article?.subtitle}
+            title={article.title}
+            text={article.subtitle}
             size={TextSize.L}
           />
           <HStack gap={'8'}>
             <Icon className={cls.icon} Svg={EyeIcon} />
-            <Text text={String(article?.views)} />
+            <Text text={String(article.views)} />
           </HStack>
           <HStack gap={'8'}>
             <Icon className={cls.icon} Svg={CalendarIcon} />
-            <Text text={article?.createdAt} />
+            <Text text={article.createdAt} />
           </HStack>
         </VStack>
 
-        {article?.blocks.map(renderBlock)}
+        {article.blocks.map(renderBlock)}
       </>
     )
   }

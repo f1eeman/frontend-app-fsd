@@ -9,7 +9,7 @@ import type { Article } from '../types/article'
 import type { ArticleDetailsSchema } from '../types/articleDetailsSchema'
 
 const initialState: ArticleDetailsSchema = {
-  isLoading: false,
+  isLoading: true,
   error: undefined,
   data: undefined,
 }

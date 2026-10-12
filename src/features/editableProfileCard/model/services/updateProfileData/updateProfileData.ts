@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { selectProfileForm } from '../../slices/profileSlice'
 import { ValidateProfileError } from '../../types/profile'
 import { validateProfileData } from '../validateProfileData/validateProfileData'
 import type { Profile } from '../../types/profile'
@@ -12,7 +11,7 @@ export const updateProfileData = createAsyncThunk<
 >('profile/updateProfileData', async (_, thunkApi) => {
   const { extra, rejectWithValue, getState } = thunkApi
 
-  const formData = selectProfileForm(getState())
+  const formData: Profile = getState().profile?.form ?? {}
 
   const errors = validateProfileData(formData)
 

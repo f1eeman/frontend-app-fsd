@@ -51,6 +51,6 @@ server.use((req, res, next) => {
 
 server.use(router)
 
-server.listen(2222, () => {
-  console.log('Server is running on 2222 port')
+server.listen(9000, () => {
+  console.log('Server is running on 9000 port')
 })

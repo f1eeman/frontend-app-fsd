@@ -5,6 +5,7 @@ import path from 'node:path'
 const projectRoot = process.cwd()
 const screenTestsDirPath = path.resolve(projectRoot, 'screen-tests')
 const artifactName = 'screenshot-diffs'
+const trustedEvents = ['push', 'workflow_dispatch']
 const tempEntries = [
   'diffs',
   'diffs-only',
@@ -48,23 +49,45 @@ const findLatestFailedRunId = () => {
       '--status',
       'failure',
       '--limit',
-      '1',
+      '20',
       '--json',
-      'databaseId,headSha',
+      'databaseId,headSha,event',
     ]),
   )
 
-  if (runs.length === 0) {
-    throw new Error(`Упавших прогонов main.yml на ветке ${branch} не найдено`)
+  const trustedRun = runs.find(({ event }) => trustedEvents.includes(event))
+
+  if (!trustedRun) {
+    throw new Error(
+      `Упавших прогонов main.yml на ветке ${branch} от push или workflow_dispatch не найдено`,
+    )
   }
 
-  return runs[0]
+  return trustedRun
+}
+
+const findRunById = (runId) => {
+  if (!/^\d+$/.test(runId)) {
+    throw new Error(`Номер прогона должен состоять из цифр: ${runId}`)
+  }
+
+  const runInfo = JSON.parse(
+    run('gh', ['run', 'view', runId, '--json', 'databaseId,headSha,event']),
+  )
+
+  if (!trustedEvents.includes(runInfo.event)) {
+    throw new Error(
+      `Прогон ${runId} запущен событием ${runInfo.event}. Скачиваются только прогоны от push или workflow_dispatch: артефакты pull request могут быть собраны из чужого кода.`,
+    )
+  }
+
+  return runInfo
 }
 
 const main = async () => {
   const runIdArg = process.argv[2]
   const { databaseId: runId, headSha } = runIdArg
-    ? { databaseId: runIdArg, headSha: null }
+    ? findRunById(runIdArg)
     : findLatestFailedRunId()
 
   for (const entry of tempEntries) {

@@ -62,6 +62,13 @@ const config: TestRunnerConfig = {
       return root.childElementCount > 0
     })
 
+    await page.waitForFunction(() =>
+      Array.from(
+        document.querySelectorAll<HTMLImageElement>('#storybook-root img'),
+      ).every((img) => img.complete),
+    )
+    await page.evaluate(() => document.fonts.ready)
+
     await page.waitForTimeout(250)
 
     const screenshot = await storyRootLocator.screenshot({

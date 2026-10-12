@@ -2,6 +2,7 @@ import { useState } from 'react'
 import ArticleInfiniteList from './ArticleInfiniteList'
 import { ArticleSortField, ArticleType, ArticleView } from '@/entities/article'
 import { userRole } from '@/entities/user'
+import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import type { ComponentProps } from 'react'
@@ -12,11 +13,11 @@ const article: Article = {
   id: '1',
   title: 'Javascript news',
   subtitle: 'Что нового в JS за 2022 год?',
-  img: '',
+  img: AvatarImg,
   views: 1022,
   createdAt: '26.02.2022',
   type: [ArticleType.IT],
-  user: { id: '1', username: 'admin', role: userRole.ADMIN },
+  user: { id: '1', username: 'admin', role: userRole.ADMIN, avatar: AvatarImg },
   blocks: [],
 }
 

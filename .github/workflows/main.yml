@@ -57,16 +57,25 @@ jobs:
         run: yarn build:sb
 
       - name: Screenshot testing
+        id: screenshots
         run: yarn test:ui:ci
 
+      - name: Build screenshot report
+        if: failure() && steps.screenshots.outcome == 'failure'
+        run: yarn test:ui:report
+
       - name: Upload screenshot diffs
-        if: failure()
+        if: failure() && steps.screenshots.outcome == 'failure'
         uses: actions/upload-artifact@v4
         with:
           name: screenshot-diffs
           path: |
             screen-tests/diffs
             screen-tests/current
+            screen-tests/report.html
+            screen-tests/report-expected
+            screen-tests/report-actual
+            screen-tests/report-diff
           retention-days: 7
 
       - name: Build production project

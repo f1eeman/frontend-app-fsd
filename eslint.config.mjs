@@ -48,6 +48,7 @@ export default [
     rules: {
       ...i18next.configs['flat/recommended'].rules,
       'import/no-unresolved': ['error', { caseSensitive: false }],
+      'import/no-cycle': ['error', { ignoreExternal: true }],
       'react/prop-types': 'off',
       'import/order': [
         'error',

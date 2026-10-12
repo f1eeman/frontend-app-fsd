@@ -77,8 +77,8 @@ CSF3: `satisfies Meta`, `tags: ['autodocs']`, `layout: 'centered'`,
 `Normal`. Локальный `StoreDecorator` не добавляется — он вместе с темами и
 роутером подключён глобально в `config/storybook/preview.ts`.
 
-Новые стори означают новые скриншотные эталоны: после генерации нужен
-`yarn test:ui:ok:docker`.
+Новые стори означают новые скриншотные эталоны: после push их создаёт
+workflow «update screen-test snapshots» в Actions.
 
 ## Устройство
 

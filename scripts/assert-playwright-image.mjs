@@ -126,7 +126,7 @@ const main = () => {
         `   Версия playwright взята из ${source}.`,
         '   Образ фиксирует сборку Chromium, от которой зависят пиксели эталонов.',
         '   Что делать: привести тег в .github/workflows/*.yml к версии playwright',
-        '   и перегенерировать baseline (yarn test:ui:ok:docker), иначе CI будет',
+        '   и перегенерировать baseline (workflow «update screen-test snapshots»), иначе CI будет',
         '   падать на дельтах, не связанных с кодом.',
       ].join('\n'),
     )

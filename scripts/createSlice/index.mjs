@@ -81,7 +81,7 @@ const main = async () => {
   }
 
   console.log(
-    'Новые стори добавляют скриншотные эталоны: yarn test:ui:ok:docker',
+    'Новые стори добавляют скриншотные эталоны: после push запусти workflow «update screen-test snapshots»',
   )
 }
 

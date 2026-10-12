@@ -38,6 +38,7 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     use: {
       loader: 'babel-loader',
       options: {
+        configFile: false,
         presets: ['@babel/preset-env'],
         plugins: [isDev && require.resolve('react-refresh/babel')].filter(
           Boolean,

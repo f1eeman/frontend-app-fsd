@@ -40,6 +40,9 @@
     "test:ui:report:html": "reg-cli --from screen-tests/report.json --report screen-tests/report.html",
     "test:ui:report": "yarn test:ui:report:json && yarn test:ui:report:html"
   },
+  "browserslist": [
+    "defaults and supports es6-module"
+  ],
   "devDependencies": {
     "@babel/core": "~7.29.0",
     "@babel/preset-env": "~7.29.0",

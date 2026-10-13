@@ -6202,7 +6202,7 @@ foreground-child@^3.1.0:
     cross-spawn "^7.0.6"
     signal-exit "^4.0.1"
 
-fork-ts-checker-webpack-plugin@^9.1.0:
+fork-ts-checker-webpack-plugin@^9.1.0, fork-ts-checker-webpack-plugin@~9.1.0:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/fork-ts-checker-webpack-plugin/-/fork-ts-checker-webpack-plugin-9.1.0.tgz#433481c1c228c56af111172fcad7df79318c915a"
   integrity sha512-mpafl89VFPJmhnJ1ssH+8wmM2b50n+Rew5x42NeI2U78aRWgtkEtGmctp7iT16UjquJTjorEmIfESj3DxdW84Q==

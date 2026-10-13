@@ -10,12 +10,6 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
 
   const cssLoader = buildCssLoader(isDev)
 
-  const tsLoader = {
-    test: /\.tsx?$/,
-    use: 'ts-loader',
-    exclude: /node_modules/,
-  }
-
   const fontsLoader = {
     test: /\.(woff2|woff)$/i,
     type: 'asset/resource',
@@ -39,7 +33,11 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
       loader: 'babel-loader',
       options: {
         configFile: false,
-        presets: ['@babel/preset-env'],
+        presets: [
+          '@babel/preset-env',
+          '@babel/preset-typescript',
+          ['@babel/preset-react', { runtime: 'automatic' }],
+        ],
         plugins: [isDev && require.resolve('react-refresh/babel')].filter(
           Boolean,
         ),
@@ -47,12 +45,5 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     },
   }
 
-  return [
-    cssLoader,
-    svgLoader,
-    fontsLoader,
-    imagesLoader,
-    babelLoader,
-    tsLoader,
-  ]
+  return [cssLoader, svgLoader, fontsLoader, imagesLoader, babelLoader]
 }

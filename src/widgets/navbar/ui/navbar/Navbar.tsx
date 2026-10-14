@@ -14,7 +14,8 @@ import { routesPaths } from '@/shared/config/routes'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { AppLink, AppLinkTheme, Avatar } from '@/shared/ui'
 import { Button } from '@/shared/ui/button/Button'
-import { Dropdown } from '@/shared/ui/dropdown/Dropdown'
+import { Dropdown } from '@/shared/ui/popups/ui/dropdown/Dropdown'
+import { HStack } from '@/shared/ui/stack'
 import { TextTheme } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
 
@@ -53,6 +54,9 @@ export const Navbar: FC = ({ className = '' }: NavbarProps) => {
         >
           {t('Создать статью')}
         </AppLink>
+        <HStack gap={'16'} className={cls.actions}>
+          <Button />
+        </HStack>
         <Dropdown
           direction='bottom left'
           className={cls.dropdown}

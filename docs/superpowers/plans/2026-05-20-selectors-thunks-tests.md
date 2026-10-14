@@ -14,7 +14,7 @@
 
 | Test file                                                                            | Source file            |
 | ------------------------------------------------------------------------------------ | ---------------------- |
-| `src/entities/user/model/selectors/getUserAuthData/getUserAuthData.test.ts`          | `getUserAuthData.ts`   |
+| `src/entities/user/model/selectors/getUserAuthData/getUserRole.test.ts`              | `getUserRole.ts`       |
 | `src/entities/user/model/selectors/getUserInited/getUserInited.test.ts`              | `getUserInited.ts`     |
 | `src/widgets/sidebar/model/selectors/getSidebarItems.test.ts`                        | `getSidebarItems.ts`   |
 | `src/pages/ArticlesPage/model/slices/articlesPageSlice.test.ts`                      | `articlesPageSlice.ts` |
@@ -28,7 +28,7 @@
 
 **Files:**
 
-- Create: `src/entities/user/model/selectors/getUserAuthData/getUserAuthData.test.ts`
+- Create: `src/entities/user/model/selectors/getUserAuthData/getUserRole.test.ts`
 
 - [ ] **Step 1: Write the test**
 
@@ -66,7 +66,7 @@ Expected: PASS (2 tests)
 - [ ] **Step 3: Commit**
 
 ```bash
-git add src/entities/user/model/selectors/getUserAuthData/getUserAuthData.test.ts
+git add src/entities/user/model/selectors/getUserAuthData/getUserRole.test.ts
 git commit -m "test: add getUserAuthData selector tests"
 ```
 

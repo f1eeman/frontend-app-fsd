@@ -29,7 +29,7 @@ export const Dropdown = (props: DropdownProps) => {
 
   return (
     <Menu as='div' className={classNames('', {}, [className, popupCls.popup])}>
-      <MenuButton className={cls.btn}>{trigger}</MenuButton>
+      <MenuButton className={popupCls.trigger}>{trigger}</MenuButton>
       <MenuItems className={classNames(cls.menu, {}, menuClasses)}>
         {items.map((item, index) => {
           const content = ({ active }: { active: boolean }) => (

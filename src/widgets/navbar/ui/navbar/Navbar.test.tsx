@@ -1,39 +1,30 @@
 import { screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 import { Navbar } from './Navbar'
-import { userRole, type UserRole } from '@/entities/user'
+import { userRole } from '@/entities/user'
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender'
 
-const openAvatarMenu = async (role: UserRole) => {
-  componentRender(<Navbar />, {
-    initialState: {
-      user: {
-        _inited: true,
-        authData: { id: '1', username: 'test', role },
-      },
-    },
-  })
-
-  await userEvent.click(screen.getByRole('button'))
-}
-
 describe('Navbar.test', () => {
-  test('should show admin panel link for admin', async () => {
-    await openAvatarMenu(userRole.ADMIN)
+  test('should show login button for guest', () => {
+    componentRender(<Navbar />)
 
-    expect(screen.getByText('Админка')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Войти' })).toBeInTheDocument()
+    expect(screen.queryByText('Создать статью')).not.toBeInTheDocument()
   })
 
-  test('should show admin panel link for manager', async () => {
-    await openAvatarMenu(userRole.MANAGER)
+  test('should show user actions for authorized user', () => {
+    componentRender(<Navbar />, {
+      initialState: {
+        user: {
+          _inited: true,
+          authData: { id: '1', username: 'test', role: userRole.USER },
+        },
+      },
+    })
 
-    expect(screen.getByText('Админка')).toBeInTheDocument()
-  })
-
-  test('should hide admin panel link for user', async () => {
-    await openAvatarMenu(userRole.USER)
-
-    expect(screen.getByText('Выйти')).toBeInTheDocument()
-    expect(screen.queryByText('Админка')).not.toBeInTheDocument()
+    expect(screen.getByText('Создать статью')).toBeInTheDocument()
+    expect(screen.getAllByRole('button')).toHaveLength(2)
+    expect(
+      screen.queryByRole('button', { name: 'Войти' }),
+    ).not.toBeInTheDocument()
   })
 })

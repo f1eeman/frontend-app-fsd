@@ -6,8 +6,8 @@ import { useAppSelector } from '@/app/store'
 import { getArticleDetailsData } from '@/entities/article'
 import { routesPaths } from '@/shared/config/routes'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { buttonTheme } from '@/shared/ui'
 import { Button } from '@/shared/ui/button/Button'
+import { buttonTheme } from '@/shared/ui/button/consts'
 import { HStack } from '@/shared/ui/stack'
 
 interface ArticleDetailsPageHeaderProps {

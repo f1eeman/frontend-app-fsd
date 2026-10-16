@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { articleFormActions } from '../../model/slices/articleFormSlice'
 import { useAppDispatch } from '@/app/store'
 import { ArticleBlockType } from '@/entities/article'
-import { Button, buttonTheme } from '@/shared/ui'
+import { Button } from '@/shared/ui/button/Button'
+import { buttonTheme } from '@/shared/ui/button/consts'
 import { HStack } from '@/shared/ui/stack'
 
 interface Props {

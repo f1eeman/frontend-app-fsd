@@ -4,7 +4,8 @@ import cls from './SidebarItem.module.scss'
 import { useAppSelector } from '@/app/store'
 import { getUserAuthData } from '@/entities/user'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { AppLink, AppLinkTheme } from '@/shared/ui'
+import { AppLinkTheme } from '@/shared/ui/link/consts'
+import { AppLink } from '@/shared/ui/link/Link'
 import type { SidebarItemType } from '../../model/types/sidebar'
 
 interface SidebarItemProps {

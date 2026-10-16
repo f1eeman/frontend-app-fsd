@@ -6,7 +6,7 @@ import { useAppSelector } from '@/app/store'
 import { LangSwitcher } from '@/features/langSwitcher'
 import { ThemeSwitcher } from '@/features/themeSwitcher'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Button } from '@/shared/ui'
+import { Button } from '@/shared/ui/button/Button'
 import { HStack, VStack } from '@/shared/ui/stack'
 
 interface SidebarProps {

@@ -9,8 +9,10 @@ import {
 import { useAppDispatch, useAppSelector } from '@/app/store'
 import { getUserAuthData } from '@/entities/user'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Button, buttonTheme, Text } from '@/shared/ui'
+import { Button } from '@/shared/ui/button/Button'
+import { buttonTheme } from '@/shared/ui/button/consts'
 import { HStack } from '@/shared/ui/stack'
+import { Text } from '@/shared/ui/text/Text'
 
 interface ProfilePageHeaderProps {
   className?: string

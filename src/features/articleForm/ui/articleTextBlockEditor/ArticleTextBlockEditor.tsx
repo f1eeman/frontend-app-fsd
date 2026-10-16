@@ -1,7 +1,9 @@
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import cls from './ArticleTextBlockEditor.module.scss'
-import { Button, buttonTheme, Input } from '@/shared/ui'
+import { Button } from '@/shared/ui/button/Button'
+import { buttonTheme } from '@/shared/ui/button/consts'
+import { Input } from '@/shared/ui/input/Input'
 import { HStack, VStack } from '@/shared/ui/stack'
 import type { ArticleTextBlock } from '@/entities/article'
 

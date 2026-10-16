@@ -8,7 +8,9 @@ import {
 import cls from './AddCommentForm.module.scss'
 import { useAppDispatch, useAppSelector } from '@/app/store'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Input, Button, buttonTheme } from '@/shared/ui'
+import { Button } from '@/shared/ui/button/Button'
+import { buttonTheme } from '@/shared/ui/button/consts'
+import { Input } from '@/shared/ui/input/Input'
 import { HStack } from '@/shared/ui/stack'
 
 export interface AddCommentFormProps {

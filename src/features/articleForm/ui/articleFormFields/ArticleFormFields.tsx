@@ -9,7 +9,7 @@ import cls from './ArticleFormFields.module.scss'
 import { useAppDispatch, useAppSelector } from '@/app/store'
 import { ArticleType } from '@/entities/article'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Input } from '@/shared/ui'
+import { Input } from '@/shared/ui/input/Input'
 import { HStack, VStack } from '@/shared/ui/stack'
 
 interface Props {

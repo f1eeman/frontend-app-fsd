@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Input } from '@/shared/ui'
+import { Input } from '@/shared/ui/input/Input'
 import { VStack } from '@/shared/ui/stack'
 import type { ArticleImageBlock } from '@/entities/article'
 

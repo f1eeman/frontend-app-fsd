@@ -5,9 +5,9 @@ import {
   EditableProfileCardHeader,
 } from '@/features/editableProfileCard'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Text } from '@/shared/ui'
 import { VStack } from '@/shared/ui/stack'
 import { TextTheme } from '@/shared/ui/text/consts'
+import { Text } from '@/shared/ui/text/Text'
 import { Page } from '@/widgets/page'
 
 interface ProfilePageProps {

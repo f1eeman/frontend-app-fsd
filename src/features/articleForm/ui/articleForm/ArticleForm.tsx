@@ -14,7 +14,8 @@ import cls from './ArticleForm.module.scss'
 import { useAppDispatch, useAppSelector } from '@/app/store'
 import { AppRoutes, routesPaths } from '@/shared/config/routes'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Button, buttonTheme } from '@/shared/ui'
+import { Button } from '@/shared/ui/button/Button'
+import { buttonTheme } from '@/shared/ui/button/consts'
 import { VStack } from '@/shared/ui/stack'
 
 interface ArticleFormProps {

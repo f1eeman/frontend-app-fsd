@@ -16,7 +16,8 @@ import {
   type ArticleImageBlock,
   type ArticleTextBlock,
 } from '@/entities/article'
-import { Button, buttonTheme } from '@/shared/ui'
+import { Button } from '@/shared/ui/button/Button'
+import { buttonTheme } from '@/shared/ui/button/consts'
 import { VStack } from '@/shared/ui/stack'
 
 interface Props {

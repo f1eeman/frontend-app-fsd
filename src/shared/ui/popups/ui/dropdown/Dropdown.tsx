@@ -4,7 +4,7 @@ import { mapDirectionClass } from '../../styles/consts'
 import popupCls from '../../styles/popup.module.scss'
 import cls from './Dropdown.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { AppLink } from '@/shared/ui'
+import { AppLink } from '@/shared/ui/link/Link'
 import type { ReactNode } from 'react'
 import type { DropdownDirection } from '../../styles/types'
 

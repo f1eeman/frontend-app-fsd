@@ -1,7 +1,6 @@
 {
   "name": "frontend-app-fsd",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "git@github.com:f1eeman/frontend-app-fsd.git",
   "author": "f1eeman <mr.f1eeman@gmail.com>",
   "license": "MIT",
@@ -129,6 +128,7 @@
     "i18next-http-backend": "~3.0.2",
     "modern-normalize": "~3.0.1",
     "react": "~19.2.4",
+    "react-device-detect": "~2.2.3",
     "react-dom": "~19.2.4",
     "react-i18next": "~16.5.4",
     "react-redux": "~9.2.0",

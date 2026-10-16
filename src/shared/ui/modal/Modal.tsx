@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import cls from './Modal.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { Overlay } from '@/shared/ui/overlay/Overlay'
 import { Portal, type PortalProps } from '@/shared/ui/portal/Portal'
-import { HStack } from '@/shared/ui/stack'
 import type { FC, ReactNode, MouseEvent } from 'react'
 
 interface ModalProps extends Pick<PortalProps, 'elementId' | 'element'> {
@@ -58,11 +58,6 @@ export const Modal: FC<ModalProps> = (props) => {
     [handleClose],
   )
 
-  const onContentClick = (e: MouseEvent<HTMLDivElement>): void => {
-    e.preventDefault()
-    e.stopPropagation()
-  }
-
   useEffect(() => {
     if (isOpen) {
       window.addEventListener('keydown', onKeyDown)
@@ -82,7 +77,6 @@ export const Modal: FC<ModalProps> = (props) => {
   return (
     <Portal element={element} elementId={elementId}>
       <div
-        onClick={handleClose}
         className={classNames(
           cls.modal,
           {
@@ -92,11 +86,8 @@ export const Modal: FC<ModalProps> = (props) => {
           [className],
         )}
       >
-        <HStack justify='center' className={cls.overlay}>
-          <div className={cls.content} onClick={onContentClick}>
-            {children}
-          </div>
-        </HStack>
+        <Overlay onClick={handleClose} />
+        <div className={cls.content}>{children}</div>
       </div>
     </Portal>
   )

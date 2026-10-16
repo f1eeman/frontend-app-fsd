@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEscapeKey } from '../useEscapeKey/useEscapeKey'
 
 interface UseModalProps {
   isOpen?: boolean
@@ -27,21 +28,7 @@ export const useModal = (props: UseModalProps) => {
     }, animationDelay)
   }, [animationDelay, onClose])
 
-  useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        close()
-      }
-    }
-
-    if (isOpen) {
-      window.addEventListener('keydown', onKeyDown)
-    }
-
-    return () => {
-      window.removeEventListener('keydown', onKeyDown)
-    }
-  }, [isOpen, close])
+  useEscapeKey(isOpen, close)
 
   useEffect(
     () => () => {

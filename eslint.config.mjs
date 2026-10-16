@@ -15,7 +15,14 @@ const codeFiles = ['**/*.{js,jsx,ts,tsx}']
 
 export default [
   {
-    ignores: ['node_modules', 'dist', 'build', 'public', 'json-server'],
+    ignores: [
+      'node_modules',
+      'dist',
+      'build',
+      'public',
+      'json-server',
+      'sb-static',
+    ],
   },
   js.configs.recommended,
   ...eslintTS.configs.recommended,

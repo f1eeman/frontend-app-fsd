@@ -48,6 +48,14 @@ const meta = {
         defaultValue: { summary: 'false' },
       },
     },
+    fullWidth: {
+      control: 'boolean',
+      description: 'Растянуть кнопку на всю ширину родителя',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     disabled: {
       control: 'boolean',
       description: 'Заблокированное состояние',
@@ -72,6 +80,7 @@ const meta = {
     theme: buttonTheme.clear,
     size: buttonSize.m,
     square: false,
+    fullWidth: false,
     disabled: false,
     onClick: fn(),
   },
@@ -164,5 +173,15 @@ export const SquareSizeXLarge: Story = {
     children: '>',
     square: true,
     size: buttonSize.xl,
+  },
+}
+
+export const FullWidth: Story = {
+  args: {
+    theme: buttonTheme.outline,
+    fullWidth: true,
+  },
+  parameters: {
+    layout: 'padded',
   },
 }

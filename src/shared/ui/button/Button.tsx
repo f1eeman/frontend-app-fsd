@@ -8,6 +8,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: ButtonTheme
   size?: ButtonSize
   square?: boolean
+  fullWidth?: boolean
 }
 
 export const Button: FC<ButtonProps> = (props) => {
@@ -17,6 +18,7 @@ export const Button: FC<ButtonProps> = (props) => {
     children,
     theme = 'clear',
     square = false,
+    fullWidth = false,
     size = 'size-m',
     ...otherProps
   } = props
@@ -31,6 +33,7 @@ export const Button: FC<ButtonProps> = (props) => {
           [cls[theme]]: true,
           [cls[size]]: true,
           [cls.square]: square,
+          [cls.fullWidth]: fullWidth,
         },
         [className],
       )}

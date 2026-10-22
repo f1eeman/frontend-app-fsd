@@ -125,7 +125,7 @@ export default [
           exceptions: ['app/store', 'app/theme', 'app/styles'],
         },
       ],
-      'fsd-boundaries/relative-path': ['error', { alias: '@' }],
+      'fsd-boundaries/relative-path': 'error',
       'i18next/no-literal-string': [
         'error',
         {

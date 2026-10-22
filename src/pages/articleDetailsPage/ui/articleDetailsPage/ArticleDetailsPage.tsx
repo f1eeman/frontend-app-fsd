@@ -5,6 +5,7 @@ import ArticleDetailsComments from '../articleDetailsComments/ArticleDetailsComm
 import { ArticleDetailsPageHeader } from '../articleDetailsPageHeader/ArticleDetailsPageHeader'
 import cls from './ArticleDetailsPage.module.scss'
 import { ArticleDetails } from '@/entities/article'
+import { ArticleRating } from '@/features/articleRating'
 import { ArticleRecommendationList } from '@/features/articleRecommendationList'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { VStack } from '@/shared/ui/stack'
@@ -32,6 +33,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
       <VStack gap={'16'} max>
         <ArticleDetailsPageHeader />
         <ArticleDetails id={id} />
+        <ArticleRating articleId={id} />
         <ArticleRecommendationList />
         <ArticleDetailsComments id={id} />
       </VStack>

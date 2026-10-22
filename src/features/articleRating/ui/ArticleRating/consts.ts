@@ -1,0 +1,1 @@
+export const ARTICLE_RATING_HEIGHT = 120

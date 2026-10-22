@@ -13,26 +13,36 @@ interface RateArticleArg {
   feedback?: string
 }
 
-const articleRatingApi = baseRtkApi.injectEndpoints({
-  endpoints: (build) => ({
-    getArticleRating: build.query<Rating[], GetArticleRatingArg>({
-      query: ({ articleId, userId }) => ({
-        url: '/article-ratings',
-        params: {
-          userId,
-          articleId,
-        },
+const ARTICLE_RATING_TAG = 'ArticleRating'
+
+const articleRatingApi = baseRtkApi
+  .enhanceEndpoints({ addTagTypes: [ARTICLE_RATING_TAG] })
+  .injectEndpoints({
+    endpoints: (build) => ({
+      getArticleRating: build.query<Rating[], GetArticleRatingArg>({
+        query: ({ articleId, userId }) => ({
+          url: '/article-ratings',
+          params: {
+            userId,
+            articleId,
+          },
+        }),
+        providesTags: (_result, _error, { articleId }) => [
+          { type: ARTICLE_RATING_TAG, id: articleId },
+        ],
+      }),
+      rateArticle: build.mutation<void, RateArticleArg>({
+        query: (arg) => ({
+          url: '/article-ratings',
+          method: 'POST',
+          body: arg,
+        }),
+        invalidatesTags: (_result, _error, { articleId }) => [
+          { type: ARTICLE_RATING_TAG, id: articleId },
+        ],
       }),
     }),
-    rateArticle: build.mutation<void, RateArticleArg>({
-      query: (arg) => ({
-        url: '/article-ratings',
-        method: 'POST',
-        body: arg,
-      }),
-    }),
-  }),
-})
+  })
 
 export const useGetArticleRating = articleRatingApi.useGetArticleRatingQuery
 export const useRateArticle = articleRatingApi.useRateArticleMutation

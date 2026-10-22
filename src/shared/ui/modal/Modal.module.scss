@@ -10,12 +10,20 @@
 }
 
 .content {
+  position: relative;
   padding: 20px;
   border-radius: 12px;
   background-color: var(--bg-color);
   transform: scale(0.5);
   transition: transform 0.3s;
   max-width: 60%;
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
 }
 
 .opened {

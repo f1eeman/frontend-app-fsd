@@ -28,30 +28,52 @@ describe('useModal.test', () => {
     jest.useRealTimers()
   })
 
-  test('should call onClose only after animation delay', () => {
+  test('should call onClose immediately on close', () => {
     const { result, onClose } = renderModal(true)
 
     act(() => {
       result.current.close()
     })
-    act(() => {
-      jest.advanceTimersByTime(ANIMATION_DELAY - 1)
-    })
-    expect(onClose).not.toHaveBeenCalled()
 
-    act(() => {
-      jest.advanceTimersByTime(1)
-    })
     expect(onClose).toHaveBeenCalledTimes(1)
   })
 
-  test('should mark closing while animation runs', () => {
-    const { result } = renderModal(true)
+  test('should ignore close when already closed', () => {
+    const { result, onClose } = renderModal(false)
 
     act(() => {
       result.current.close()
     })
+
+    expect(onClose).not.toHaveBeenCalled()
+  })
+
+  test('should mark closing for animation delay after isOpen becomes false', () => {
+    const { result, rerender, onClose } = renderModal(true)
+
+    rerender({ isOpen: false, onClose })
     expect(result.current.isClosing).toBe(true)
+
+    act(() => {
+      jest.advanceTimersByTime(ANIMATION_DELAY - 1)
+    })
+    expect(result.current.isClosing).toBe(true)
+
+    act(() => {
+      jest.advanceTimersByTime(1)
+    })
+    expect(result.current.isClosing).toBe(false)
+  })
+
+  test('should stop closing when reopened during animation', () => {
+    const { result, rerender, onClose } = renderModal(true)
+
+    rerender({ isOpen: false, onClose })
+    act(() => {
+      jest.advanceTimersByTime(100)
+    })
+    rerender({ isOpen: true, onClose })
+    expect(result.current.isClosing).toBe(false)
 
     act(() => {
       jest.advanceTimersByTime(ANIMATION_DELAY)
@@ -59,30 +81,16 @@ describe('useModal.test', () => {
     expect(result.current.isClosing).toBe(false)
   })
 
-  test('should call onClose once when close is called twice', () => {
-    const { result, onClose } = renderModal(true)
+  test('should not mark closing when initially closed', () => {
+    const { result } = renderModal(false)
 
-    act(() => {
-      result.current.close()
-    })
-    act(() => {
-      jest.advanceTimersByTime(100)
-      result.current.close()
-    })
-    act(() => {
-      jest.advanceTimersByTime(ANIMATION_DELAY)
-    })
-
-    expect(onClose).toHaveBeenCalledTimes(1)
+    expect(result.current.isClosing).toBe(false)
   })
 
-  test('should close on Escape when open', () => {
+  test('should call onClose on Escape when open', () => {
     const { onClose } = renderModal(true)
 
     fireEvent.keyDown(window, { key: 'Escape' })
-    act(() => {
-      jest.advanceTimersByTime(ANIMATION_DELAY)
-    })
 
     expect(onClose).toHaveBeenCalledTimes(1)
   })
@@ -91,9 +99,6 @@ describe('useModal.test', () => {
     const { onClose } = renderModal(false)
 
     fireEvent.keyDown(window, { key: 'Escape' })
-    act(() => {
-      jest.advanceTimersByTime(ANIMATION_DELAY)
-    })
 
     expect(onClose).not.toHaveBeenCalled()
   })
@@ -107,33 +112,5 @@ describe('useModal.test', () => {
 
     rerender({ isOpen: false, onClose })
     expect(result.current.isMounted).toBe(true)
-  })
-
-  test('should finish closing when onClose changes during animation', () => {
-    const { result, rerender, onClose } = renderModal(true)
-
-    act(() => {
-      result.current.close()
-    })
-    rerender({ isOpen: true, onClose: jest.fn() })
-    act(() => {
-      jest.advanceTimersByTime(ANIMATION_DELAY)
-    })
-
-    expect(onClose).toHaveBeenCalledTimes(1)
-  })
-
-  test('should not call onClose after unmount', () => {
-    const { result, unmount, onClose } = renderModal(true)
-
-    act(() => {
-      result.current.close()
-    })
-    unmount()
-    act(() => {
-      jest.advanceTimersByTime(ANIMATION_DELAY)
-    })
-
-    expect(onClose).not.toHaveBeenCalled()
   })
 })

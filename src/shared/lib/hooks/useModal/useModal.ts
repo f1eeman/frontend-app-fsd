@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useEscapeKey } from '../useEscapeKey/useEscapeKey'
 
 interface UseModalProps {
@@ -11,33 +11,38 @@ export const useModal = (props: UseModalProps) => {
   const { isOpen = false, onClose, animationDelay } = props
   const [isClosing, setIsClosing] = useState(false)
   const [isMounted, setIsMounted] = useState(isOpen)
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const [wasOpen, setWasOpen] = useState(isOpen)
 
   if (isOpen && !isMounted) {
     setIsMounted(true)
   }
 
-  const close = useCallback(() => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current)
+  if (isOpen !== wasOpen) {
+    setWasOpen(isOpen)
+    setIsClosing(!isOpen)
+  }
+
+  useEffect(() => {
+    if (!isClosing) {
+      return undefined
     }
-    setIsClosing(true)
-    timerRef.current = setTimeout(() => {
-      onClose?.()
+
+    const timer = setTimeout(() => {
       setIsClosing(false)
     }, animationDelay)
-  }, [animationDelay, onClose])
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [isClosing, animationDelay])
+
+  const close = useCallback(() => {
+    if (isOpen) {
+      onClose?.()
+    }
+  }, [isOpen, onClose])
 
   useEscapeKey(isOpen, close)
-
-  useEffect(
-    () => () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current)
-      }
-    },
-    [],
-  )
 
   return { isClosing, isMounted, close }
 }

@@ -40,7 +40,7 @@ const meta = {
     },
     onClose: {
       control: false,
-      description: 'Вызывается после анимации закрытия',
+      description: 'Просьба закрыть модалку: крестик, Escape, клик по фону',
       table: { type: { summary: '() => void' } },
     },
     element: {

@@ -54,7 +54,7 @@ export default [
 
     rules: {
       ...i18next.configs['flat/recommended'].rules,
-      'import/no-unresolved': ['error', { caseSensitive: false }],
+      'import/no-unresolved': ['error', { caseSensitive: true }],
       'import/no-cycle': ['error', { ignoreExternal: true }],
       'react/prop-types': 'off',
       'import/order': [
@@ -122,7 +122,7 @@ export default [
       'fsd-boundaries/layer-imports': [
         'error',
         {
-          exceptions: ['app', 'pages'],
+          exceptions: ['app/store', 'app/theme', 'app/styles'],
         },
       ],
       'fsd-boundaries/relative-path': ['error', { alias: '@' }],

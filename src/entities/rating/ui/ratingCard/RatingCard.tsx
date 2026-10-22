@@ -32,7 +32,7 @@ export const RatingCard = memo((props: RatingCardProps) => {
   } = props
   const { t } = useTranslation()
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [starsCount, setStarsCount] = useState(rate)
+  const [starsCount, setStarsCount] = useState(0)
   const [feedback, setFeedback] = useState('')
   const [isAccepted, setIsAccepted] = useState(false)
 
@@ -78,11 +78,7 @@ export const RatingCard = memo((props: RatingCardProps) => {
     <Card fullWidth className={classNames('', {}, [className])}>
       <VStack align='center' gap='8'>
         <Text title={isRated ? t('Спасибо за оценку') : title} />
-        <StarRating
-          size={40}
-          selectedStars={starsCount}
-          onSelect={onSelectStars}
-        />
+        <StarRating size={40} selectedStars={rate} onSelect={onSelectStars} />
       </VStack>
       <BrowserView>
         <Modal isOpen={isModalOpen} lazy onClose={skipFeedbackHandle}>

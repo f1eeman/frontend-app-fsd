@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { BugButton } from '@/app/errorBoundary/BugButton'
+import { BugButton } from '@/features/bugButton'
 import { Page } from '@/widgets/page'
 
 const AboutPage = () => {

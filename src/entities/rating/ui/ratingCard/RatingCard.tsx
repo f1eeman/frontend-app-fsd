@@ -75,10 +75,14 @@ export const RatingCard = memo((props: RatingCardProps) => {
   )
 
   return (
-    <Card className={classNames('', {}, [className])}>
+    <Card fullWidth className={classNames('', {}, [className])}>
       <VStack align='center' gap='8'>
         <Text title={isRated ? t('Спасибо за оценку') : title} />
-        <StarRating size={40} selectedStars={rate} onSelect={onSelectStars} />
+        <StarRating
+          size={40}
+          selectedStars={starsCount}
+          onSelect={onSelectStars}
+        />
       </VStack>
       <BrowserView>
         <Modal isOpen={isModalOpen} lazy onClose={skipFeedbackHandle}>

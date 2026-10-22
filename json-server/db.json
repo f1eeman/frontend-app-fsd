@@ -3645,6 +3645,20 @@
       "rate": 3,
       "feedback": "",
       "id": "bcPnbbZ"
+    },
+    {
+      "userId": "1",
+      "articleId": "11",
+      "rate": 5,
+      "feedback": "Super",
+      "id": "Tu-bRp0"
+    },
+    {
+      "userId": "1",
+      "articleId": "96",
+      "rate": 3,
+      "feedback": "",
+      "id": "xFDQ_WM"
     }
   ],
   "comments": [

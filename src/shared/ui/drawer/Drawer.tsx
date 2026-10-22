@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import cls from './Drawer.module.scss'
 import {
   AnimationProvider,
@@ -37,29 +37,39 @@ const DrawerContent = (props: DrawerContentProps) => {
   } = props
   const height = window.innerHeight * SHEET_HEIGHT_RATIO
   const [{ y }, api] = Spring.useSpring(() => ({ y: height }))
+  const [isVisible, setIsVisible] = useState(isOpen)
+
+  if (isOpen && !isVisible) {
+    setIsVisible(true)
+  }
 
   const open = useCallback(() => {
     api.start({ y: 0, immediate: false })
   }, [api])
 
   const close = useCallback(() => {
+    if (isOpen) {
+      onClose?.()
+    }
+  }, [isOpen, onClose])
+
+  useEffect(() => {
+    if (isOpen) {
+      open()
+      return
+    }
+
     api.start({
       y: height,
       immediate: false,
       config: Spring.config.stiff,
       onResolve: (result) => {
         if (result.finished) {
-          onClose?.()
+          setIsVisible(false)
         }
       },
     })
-  }, [api, height, onClose, Spring])
-
-  useEffect(() => {
-    if (isOpen) {
-      open()
-    }
-  }, [isOpen, open])
+  }, [isOpen, open, api, height, Spring])
 
   useEscapeKey(isOpen, close)
 
@@ -93,7 +103,7 @@ const DrawerContent = (props: DrawerContentProps) => {
     },
   )
 
-  if (!isOpen) {
+  if (!isVisible) {
     return null
   }
 

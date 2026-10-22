@@ -39,6 +39,32 @@ describe('Drawer.test', () => {
     })
   })
 
+  test('should hide content after isOpen becomes false', async () => {
+    const { rerender } = render(<Drawer isOpen>content</Drawer>)
+    await screen.findByText('content')
+
+    rerender(<Drawer isOpen={false}>content</Drawer>)
+
+    await waitFor(() => {
+      expect(screen.queryByText('content')).not.toBeInTheDocument()
+    })
+  })
+
+  test('should not call onClose on Escape when closed', async () => {
+    const onClose = jest.fn()
+    render(
+      <Drawer isOpen={false} onClose={onClose}>
+        content
+      </Drawer>,
+    )
+
+    fireEvent.keyDown(window, { key: 'Escape' })
+
+    await waitFor(() => {
+      expect(onClose).not.toHaveBeenCalled()
+    })
+  })
+
   test('should call onClose on overlay click', async () => {
     const onClose = await renderOpenDrawer()
     const overlay = document.querySelector('.Overlay')

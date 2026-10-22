@@ -1,0 +1,28 @@
+.StarRating {
+  display: inline-flex;
+}
+
+.star {
+  display: inline-flex;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: auto;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+}
+
+.normal {
+  fill: none;
+}
+
+.hovered {
+  fill: var(--primary-color);
+}

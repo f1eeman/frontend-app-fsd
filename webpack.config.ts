@@ -12,24 +12,33 @@ export default (env: BuildEnv): webpack.Configuration => {
     src: path.resolve(__dirname, 'src'),
     locales: path.resolve(__dirname, 'public', 'locales'),
     buildLocales: path.resolve(__dirname, 'build', 'locales'),
+    public: path.resolve(__dirname, 'public'),
     netlifyConfig: path.resolve(__dirname, 'public', 'web-server'),
   }
 
   const mode = env.mode ?? 'development'
   const analyze = env.analyze ?? 'disabled'
-  const port = env.port ?? 3000
+  const port = env.port ? +env.port : 3000
 
   const isDev = mode === 'development'
   const isAnalyzeModeEnable = analyze === 'enabled'
   const apiUrl = env.apiUrl ?? process.env.API_URL ?? 'http://localhost:9000'
 
-  return buildWebpackConfig({
-    mode,
-    paths,
-    isDev,
-    port,
-    isAnalyzeModeEnable,
-    apiUrl,
-    project: 'front',
-  })
+  return {
+    ...buildWebpackConfig({
+      mode,
+      paths,
+      isDev,
+      port,
+      isAnalyzeModeEnable,
+      apiUrl,
+      project: 'front',
+    }),
+    cache: {
+      type: 'filesystem',
+      buildDependencies: {
+        config: [__filename],
+      },
+    },
+  }
 }

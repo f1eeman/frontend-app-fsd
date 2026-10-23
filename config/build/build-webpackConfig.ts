@@ -14,14 +14,16 @@ export function buildWebpackConfig(
     mode,
     entry: paths.entry,
     output: {
-      filename: '[name].[contenthash].js',
-      chunkFilename: '[name].[contenthash].chunk.js',
+      filename: isDev ? '[name].js' : '[name].[contenthash].js',
+      chunkFilename: isDev
+        ? '[name].chunk.js'
+        : '[name].[contenthash].chunk.js',
       path: paths.build,
       publicPath: '/',
       clean: true,
       assetModuleFilename: 'images/[name].[contenthash][ext]',
     },
-    devtool: isDev ? 'inline-source-map' : undefined,
+    devtool: isDev ? 'eval-cheap-module-source-map' : undefined,
     plugins: buildPlugins(options),
     module: {
       rules: buildLoaders(options),

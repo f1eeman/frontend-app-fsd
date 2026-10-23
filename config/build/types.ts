@@ -6,16 +6,17 @@ export interface BuildPaths {
   build: string
   html: string
   src: string
+  public: string
   locales: string
   buildLocales: string
   netlifyConfig: string
 }
 
 export interface BuildEnv {
-  mode: BuildMode
-  port: number
-  analyze: AnalyzeMode
-  apiUrl: string
+  mode?: BuildMode
+  port?: string
+  analyze?: AnalyzeMode
+  apiUrl?: string
 }
 
 export interface BuildOptions {

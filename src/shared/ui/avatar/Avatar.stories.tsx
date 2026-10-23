@@ -34,6 +34,15 @@ const meta = {
       description: 'Внешний класс для композиции стилей',
       table: { type: { summary: 'string' } },
     },
+    fallbackInverted: {
+      control: 'boolean',
+      description:
+        'Инвертированный цвет иконки-заглушки, для тёмного фона (например, в шапке)',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
   args: {
     src: AvatarImg,
@@ -60,4 +69,25 @@ export const BrokenImage: Story = {
   args: {
     src: 'broken-link.jpg',
   },
+}
+
+export const NoImage: Story = {
+  args: {
+    src: undefined,
+  },
+}
+
+export const InvertedFallback: Story = {
+  args: {
+    src: undefined,
+    size: 50,
+    fallbackInverted: true,
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ background: 'var(--inverted-bg-color)', padding: '16px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 }

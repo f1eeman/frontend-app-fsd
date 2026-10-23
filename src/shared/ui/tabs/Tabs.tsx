@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react'
+import { useCallback } from 'react'
 import cls from './Tabs.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Card } from '@/shared/ui/card/Card'
@@ -6,23 +6,23 @@ import { CardTheme } from '@/shared/ui/card/consts'
 import { HStack } from '@/shared/ui/stack'
 import type { ReactNode } from 'react'
 
-export interface TabItem {
-  value: string
+export interface TabItem<T extends string> {
+  value: T
   content: ReactNode
 }
 
-interface TabsProps {
+interface TabsProps<T extends string> {
   className?: string
-  tabs: TabItem[]
-  value: string
-  onTabClick: (tab: TabItem) => void
+  tabs: TabItem<T>[]
+  value: T
+  onTabClick: (tab: TabItem<T>) => void
 }
 
-export const Tabs = memo((props: TabsProps) => {
+export const Tabs = <T extends string>(props: TabsProps<T>) => {
   const { className = '', tabs, onTabClick, value } = props
 
   const clickHandle = useCallback(
-    (tab: TabItem) => () => {
+    (tab: TabItem<T>) => () => {
       onTabClick(tab)
     },
     [onTabClick],
@@ -46,6 +46,4 @@ export const Tabs = memo((props: TabsProps) => {
       ))}
     </HStack>
   )
-})
-
-Tabs.displayName = 'Tabs component'
+}

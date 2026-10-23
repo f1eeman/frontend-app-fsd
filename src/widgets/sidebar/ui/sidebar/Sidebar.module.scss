@@ -21,10 +21,6 @@
   padding-bottom: 20px;
 }
 
-.lang {
-  margin-left: 20px;
-}
-
 .collapseBtn {
   position: absolute;
   right: -32px;
@@ -46,9 +42,5 @@
     padding-left: calc(
       (var(--sidebar-width-collapsed) - var(--sidebar-icon-size)) / 2
     );
-  }
-
-  .lang {
-    margin-left: 0;
   }
 }

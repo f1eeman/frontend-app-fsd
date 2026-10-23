@@ -5,7 +5,8 @@ import { userRole } from '@/entities/user'
 import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
-import type { Profile, ProfileSchema } from '../../model/types/profile'
+import type { ProfileSchema } from '../../model/types/profile'
+import type { Profile } from '@/entities/profile'
 
 const profile: Profile = {
   id: '1',

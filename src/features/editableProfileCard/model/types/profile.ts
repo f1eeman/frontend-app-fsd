@@ -1,17 +1,4 @@
-import type { Country } from '@/entities/country'
-import type { Currency } from '@/entities/currency'
-
-export interface Profile {
-  id?: string
-  first?: string
-  lastname?: string
-  age?: number
-  currency?: Currency
-  country?: Country
-  city?: string
-  username?: string
-  avatar?: string
-}
+import type { Profile } from '@/entities/profile'
 
 export interface ProfileSchema {
   data: Profile | null

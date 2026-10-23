@@ -8,7 +8,7 @@ import { HStack, VStack } from '@/shared/ui/stack'
 import { TextAlign, TextTheme } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
 import type { FC, ReactNode } from 'react'
-import type { Profile } from '@/features/editableProfileCard'
+import type { Profile } from '../../model/types/profile'
 import type { Mods } from '@/shared/lib/classNames/classNames'
 import type { DeepPartial } from '@/shared/types'
 

@@ -6,7 +6,8 @@ import { Country } from '@/entities/country'
 import { Currency } from '@/entities/currency'
 import { $api } from '@/shared/api/api'
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender'
-import type { Profile, ProfileSchema } from '../../model/types/profile'
+import type { ProfileSchema } from '../../model/types/profile'
+import type { Profile } from '@/entities/profile'
 
 const profile: Profile = {
   id: '1',

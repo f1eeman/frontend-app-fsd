@@ -1,8 +1,4 @@
-export {
-  type Profile,
-  type ProfileSchema,
-  ValidateProfileError,
-} from './model/types/profile'
+export { type ProfileSchema, ValidateProfileError } from './model/types/profile'
 export {
   profileActions,
   profileReducer,

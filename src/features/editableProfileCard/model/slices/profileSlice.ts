@@ -3,11 +3,8 @@ import { fetchProfileData } from '../services/fetchProfileData/fetchProfileData'
 import { updateProfileData } from '../services/updateProfileData/updateProfileData'
 import { rootReducer } from '@/app/store'
 import type { PayloadAction, WithSlice } from '@reduxjs/toolkit'
-import type {
-  Profile,
-  ProfileSchema,
-  ValidateProfileError,
-} from '../types/profile'
+import type { ProfileSchema, ValidateProfileError } from '../types/profile'
+import type { Profile } from '@/entities/profile'
 
 const initialState: ProfileSchema = {
   readonly: true,

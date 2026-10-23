@@ -43,7 +43,7 @@
 - добавление `--card-bg` (фон карточки был прозрачным, стал серым) даёт 110–857 пикселей на 13 стори. Прежний порог `0.001` + `percent` — это ≈898 пикселей для кадра 1248x720, поэтому он **молча пропускал всё это изменение целиком**. Порог в 100 пикселей его ловит.
 - переезд `CountrySelect`/`CurrencySelect` с нативного `<select>` на `ListBox` — 1071–1392 пикселя, `ProfilePage` — 20944.
 
-То есть содержательные изменения начинаются с ~1000 пикселей, а порог стоит на порядок ниже — запас есть, ложных срабатываний при этом нет: прогон в CI-окружении даёт 158 из 158 зелёных.
+То есть содержательные изменения начинаются с ~1000 пикселей, а порог стоит на порядок ниже — запас есть, ложных срабатываний при этом нет: на момент подбора порога прогон в CI-окружении давал 158 из 158 зелёных.
 
 Порог подобран под сравнение **Linux против Linux**: эталон и прогон в одном и том же контейнере CI. Локально на Windows тот же прогон против CI-эталонов даёт дельты до 4.6% кадра на текстоёмких стори — это не регрессии, а разные растеризаторы шрифтов (DirectWrite vs FreeType), и никакой разумный порог их не покроет. Практический вывод: **прямой `yarn test:ui` под Windows/macOS не является критерием** — критерий только прогон в Actions.
 
@@ -73,18 +73,27 @@
 
 - `yarn test:ui:pull [id прогона]`
   - Скачивает артефакт `screenshot-diffs` последнего упавшего прогона `main.yml` на текущей ветке (или указанного прогона) в `screen-tests/`.
-  - После него в `screen-tests/` лежат `diffs`, `current` и готовый `report.html` — открывай в браузере.
+  - Перед скачиванием удаляет из `screen-tests/` старые отчёты и картинки; эталоны в `screen-tests/snapshots` не трогает.
+  - Берёт только прогоны от `push` и `workflow_dispatch`: артефакты pull request могут быть собраны из чужого кода.
+  - После него в `screen-tests/` лежат `diffs`, `current`, `report-*` и готовый `report.html` — открывай в браузере.
+  - Если прогон собран не на твоём текущем коммите, скрипт предупредит: отчёт верный, но локальные эталоны могут отличаться от тех, что видел CI.
+  - Если у прогона нет артефакта — значит, ни один снимок не разошёлся с эталоном, а упало что-то другое (например, новые стори без эталона, см. ниже). Смотри лог прогона.
   - Нужен GitHub CLI (`gh auth login`).
 
 ### Что генерится в `screen-tests/`
 
-Ниже перечислены папки/файлы, которые ты можешь увидеть после запуска `yarn test:ui` и `yarn test:ui:report`.
+Всё, кроме `snapshots/`, — временные артефакты, они не коммитятся (игнорируются в `.gitignore`).
+
+Обычно эти файлы попадают к тебе через `yarn test:ui:pull`: CI создаёт их при падении скриншотных тестов и выкладывает в артефакт `screenshot-diffs`. Локально `yarn test:ui` и `yarn test:ui:report` создают то же самое, но на Windows/macOS их результат не показателен (см. предупреждение ниже).
+
+Скачивается из артефакта: `diffs/`, `current/`, `report.html`, `report-expected/`, `report-actual/`, `report-diff/`. Не скачивается: `diffs-only/` и `report.json` — CI создаёт их по пути к `report.html`, но в артефакт не кладёт.
 
 #### `screen-tests/snapshots/`
 
 - Это **эталонные** (expected) изображения, с которыми сравниваются новые скриншоты.
 - Используется напрямую в `config/storybook/test-runner.ts` через `customSnapshotsDir`.
-- Обновляется командой `yarn test:ui:ok`.
+- Обновляется только workflow «update screen-test snapshots» (`.github/workflows/update-snapshots.yml`), см. «Регенерация baseline для CI».
+- `yarn test:ui:pull` эту папку не трогает.
 
 Обычно:
 
@@ -92,7 +101,7 @@
 
 #### `screen-tests/diffs/`
 
-- Появляется, когда `yarn test:ui` находит отличия.
+- Появляется, когда скриншотный прогон находит отличия.
 - Содержит изображения `*-diff.png`, которые показывают различия (композитный diff).
 - Папка задаётся в `customDiffDir`.
 
@@ -103,8 +112,8 @@
 
 #### `screen-tests/current/`
 
-- Появляется, когда `yarn test:ui` падает.
-- Содержит **актуальные** (received) скриншоты, которые были сняты в текущем прогоне тестов.
+- Появляется, когда скриншотный прогон падает.
+- Содержит **актуальные** (received) скриншоты, которые были сняты в этом прогоне.
 - Включено через:
   - `storeReceivedOnFailure: true`
   - `customReceivedDir: screen-tests/current`
@@ -118,6 +127,7 @@
 
 - Генерируется скриптом `scripts/generate-visual-json-report.mjs` при запуске `yarn test:ui:report`.
 - Содержит «чистые» diff-изображения (вырезанный/подготовленный diff для отчёта).
+- В артефакт CI не входит, после `yarn test:ui:pull` её не будет.
 
 Обычно:
 
@@ -128,6 +138,7 @@
 
 - Генерируется при `yarn test:ui:report:json`.
 - Это JSON-описание отчёта: какие снапшоты упали и где лежат expected/actual/diff.
+- В артефакт CI не входит, после `yarn test:ui:pull` его не будет.
 
 Обычно:
 
@@ -137,7 +148,7 @@
 #### `screen-tests/report.html`
 
 - Генерируется при `yarn test:ui:report:html` (через `reg-cli`).
-- Это HTML-страница для просмотра визуальных различий.
+- Это HTML-страница для просмотра визуальных различий. Картинки берёт из `report-expected/`, `report-actual/` и `report-diff/`, поэтому без них отчёт пустой.
 
 Обычно:
 
@@ -161,7 +172,7 @@
 
 1. Запусти Storybook (`yarn sb`) и убедись, что страницы/компоненты выглядят корректно.
 2. Запушь изменения — `main.yml` прогонит скриншотные тесты.
-3. Если скриншоты упали — `yarn test:ui:pull` и открой `screen-tests/report.html`.
+3. Если скриншоты упали — `yarn test:ui:pull` и открой `screen-tests/report.html`. Новые стори в отчёт не попадают — их видно только в логе прогона (см. «Новые стори без эталона»).
 4. Если изменения ожидаемые и должны стать новым эталоном — запусти workflow «update screen-test snapshots» (см. «Регенерация baseline для CI»).
 
 > **Не запускай `yarn test:ui` / `yarn test:ui:ok` напрямую под Windows/macOS для оценки результата.** DirectWrite и CoreText растеризуют шрифты иначе, чем FreeType в Linux: дельта с CI-эталонами доходит до 4.6% на текстоёмких стори, и никакой разумный порог её не покроет. Красный результат там ничего не доказывает, а обновлённые таким образом эталоны сразу же уронят CI. Эти скрипты остались как низкоуровневые (их вызывают workflow в CI) и для тех, кто разрабатывает под Linux с тем же шрифтовым стэком.
@@ -177,25 +188,37 @@
 Эталоны обновляются только workflow в Actions: `.github/workflows/update-snapshots.yml`.
 
 1. Запушь ветку с изменениями.
-2. GitHub → **Actions** → **update screen-test snapshots** → **Run workflow** → выбери ветку → **Run workflow**.
-3. Workflow:
+2. GitHub → **Actions** → **update screen-test snapshots** → **Run workflow** → в поле **Branch to regenerate snapshots on** укажи ветку (по умолчанию `main`) → **Run workflow**.
+   - Ветку, на которой регенерировать эталоны, задаёт именно это поле. Выпадающий список **Use workflow from** выбирает только версию самого workflow-файла.
+3. Workflow (job `regenerate`, в том же контейнере, что и `main.yml`):
+   - сверяет тег playwright-образа с lockfile (`scripts/assert-playwright-image.mjs`) — эталоны, снятые не той версией Chromium, отравили бы репозиторий
    - собирает Storybook (`yarn build:sb`)
-   - запускает `yarn test:ui:ok:ci` в том же контейнере
-   - если есть дельты в `screen-tests/snapshots/` — коммитит их обратно в ту же ветку от имени `github-actions[bot]`
-   - и **сам запускает `main.yml`** на обновлённых эталонах: push от `GITHUB_TOKEN` не считается событием `push` (защита от рекурсии), но `workflow_dispatch` — документированное исключение, поэтому отдельный job `dispatch` дёргает пайплайн через `gh workflow run`. Второй ручной запуск больше не нужен.
-4. Локально подтяни изменения: `git pull`.
+   - запускает `yarn test:ui:ok:ci`
+   - добавляет в коммит и изменённые эталоны, и новые (для только что добавленных стори)
+   - если что-то поменялось — коммитит `chore(snapshots): regenerate screen-test baselines on Linux` в ту же ветку от имени `github-actions[bot]` и пушит
+   - если ничего не поменялось — ничего не коммитит, и `main.yml` повторно не запускается
+4. Если был push, отдельный job `dispatch` **сам запускает `main.yml`** на обновлённых эталонах через `gh workflow run`: push от `GITHUB_TOKEN` не считается событием `push` (защита от рекурсии), а `workflow_dispatch` — документированное исключение. Job работает без контейнера, потому что в playwright-образе нет `gh`. Второй ручной запуск не нужен.
+5. Локально подтяни изменения: `git pull`.
 
-**Что нужно настроить один раз** (если ещё не сделано):
-
-GitHub репозиторий → **Settings** → **Actions** → **General** → **Workflow permissions** → **"Read and write permissions"**. Без этого workflow не сможет ни запушить обновлённый baseline, ни запустить `main.yml`.
+**Права.** Нужные права токену (`contents: write` — запушить эталоны, `actions: write` — запустить `main.yml`) запрошены прямо в `update-snapshots.yml` через `permissions`, так что менять **Settings → Actions → Workflow permissions** не требуется. Исключение — если права ограничены на уровне организации.
 
 ### CI pipeline
 
 `.github/workflows/main.yml`:
 
 - Запускается на каждый push в `main`, каждый PR в `main` и по `workflow_dispatch` (его дёргает workflow регенерации эталонов).
-- Шаги: lint TS, lint SCSS, сверка тега playwright-образа с lockfile, unit tests, build Storybook, screenshot tests (`yarn test:ui:ci`), build prod.
-- При падении скриншот-тестов собирает отчёт (`yarn test:ui:report`) и загружает `screen-tests/diffs`, `screen-tests/current` и `report.html` с картинками как артефакт `screenshot-diffs` (7 дней).
+- Работает в контейнере `mcr.microsoft.com/playwright:v1.58.2-noble`, Node.js 24.17.0.
+- Шаги по порядку:
+  1. `yarn install --frozen-lockfile`
+  2. сверка тега playwright-образа с lockfile (`node scripts/assert-playwright-image.mjs`)
+  3. проверка типов (`yarn lint:ts` — это `tsc --noEmit`; ESLint в CI не запускается)
+  4. lint SCSS (`yarn lint:scss`)
+  5. unit-тесты (`yarn test:unit`)
+  6. проверка генератора слайсов (`yarn check:generator`)
+  7. сборка Storybook (`yarn build:sb`)
+  8. скриншотные тесты (`yarn test:ui:ci`)
+  9. сборка прода (`yarn build:prod`)
+- При падении скриншот-тестов собирает отчёт (`yarn test:ui:report`) и загружает артефакт `screenshot-diffs` (хранится 7 дней): `screen-tests/diffs`, `screen-tests/current`, `screen-tests/report.html`, `screen-tests/report-expected`, `screen-tests/report-actual`, `screen-tests/report-diff`.
 
 CI здесь — гейт: он проверяет, что закоммиченные эталоны соответствуют закоммиченному коду. Он ловит то, что локальный прогон в принципе не может: правку компонента без запуска скриншотов, регрессию от обновления зависимости в `yarn.lock`, результат мержа двух зелёных по отдельности веток.
 
@@ -204,3 +227,9 @@ CI здесь — гейт: он проверяет, что закоммичен
 1. Запусти `yarn test:ui:pull` — артефакт упавшего прогона окажется в `screen-tests/` (либо скачай `screenshot-diffs` со страницы прогона вручную).
 2. Открой `screen-tests/report.html` — если изменение ожидаемое, запусти workflow «update screen-test snapshots».
 3. Если изменение **не** ожидаемое — это регрессия, чини код.
+
+### Новые стори без эталона
+
+В CI эталоны не записываются, поэтому каждая новая стори валит `main.yml` с сообщением `New snapshot was not written. The update flag must be explicitly passed to write a new snapshot`. Сравнивать её не с чем, поэтому картинок для неё нет ни в артефакте, ни в `report.html` — список таких стори смотри в логе шага **Screenshot testing** (`gh run view <id> --log-failed`).
+
+Это ожидаемо: проверь стори в Storybook (`yarn sb`) и запусти «update screen-test snapshots» — он запишет эталоны и для новых стори.

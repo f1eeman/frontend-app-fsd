@@ -47,6 +47,7 @@ yarn dev
 - `yarn build:dev` — сборка в режиме разработки.
 - `yarn analyze:prod`, `yarn analyze:dev` — то же с анализатором размера бандла.
 - `yarn build:sb` — статический Storybook в `sb-static/`.
+- `yarn clean:cache` — удалить кэш сборки webpack (`node_modules/.cache/webpack`). Нужен, только если сборка ведёт себя странно: при изменении конфигов и зависимостей кэш сбрасывается сам.
 
 #### Проверки
 

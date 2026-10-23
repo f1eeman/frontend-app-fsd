@@ -101,6 +101,39 @@ describe('initArticlesPage.test', () => {
     )
   })
 
+  test('ignores unknown filter values from URL', async () => {
+    const thunk = new TestAsyncThunk(initArticlesPage, {
+      articlesPage: {
+        page: 1,
+        ids: [],
+        entities: {},
+        isLoading: false,
+        hasMore: true,
+        view: ArticleView.SMALL,
+        order: 'asc',
+        sort: ArticleSortField.CREATED,
+        search: '',
+        type: ArticleType.ALL,
+        _inited: false,
+      },
+    })
+
+    await thunk.callThunk(
+      new URLSearchParams({ order: 'up', sort: 'likes', type: 'GAMES' }),
+    )
+
+    expect(thunk.dispatch).not.toHaveBeenCalledWith(
+      articlesPageActions.setOrder(expect.anything()),
+    )
+    expect(thunk.dispatch).not.toHaveBeenCalledWith(
+      articlesPageActions.setSort(expect.anything()),
+    )
+    expect(thunk.dispatch).not.toHaveBeenCalledWith(
+      articlesPageActions.setType(expect.anything()),
+    )
+    expect(fetchArticlesList).toHaveBeenCalledWith({ replace: true })
+  })
+
   test('inited', async () => {
     const thunk = new TestAsyncThunk(initArticlesPage, {
       articlesPage: {

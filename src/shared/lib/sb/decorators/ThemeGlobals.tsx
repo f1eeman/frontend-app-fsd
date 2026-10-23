@@ -1,4 +1,4 @@
-import { Theme, ThemeProvider } from '@/app/theme'
+import { Theme, ThemeProvider } from '@/shared/lib/theme'
 import type { Decorator } from '@storybook/react'
 
 export const ThemeProviderDecorator: Decorator = (Story, context) => {

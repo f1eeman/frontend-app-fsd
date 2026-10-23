@@ -1,4 +1,3 @@
-import { Theme } from '@/app/theme'
 import { RouterDecorator } from '@/shared/lib/sb/decorators/Router'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import { StyleDecorator } from '@/shared/lib/sb/decorators/Style'
@@ -6,6 +5,7 @@ import {
   ThemeProviderDecorator,
   ThemeRootClassDecorator,
 } from '@/shared/lib/sb/decorators/ThemeGlobals'
+import { Theme } from '@/shared/lib/theme'
 import type { Preview } from '@storybook/react-webpack5'
 
 const preview: Preview = {

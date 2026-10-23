@@ -122,7 +122,7 @@ export default [
       'fsd-boundaries/layer-imports': [
         'error',
         {
-          exceptions: ['app/store', 'app/theme', 'app/styles'],
+          exceptions: ['app/store', 'app/styles'],
           forbidForeignReexports: true,
         },
       ],

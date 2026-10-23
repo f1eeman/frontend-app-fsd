@@ -1,6 +1,6 @@
-import { Theme, useTheme } from '@/app/theme'
 import ThemeDarkIcon from '@/shared/assets/icons/theme-dark.svg'
 import ThemeLightIcon from '@/shared/assets/icons/theme-light.svg'
+import { Theme, useTheme } from '@/shared/lib/theme'
 import { Button } from '@/shared/ui/button/Button'
 import type { FC } from 'react'
 

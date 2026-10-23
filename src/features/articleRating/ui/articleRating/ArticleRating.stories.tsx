@@ -59,7 +59,3 @@ export const Rated: Story = {
 export const Loading: Story = {
   decorators: withRatings({ body: [], delayMs: NEVER_RESOLVES_MS }),
 }
-
-export const Guest: Story = {
-  decorators: [StoreDecorator({})],
-}

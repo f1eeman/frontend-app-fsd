@@ -68,13 +68,18 @@ export default [
             'internal',
             'index',
             'type',
+            'unknown',
           ],
           pathGroups: [
+            { pattern: '{.,..}/**/!(*.module).{css,scss}', group: 'unknown' },
+            { pattern: '**/!(*.module).{css,scss}', group: 'unknown' },
+            { pattern: '@/app/i18n', group: 'unknown' },
             { pattern: '@/**', group: 'internal', position: 'after' },
           ],
           pathGroupsExcludedImportTypes: ['builtin'],
           'newlines-between': 'never',
           sortTypesGroup: true,
+          warnOnUnassignedImports: true,
           alphabetize: {
             order: 'asc',
             caseInsensitive: true,

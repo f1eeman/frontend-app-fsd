@@ -1,6 +1,6 @@
 import { classNames } from '@/shared/lib/classNames/classNames'
-import './GridLoader.scss'
 import type { FC } from 'react'
+import './GridLoader.scss'
 
 interface LoaderProps {
   className?: string

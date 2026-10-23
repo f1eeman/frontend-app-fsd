@@ -1,6 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { buildCssLoader } from '../build/loaders/css-loader.ts'
+import { buildSvgLoader } from '../build/loaders/svg-loader.ts'
 import type { StorybookConfig } from '@storybook/react-webpack5'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -58,10 +59,7 @@ const config: StorybookConfig = {
       }
 
       // Добавляем SVGR лоадер
-      config.module.rules.push({
-        test: /\.svg$/i,
-        use: ['@svgr/webpack'],
-      })
+      config.module.rules.push(buildSvgLoader())
     }
     return config
   },

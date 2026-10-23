@@ -4,7 +4,8 @@ import { useParams } from 'react-router'
 import ArticleDetailsComments from '../articleDetailsComments/ArticleDetailsComments'
 import { ArticleDetailsPageHeader } from '../articleDetailsPageHeader/ArticleDetailsPageHeader'
 import cls from './ArticleDetailsPage.module.scss'
-import { ArticleDetails } from '@/entities/article'
+import { useAppSelector } from '@/app/store'
+import { ArticleDetails, getArticleDetailsData } from '@/entities/article'
 import { ArticleRating } from '@/features/articleRating'
 import { ArticleRecommendationList } from '@/features/articleRecommendationList'
 import { classNames } from '@/shared/lib/classNames/classNames'
@@ -19,6 +20,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
   const { className = '' } = props
   const { t } = useTranslation('article-details')
   const { id } = useParams<{ id: string }>()
+  const article = useAppSelector(getArticleDetailsData)
 
   if (!id) {
     return (
@@ -33,7 +35,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
       <VStack gap={'16'} max>
         <ArticleDetailsPageHeader />
         <ArticleDetails id={id} />
-        <ArticleRating articleId={id} />
+        {article && <ArticleRating articleId={id} />}
         <ArticleRecommendationList />
         <ArticleDetailsComments id={id} />
       </VStack>

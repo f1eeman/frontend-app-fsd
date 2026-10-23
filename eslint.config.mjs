@@ -121,10 +121,7 @@ export default [
       'fsd-boundaries/public-api': 'error',
       'fsd-boundaries/layer-imports': [
         'error',
-        {
-          exceptions: ['app/store', 'app/styles'],
-          forbidForeignReexports: true,
-        },
+        { forbidForeignReexports: true },
       ],
       'fsd-boundaries/relative-path': 'error',
       'i18next/no-literal-string': [
@@ -197,6 +194,18 @@ export default [
     files: ['**/*.test.tsx', '**/*.stories.tsx'],
     rules: {
       'i18next/no-literal-string': 'off',
+    },
+  },
+  {
+    files: ['src/shared/lib/sb/**', 'src/shared/lib/tests/**'],
+    rules: {
+      'fsd-boundaries/layer-imports': [
+        'error',
+        {
+          exceptions: ['app/store', 'app/styles'],
+          forbidForeignReexports: true,
+        },
+      ],
     },
   },
   {

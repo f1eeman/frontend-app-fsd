@@ -4,6 +4,146 @@
 
 # json-server https://back-for-front-app-fsd.vercel.app/
 
+## Стек
+
+- **Приложение:** React 19, TypeScript 5.9, React Router 7.
+- **Состояние и данные:** Redux Toolkit 2 с RTK Query, axios для thunk'ов.
+- **UI:** SCSS-модули, Headless UI (выпадающие списки и меню), react-spring и use-gesture (анимация и свайпы шторки), react-virtuoso (бесконечный список статей), SVG как React-компоненты через SVGR.
+- **Переводы:** i18next и react-i18next, переводы грузятся по HTTP.
+- **Сборка:** Webpack 5 и Babel; типы в dev-режиме проверяет fork-ts-checker, горячая перезагрузка — React Refresh.
+- **Бэкенд для разработки:** json-server 0.17.
+- **Тесты:** Jest 30 и Testing Library — unit; Storybook 10, test-runner, Playwright и jest-image-snapshot — скриншотные; reg-cli — HTML-отчёт по скриншотам.
+- **Качество кода:** ESLint 9 (вместе с собственным `eslint-plugin-fsd-boundaries` для правил FSD), Stylelint, Prettier, husky и lint-staged.
+- **CI:** GitHub Actions в контейнере Playwright.
+- **Архитектура:** Feature-Sliced Design.
+
+## Быстрый старт
+
+Нужны Node.js `24.17.0` (версия в `.nvmrc`) и Yarn `1.22`. npm запрещён через `engines` в `package.json`.
+
+```bash
+yarn install
+cp .env.example .env
+yarn dev
+```
+
+- `yarn install` заодно ставит git-хуки (`postinstall` → husky).
+- `.env` необязателен: в нём только `API_URL`, по умолчанию `http://localhost:9000`.
+- `yarn dev` поднимает фронт на `http://localhost:3325` и `json-server` на `http://localhost:9000`. Сервер намеренно отвечает с задержкой 800 мс, чтобы были видны загрузки и скелетоны.
+- Вход: `admin` / `admin` (роль ADMIN) или `user` / `user` (роль USER). Пользователи и данные лежат в `json-server/db.json`, сервер дописывает туда всё, что ты создаёшь в приложении.
+
+## Скрипты
+
+#### Разработка
+
+- `yarn dev` — фронт и `json-server` вместе.
+- `yarn dev:client` — только фронт (webpack dev server, порт 3325).
+- `yarn dev:serv` — только `json-server` (порт 9000).
+- `yarn sb` — Storybook на порту 9658.
+
+#### Сборка
+
+- `yarn build:prod` — продакшен-сборка в `build/`, API — задеплоенный `json-server` на Vercel.
+- `yarn build:dev` — сборка в режиме разработки.
+- `yarn analyze:prod`, `yarn analyze:dev` — то же с анализатором размера бандла.
+- `yarn build:sb` — статический Storybook в `sb-static/`.
+
+#### Проверки
+
+- `yarn lint:ts` — проверка типов (`tsc --noEmit`).
+- `yarn lint:es` / `yarn lint:es:fix` — ESLint (`:quiet` — только ошибки, без предупреждений).
+- `yarn lint:scss` / `yarn lint:scss:fix` — Stylelint.
+- `yarn format` — Prettier по `src/`.
+- `yarn test:unit` — unit-тесты (Jest).
+- `yarn test:ui*` — скриншотные тесты, см. «Визуальные тесты» ниже.
+
+#### Генератор слайсов
+
+- `yarn create:slice <layer> <sliceName> [--with-slice] [--async]` — каркас нового слайса по образцу существующих. Подробно — `scripts/createSlice/README.md`.
+- `yarn check:generator` — создаёт пробные слайсы, прогоняет по ним линтеры, `tsc` и Jest и удаляет. Запускается в CI, чтобы шаблоны генератора не разошлись с правилами проекта.
+
+#### Git-хуки
+
+Перед каждым коммитом `lint-staged` прогоняет по изменённым файлам Prettier, `eslint --fix` и `tsc` (для TS/JS) и Stylelint (для SCSS). В CI ESLint по всему проекту не запускается, поэтому хук — основная проверка ESLint.
+
+## Архитектура
+
+Проект построен по [Feature-Sliced Design](https://feature-sliced.design/). Код в `src/` разложен по слоям, снизу вверх:
+
+- `shared` — переиспользуемое без знания о предметной области: UI-кит (`shared/ui`), хуки и утилиты (`shared/lib`), базовые API-клиенты (`shared/api`), маршруты (`shared/config/routes.tsx`).
+- `entities` — сущности предметной области: `article`, `comment`, `user`, `profile`, `rating` и др.
+- `features` — действия пользователя: `authByUsername`, `addCommentForm`, `articleRating`, `themeSwitcher` и др.
+- `widgets` — крупные самостоятельные блоки: `navbar`, `sidebar`, `page`.
+- `pages` — страницы, по одной на маршрут.
+- `app` — инициализация: стор, роутинг, тема, i18n, глобальные стили, `ErrorBoundary`.
+
+#### Правила импортов
+
+Их проверяет ESLint-плагин `eslint-plugin-fsd-boundaries`:
+
+- слой импортирует только слои ниже себя; соседние слайсы одного слоя друг друга не импортируют (типы через `import type` — можно);
+- в чужой слайс — только через его `index.ts` (public API): `@/entities/rating`, а не `@/entities/rating/ui/...`;
+- внутри своего слайса — относительные пути, в чужой — через алиас `@` (`@` → `src/`).
+
+Исключения из правила слоёв — `app/store`, `app/theme`, `app/styles`: стор, тема и глобальные стили нужны и нижним слоям.
+
+#### Устройство слайса
+
+```
+src/features/articleRating/
+├── index.ts              # public API
+├── api/                  # эндпоинты RTK Query
+├── model/                # slices, types, selectors, services
+└── ui/articleRating/     # компонент, стили, стори, тесты
+```
+
+Папки — в camelCase, компоненты — в PascalCase.
+
+#### Данные
+
+- **Redux Toolkit.** Стор собирается в `src/app/store/store.ts` через `combineSlices`. Слайсы, нужные не везде, подключаются лениво через `injectInto(rootReducer)` — в бандл и стор они попадают вместе со страницей.
+- **RTK Query.** Общий `baseRtkApi` (`src/shared/api/rtkApi.ts`) пустой; слайсы добавляют в него свои запросы через `injectEndpoints`. Связь «изменение → перезапрос» задаётся метками (`providesTags` / `invalidatesTags`).
+- **Thunk'и** ходят в API через axios-клиент `$api` (`src/shared/api/api.ts`), он передаётся в thunk через `extraArgument`.
+
+#### Роутинг и тема
+
+- Маршруты описаны в `src/shared/config/routes.tsx`, страницы к ним привязаны в `src/app/routing/routesConfig.tsx`. `RequireAuth` пускает только вошедших и, если у маршрута заданы `roles`, только с нужной ролью; иначе — редирект на `/forbidden`.
+- Тема — светлая, тёмная и оранжевая, переключается `ThemeSwitcher`.
+
+#### Переводы
+
+Два языка — русский (основной) и английский. Настройка — `src/app/i18n.ts` (i18next).
+
+- **Ключ — русский текст.** В коде пишется `t('Оцените статью')`, а в `public/locales/en/<namespace>.json` лежит пара `"Оцените статью": "Rate the article"`. Если перевода нет, i18next показывает сам ключ: по-русски всё работает и без файлов перевода, а в английской версии появится русский текст.
+- **Файлы.** `public/locales/<язык>/<namespace>.json`: `common` — общий, по умолчанию; `about`, `main`, `profile`, `article-details` — для отдельных страниц. Namespace выбирается так: `useTranslation('profile')`, без аргумента — `common`.
+- **Загрузка.** Файлы не попадают в бандл: i18next скачивает их по HTTP (`/locales/{{lng}}/{{ns}}.json`) в момент, когда namespace понадобился. При сборке webpack копирует `public/locales` в `build/locales`.
+- **Выбор языка.** Сначала сохранённый в `localStorage`, потом язык браузера; если он не русский и не английский — русский. Переключает `LangSwitcher` в сайдбаре.
+- **Контроль.** ESLint-правило `i18next/no-literal-string` запрещает голый текст в JSX — его нужно оборачивать в `t()`. В тестах и сторях правило выключено.
+- **Новая строка.** Обернуть текст в `t()` и добавить пару в `public/locales/en/<namespace>.json` (в `ru` — по желанию: ключ уже русский). Автоматического сбора ключей в проекте нет, поэтому недостающие английские переводы видно только глазами.
+
+#### Сборка и окружение
+
+- Конфиг webpack — `webpack.config.ts` и `config/build/`. В код подставляются глобальные константы `__IS_DEV__`, `__API__` (URL бэкенда) и `__PROJECT__` (`front`, `sb` или `jest`).
+- Storybook настроен в `config/storybook/`, Jest — в `config/jest/`. Алиас `@` прописан в каждом из них отдельно, плюс в `tsconfig.json`.
+- Архитектурные решения записываются в `docs/adr/`.
+
+## Storybook
+
+- Запуск — `yarn sb` (`http://localhost:9658`), статическая сборка — `yarn build:sb`. Конфиг — `config/storybook/`.
+- Стори лежат рядом с компонентом (`<Component>.stories.tsx`), формат CSF3: `meta` с `satisfies Meta<typeof Component>`, тег `autodocs`, описания пропсов в `argTypes`. `title` — `<слой>/<Компонент>`, например `entities/RatingCard`.
+- Глобально ко всем стори подключены стор, глобальные стили, тема и роутер (`config/storybook/preview.ts`). Тема переключается в тулбаре: Light / Dark / Orange. Роутер можно отключить параметром `router: 'none'`.
+- Декораторы для отдельных стори — `src/shared/lib/sb/decorators/`:
+  - `StoreDecorator(state)` — начальное состояние стора, например вошедший пользователь;
+  - `MockFetchDecorator(routes)` — подменяет ответы сервера (тело, статус, задержка), чтобы показать загрузку, пустой список или ошибку без бэкенда;
+  - `ThemeDecorator(theme)` — зафиксировать тему у конкретной стори.
+- В Storybook `__API__` — пустая строка, так что реальный бэкенд не нужен: всё, что ходит в сеть, подменяется через `MockFetchDecorator`.
+- Каждая стори — ещё и скриншотный тест. Стори, которая ничего не рендерит (например, пустое состояние), тест уронит — такое состояние лучше проверять unit-тестом.
+
+## Тесты
+
+- **Unit** — Jest и Testing Library, `yarn test:unit`. Файлы `*.test.ts(x)` лежат рядом с кодом. Компоненты рендерятся через `componentRender` (`src/shared/lib/tests/componentRender`): он оборачивает их в стор, роутер, тему и тестовый i18next. Переводы там пустые, поэтому `t()` возвращает русский ключ — по нему и ищем элементы. Thunk'и проверяются через `TestAsyncThunk` (`src/shared/lib/tests/async.thunk.tests.ts`). HTML-отчёт прогона — `unit-tests/report.html`.
+- **Скриншотные** — каждая стори Storybook фотографируется и сравнивается с эталоном. Проверяются только в CI, подробно — в разделе ниже.
+
 ## Визуальные тесты (Storybook screenshot tests)
 
 В проекте включены визуальные регрессионные тесты на базе:

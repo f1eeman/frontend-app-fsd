@@ -1,5 +1,5 @@
 import { selectProfileForm } from './profileSlice'
-import type { RootState } from '@/app/store'
+import type { RootState } from '@/shared/lib/store'
 
 describe('selectProfileForm.test', () => {
   test('should return form data', () => {

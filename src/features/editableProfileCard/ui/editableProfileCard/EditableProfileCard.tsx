@@ -10,10 +10,10 @@ import {
   selectProfileValidateErrors,
 } from '../../model/slices/profileSlice'
 import { ValidateProfileError } from '../../model/types/profile'
-import { useAppDispatch, useAppSelector } from '@/app/store'
 import { CountrySelect } from '@/entities/country'
 import { CurrencySelect } from '@/entities/currency'
 import { ProfileCard } from '@/entities/profile'
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
 import { VStack } from '@/shared/ui/stack'
 import { TextTheme } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'

@@ -1,5 +1,5 @@
 import { getUserAuthData } from './userSlice'
-import type { RootState } from '@/app/store'
+import type { RootState } from '@/shared/lib/store'
 
 describe('getUserAuthData.test', () => {
   test('should return authData when user is logged in', () => {

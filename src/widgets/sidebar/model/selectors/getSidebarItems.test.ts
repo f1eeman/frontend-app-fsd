@@ -1,5 +1,5 @@
 import { getSidebarItems } from './getSidebarItems'
-import type { RootState } from '@/app/store'
+import type { RootState } from '@/shared/lib/store'
 
 describe('getSidebarItems.test', () => {
   test('returns 2 items when not authenticated', () => {

@@ -3,7 +3,7 @@ import {
   type PayloadAction,
   type WithSlice,
 } from '@reduxjs/toolkit'
-import { rootReducer } from '@/app/store'
+import { rootReducer } from '@/shared/lib/store'
 import type { ArticleRecommendationListSchema } from '../types/articleRecommendationListSchema'
 
 const initialState: ArticleRecommendationListSchema = {
@@ -33,7 +33,7 @@ export const { reducer: articleRecommendationListReducer } =
 export const { selectIsLoading, selectError } =
   withArticleRecommendationListSlice.selectors
 
-declare module '@/app/store' {
+declare module '@/shared/lib/store' {
   export interface LazyLoadedSlices
     extends WithSlice<typeof articleRecommendationListSlice> {}
 }

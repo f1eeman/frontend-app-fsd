@@ -3,7 +3,7 @@ import {
   type PayloadAction,
   type WithSlice,
 } from '@reduxjs/toolkit'
-import { rootReducer } from '@/app/store'
+import { rootReducer } from '@/shared/lib/store'
 import type { AdminPanelPageSchema } from '../types/adminPanelPageSchema'
 
 const initialState: AdminPanelPageSchema = {
@@ -31,7 +31,7 @@ export const { reducer: adminPanelPageReducer } = adminPanelPageSlice
 export const { selectIsLoading, selectError } =
   withAdminPanelPageSlice.selectors
 
-declare module '@/app/store' {
+declare module '@/shared/lib/store' {
   export interface LazyLoadedSlices
     extends WithSlice<typeof adminPanelPageSlice> {}
 }

@@ -5,7 +5,6 @@ import {
 } from '@reduxjs/toolkit'
 import { fetchArticleForEdit } from '../services/fetchArticleForEdit/fetchArticleForEdit'
 import { saveArticle } from '../services/saveArticle/saveArticle'
-import { rootReducer } from '@/app/store'
 import {
   ArticleBlockType,
   type Article,
@@ -15,6 +14,7 @@ import {
   type ArticleTextBlock,
   type ArticleType,
 } from '@/entities/article'
+import { rootReducer } from '@/shared/lib/store'
 import type { ArticleFormSchema } from '../types/articleFormSchema'
 
 type DistributiveOmit<T, K extends PropertyKey> = T extends unknown
@@ -184,7 +184,7 @@ export const {
   selectBlocks,
 } = withArticleFormSlice.selectors
 
-declare module '@/app/store' {
+declare module '@/shared/lib/store' {
   export interface LazyLoadedSlices
     extends WithSlice<typeof articleFormSlice> {}
 }

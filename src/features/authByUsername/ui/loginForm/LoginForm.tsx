@@ -10,9 +10,9 @@ import {
   selectLoginError,
 } from '../../model/slices/loginSlice'
 import cls from './LoginForm.module.scss'
-import { useAppDispatch, useAppSelector } from '@/app/store'
 import { routesPaths } from '@/shared/config/routes'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
 import { Button } from '@/shared/ui/button/Button'
 import { Input } from '@/shared/ui/input/Input'
 import { SpinnerLoader } from '@/shared/ui/loaders/spinner/SpinnerLoader'

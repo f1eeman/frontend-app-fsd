@@ -1,13 +1,13 @@
 import { memo, useCallback, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router'
 import cls from './Page.module.scss'
-import { useAppDispatch, useAppSelector } from '@/app/store'
 import { getUIScrollByPath, uiActions } from '@/features/scrollSave'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll'
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle'
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
 import type { ReactNode, Ref, UIEvent } from 'react'
-import type { RootState } from '@/app/store'
+import type { RootState } from '@/shared/lib/store'
 
 interface PageProps {
   className?: string

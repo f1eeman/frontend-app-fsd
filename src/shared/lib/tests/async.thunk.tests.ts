@@ -1,7 +1,7 @@
 import axios from 'axios'
 import type { AsyncThunk, AsyncThunkAction } from '@reduxjs/toolkit'
 import type { AxiosStatic } from 'axios'
-import type { RootState, ThunkConfig } from '@/app/store'
+import type { RootState, ThunkConfig } from '@/shared/lib/store'
 import type { DeepPartial } from '@/shared/types'
 
 jest.mock('axios')

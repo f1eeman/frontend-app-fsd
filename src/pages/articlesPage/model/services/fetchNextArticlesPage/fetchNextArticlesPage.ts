@@ -6,7 +6,7 @@ import {
   articlesPageActions,
 } from '../../../model/slices/articlesPageSlice'
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList'
-import type { ThunkConfig } from '@/app/store'
+import type { ThunkConfig } from '@/shared/lib/store'
 
 export const fetchNextArticlesPage = createAsyncThunk<
   void,

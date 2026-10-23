@@ -1,25 +1,18 @@
 import {
-  combineSlices,
   configureStore,
   type Reducer,
   type ThunkMiddleware,
   type Tuple,
   type UnknownAction,
 } from '@reduxjs/toolkit'
-import { userReducer } from '@/entities/user'
-import { uiReducer } from '@/features/scrollSave'
 import { $api } from '@/shared/api/api'
 import { baseRtkApi } from '@/shared/api/rtkApi'
-import type { AxiosInstance } from 'axios'
+import {
+  rootReducer,
+  type RootState,
+  type ThunkExtraArgs,
+} from '@/shared/lib/store'
 import type { DeepPartial } from '@/shared/types'
-
-export interface ThunkExtraArgs {
-  api: AxiosInstance
-}
-
-export interface LazyLoadedSlices {}
-
-export type RootState = ReturnType<typeof rootReducer>
 
 type DefaultMiddleware = Tuple<
   [ThunkMiddleware<RootState, UnknownAction, ThunkExtraArgs>]
@@ -31,12 +24,6 @@ type AppMiddleware = Tuple<
     typeof baseRtkApi.middleware,
   ]
 >
-
-export const rootReducer = combineSlices({
-  user: userReducer,
-  ui: uiReducer,
-  [baseRtkApi.reducerPath]: baseRtkApi.reducer,
-}).withLazyLoadedSlices<LazyLoadedSlices>()
 
 export function setupStore(preloadedState?: DeepPartial<RootState>) {
   return configureStore<RootState, UnknownAction, AppMiddleware>({
@@ -57,4 +44,3 @@ export function setupStore(preloadedState?: DeepPartial<RootState>) {
 }
 
 export type AppStore = ReturnType<typeof setupStore>
-export type AppDispatch = AppStore['dispatch']

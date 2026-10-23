@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { fetchProfileData } from '../services/fetchProfileData/fetchProfileData'
 import { updateProfileData } from '../services/updateProfileData/updateProfileData'
-import { rootReducer } from '@/app/store'
+import { rootReducer } from '@/shared/lib/store'
 import type { PayloadAction, WithSlice } from '@reduxjs/toolkit'
 import type { ProfileSchema, ValidateProfileError } from '../types/profile'
 import type { Profile } from '@/entities/profile'
@@ -99,6 +99,6 @@ export const {
   selectProfileValidateErrors,
 } = withProfileSlice.selectors
 
-declare module '@/app/store' {
+declare module '@/shared/lib/store' {
   export interface LazyLoadedSlices extends WithSlice<typeof profileSlice> {}
 }

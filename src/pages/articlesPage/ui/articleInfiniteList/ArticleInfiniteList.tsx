@@ -6,8 +6,8 @@ import {
   getArticlesPageView,
   getArticlesPageIsLoading,
 } from '../../model/slices/articlesPageSlice'
-import { useAppSelector } from '@/app/store'
 import { ArticleList } from '@/entities/article'
+import { useAppSelector } from '@/shared/lib/store'
 import { TextTheme } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
 

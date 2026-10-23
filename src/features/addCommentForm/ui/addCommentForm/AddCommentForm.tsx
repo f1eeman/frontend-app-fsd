@@ -6,8 +6,8 @@ import {
   addCommentFormActions,
 } from '../../model/slices/addCommentFormSlice'
 import cls from './AddCommentForm.module.scss'
-import { useAppDispatch, useAppSelector } from '@/app/store'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
 import { Button } from '@/shared/ui/button/Button'
 import { buttonTheme } from '@/shared/ui/button/consts'
 import { Input } from '@/shared/ui/input/Input'

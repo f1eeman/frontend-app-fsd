@@ -1,6 +1,6 @@
 import { userRole } from '../consts/consts'
 import { getUserRole } from './userSlice'
-import type { RootState } from '@/app/store'
+import type { RootState } from '@/shared/lib/store'
 
 describe('getUserRole.test', () => {
   test('should return role when user is logged in', () => {

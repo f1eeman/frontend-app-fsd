@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+import { rootReducer } from '@/shared/lib/store'
+import type { PayloadAction, WithSlice } from '@reduxjs/toolkit'
 import type { UISchema } from '../types/UISchema'
 
 const initialState: UISchema = {
@@ -24,5 +25,10 @@ export const uiSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const { actions: uiActions } = uiSlice
-export const { reducer: uiReducer } = uiSlice
-export const { getUIScrollByPath } = uiSlice.selectors
+export const withUISlice = uiSlice.injectInto(rootReducer)
+
+export const { getUIScrollByPath } = withUISlice.selectors
+
+declare module '@/shared/lib/store' {
+  export interface LazyLoadedSlices extends WithSlice<typeof uiSlice> {}
+}

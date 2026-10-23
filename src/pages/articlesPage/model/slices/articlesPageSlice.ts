@@ -5,12 +5,12 @@ import {
   type WithSlice,
 } from '@reduxjs/toolkit'
 import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList'
-import { rootReducer } from '@/app/store'
 import { ArticleSortField, ArticleType, ArticleView } from '@/entities/article'
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/consts/localstorage'
+import { rootReducer } from '@/shared/lib/store'
 import type { ArticlesPageSchema } from '../types/articlesPageSchema'
-import type { RootState } from '@/app/store'
 import type { Article } from '@/entities/article'
+import type { RootState } from '@/shared/lib/store'
 import type { SortOrder } from '@/shared/types'
 
 const articlesAdapter = createEntityAdapter<Article, Article['id']>({
@@ -125,7 +125,7 @@ export const {
   getArticlesPageType,
 } = withArticlesPageSlice.selectors
 
-declare module '@/app/store' {
+declare module '@/shared/lib/store' {
   export interface LazyLoadedSlices
     extends WithSlice<typeof articlesPageSlice> {}
 }

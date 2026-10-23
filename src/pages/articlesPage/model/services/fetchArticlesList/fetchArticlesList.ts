@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { ArticleSortField, ArticleType } from '@/entities/article'
 import { addQueryParams } from '@/shared/lib/url/addQueryParams/addQueryParams'
-import type { ThunkConfig } from '@/app/store'
 import type { Article } from '@/entities/article'
+import type { ThunkConfig } from '@/shared/lib/store'
 
 type Props = {
   replace?: boolean

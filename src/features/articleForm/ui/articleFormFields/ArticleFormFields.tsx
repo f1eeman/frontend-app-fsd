@@ -6,9 +6,9 @@ import {
   selectValidateError,
 } from '../../model/slices/articleFormSlice'
 import cls from './ArticleFormFields.module.scss'
-import { useAppDispatch, useAppSelector } from '@/app/store'
 import { ArticleType } from '@/entities/article'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
 import { Input } from '@/shared/ui/input/Input'
 import { HStack, VStack } from '@/shared/ui/stack'
 

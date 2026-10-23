@@ -1,6 +1,6 @@
 import { createSlice, type WithSlice } from '@reduxjs/toolkit'
 import { loginByUsername } from '../services/loginByUsername/loginByUsername'
-import { rootReducer } from '@/app/store'
+import { rootReducer } from '@/shared/lib/store'
 import type { LoginSchema, ReducerFuncType } from '../types/loginSchema'
 
 const initialState: LoginSchema = {
@@ -61,6 +61,6 @@ export const {
   selectUsername,
 } = withLoginSlice.selectors
 
-declare module '@/app/store' {
+declare module '@/shared/lib/store' {
   export interface LazyLoadedSlices extends WithSlice<typeof loginSlice> {}
 }

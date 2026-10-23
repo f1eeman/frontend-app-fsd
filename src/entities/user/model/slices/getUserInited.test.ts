@@ -1,5 +1,5 @@
 import { getUserInited } from './userSlice'
-import type { RootState } from '@/app/store'
+import type { RootState } from '@/shared/lib/store'
 
 describe('getUserInited.test', () => {
   test('should return true when app is inited', () => {

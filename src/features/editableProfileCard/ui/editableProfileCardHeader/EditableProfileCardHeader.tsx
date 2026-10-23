@@ -6,9 +6,9 @@ import {
   selectProfileData,
   selectProfileReadonly,
 } from '../../model/slices/profileSlice'
-import { useAppDispatch, useAppSelector } from '@/app/store'
 import { getUserAuthData } from '@/entities/user'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
 import { Button } from '@/shared/ui/button/Button'
 import { buttonTheme } from '@/shared/ui/button/consts'
 import { HStack } from '@/shared/ui/stack'

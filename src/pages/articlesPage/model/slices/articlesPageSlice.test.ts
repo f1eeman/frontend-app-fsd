@@ -9,8 +9,8 @@ import { ArticleSortField, ArticleType, ArticleView } from '@/entities/article'
 import { userRole } from '@/entities/user'
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/consts/localstorage'
 import type { ArticlesPageSchema } from '../types/articlesPageSchema'
-import type { RootState } from '@/app/store'
 import type { Article } from '@/entities/article'
+import type { RootState } from '@/shared/lib/store'
 
 const mockArticle: Article = {
   id: '1',

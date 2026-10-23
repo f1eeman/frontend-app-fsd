@@ -1,5 +1,5 @@
 import { selectProfileData } from './profileSlice'
-import type { RootState } from '@/app/store'
+import type { RootState } from '@/shared/lib/store'
 
 describe('selectProfileData.test', () => {
   test('should return data', () => {

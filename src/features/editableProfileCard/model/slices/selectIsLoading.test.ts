@@ -1,5 +1,5 @@
 import { selectIsLoading } from './profileSlice'
-import type { RootState } from '@/app/store'
+import type { RootState } from '@/shared/lib/store'
 
 describe('selectIsLoading.test', () => {
   test('should return loading status', () => {

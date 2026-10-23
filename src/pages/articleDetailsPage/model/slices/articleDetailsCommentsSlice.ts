@@ -5,10 +5,10 @@ import {
   type PayloadAction,
 } from '@reduxjs/toolkit'
 import { fetchCommentsByArticleId } from '../services/fetchCommentsByArticleId/fetchCommentsByArticleId'
-import { rootReducer } from '@/app/store'
+import { rootReducer } from '@/shared/lib/store'
 import type { ArticleDetailsCommentsSchema } from '../types/ArticleDetailsCommentsSchema'
-import type { RootState } from '@/app/store'
 import type { Comment } from '@/entities/comment'
+import type { RootState } from '@/shared/lib/store'
 
 const commentsAdapter = createEntityAdapter<Comment, Comment['id']>({
   selectId: (comment) => comment.id,
@@ -63,7 +63,7 @@ export const getArticleComments = commentsAdapter.getSelectors(
 export const { selectIsLoading, selectError } =
   withArticleDetailsCommentsSlice.selectors
 
-declare module '@/app/store' {
+declare module '@/shared/lib/store' {
   export interface LazyLoadedSlices
     extends WithSlice<typeof articleDetailsCommentsSlice> {}
 }

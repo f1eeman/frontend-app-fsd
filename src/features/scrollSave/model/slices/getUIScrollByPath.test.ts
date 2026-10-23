@@ -1,5 +1,5 @@
 import { getUIScrollByPath } from './UISlice'
-import type { RootState } from '@/app/store'
+import type { RootState } from '@/shared/lib/store'
 
 describe('getUIScrollByPath.test', () => {
   test('should return saved scroll position for path', () => {

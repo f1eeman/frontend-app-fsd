@@ -1,6 +1,6 @@
 import { ValidateProfileError } from '../types/profile'
 import { selectProfileValidateErrors } from './profileSlice'
-import type { RootState } from '@/app/store'
+import type { RootState } from '@/shared/lib/store'
 
 describe('selectProfileValidateErrors.test', () => {
   test('should return validation errors array', () => {

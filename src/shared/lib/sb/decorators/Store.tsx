@@ -1,5 +1,6 @@
-import { type RootState, StoreProvider } from '@/app/store'
+import { StoreProvider } from '@/app/store'
 import type { Decorator } from '@storybook/react'
+import type { RootState } from '@/shared/lib/store'
 import type { DeepPartial } from '@/shared/types'
 
 type StoreDecoratorType = (state: DeepPartial<RootState>) => Decorator

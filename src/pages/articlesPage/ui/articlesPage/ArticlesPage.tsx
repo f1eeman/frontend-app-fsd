@@ -6,8 +6,8 @@ import { getArticlesPageIsLoading } from '../../model/slices/articlesPageSlice'
 import ArticleInfiniteList from '../articleInfiniteList/ArticleInfiniteList'
 import { ArticlesPageFilters } from '../articlesPageFilters/ArticlesPageFilters'
 import cls from './ArticlesPage.module.scss'
-import { useAppDispatch, useAppSelector } from '@/app/store'
 import { classNames } from '@/shared/lib/classNames/classNames'
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
 import { Page } from '@/widgets/page'
 
 interface ArticlesPageProps {

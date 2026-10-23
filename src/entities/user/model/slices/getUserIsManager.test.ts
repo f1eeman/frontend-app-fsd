@@ -1,6 +1,6 @@
 import { userRole } from '../consts/consts'
 import { getUserIsManager } from './userSlice'
-import type { RootState } from '@/app/store'
+import type { RootState } from '@/shared/lib/store'
 
 const createState = (role?: string) =>
   ({

@@ -7,9 +7,9 @@ import {
   selectIsLoading,
 } from '../../model/slices/articleDetailsCommentsSlice'
 import cls from './ArticleDetailsComments.module.scss'
-import { useAppDispatch, useAppSelector } from '@/app/store'
 import { CommentList } from '@/entities/comment'
 import { AddCommentForm } from '@/features/addCommentForm'
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
 import { VStack } from '@/shared/ui/stack'
 import { Text } from '@/shared/ui/text/Text'
 

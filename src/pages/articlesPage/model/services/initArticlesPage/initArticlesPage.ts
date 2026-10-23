@@ -6,7 +6,7 @@ import {
 import { fetchArticlesList } from '../fetchArticlesList/fetchArticlesList'
 import { ArticleSortField, ArticleType } from '@/entities/article'
 import { isOneOf } from '@/shared/lib/isOneOf/isOneOf'
-import type { ThunkConfig } from '@/app/store'
+import type { ThunkConfig } from '@/shared/lib/store'
 import type { SortOrder } from '@/shared/types'
 
 const sortOrders: readonly SortOrder[] = ['asc', 'desc']

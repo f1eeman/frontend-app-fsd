@@ -6,7 +6,7 @@ import i18nForTests from '../i18n.tests'
 import { StoreProvider } from '@/app/store'
 import { ThemeProvider } from '@/app/theme'
 import { Theme } from '@/app/theme/context'
-import type { RootState } from '@/app/store'
+import type { RootState } from '@/shared/lib/store'
 import type { DeepPartial } from '@/shared/types'
 
 export interface ComponentRenderOptions {

@@ -1,5 +1,5 @@
 import { selectProfileReadonly } from './profileSlice'
-import type { RootState } from '@/app/store'
+import type { RootState } from '@/shared/lib/store'
 
 describe('selectProfileReadonly.test', () => {
   test('should return readonly status', () => {

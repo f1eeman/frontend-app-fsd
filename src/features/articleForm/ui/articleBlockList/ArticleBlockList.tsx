@@ -8,7 +8,6 @@ import { ArticleCodeBlockEditor } from '../articleCodeBlockEditor/ArticleCodeBlo
 import { ArticleImageBlockEditor } from '../articleImageBlockEditor/ArticleImageBlockEditor'
 import { ArticleTextBlockEditor } from '../articleTextBlockEditor/ArticleTextBlockEditor'
 import cls from './ArticleBlockList.module.scss'
-import { useAppDispatch, useAppSelector } from '@/app/store'
 import {
   ArticleBlockType,
   type ArticleBlock,
@@ -16,6 +15,7 @@ import {
   type ArticleImageBlock,
   type ArticleTextBlock,
 } from '@/entities/article'
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
 import { Button } from '@/shared/ui/button/Button'
 import { buttonTheme } from '@/shared/ui/button/consts'
 import { VStack } from '@/shared/ui/stack'

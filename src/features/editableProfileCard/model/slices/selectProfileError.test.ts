@@ -1,5 +1,5 @@
 import { selectProfileError } from './profileSlice'
-import type { RootState } from '@/app/store'
+import type { RootState } from '@/shared/lib/store'
 
 describe('selectProfileError.test', () => {
   test('should return error', () => {

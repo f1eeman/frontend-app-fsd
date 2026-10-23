@@ -1,7 +1,7 @@
 import { Navigate, useLocation } from 'react-router'
-import { useAppSelector } from '@/app/store'
 import { getUserAuthData, type UserRole } from '@/entities/user'
 import { routesPaths } from '@/shared/config/routes'
+import { useAppSelector } from '@/shared/lib/store'
 import type { ReactNode } from 'react'
 
 interface RequireAuthProps {

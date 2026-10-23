@@ -1,6 +1,11 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+import {
+  createSlice,
+  type PayloadAction,
+  type WithSlice,
+} from '@reduxjs/toolkit'
 import { userRole } from '../consts/consts'
 import { USER_LOCALSTORAGE_KEY } from '@/shared/consts/localstorage'
+import { rootReducer } from '@/shared/lib/store'
 import type { UserSchema, User } from '../types/user'
 
 const initialState: UserSchema = {
@@ -37,7 +42,8 @@ export const userSlice = createSlice({
 })
 
 export const { actions: userActions } = userSlice
-export const { reducer: userReducer } = userSlice
+export const withUserSlice = userSlice.injectInto(rootReducer)
+
 export const {
   getUserAuthData,
   getUserInited,
@@ -45,4 +51,8 @@ export const {
   getUserIsAdmin,
   getUserIsUser,
   getUserIsManager,
-} = userSlice.selectors
+} = withUserSlice.selectors
+
+declare module '@/shared/lib/store' {
+  export interface LazyLoadedSlices extends WithSlice<typeof userSlice> {}
+}

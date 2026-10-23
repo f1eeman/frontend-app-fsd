@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { validateArticleForm } from '../validateArticleForm/validateArticleForm'
 import { getUserAuthData } from '@/entities/user'
-import type { ThunkConfig } from '@/app/store'
 import type { Article } from '@/entities/article'
+import type { ThunkConfig } from '@/shared/lib/store'
 
 export const saveArticle = createAsyncThunk<
   Article,

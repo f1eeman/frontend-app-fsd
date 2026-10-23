@@ -1,5 +1,4 @@
 export {
-  userReducer,
   userActions,
   getUserAuthData,
   getUserInited,

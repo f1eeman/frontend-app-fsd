@@ -3,8 +3,8 @@ import { userRole } from '@/entities/user'
 import AvatarImg from '@/shared/assets/tests/avatar.jpg'
 import { StoreDecorator } from '@/shared/lib/sb/decorators/Store'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
-import type { RootState } from '@/app/store'
 import type { Comment } from '@/entities/comment'
+import type { RootState } from '@/shared/lib/store'
 import type { DeepPartial } from '@/shared/types'
 
 const meta = {

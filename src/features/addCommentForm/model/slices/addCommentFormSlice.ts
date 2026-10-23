@@ -3,7 +3,7 @@ import {
   type WithSlice,
   type PayloadAction,
 } from '@reduxjs/toolkit'
-import { rootReducer } from '@/app/store'
+import { rootReducer } from '@/shared/lib/store'
 import type { AddCommentFormSchema } from '../types/addCommentForm'
 
 const initialState: AddCommentFormSchema = {
@@ -31,7 +31,7 @@ export const withAddCommentFormSlice =
 
 export const { selectText, selectError } = withAddCommentFormSlice.selectors
 
-declare module '@/app/store' {
+declare module '@/shared/lib/store' {
   export interface LazyLoadedSlices
     extends WithSlice<typeof addCommentFormSlice> {}
 }

@@ -10,12 +10,12 @@ import {
   articlesPageActions,
 } from '../../model/slices/articlesPageSlice'
 import cls from './ArticlesPageFilters.module.scss'
-import { useAppDispatch, useAppSelector } from '@/app/store'
 import { ArticleSortSelector } from '@/features/articleSortSelector'
 import { ArticleTypeTabs } from '@/features/articleTypeTabs'
 import { ArticleViewSelector } from '@/features/articleViewSelector'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce'
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
 import { Card } from '@/shared/ui/card/Card'
 import { Input } from '@/shared/ui/input/Input'
 import { HStack } from '@/shared/ui/stack'

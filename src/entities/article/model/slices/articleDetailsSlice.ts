@@ -4,7 +4,7 @@ import {
   type PayloadAction,
 } from '@reduxjs/toolkit'
 import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById'
-import { rootReducer } from '@/app/store'
+import { rootReducer } from '@/shared/lib/store'
 import type { Article } from '../types/article'
 import type { ArticleDetailsSchema } from '../types/articleDetailsSchema'
 
@@ -51,7 +51,7 @@ export const withArticleDetailsSlice =
 export const { selectError, selectIsLoading, getArticleDetailsData } =
   withArticleDetailsSlice.selectors
 
-declare module '@/app/store' {
+declare module '@/shared/lib/store' {
   export interface LazyLoadedSlices
     extends WithSlice<typeof articleDetailsSlice> {}
 }

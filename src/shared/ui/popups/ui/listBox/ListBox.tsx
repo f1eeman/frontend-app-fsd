@@ -5,7 +5,7 @@ import {
   ListboxOption as HListBoxOption,
   ListboxOptions as HListBoxOptions,
 } from '@headlessui/react'
-import { type FC, type ReactNode, Fragment } from 'react'
+import { type ReactNode, Fragment } from 'react'
 import { mapDirectionClass } from '../../styles/consts'
 import popupCls from '../../styles/popup.module.scss'
 import cls from './ListBox.module.scss'
@@ -13,8 +13,8 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button } from '@/shared/ui/button/Button'
 import { HStack } from '@/shared/ui/stack'
 
-export interface ListBoxItem {
-  value: string
+export interface ListBoxItem<T extends string> {
+  value: T
   content: ReactNode
   disabled?: boolean
 }
@@ -25,18 +25,18 @@ type DropdownDirection =
   | 'bottom left'
   | 'bottom right'
 
-interface ListBoxProps {
-  items?: ListBoxItem[]
+interface ListBoxProps<T extends string> {
+  items?: ListBoxItem<T>[]
   className?: string
-  value?: string
+  value?: T
   defaultValue?: string
-  onChange: (value: string) => void
+  onChange?: (value: T) => void
   readonly?: boolean
   direction?: DropdownDirection
   label?: string
 }
 
-export const ListBox: FC<ListBoxProps> = (props) => {
+export const ListBox = <T extends string>(props: ListBoxProps<T>) => {
   const {
     className = '',
     items,

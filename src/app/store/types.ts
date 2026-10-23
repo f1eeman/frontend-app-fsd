@@ -1,4 +1,4 @@
-import type { RootState, AppDispatch, ThunkExtraArgs } from '@/app/store/store'
+import type { RootState, AppDispatch, ThunkExtraArgs } from './store'
 
 export interface ThunkConfig<T> {
   extra: ThunkExtraArgs

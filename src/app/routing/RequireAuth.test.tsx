@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react'
 import { Route, Routes } from 'react-router'
-import { RequireAuth } from '@/app/routing/RequireAuth'
+import { RequireAuth } from './RequireAuth'
 import { userRole, type UserRole } from '@/entities/user'
 import { routesPaths } from '@/shared/config/routes'
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender'

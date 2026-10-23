@@ -1,6 +1,6 @@
 import { useRoutes } from 'react-router'
-import { RequireAuth } from '@/app/routing/RequireAuth'
-import { routesConfig, type AppRouteObject } from '@/app/routing/routesConfig'
+import { RequireAuth } from './RequireAuth'
+import { routesConfig, type AppRouteObject } from './routesConfig'
 import type { RouteObject } from 'react-router'
 
 function applyAuth(routes: AppRouteObject[]): RouteObject[] {

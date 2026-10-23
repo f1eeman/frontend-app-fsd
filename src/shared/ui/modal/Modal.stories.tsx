@@ -1,5 +1,6 @@
 import { fn } from 'storybook/test'
 import { Modal as ModalComponent } from './Modal'
+import { EXTRA_SCREENSHOT_THEMES } from '@/shared/lib/sb/screenshotThemes'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
@@ -65,7 +66,9 @@ type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {}
 
-export const Modal: Story = {}
+export const Modal: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
+}
 
 export const Closed: Story = {
   args: {

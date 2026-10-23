@@ -1,5 +1,6 @@
 import { TextAlign, TextSize, TextTheme } from './consts'
 import { Text } from './Text'
+import { EXTRA_SCREENSHOT_THEMES } from '@/shared/lib/sb/screenshotThemes'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
@@ -74,15 +75,19 @@ type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {}
 
-export const Primary: Story = {}
+export const Primary: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
+}
 
 export const Error: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
   args: {
     theme: TextTheme.ERROR,
   },
 }
 
 export const Inverted: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
   args: {
     theme: TextTheme.INVERTED,
   },

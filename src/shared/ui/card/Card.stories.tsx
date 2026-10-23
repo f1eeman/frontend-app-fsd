@@ -1,5 +1,6 @@
 import { Card } from './Card'
 import { CardTheme } from './consts'
+import { EXTRA_SCREENSHOT_THEMES } from '@/shared/lib/sb/screenshotThemes'
 import { Text } from '@/shared/ui/text/Text'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
@@ -45,12 +46,14 @@ type Story = StoryObj<typeof meta>
 export const Playground: Story = {}
 
 export const Normal: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
   args: {
     children: <Text title='test' text='text text' />,
   },
 }
 
 export const Outlined: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
   args: {
     theme: CardTheme.OUTLINED,
     children: <Text title='test' text='text text' />,

@@ -1,6 +1,7 @@
 import { fn } from 'storybook/test'
 import { Button } from './Button'
 import { buttonSize, buttonTheme } from './consts'
+import { EXTRA_SCREENSHOT_THEMES } from '@/shared/lib/sb/screenshotThemes'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
@@ -93,42 +94,49 @@ type Story = StoryObj<typeof meta>
 export const Playground: Story = {}
 
 export const Clear: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
   args: {
     theme: buttonTheme.clear,
   },
 }
 
 export const ClearInverted: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
   args: {
     theme: buttonTheme.invertedClear,
   },
 }
 
 export const Background: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
   args: {
     theme: buttonTheme.background,
   },
 }
 
 export const BackgroundInverted: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
   args: {
     theme: buttonTheme.invertedBackground,
   },
 }
 
 export const Outline: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
   args: {
     theme: buttonTheme.outline,
   },
 }
 
 export const OutlineInverted: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
   args: {
     theme: buttonTheme.outlineInverted,
   },
 }
 
 export const OutlineRed: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
   args: {
     theme: buttonTheme.outlineRed,
     children: 'Delete',
@@ -136,6 +144,7 @@ export const OutlineRed: Story = {
 }
 
 export const BackgroundRed: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
   args: {
     theme: buttonTheme.backgroundRed,
     children: 'Delete',
@@ -143,6 +152,7 @@ export const BackgroundRed: Story = {
 }
 
 export const Disabled: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
   args: {
     theme: buttonTheme.outline,
     disabled: true,

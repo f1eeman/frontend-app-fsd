@@ -1,5 +1,6 @@
 import { fn } from 'storybook/test'
 import { Input as InputFC } from './Input'
+import { EXTRA_SCREENSHOT_THEMES } from '@/shared/lib/sb/screenshotThemes'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
@@ -70,9 +71,12 @@ type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {}
 
-export const InputStory: Story = {}
+export const InputStory: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
+}
 
 export const Readonly: Story = {
+  parameters: { screenshotThemes: EXTRA_SCREENSHOT_THEMES },
   args: {
     readonly: true,
   },

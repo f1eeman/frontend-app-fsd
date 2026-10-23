@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ArticleSortField } from '../../model/types/article'
+import { ArticleSortField } from '@/entities/article'
 import { Select } from '@/shared/ui/select/Select'
 import { HStack } from '@/shared/ui/stack'
 import type { SortOrder } from '@/shared/types'

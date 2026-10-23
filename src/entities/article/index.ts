@@ -12,7 +12,4 @@ export {
 } from './model/types/article'
 export type { ArticleDetailsSchema } from './model/types/articleDetailsSchema'
 export { ArticleList } from './ui/articleList/ArticleList'
-export { ArticleViewSelector } from './ui/articleViewSelector/ArticleViewSelector'
-export { ArticleSortSelector } from './ui/articleSortSelector/ArticleSortSelector'
-export { ArticleTypeTabs } from './ui/articleTypeTabs/ArticleTypeTabs'
 export { getArticleDetailsData } from './model/slices/articleDetailsSlice'

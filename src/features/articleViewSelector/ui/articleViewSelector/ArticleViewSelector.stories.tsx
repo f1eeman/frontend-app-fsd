@@ -1,10 +1,10 @@
 import { fn } from 'storybook/test'
-import { ArticleView } from '../../model/types/article'
 import { ArticleViewSelector } from './ArticleViewSelector'
+import { ArticleView } from '@/entities/article'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
-  title: 'entities/Article/ArticleViewSelector',
+  title: 'features/ArticleViewSelector',
   component: ArticleViewSelector,
   tags: ['autodocs'],
   parameters: {

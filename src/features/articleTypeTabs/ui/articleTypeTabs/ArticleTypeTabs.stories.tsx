@@ -1,10 +1,10 @@
 import { fn } from 'storybook/test'
-import { ArticleType } from '../../model/types/article'
 import { ArticleTypeTabs } from './ArticleTypeTabs'
+import { ArticleType } from '@/entities/article'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
-  title: 'entities/Article/ArticleTypeTabs',
+  title: 'features/ArticleTypeTabs',
   component: ArticleTypeTabs,
   tags: ['autodocs'],
   parameters: {

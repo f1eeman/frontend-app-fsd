@@ -1,10 +1,10 @@
 import { fn } from 'storybook/test'
-import { ArticleSortField } from '../../model/types/article'
 import { ArticleSortSelector } from './ArticleSortSelector'
+import { ArticleSortField } from '@/entities/article'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const meta = {
-  title: 'entities/Article/ArticleSortSelector',
+  title: 'features/ArticleSortSelector',
   component: ArticleSortSelector,
   tags: ['autodocs'],
   parameters: {

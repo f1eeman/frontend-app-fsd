@@ -8,17 +8,17 @@ import { ArticleCodeBlockEditor } from '../articleCodeBlockEditor/ArticleCodeBlo
 import { ArticleImageBlockEditor } from '../articleImageBlockEditor/ArticleImageBlockEditor'
 import { ArticleTextBlockEditor } from '../articleTextBlockEditor/ArticleTextBlockEditor'
 import cls from './ArticleBlockList.module.scss'
-import {
-  ArticleBlockType,
-  type ArticleBlock,
-  type ArticleCodeBlock,
-  type ArticleImageBlock,
-  type ArticleTextBlock,
-} from '@/entities/article'
+import { ArticleBlockType } from '@/entities/article'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
 import { Button } from '@/shared/ui/button/Button'
 import { buttonTheme } from '@/shared/ui/button/consts'
 import { VStack } from '@/shared/ui/stack'
+import type {
+  ArticleBlock,
+  ArticleCodeBlock,
+  ArticleImageBlock,
+  ArticleTextBlock,
+} from '@/entities/article'
 
 interface Props {
   className?: string

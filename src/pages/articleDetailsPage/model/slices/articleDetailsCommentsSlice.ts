@@ -1,11 +1,7 @@
-import {
-  createEntityAdapter,
-  createSlice,
-  type WithSlice,
-  type PayloadAction,
-} from '@reduxjs/toolkit'
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit'
 import { fetchCommentsByArticleId } from '../services/fetchCommentsByArticleId/fetchCommentsByArticleId'
 import { rootReducer } from '@/shared/lib/store'
+import type { WithSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { ArticleDetailsCommentsSchema } from '../types/ArticleDetailsCommentsSchema'
 import type { Comment } from '@/entities/comment'
 import type { RootState } from '@/shared/lib/store'

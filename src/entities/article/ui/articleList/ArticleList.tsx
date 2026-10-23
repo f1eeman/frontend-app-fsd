@@ -1,12 +1,6 @@
 import { forwardRef, memo, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import {
-  Virtuoso,
-  VirtuosoGrid,
-  type ContextProp,
-  type GridComponents,
-  type GridListProps,
-} from 'react-virtuoso'
+import { Virtuoso, VirtuosoGrid } from 'react-virtuoso'
 import { ArticleView } from '../../model/types/article'
 import { ArticleListItem } from '../articleListItem/ArticleListItem'
 import { ArticleListItemSkeleton } from '../articleListItem/ArticleListItemSkeleton'
@@ -15,6 +9,7 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { TextSize } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
 import type { HTMLAttributeAnchorTarget } from 'react'
+import type { ContextProp, GridComponents, GridListProps } from 'react-virtuoso'
 import type { Article } from '../../model/types/article'
 
 interface ArticleListBaseProps {

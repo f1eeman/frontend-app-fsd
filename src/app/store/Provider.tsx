@@ -1,7 +1,8 @@
 import { setupListeners } from '@reduxjs/toolkit/query'
-import { useEffect, useMemo, type FC, type ReactNode } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Provider } from 'react-redux'
 import { setupStore } from './store'
+import type { FC, ReactNode } from 'react'
 import type { RootState } from '@/shared/lib/store'
 import type { DeepPartial } from '@/shared/types'
 

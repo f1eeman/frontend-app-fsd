@@ -1,4 +1,4 @@
-import { type FC, useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import cls from './Navbar.module.scss'
 import { getUserAuthData } from '@/entities/user'
@@ -14,6 +14,7 @@ import { AppLink } from '@/shared/ui/link/Link'
 import { HStack } from '@/shared/ui/stack'
 import { TextTheme } from '@/shared/ui/text/consts'
 import { Text } from '@/shared/ui/text/Text'
+import type { FC } from 'react'
 
 interface NavbarProps {
   className?: string

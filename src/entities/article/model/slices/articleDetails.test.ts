@@ -1,10 +1,11 @@
 import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById'
-import { type Article, ArticleType } from '../types/article'
+import { ArticleType } from '../types/article'
 import {
   articleDetailsReducer,
   articleDetailsSlice,
 } from './articleDetailsSlice'
 import AvatarImg from '@/shared/assets/tests/avatar.jpg'
+import type { Article } from '../types/article'
 import type { ArticleDetailsSchema } from '../types/articleDetailsSchema'
 
 const mockArticle: Article = {

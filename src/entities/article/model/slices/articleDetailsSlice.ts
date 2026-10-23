@@ -1,10 +1,7 @@
-import {
-  createSlice,
-  type WithSlice,
-  type PayloadAction,
-} from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById'
 import { rootReducer } from '@/shared/lib/store'
+import type { WithSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { Article } from '../types/article'
 import type { ArticleDetailsSchema } from '../types/articleDetailsSchema'
 

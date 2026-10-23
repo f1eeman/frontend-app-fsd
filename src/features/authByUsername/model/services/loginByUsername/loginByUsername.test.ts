@@ -1,6 +1,7 @@
 import { loginByUsername } from './loginByUsername'
-import { type User, userActions } from '@/entities/user'
+import { userActions } from '@/entities/user'
 import { TestAsyncThunk } from '@/shared/lib/tests/async.thunk.tests'
+import type { User } from '@/entities/user'
 
 jest.mock('@/entities/user', () => ({
   userActions: {

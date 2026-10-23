@@ -1,8 +1,9 @@
-import { Link, type LinkProps } from 'react-router'
+import { Link } from 'react-router'
 import { AppLinkTheme } from './consts'
 import cls from './Link.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import type { FC } from 'react'
+import type { LinkProps } from 'react-router'
 
 interface AppLinkProps extends LinkProps {
   className?: string

@@ -1,17 +1,14 @@
-import {
-  configureStore,
-  type Reducer,
-  type ThunkMiddleware,
-  type Tuple,
-  type UnknownAction,
-} from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import { $api } from '@/shared/api/api'
 import { baseRtkApi } from '@/shared/api/rtkApi'
-import {
-  rootReducer,
-  type RootState,
-  type ThunkExtraArgs,
-} from '@/shared/lib/store'
+import { rootReducer } from '@/shared/lib/store'
+import type {
+  Reducer,
+  ThunkMiddleware,
+  Tuple,
+  UnknownAction,
+} from '@reduxjs/toolkit'
+import type { RootState, ThunkExtraArgs } from '@/shared/lib/store'
 import type { DeepPartial } from '@/shared/types'
 
 type DefaultMiddleware = Tuple<

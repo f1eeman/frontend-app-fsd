@@ -1,8 +1,9 @@
 import { Navigate, useLocation } from 'react-router'
-import { getUserAuthData, type UserRole } from '@/entities/user'
+import { getUserAuthData } from '@/entities/user'
 import { routesPaths } from '@/shared/config/routes'
 import { useAppSelector } from '@/shared/lib/store'
 import type { ReactNode } from 'react'
+import type { UserRole } from '@/entities/user'
 
 interface RequireAuthProps {
   children: ReactNode

@@ -1,4 +1,4 @@
-import { userRole, type UserRole } from '@/entities/user'
+import { userRole } from '@/entities/user'
 import { AboutPageAsync } from '@/pages/aboutPage'
 import { AdminPanelPage } from '@/pages/adminPanelPage'
 import { ArticleCreatePage } from '@/pages/articleCreatePage'
@@ -11,6 +11,7 @@ import { NotFoundPage } from '@/pages/notFoundPage'
 import { ProfilePageAsync } from '@/pages/profilePage'
 import { routesPaths } from '@/shared/config/routes'
 import type { RouteObject } from 'react-router'
+import type { UserRole } from '@/entities/user'
 
 export type AppRouteObject = RouteObject & {
   authOnly?: boolean

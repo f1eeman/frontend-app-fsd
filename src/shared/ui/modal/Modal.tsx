@@ -6,8 +6,9 @@ import { useModal } from '@/shared/lib/hooks/useModal/useModal'
 import { Button } from '@/shared/ui/button/Button'
 import { Icon } from '@/shared/ui/icon/Icon'
 import { Overlay } from '@/shared/ui/overlay/Overlay'
-import { Portal, type PortalProps } from '@/shared/ui/portal/Portal'
+import { Portal } from '@/shared/ui/portal/Portal'
 import type { FC, ReactNode } from 'react'
+import type { PortalProps } from '@/shared/ui/portal/Portal'
 
 interface ModalProps extends Pick<PortalProps, 'elementId' | 'element'> {
   className?: string

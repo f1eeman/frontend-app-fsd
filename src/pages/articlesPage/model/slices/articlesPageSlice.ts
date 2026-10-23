@@ -1,13 +1,9 @@
-import {
-  createEntityAdapter,
-  createSlice,
-  type PayloadAction,
-  type WithSlice,
-} from '@reduxjs/toolkit'
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit'
 import { fetchArticlesList } from '../services/fetchArticlesList/fetchArticlesList'
 import { ArticleSortField, ArticleType, ArticleView } from '@/entities/article'
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/consts/localstorage'
 import { rootReducer } from '@/shared/lib/store'
+import type { PayloadAction, WithSlice } from '@reduxjs/toolkit'
 import type { ArticlesPageSchema } from '../types/articlesPageSchema'
 import type { Article } from '@/entities/article'
 import type { RootState } from '@/shared/lib/store'

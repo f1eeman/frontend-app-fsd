@@ -1,9 +1,6 @@
-import {
-  createSlice,
-  type WithSlice,
-  type PayloadAction,
-} from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { rootReducer } from '@/shared/lib/store'
+import type { WithSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { AddCommentFormSchema } from '../types/addCommentForm'
 
 const initialState: AddCommentFormSchema = {

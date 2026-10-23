@@ -87,6 +87,7 @@ export default [
           },
         },
       ],
+      'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-expressions': 'off',

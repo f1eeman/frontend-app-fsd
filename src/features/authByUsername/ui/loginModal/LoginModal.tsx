@@ -1,8 +1,9 @@
-import { type FC, Suspense } from 'react'
+import { Suspense } from 'react'
 import { LoginFormAsync } from '../loginForm/LoginForm.async'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { RollerLoader } from '@/shared/ui/loaders/roller/RollerLoader'
 import { Modal } from '@/shared/ui/modal/Modal'
+import type { FC } from 'react'
 
 interface LoginModalProps {
   className?: string

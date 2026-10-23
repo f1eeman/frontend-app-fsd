@@ -1,8 +1,9 @@
 import { updateProfileData } from '../services/updateProfileData/updateProfileData'
-import { ValidateProfileError, type ProfileSchema } from '../types/profile'
+import { ValidateProfileError } from '../types/profile'
 import { profileActions, profileReducer } from './profileSlice'
 import { Country } from '@/entities/country'
 import { Currency } from '@/entities/currency'
+import type { ProfileSchema } from '../types/profile'
 import type { DeepPartial } from '@/shared/types'
 
 const data = {

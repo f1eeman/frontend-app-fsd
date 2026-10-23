@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react'
-import { type ReactNode } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { MemoryRouter } from 'react-router'
 import i18nForTests from '../i18n.tests'
 import { StoreProvider } from '@/app/store'
 import { ThemeProvider, Theme } from '@/shared/lib/theme'
+import type { ReactNode } from 'react'
 import type { RootState } from '@/shared/lib/store'
 import type { DeepPartial } from '@/shared/types'
 

@@ -1,9 +1,6 @@
-import {
-  createSlice,
-  type PayloadAction,
-  type WithSlice,
-} from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { rootReducer } from '@/shared/lib/store'
+import type { PayloadAction, WithSlice } from '@reduxjs/toolkit'
 import type { AdminPanelPageSchema } from '../types/adminPanelPageSchema'
 
 const initialState: AdminPanelPageSchema = {

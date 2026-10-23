@@ -1,4 +1,4 @@
-import { type FC, useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { getSidebarItems } from '../../model/selectors/getSidebarItems'
 import { SidebarItem } from '../sidebarItem/SidebarItem'
 import cls from './Sidebar.module.scss'
@@ -8,6 +8,7 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { useAppSelector } from '@/shared/lib/store'
 import { Button } from '@/shared/ui/button/Button'
 import { HStack, VStack } from '@/shared/ui/stack'
+import type { FC } from 'react'
 
 interface SidebarProps {
   className?: string

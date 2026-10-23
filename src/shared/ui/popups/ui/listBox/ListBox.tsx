@@ -5,13 +5,14 @@ import {
   ListboxOption as HListBoxOption,
   ListboxOptions as HListBoxOptions,
 } from '@headlessui/react'
-import { type ReactNode, Fragment } from 'react'
+import { Fragment } from 'react'
 import { mapDirectionClass } from '../../styles/consts'
 import popupCls from '../../styles/popup.module.scss'
 import cls from './ListBox.module.scss'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button } from '@/shared/ui/button/Button'
 import { HStack } from '@/shared/ui/stack'
+import type { ReactNode } from 'react'
 
 export interface ListBoxItem<T extends string> {
   value: T

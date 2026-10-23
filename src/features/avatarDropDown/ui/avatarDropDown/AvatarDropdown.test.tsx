@@ -1,8 +1,9 @@
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { AvatarDropdown } from './AvatarDropDown'
-import { userRole, type UserRole } from '@/entities/user'
+import { userRole } from '@/entities/user'
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender'
+import type { UserRole } from '@/entities/user'
 
 const openAvatarMenu = async (role: UserRole) => {
   componentRender(<AvatarDropdown />, {

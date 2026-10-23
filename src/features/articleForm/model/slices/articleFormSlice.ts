@@ -1,21 +1,18 @@
-import {
-  createSlice,
-  type PayloadAction,
-  type WithSlice,
-} from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { fetchArticleForEdit } from '../services/fetchArticleForEdit/fetchArticleForEdit'
 import { saveArticle } from '../services/saveArticle/saveArticle'
-import {
-  ArticleBlockType,
-  type Article,
-  type ArticleBlock,
-  type ArticleCodeBlock,
-  type ArticleImageBlock,
-  type ArticleTextBlock,
-  type ArticleType,
-} from '@/entities/article'
+import { ArticleBlockType } from '@/entities/article'
 import { rootReducer } from '@/shared/lib/store'
+import type { PayloadAction, WithSlice } from '@reduxjs/toolkit'
 import type { ArticleFormSchema } from '../types/articleFormSchema'
+import type {
+  Article,
+  ArticleBlock,
+  ArticleCodeBlock,
+  ArticleImageBlock,
+  ArticleTextBlock,
+  ArticleType,
+} from '@/entities/article'
 
 type DistributiveOmit<T, K extends PropertyKey> = T extends unknown
   ? Omit<T, K>

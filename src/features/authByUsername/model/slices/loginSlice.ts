@@ -1,6 +1,7 @@
-import { createSlice, type WithSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { loginByUsername } from '../services/loginByUsername/loginByUsername'
 import { rootReducer } from '@/shared/lib/store'
+import type { WithSlice } from '@reduxjs/toolkit'
 import type { LoginSchema, ReducerFuncType } from '../types/loginSchema'
 
 const initialState: LoginSchema = {

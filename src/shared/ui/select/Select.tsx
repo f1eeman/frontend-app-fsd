@@ -1,28 +1,29 @@
-import { memo, useMemo } from 'react'
+import { useMemo } from 'react'
 import cls from './Select.module.scss'
 import { HStack } from '@/shared/ui/stack'
 import type { ChangeEvent } from 'react'
 
-export interface SelectOption {
-  value: string
+export interface SelectOption<T extends string> {
+  value: T
   content: string
 }
 
-interface SelectProps {
+interface SelectProps<T extends string> {
   className?: string
   label?: string
-  options?: SelectOption[]
-  value?: string
-  onChange?: (value: string) => void
+  options?: SelectOption<T>[]
+  value?: T
+  onChange?: (value: T) => void
   readonly?: boolean
 }
 
-export const Select = memo<SelectProps>((props) => {
+export const Select = <T extends string>(props: SelectProps<T>) => {
   const { className = '', label, options, onChange, value, readonly } = props
 
   const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-    if (onChange) {
-      onChange(e.target.value)
+    const option = options?.find((opt) => opt.value === e.target.value)
+    if (option) {
+      onChange?.(option.value)
     }
   }
 
@@ -49,6 +50,4 @@ export const Select = memo<SelectProps>((props) => {
       </select>
     </HStack>
   )
-})
-
-Select.displayName = 'Select'
+}

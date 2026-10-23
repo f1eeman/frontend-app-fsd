@@ -5718,10 +5718,10 @@ eslint-module-utils@^2.12.1:
   dependencies:
     debug "^3.2.7"
 
-eslint-plugin-fsd-boundaries@~2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-fsd-boundaries/-/eslint-plugin-fsd-boundaries-2.0.0.tgz#9ce283a8ec765e2313681b76efbfc2360c1caaef"
-  integrity sha512-QRLAKtmNYfa8LQQgEm3SVG17YKG3O8iIh/Ze13dwZIK1jZsUX92FkzdGej2Nmc/cTFNojWdqBvC4bdvQxZxO7Q==
+eslint-plugin-fsd-boundaries@~2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-fsd-boundaries/-/eslint-plugin-fsd-boundaries-2.1.0.tgz#539fc780a0e0dae6ca2f86c6543cdf932c804687"
+  integrity sha512-6WNkpJN/VGHivX36C0Cr7M4dXYNs04MJtwFSHzGsPI+cbZh40JaI5iBjJt0NDgOQHAnvSYhyjMXq32L0EVw7cQ==
   dependencies:
     "@typescript-eslint/utils" "^8.62.1"
 

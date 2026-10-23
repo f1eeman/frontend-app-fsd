@@ -123,6 +123,7 @@ export default [
         'error',
         {
           exceptions: ['app/store', 'app/theme', 'app/styles'],
+          forbidForeignReexports: true,
         },
       ],
       'fsd-boundaries/relative-path': 'error',

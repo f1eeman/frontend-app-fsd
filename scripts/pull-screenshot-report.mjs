@@ -110,7 +110,7 @@ const main = async () => {
   } catch (error) {
     if (error.message.includes('no valid artifacts')) {
       throw new Error(
-        `У прогона ${runId} нет артефакта ${artifactName}: снимки не разошлись с эталонами. Смотрите лог прогона — например, упали истории без эталонов.`,
+        `У прогона ${runId} нет артефакта ${artifactName}: снимки не разошлись с эталонами. Смотрите лог прогона — например, история ничего не отрисовала.`,
       )
     }
     throw error

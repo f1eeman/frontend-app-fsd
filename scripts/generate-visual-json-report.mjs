@@ -14,6 +14,7 @@ const reportExpectedDirPath = path.resolve(
 const reportActualDirPath = path.resolve(screenTestsDirPath, 'report-actual')
 const reportDiffDirPath = path.resolve(screenTestsDirPath, 'report-diff')
 const reportJsonPath = path.resolve(screenTestsDirPath, 'report.json')
+const NEW_SNAPSHOT_SUFFIX = '-new.png'
 
 const safeReadDir = async (dirPath) => {
   try {
@@ -272,8 +273,23 @@ const main = async () => {
     }
   }
 
+  const newItems = (await safeReadDir(currentDirPath))
+    .filter((fileName) => fileName.endsWith(NEW_SNAPSHOT_SUFFIX))
+    .map((fileName) => fileName.slice(0, -NEW_SNAPSHOT_SUFFIX.length))
+    .sort((a, b) => a.localeCompare(b))
+    .map((id) => `${id}.png`)
+
+  for (const reportItemFileName of newItems) {
+    const id = reportItemFileName.replace(/\.png$/i, '')
+    await fs.copyFile(
+      path.resolve(currentDirPath, `${id}${NEW_SNAPSHOT_SUFFIX}`),
+      path.resolve(reportActualDirPath, reportItemFileName),
+    )
+    actualItems.push(reportItemFileName)
+  }
+
   const report = {
-    newItems: [],
+    newItems,
     deletedItems: [],
     passedItems: [],
     failedItems: diffItems,
@@ -298,6 +314,7 @@ const main = async () => {
     `✅ Visual report JSON written: ${path.relative(process.cwd(), reportJsonPath)}`,
   )
   console.log(`   Failed items: ${diffItems.length}`)
+  console.log(`   New items: ${newItems.length}`)
 }
 
 main().catch((error) => {

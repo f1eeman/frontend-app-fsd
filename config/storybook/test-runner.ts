@@ -1,3 +1,4 @@
+import fs from 'node:fs/promises'
 import path from 'node:path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
 import type { TestRunnerConfig } from '@storybook/test-runner'
@@ -12,6 +13,17 @@ const isImageRequest = (url: string) =>
 
 const isLocalUrl = (url: string) =>
   /^https?:\/\/(localhost|127\.0\.0\.1)/i.test(url)
+
+const STORY_RENDER_TIMEOUT_MS = 10000
+
+const hasFile = async (filePath: string) => {
+  try {
+    await fs.access(filePath)
+    return true
+  } catch {
+    return false
+  }
+}
 
 const config: TestRunnerConfig = {
   setup() {
@@ -49,18 +61,30 @@ const config: TestRunnerConfig = {
     const screenTestsDirPath = path.resolve(process.cwd(), 'screen-tests')
     const snapshotsDirPath = path.resolve(screenTestsDirPath, 'snapshots')
     const diffsDirPath = path.resolve(screenTestsDirPath, 'diffs')
+    const currentDirPath = path.resolve(screenTestsDirPath, 'current')
 
     const storyRootLocator = page.locator('#storybook-root')
-    await storyRootLocator.waitFor({ state: 'visible' })
     await page.waitForLoadState('domcontentloaded')
 
-    await page.waitForFunction(() => {
-      const root = document.querySelector('#storybook-root')
-      if (!root) {
-        return false
-      }
-      return root.childElementCount > 0
-    })
+    try {
+      await page.waitForFunction(
+        () => {
+          const root = document.querySelector('#storybook-root')
+          if (!root) {
+            return false
+          }
+          return root.childElementCount > 0
+        },
+        undefined,
+        { timeout: STORY_RENDER_TIMEOUT_MS },
+      )
+    } catch {
+      throw new Error(
+        `Story "${context.id}" rendered nothing within ${STORY_RENDER_TIMEOUT_MS} ms: #storybook-root is empty. An empty state has nothing to screenshot, cover it with a unit test instead.`,
+      )
+    }
+
+    await storyRootLocator.waitFor({ state: 'visible' })
 
     await page.waitForFunction(() =>
       Array.from(
@@ -75,12 +99,21 @@ const config: TestRunnerConfig = {
       animations: 'disabled',
     })
 
+    const snapshotPath = path.resolve(snapshotsDirPath, `${context.id}.png`)
+    if (!(await hasFile(snapshotPath))) {
+      await fs.mkdir(currentDirPath, { recursive: true })
+      await fs.writeFile(
+        path.resolve(currentDirPath, `${context.id}-new.png`),
+        screenshot,
+      )
+    }
+
     expect(screenshot).toMatchImageSnapshot({
       customSnapshotIdentifier: context.id,
       customSnapshotsDir: snapshotsDirPath,
       customDiffDir: diffsDirPath,
       storeReceivedOnFailure: true,
-      customReceivedDir: path.resolve(screenTestsDirPath, 'current'),
+      customReceivedDir: currentDirPath,
       failureThreshold: 100,
       failureThresholdType: 'pixel',
       customDiffConfig: {

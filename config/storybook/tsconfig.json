@@ -5,6 +5,6 @@
     "allowImportingTsExtensions": true,
     "noEmit": true
   },
-  "include": ["./**/*.ts", "./**/*.tsx"],
+  "include": ["./**/*.ts", "./**/*.tsx", "../../src/app/global.d.ts"],
   "exclude": ["../../node_modules", "../../build", "../../dist"]
 }
